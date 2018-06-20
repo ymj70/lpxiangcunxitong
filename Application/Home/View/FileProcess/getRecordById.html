@@ -1,0 +1,110 @@
+    <div class="pageContol">
+        <div class="main_body">
+            <div class="d_title">
+                <i class="layui-icon" onclick="goBack()">&#xe65c;</i>
+                <p>档案核查处理</p>
+            </div>
+            <div class="h_body body_roll ptb2">
+                <div class="layui-forms1">
+                    <div>
+                        <div class="layui-form layui-forms">
+                            <table class="layui-table" lay-size="lg">
+                                <tbody>
+                                    <tr>
+                                        <td>业务名称</td>
+                                        <td>{$data["name"]|default=""}</td>
+                                        <td>档案类型</td>
+                                        <td>{$data["recordState"]|default=""}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>申请来源</td>
+                                        <td>{$data["applyForSource"]|default=""}</td>
+                                        <td>申请人</td>
+                                        <td>{$data["proposer"]|default=""}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>申请时间</td>
+                                        <td>{$data["applyForTime"]|default=""}</td>
+                                        <td>申请人证件号码</td>
+                                        <td>{$data["idNumber"]|default=""}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="hcyq">
+                        <p>
+                            核查要求：<br><br> 1.
+                            <br><br> 2.
+                            <br><br> 3.
+                            <br><br> 4.
+                        </p>
+                    </div>
+                    <input type="hidden" id="idnumber" value="{$data.idNumber}">
+                    <if condition="$data.recordState eq '有档'">
+                        <div class="btn_right">
+                            <button class="btn_bulue layui-btn" onclick="acquireRecord()">调取档案</button>
+                        </div>
+                    </if>
+                    <div class="btn_center">
+                        <p>核查结论：</p>
+                        <if condition="$data.recordState eq '有档'">
+                            <div>
+                                <input type="hidden" id="id" value="{$data.id}">
+                                <input type="hidden" id="businessEventId" value="{$data.businessEventId}">
+                                <button class="btn_green layui-btn" onclick="recordCheck(1)">通过</button>
+                            </div>
+                        <else />
+                            <div>
+                                <button class="btn_green layui-btn" onclick="recordCheck(2)">通过</button>
+                            </div>
+                        </if>
+                        <div>
+                            <button class="btn_orgin layui-btn" onclick="recordCheck(3)">不通过</button>
+                        </div>
+                        <div style="width: 60%">
+                            <textarea name="reason" id="reason" cols="50" rows="5" placeholder="请说明不通过的原因"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<include file="Public:footer" />
+<script>
+    function acquireRecord(idNumber){
+        var idNumber=$("#idnumber").val();
+        window.location.href="{:U('Home/FileProcess/acquireRecord/idNumber/"+idNumber+"')}";
+    }
+    function recordCheck(type,id,businessEventId) {
+        // if (id == 3 && $("#reason").val() == '') {}
+        var id=$("#id").val();
+        var businessEventId=$("#businessEventId").val();
+        $.ajax({
+            type: "post",
+            url: "{:U('Home/FileProcess/recordCheck')}",
+            data: {
+                type: type,
+                id: id ,
+                businessEventId: businessEventId,
+                reason: $("#reason").val()
+            },
+            dataType: "json",
+            success: function(data){
+                if(data.status==1){
+                    layer.alert(data.message, function(index){
+                        window.location.href = data.url;
+                        layer.close(index);
+                    });
+                }else {
+                    layer.alert(data.message);
+                }
+            },
+            error: function(a,b,c){
+                layer.alert('服务器访问失败，请稍后再试。');
+            }
+        });
+    }
+</script>
+</html>

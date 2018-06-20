@@ -1,0 +1,136 @@
+    <div class="pageContol">
+        <div class="main_body">
+            <div class="d_title">
+                <i class="layui-icon" onclick="goBack()">&#xe65c;</i>
+                <p>退休社保审核</p>
+            </div>
+            <div class="h_body body_roll">
+                <div class="layui-forms">
+                    <div>
+                        <div class="layui-form layui-forms">
+                            <table class="layui-table" lay-size="lg">
+                                <tbody>
+                                    <tr>
+                                        <td>申请人</td>
+                                        <td>{$data.proposer|default=""}</td>
+                                        <td>证件号码</td>
+                                        <td>{$data.idNumber|default=""}</td>
+                                        <input type="hidden" id="idNumber" value="{$data.idNumber}">
+                                        <input type="hidden" id="id" value="{$data.id|numChange}">
+                                        <input type="hidden" id="url" value="{$data.id|getRequestUrl}">
+                                    </tr>
+                                    <tr>
+                                        <td>参保单位</td>
+                                        <td>{$data.companyName|default=""}</td>
+                                        <td>参加工作时间</td>
+                                        <td>{$data.workTime|default=""}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>首次参保时间</td>
+                                        <td>{$data.registerTime|default=""}</td>
+                                        <td>参保状态</td>
+                                        <td>
+                                            <switch name="data.insuredStatus" >
+                                                <case value="1">正常参保</case>
+                                                <case value="2">暂停参保</case>
+                                                <case value="3">退保</case>
+                                                <default />
+                                            </switch>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>欠费月数</td>
+                                        <td>{$data.accumulatedArrears|default=""}个月</td>
+                                        <td>实际缴费月数</td>
+                                        <td>{$data.accumulatedPaymentPeriod|default=""}个月</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="btn_san">
+                        <div class="text_center">
+                            <div class="btn_colom">
+                                <div>
+                                    <button class="btn_bulue layui-btn" onclick="queryPayHistory()">查询缴费历史</button>
+                                </div>
+                                <div>
+                                    <button class="btn_green layui-btn" onclick="check(1)">审核通过</button>
+                                    <input type="hidden" id="businessEventId" value="{$data.businessEventId}">
+                                    <input type="hidden" id="recordAcceptorId" value="{$data.recordAcceptorId}">
+                                    <input type="hidden" id="recordHandleTime" value="{$data.recordHandleTime}">
+                                </div>
+                            </div>
+                            <div class="btn_colom">
+                                <div>
+                                    <button class="btn_bulue layui-btn" onclick="mimeograph(1)">打印基础表</button>
+                                </div>
+                                <div>
+                                    <button class="btn_orgin layui-btn" onclick="check(2)">审核不通过</button>
+                                </div>
+                            </div>
+                            <div class="btn_colom">
+                                <div>
+                                    <button class="btn_bulue layui-btn" onclick="mimeograph(2)">打印核准表</button>
+                                </div>
+                                <div>
+                                    <textarea name="" id="reason" cols="40" rows="5" placeholder="请说明不通过的原因"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<include file="Public:footer" />
+<script>
+    function queryPayHistory() {
+        var idNumber=$("#idNumber").val();
+        window.location.href="{:U('Home/RetireAudit/queryPayHistory/idNumber/"+idNumber+"')}";
+    }
+    function check(type) {
+        var idNumber=$("#idNumber").val();
+        var id=$("#id").val();
+        var businessEventId=$("#businessEventId").val();
+        var recordAcceptorId=$("#recordAcceptorId").val();
+        var recordHandleTime=$("#recordHandleTime").val();
+        var reason=$("#reason").val();
+        $.ajax({
+            type: "post",
+            url: "{:U('Home/RetireAudit/Check')}",
+            data: {
+                type:type,
+                id:id ,
+                reason:reason,
+                businessEventId:businessEventId,
+                recordAcceptorId:recordAcceptorId,
+                recordHandleTime:recordHandleTime,
+                idNumber:idNumber
+            },
+            dataType: "json",
+            success: function(data){
+                if(data.status==1){
+                    layer.alert(data.message, function(index){
+                        window.location.href = data.url;
+                        layer.close(index);
+                    });
+                }else {
+                    layer.alert(data.message);
+                }
+            }
+        });
+    }
+    function mimeograph(type) {
+        var idNumber=$("#idNumber").val();
+        var url=$("#url").val();
+        if(type===1){
+            window.open("http://"+url+"/socialSecurity/printBasicsForm?idNumber="+idNumber);
+        }else if(type===2){
+            window.open("http://"+url+"/socialSecurity/printApprovalForm?idNumber="+idNumber);
+        }
+
+    }
+</script>
+</html>

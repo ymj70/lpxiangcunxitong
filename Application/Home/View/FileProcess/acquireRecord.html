@@ -1,0 +1,51 @@
+    <div class="pageContol">
+        <div class="main_body">
+            <div class="d_title">
+                <i class="layui-icon" onclick="goBack()">&#xe65c;</i>
+                <p>档案信息预览</p>
+            </div>
+            <div class="d_body hasTitle">
+                <div class="body_xx">
+                    <div class="ul-box">
+                        <ul>
+                            <li>
+                                <label>档案所属人：</label><span>{$data.name|default=""}</span>
+                            </li>
+                            <li>
+                                <label>档案类型：</label><span>{$data.recordType|default=""}</span>
+                            </li>
+                            <li>
+                                <label>存档时间：</label><span>{$data.pigeonholeYear|default=""}</span>
+                            </li>
+                            <li>
+                                <label>案卷号：</label><span>{$data.recordsNumber|default=""}</span>
+                            </li>
+                            <li>
+                                <label>存档位置：</label><span>{$data.onFileLocation|default=""}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="body_yl body_roll p1">
+                    <div class="layui-form layui-forms">
+                        <volist name="imgpath" id="vo">
+                            <div class="contain_one">
+                                <div class="body_img"><img src="{$vo}" alt=""></div>
+                                <div class="body_btn">
+                                    <button class="btn_bulue layui-btn">预览</button>
+                                </div>
+                            </div>
+                        </volist>
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<include file="Public:footer" />
+<script>
+    $(function() {
+        layerPhotos()
+    })
+</script>
+</html>
