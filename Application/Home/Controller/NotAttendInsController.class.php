@@ -1,23 +1,35 @@
 <?php
 
 namespace Home\Controller;
-class NotAttendInsController extends Controller
+class NotAttendInsController extends CommonController
 {
     public function _initialize()
     {
-        //parent::_initialize();
+        parent::_initialize();
         //为菜单选中状态设置session
         session("menu", "未参保人员登记");
-        session("model", "系统管理");
+        session("model", "人员登记");
     }
 
     /**
-     * 未参保人员登记 首页
-     *检查当前用户是否已经参保，如已经参保无需再次登记 已参保进入下一步
      *
+     * 未参保人员登记 首页
      */
     public function NotAttendInsIndex()
     {
+        $this->display();
+    }
+
+    /**
+     *检查当前用户是否已经参保，如已经参保无需再次登记 已参保进入下一步
+     *
+     */
+    public function checkPeopleInsStatus()
+    {
+        if (!IS_POST) {
+            $this->display();
+            return;
+        }
         $data["realName"] = I("post.realName");//姓名
         $data["idCard"] = I("post.idCard");//身份证号
         $javaurl = $this->javaUrl;
@@ -76,6 +88,7 @@ class NotAttendInsController extends Controller
         $data["flowPeople"] = I("post.flowPeople");//流动人员
         $data["notAttendInsReason"] = I("post.notAttendInsReason");//未参保原因
         $info["params"] = "未填写字段：";
+        //遍历检测字段是否都是非空的 有一个字段为空就返回信息不完整
         foreach ($data as $key => $value) {
             if (empty($value)) {
                 $status = false;
@@ -103,8 +116,8 @@ class NotAttendInsController extends Controller
             $this->display();
             return;
         }
-        $idcardBackImg = $_FILES["idcardBackImg"];//身份证背面图片
-        $idcardfrontImg = $_FILES["idcardfrontImg"];//身份证正面图片
+        $idcardBackImg = I("idcardBackImg");//身份证背面图片
+        $idcardfrontImg = I("idcardfrontImg");//身份证正面图片
         if (!empty($idcardBackImg) && !empty($idcardfrontImg)) {
             $data = session("NotAttendInsPeopleInfo");
             $data["idcardBackImg"] = $idcardBackImg;
@@ -115,7 +128,7 @@ class NotAttendInsController extends Controller
             $info["url"] = U("Home/NotAttendIns/gethouseholdImg");
         } else {
             $info["code"] = -1;
-            $info["message"] = "图片上传失败";
+            $info["message"] = "图片路径接收失败";
         }
         $this->ajaxReturn($info);
     }
@@ -129,8 +142,8 @@ class NotAttendInsController extends Controller
             $this->display();
             return;
         }
-        $gethouseholdFirstImg = $_FILES["gethouseholdFirstImg"];//户口本主页
-        $gethouseholdPeopleImg = $_FILES["gethouseholdPeopleImg"];//户口本个人页
+        $gethouseholdFirstImg = I("gethouseholdFirstImg");//户口本主页
+        $gethouseholdPeopleImg = I("gethouseholdPeopleImg");//户口本个人页
         if (!empty($gethouseholdFirstImg) && !empty($gethouseholdPeopleImg)) {
             $data = session("NotAttendInsPeopleInfo");
             $data["gethouseholdFirstImg"] = $gethouseholdFirstImg;
@@ -145,16 +158,17 @@ class NotAttendInsController extends Controller
                 $info["code"] = 1;
                 $info["message"] = "成功";
                 $info["url"] = U("Home/NotAttendIns/NotAttendInsIndex");
-            }else{
+                session("NotAttendInsPeopleInfo", null);
+            } else {
                 $info["code"] = -1;
                 $info["message"] = $result["msg"];
-                if (empty($info["message"])){
-                    $info["message"]="信息保存接口请求失败";
+                if (empty($info["message"])) {
+                    $info["message"] = "信息保存接口请求失败";
                 }
             }
         } else {
             $info["code"] = -1;
-            $info["message"] = "图片上传失败";
+            $info["message"] = "图片路径接收失败";
         }
         $this->ajaxReturn($info);
     }

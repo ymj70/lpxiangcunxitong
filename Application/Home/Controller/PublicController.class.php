@@ -3,6 +3,7 @@
 namespace Home\Controller;
 
 use Think\Controller;
+use Org\Request\Request;
 
 class PublicController extends controller
 {
@@ -21,23 +22,24 @@ class PublicController extends controller
             return;
         }
         //I方法获取参数 userName passWord
-        $data["usercode"] = I("get.userName");
+        $data["userName"] = I("get.userName");
         $data["password"] = I("get.passWord");
         //参数不全 返回错误信息
-        if (empty($data["usercode"]) || empty($data["password"])) {
+        if (empty($data["userName"]) || empty($data["password"])) {
             $info['code'] = -1;
             $info['message'] = '信息不完整';
             $this->ajaxReturn($info);
         }
         //请求Java接口验证用户名和密码的合法性
-        $javaUrl = C("auth");
-        $url = C("javaUrl") . $javaUrl["Public"]["login"];
-        $result = curl_request($url, $data);
+        $javaUrl = C("javaUrl");
+        $url = C("REQUEST_URL") . $javaUrl["Public"]["login"];
+        $requestObj = new Request();
+        $result = $requestObj->requset($url, $data, "post");
         $result = json_decode($result, true);
         if ($result["code"] === 0) {
             //用户名生成session 并将用户相关数据加入缓存 保存一天退出登录时删除缓存
-            session("username", $result['data']["username"]);
-            S($result['data']["username"], $result, 86400);
+            session("username", $result['data']["userName"]);
+            S($result['data']["userName"], $result, 86400);
             $info['code'] = 1;
             $info['message'] = '登录成功';
             $info['url'] = U("Index/index");
@@ -68,17 +70,20 @@ class PublicController extends controller
         session_destroy();
         redirect(U("Public/login"));
     }
-   
-    public function shenhe(){
+
+    public function shenhe()
+    {
         $this->display("shenhe");
     }
 
 
-    public function pay1(){
+    public function pay1()
+    {
         $this->display("pay1");
     }
 
-    public function pay2(){
+    public function pay2()
+    {
         $this->display("pay2");
     }
 }
