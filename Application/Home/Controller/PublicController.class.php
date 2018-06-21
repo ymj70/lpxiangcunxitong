@@ -20,7 +20,7 @@ class PublicController extends controller{
         $data["password"]=I("get.passWord");
         //参数不全 返回错误信息
         if(empty($data["usercode"])||empty($data["password"])){
-            $info['status']  = -1;
+            $info['code']  = -1;
             $info['message'] = '信息不完整';
             $this->ajaxReturn($info);
         }
@@ -33,12 +33,12 @@ class PublicController extends controller{
             //用户名生成session 并将用户相关数据加入缓存 保存一天退出登录时删除缓存
             session("username",$result['data']["username"]);
             S($result['data']["username"],$result,86400);
-            $info['status']  = 1;
+            $info['code']  = 1;
             $info['message'] = '登录成功';
             $info['url'] = U("Index/index");
             $this->ajaxReturn($info);;
         }else{
-            $info['status']  = -1;
+            $info['code']  = -1;
             $info['message'] = $result["msg"];
             if (empty($info['message'])){
                 $info['message']="接口请求失败";
