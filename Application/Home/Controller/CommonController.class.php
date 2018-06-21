@@ -3,6 +3,7 @@
 namespace Home\Controller;
 
 use Think\Controller;
+use Org\Request\Request;
 
 class CommonController extends Controller
 {
@@ -16,6 +17,8 @@ class CommonController extends Controller
         if (!is_login()) {
             redirect(U("Public/login"));
         }
+        //检测用户是否10分钟没有动作 是退出登录
+        $this->checkActivityTime();
         //设置左侧菜单 打开和关闭状态的session 默认是1 打开状态
         if (empty(session("menustatus"))) {
             session("menustatus", 1);
@@ -23,8 +26,7 @@ class CommonController extends Controller
         //输出账户信息 在网站顶部显示
         $this->showUserInfo();
 
-        //检测用户是否10分钟没有动作 是退出登录
-        $this->checkActivityTime();
+
 
     }
 
