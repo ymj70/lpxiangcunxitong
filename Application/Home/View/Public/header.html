@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
@@ -8,21 +9,23 @@
     <title>滦平智慧人社协同系统</title>
     <link rel="stylesheet" href="__PUBLIC__/feature/layui/css/layui.css">
     <link rel="stylesheet" href="__PUBLIC__/css/base.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/base2.css">
     <link rel="stylesheet" href="__PUBLIC__/css/login.css">
 </head>
+
 <body class="index">
-<div class="header">
-    <div class="header-title">
-        <div class="seat">
-            <div class="img-box">
-                <img src="__PUBLIC__/image/logo.png" alt="">
+    <div class="header">
+        <div class="header-title">
+            <div class="seat">
+                <div class="img-box">
+                    <img src="__PUBLIC__/image/logo.png" alt="">
+                </div>
+                <h4><a href="{:U('Home/Index/index')}">滦平智慧人社内部协同系统</a></h4>
             </div>
-            <h4><a href="{:U('Home/Index/index')}">滦平智慧人社内部协同系统</a></h4>
         </div>
-    </div>
-    <div class="header-btn">
-        <div class="seat">
-            <!--<div class="headr-btn-">
+        <div class="header-btn">
+            <div class="seat">
+                <!--<div class="headr-btn-">
                 <div class="headr-btn-title"><span>未定</span></div>
                 <div class="headr-btn-popUp"></div>
             </div>
@@ -30,16 +33,16 @@
                 <div class="headr-btn-title"><span>未定</span></div>
                 <div class="headr-btn-popUp"></div>
             </div>-->
-            <div class="headr-btn-user">
-                <div class="headr-btn-title">
-                    <div class="img-box">
-                        <img src="__PUBLIC__/image/user.png" alt="">
+                <div class="headr-btn-user">
+                    <div class="headr-btn-title">
+                        <div class="img-box">
+                            <img src="__PUBLIC__/image/user.png" alt="">
+                        </div>
                     </div>
-                </div>
-                <div class="headr-btn-popUp">
-                    <div class="headr-btn-popUpBox">
-                        <ul>
-                            <!-- <li>
+                    <div class="headr-btn-popUp">
+                        <div class="headr-btn-popUpBox">
+                            <ul>
+                                <!-- <li>
                                 <div>
                                     <div class="img-box">
                                         <img src="__PUBLIC__/image/user-info.png" alt="">
@@ -47,7 +50,7 @@
                                     <p>个人信息</p>
                                 </div>
                             </li> -->
-                           <!-- <li>
+                                <!-- <li>
                                 <div>
                                     <div class="img-box">
                                         <img src="__PUBLIC__/image/user-change.png" alt="">
@@ -55,29 +58,29 @@
                                     <p>切换帐号</p>
                                 </div>
                             </li>-->
-                            <li id="userDel">
-                                <div>
-                                    <a href="{:U('Home/Public/outLogin')}">
-                                        <div class="img-box">
-                                            <img src="__PUBLIC__/image/out.png" alt="">
-                                        </div>
-                                        <p>退出</p>
-                                        <input type="hidden" name="public" value="__PUBLIC__">
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
+                                <li id="userDel">
+                                    <div>
+                                        <a href="{:U('Home/Public/outLogin')}">
+                                            <div class="img-box">
+                                                <img src="__PUBLIC__/image/out.png" alt="">
+                                            </div>
+                                            <p>退出</p>
+                                            <input type="hidden" name="public" value="__PUBLIC__">
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<if condition="$_SESSION['menustatus'] eq 2">
-    <div class="control control-cur">
-<else />
-    <div class="control">
-</if>
+    <if condition="$_SESSION['menustatus'] eq 2">
+        <div class="control control-cur">
+            <else />
+            <div class="control">
+    </if>
     <input type="hidden" name="menuStatus" value="{:U('/Home/Common/menuStatus')}">
     <input type="hidden" name="session" value="{$_SESSION['menustatus']}">
     <div class="nav">
@@ -102,7 +105,7 @@
                             </a>
                         </div>
                     </li>
-                <elseif condition="$vo eq 132626000002"/>
+                    <elseif condition="$vo eq 132626000002" />
                     <li class="nav-cur">
                         <a href="{:U('RetireAudit/retireCheck')}">
                             <div class="seat">
@@ -113,7 +116,7 @@
                             </div>
                         </a>
                     </li>
-                <elseif condition="$vo eq 132626000003"/>
+                    <elseif condition="$vo eq 132626000003" />
                     <li class="nav-cur">
                         <a href="{:U('EndInsurance/queryInsuranceList')}">
                             <div class="seat">
@@ -124,50 +127,50 @@
                             </div>
                         </a>
                     </li>
-                <elseif condition="$vo eq 132626000004"/>
+                    <elseif condition="$vo eq 132626000004" />
                     <if condition="$_SESSION['menu'] eq 'FileProcess'">
                         <li class="nav-cur">
-                    <else />
-                        <li>
+                            <else />
+                            <li>
                     </if>
-                        <div class="seat">
-                            <a href="{:U('FileProcess/getRecordList')}">
-                                <div class="img-box">
-                                    <img src="__PUBLIC__/image/nav-1.png" alt="">
-                                </div>
-                                <span>退休档案审核</span>
-                            </a>
-                        </div>
+                    <div class="seat">
+                        <a href="{:U('FileProcess/getRecordList')}">
+                            <div class="img-box">
+                                <img src="__PUBLIC__/image/nav-1.png" alt="">
+                            </div>
+                            <span>退休档案审核</span>
+                        </a>
+                    </div>
                     </li>
                     <if condition="$_SESSION['menu'] eq 'RetireAudit'">
                         <li class="nav-cur">
-                    <else />
-                        <li>
+                            <else />
+                            <li>
                     </if>
-                        <a href="{:U('RetireAudit/retireCheck')}">
-                            <div class="seat">
-                                <div class="img-box">
-                                    <img src="__PUBLIC__/image/nav-2.png" alt="">
-                                </div>
-                                <span>退休社保审核</span>
+                    <a href="{:U('RetireAudit/retireCheck')}">
+                        <div class="seat">
+                            <div class="img-box">
+                                <img src="__PUBLIC__/image/nav-2.png" alt="">
                             </div>
-                        </a>
+                            <span>退休社保审核</span>
+                        </div>
+                    </a>
                     </li>
                     <if condition="$_SESSION['menu'] eq 'EndInsurance'">
                         <li class="nav-cur">
-                    <else />
-                        <li>
+                            <else />
+                            <li>
                     </if>
-                        <a href="{:U('EndInsurance/queryInsuranceList')}">
-                            <div class="seat">
-                                <div class="img-box">
-                                    <img src="__PUBLIC__/image/nav-3.png" alt="">
-                                </div>
-                                <span>退休待遇计发</span>
+                    <a href="{:U('EndInsurance/queryInsuranceList')}">
+                        <div class="seat">
+                            <div class="img-box">
+                                <img src="__PUBLIC__/image/nav-3.png" alt="">
                             </div>
-                        </a>
+                            <span>退休待遇计发</span>
+                        </div>
+                    </a>
                     </li>
-                <else />
+                    <else />
                     <li>
                         <div class="seat">
                             <div class="img-box">
