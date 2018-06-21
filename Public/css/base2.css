@@ -1,0 +1,182 @@
+.bgc-green {
+  background-color: #1aad19;
+}
+.bgc-gary {
+  background-color: #c4c4c4;
+}
+.bgc-red {
+  background-color: #be0b20;
+}
+.font-white {
+  color: #edebeb;
+}
+.font-black {
+  color: #3f3f3f;
+}
+.care h3 {
+  font-size: 18px;
+}
+.care p {
+  font-size: 16px;
+  padding: 0.78rem 0;
+}
+.care p span {
+  color: #5665fa;
+}
+.care .news {
+  background-color: #f7f7f7;
+  margin-top: 1rem;
+}
+.care .news label {
+  font-size: 1.0rem;
+  color: #5665fa;
+  padding: 1rem 1.5rem;
+  box-sizing: border-box;
+}
+.care .news span {
+  padding: 0 1rem;
+}
+.pay {
+  width: 19.3125rem;
+  height: 18.1875rem;
+  background: #f7f7f7;
+  margin: 0 auto;
+  padding: 0.625rem 0.625rem;
+  box-sizing: border-box;
+  margin-top: 2.5rem;
+}
+.pay .ibox {
+  width: 18.125rem;
+  height: 16.8125rem;
+}
+.approval .p-box {
+  padding: 2.8125rem;
+}
+.approval .p-box p {
+  text-align: center;
+  font-size: 16px;
+}
+.approval .approval-box {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align: center;
+      align-items: center;
+}
+.approval .approval-box span {
+  font-size: 16px;
+  padding: 0.875rem 8.125rem;
+  border-radius: 0.625rem;
+  box-shadow: 4px 8px 10px #c8c6c6;
+}
+.approval .approval-box .imge-box {
+  width: 1.5rem!important;
+  height: 1.625rem!important;
+  padding: 0.9375rem;
+}
+.approval .approval-box .explain {
+  display: -ms-flexbox;
+  display: flex;
+  width: 15rem;
+  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+}
+.approval .approval-box .explain i {
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 50%;
+  margin: .25rem .5rem;
+}
+.approval .approval-box .explain p {
+  font-size: 14px;
+}
+.approval .pd-t {
+  padding: 2.1875rem;
+}
+.careful {
+  padding: 3.375rem 0;
+}
+.btn {
+  text-align: center;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+.btn input {
+  width: 1.0625rem;
+  height: 1.0625rem;
+}
+.btn span {
+  font-size: 16px;
+  color: #5665fa;
+  padding: 0 0.4375rem;
+  line-height: 2.1875rem;
+}
+.btn button {
+  padding: 0 5rem;
+}
+.btn .layui-form-checked,
+.btn .layui-form-checked:hover {
+  border-color: #b5b5b5;
+}
+.btn .layui-form-checked span,
+.btn .layui-form-checked:hover span {
+  background-color: #ffffff;
+}
+.btn .layui-form-checkbox[lay-skin=primary]:hover i {
+  border-color: #b5b5b5;
+}
+.btn .layui-form-checked[lay-skin=primary] i {
+  border-color: #b5b5b5;
+  background-color: #ffffff;
+  color: black;
+}
+.demo {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  width: 100%;
+}
+.demo .demo-page {
+  width: 50%;
+  padding: 1rem 1rem;
+  box-sizing: border-box;
+}
+.demo .demo-page .img-box {
+  width: 27.25rem;
+  height: 17.875rem;
+}
+.demo .demo-page .img-box img {
+  width: 100%;
+}
+.demo .user-information {
+  width: 100%;
+  height: 17.875rem;
+  background-color: #99ccff;
+  border-radius: 1.25rem;
+}
+.demo .user-information > .information-box {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+.demo .user-information > .information-box > div {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  padding: .35rem 0;
+}
+.demo .user-information > .information-box > div label {
+  width: 6rem;
+  text-align: right;
+  padding-right: .675rem;
+  line-height: 2;
+}
+.demo .user-information > .information-box > div input {
+  width: 15rem;
+}

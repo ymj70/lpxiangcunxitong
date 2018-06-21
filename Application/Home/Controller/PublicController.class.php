@@ -64,6 +64,18 @@ class PublicController extends controller{
         session_destroy();
         redirect(U("Public/login"));
     }
+   
+    public function shenhe(){
+        $this->display("shenhe");
+    }
 
+
+    public function pay1(){
+        $this->display("pay1");
+    }
+
+    public function pay2(){
+        $this->display("pay2");
+    }
 }
 

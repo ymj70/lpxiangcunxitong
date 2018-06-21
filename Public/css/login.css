@@ -79,8 +79,10 @@
   line-height: 2.5rem;
   font-size: 1.2rem;
   margin: 0  0.5rem ;
+  color: #969899;
 }
 .login_wrap .login_form .login_box .form_input .login_input > div input {
+  background-color: #e5e5e5;
   font-size: 1rem;
   height: 2.5rem;
 }
