@@ -89,7 +89,7 @@ function doForm() {
             success: function(data) {
                 if (data.code == 1) {
                     layer.msg("登录成功");
-                    // window.location.href = data.url;
+                    window.location.href = data.url;
                 } else {
                     layer.msg(data.message || '服务器访问失败，请稍后再试。');
                 }
