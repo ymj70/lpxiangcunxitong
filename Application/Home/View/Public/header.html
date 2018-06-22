@@ -101,9 +101,9 @@
                 <ul>
                     <li>
                         <if condition="$_SESSION['menustatus'] eq '首页'">
-                            <div class="seat">
+                            <div class="seat  nava-cur">
                                 <else />
-                                <div class="seat nava-cur">
+                                <div class="seat">
                         </if>
                         <a href="{:U('Home/Index/index')}">
                             <div class="img-box">
@@ -115,9 +115,9 @@
                     </li>
                     <li>
                         <if condition="$_SESSION['menustatus'] eq '人员登记'">
-                            <div class="seat">
+                            <div class="seat nava-cur">
                                 <else />
-                                <div class="seat nava-cur">
+                                <div class="seat">
                         </if>
                         <a href="javascript:;">
                             <div class="img-box">
@@ -128,10 +128,10 @@
                         </div>
                         <ul>
                             <li>
-                                <if condition="$_SESSION['menu'] neq '未参保人员登记'">
-                                    <div class="seat">
+                                <if condition="$_SESSION['menu'] eq '未参保人员登记'">
+                                    <div class="seat nava-cur">
                                         <else />
-                                        <div class="seat nava-cur">
+                                        <div class="seat">
                                 </if>
                                 <a href="{:U('Home/NotAttendIns/NotAttendInsIndex')}">
                                     <span>未参保人员登记</span>
@@ -139,10 +139,10 @@
                                 </div>
                             </li>
                             <li>
-                                <if condition="$_SESSION['menu'] neq '城乡医疗参保登记'">
-                                    <div class="seat">
+                                <if condition="$_SESSION['menu'] eq '城乡医疗参保登记'">
+                                    <div class="seat nava-cur">
                                         <else />
-                                        <div class="seat nava-cur">
+                                        <div class="seat ">
                                 </if>
                                 <a href="{:U('Home/MedicalInsAttend/MedicalInsAttendIndex')}">
                                     <span>城乡医疗参保登记</span>
@@ -150,10 +150,10 @@
                                 </div>
                             </li>
                             <li>
-                                <if condition="$_SESSION['menu'] neq '城乡养老参保登记'">
-                                    <div class="seat">
+                                <if condition="$_SESSION['menu'] eq '城乡养老参保登记'">
+                                    <div class="seat nava-cur">
                                         <else />
-                                        <div class="seat nava-cur">
+                                        <div class="seat">
                                 </if>
                                 <a href="{:U('Home/EndowmentInsAttend/endowmentInsAttendIndex')}">
                                     <span>城乡养老参保登记</span>
@@ -163,10 +163,10 @@
                         </ul>
                     </li>
                     <li>
-                        <if condition="$_SESSION['menu'] neq '社保缴纳'">
-                            <div class="seat">
+                        <if condition="$_SESSION['menu'] eq '社保缴纳'">
+                            <div class="seat nava-cur">
                                 <else />
-                                <div class="seat nava-cur">
+                                <div class="seat">
                         </if>
                         <a href="javascript:;">
                             <div class="img-box">
@@ -177,10 +177,10 @@
                         </div>
                         <ul>
                             <li>
-                                <if condition="$_SESSION['menu'] neq '城乡居民医疗保险'">
-                                    <div class="seat">
+                                <if condition="$_SESSION['menu'] eq '城乡居民医疗保险'">
+                                    <div class="seat nava-cur">
                                         <else />
-                                        <div class="seat nava-cur">
+                                        <div class="seat">
                                 </if>
                                 <a href="javascript:;">
                                     <span>城乡居民医疗保险</span>
@@ -188,10 +188,10 @@
                                 </div>
                             </li>
                             <li>
-                                <if condition="$_SESSION['menu'] neq '城乡居民医疗保险'">
-                                    <div class="seat">
+                                <if condition="$_SESSION['menu'] eq '城乡居民医疗保险'">
+                                    <div class="seat nava-cur">
                                         <else />
-                                        <div class="seat nava-cur">
+                                        <div class="seat">
                                 </if>
                                 <a href="javascript:;">
                                     <span>城乡居民医疗保险</span>
@@ -201,10 +201,10 @@
                         </ul>
                     </li>
                     <li>
-                        <if condition="$_SESSION['menu'] neq '信息查询'">
-                            <div class="seat">
+                        <if condition="$_SESSION['menu'] eq '信息查询'">
+                            <div class="seat nava-cur">
                                 <else />
-                                <div class="seat nava-cur">
+                                <div class="seat">
                         </if>
                         <a href="javascript:;">
                             <div class="img-box">
@@ -215,10 +215,10 @@
                         </div>
                         <ul>
                             <li>
-                                <if condition="$_SESSION['menu'] neq '参保信息查询'">
-                                    <div class="seat">
+                                <if condition="$_SESSION['menu'] eq '参保信息查询'">
+                                    <div class="seat nava-cur">
                                         <else />
-                                        <div class="seat nava-cur">
+                                        <div class="seat">
                                 </if>
                                 <a href="javascript:;">
                                     <span>参保信息查询</span>
@@ -226,10 +226,10 @@
                                 </div>
                             </li>
                             <li>
-                                <if condition="$_SESSION['menu'] neq '城乡养老缴纳查询'">
-                                    <div class="seat">
+                                <if condition="$_SESSION['menu'] eq '城乡养老缴纳查询'">
+                                    <div class="seat nava-cur">
                                         <else />
-                                        <div class="seat nava-cur">
+                                        <div class="seat">
                                 </if>
                                 <a href="javascript:;">
                                     <span>城乡养老缴纳查询</span>
@@ -237,10 +237,10 @@
                                 </div>
                             </li>
                             <li>
-                                <if condition="$_SESSION['menu'] neq '城乡居民缴纳查询'">
-                                    <div class="seat">
+                                <if condition="$_SESSION['menu'] eq '城乡居民缴纳查询'">
+                                    <div class="seat nava-cur">
                                         <else />
-                                        <div class="seat nava-cur">
+                                        <div class="seat">
                                 </if>
                                 <a href="javascript:;">
                                     <span>城乡居民缴纳查询</span>
@@ -248,10 +248,10 @@
                                 </div>
                             </li>
                             <li>
-                                <if condition="$_SESSION['menu'] neq '待遇领取查询'">
-                                    <div class="seat">
+                                <if condition="$_SESSION['menu'] eq '待遇领取查询'">
+                                    <div class="seat nava-cur">
                                         <else />
-                                        <div class="seat nava-cur">
+                                        <div class="seat">
                                 </if>
                                 <a href="javascript:;">
                                     <span>待遇领取查询</span>
@@ -259,10 +259,10 @@
                                 </div>
                             </li>
                             <li>
-                                <if condition="$_SESSION['menu'] neq '医疗报销查询'">
-                                    <div class="seat">
+                                <if condition="$_SESSION['menu'] eq '医疗报销查询'">
+                                    <div class="seat nava-cur">
                                         <else />
-                                        <div class="seat nava-cur">
+                                        <div class="seat">
                                 </if>
                                 <a href="javascript:;">
                                     <span>医疗报销查询</span>
@@ -270,10 +270,10 @@
                                 </div>
                             </li>
                             <li>
-                                <if condition="$_SESSION['menu'] neq '医疗提高报销查询'">
-                                    <div class="seat">
+                                <if condition="$_SESSION['menu'] eq '医疗提高报销查询'">
+                                    <div class="seat nava-cur">
                                         <else />
-                                        <div class="seat nava-cur">
+                                        <div class="seat">
                                 </if>
                                 <a href="javascript:;">
                                     <span>医疗提高报销查询</span>
@@ -281,10 +281,10 @@
                                 </div>
                             </li>
                             <li>
-                                <if condition="$_SESSION['menu'] neq '养老参保进度查询'">
-                                    <div class="seat">
+                                <if condition="$_SESSION['menu'] eq '养老参保进度查询'">
+                                    <div class="seat nava-cur">
                                         <else />
-                                        <div class="seat nava-cur">
+                                        <div class="seat">
                                 </if>
                                 <a href="javascript:;">
                                     <span>养老参保进度查询</span>
@@ -292,10 +292,10 @@
                                 </div>
                             </li>
                             <li>
-                                <if condition="$_SESSION['menu'] neq '医疗参保进度查询'">
-                                    <div class="seat">
+                                <if condition="$_SESSION['menu'] eq '医疗参保进度查询'">
+                                    <div class="seat nava-cur">
                                         <else />
-                                        <div class="seat nava-cur">
+                                        <div class="seat">
                                 </if>
                                 <a href="javascript:;">
                                     <span>医疗参保进度查询</span>
@@ -305,10 +305,10 @@
                         </ul>
                     </li>
                     <li>
-                        <if condition="$_SESSION['menu'] neq '待遇资格认证'">
-                            <div class="seat">
+                        <if condition="$_SESSION['menu'] eq '待遇资格认证'">
+                            <div class="seat nava-cur">
                                 <else />
-                                <div class="seat nava-cur">
+                                <div class="seat">
                         </if>
                         <a href="javascript:;">
                             <div class="img-box">
@@ -319,10 +319,10 @@
                         </div>
                         <ul>
                             <li>
-                                <if condition="$_SESSION['menu'] neq '待遇资格认证'">
-                                    <div class="seat">
+                                <if condition="$_SESSION['menu'] eq '待遇资格认证'">
+                                    <div class="seat nava-cur">
                                         <else />
-                                        <div class="seat nava-cur">
+                                        <div class="seat">
                                 </if>
                                 <a href="javascript:;">
                                     <span>待遇资格认证</span>
@@ -332,10 +332,10 @@
                         </ul>
                     </li>
                     <li>
-                        <if condition="$_SESSION['menu'] neq '帮村民找工作'">
-                            <div class="seat">
+                        <if condition="$_SESSION['menu'] eq '帮村民找工作'">
+                            <div class="seat nava-cur">
                                 <else />
-                                <div class="seat nava-cur">
+                                <div class="seat">
                         </if>
                         <a href="javascript:;">
                             <div class="img-box">
@@ -346,10 +346,10 @@
                         </div>
                         <ul>
                             <li>
-                                <if condition="$_SESSION['menu'] neq '个人求职登记'">
-                                    <div class="seat">
+                                <if condition="$_SESSION['menu'] eq '个人求职登记'">
+                                    <div class="seat nava-cur">
                                         <else />
-                                        <div class="seat nava-cur">
+                                        <div class="seat">
                                 </if>
                                 <a href="javascript:;">
                                     <span>个人求职登记</span>
@@ -357,10 +357,10 @@
                                 </div>
                             </li>
                             <li>
-                                <if condition="$_SESSION['menu'] neq '单位招聘查询'">
-                                    <div class="seat">
+                                <if condition="$_SESSION['menu'] eq '单位招聘查询'">
+                                    <div class="seat nava-cur">
                                         <else />
-                                        <div class="seat nava-cur">
+                                        <div class="seat">
                                 </if>
                                 <a href="javascript:;">
                                     <span>单位招聘查询</span>

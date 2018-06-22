@@ -1,0 +1,100 @@
+<div class="framePage">
+    <div class="framePage-title">
+        <a href="javascript:;">社保缴费</a>
+        <i>></i>
+        <a href="javascript:;" class="cur-a">城乡居民养老保险参保登记</a>
+    </div>
+    <div class="framePage-body layui-form">
+        <div class="framePage-scroll">
+            <div class="ovy-a">
+                <div class="bg-box">
+                    <div class="care">
+                        <div class="h3-title">
+                            <h3>上传户口本照片</h3>
+                        </div>
+                        <div class="pbox p-flex">
+                            <div>
+                                <p>1.头像照片必须为本人现场拍摄照片</p>
+                                <p>2.证件照片必须为原件彩色照片，照片清晰无水印。</p>
+                            </div>
+                            <div>
+                                <p>3.统一横屏拍摄，周边无大块留白</p>
+                                <p>4.证件需在有效期内，证件原件完整（不缺角、无涂改），周边无边框</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  <div class="book-box">
+                                <div class="book-div">
+                                    <div class="">
+                                        
+                                    </div>
+                                </div>
+                                <div class="book-div">
+                                  <div class="">
+                                    
+                                  </div>
+                                </div>
+                            </div> -->
+                    <div class="demo">
+                        <div class="demo-page  hk-book">
+                            <div class="demo-pagepd outline">
+                                <i class="jh"></i>
+                                <div class="book-box">
+                                    <img src="__PUBLIC__/image/hk.png" alt="">
+                                </div>
+                            </div>
+                            <p>请点击加号上传</p>
+                        </div>
+                        <div class="demo-page  hk-book">
+                            <div class="demo-pagepd outline">
+                                <i class="jh"></i>
+                                <div class="book-box">
+                                    <img src="__PUBLIC__/image/hk2.png" alt="">
+                                </div>
+                            </div>
+                            <p>请点击加号上传</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btn layui-form">
+            <div>
+                <button class="layui-btn bgc-green" onclick="flx()">提交</button>
+                <button class="layui-btn bgc-blued ">打印材料</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<!-- 弹出层 -->
+<div class="alert" style="display: none">
+    <div class="alert-box">
+        <div class="bingo">
+            <img src="__PUBLIC__/image/bingo.png" alt="">
+        </div>
+    </div>
+    <div>
+        <p>上传成功</p>
+    </div>
+</div>
+</body>
+<include file="Public:footer" />
+<script>
+function flx() {
+    layer.open({
+        type: 1,
+        content: $('.alert'), //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+        area: ["478px", "304px"],
+        title: false,
+        cancel: function(index, layero) {
+ //只有当点击confirm框的确定时，该层才会关闭
+                layer.close(index);
+                $('.alert').css("display","none");
+        }
+    });
+}
+</script>
+
+</html>

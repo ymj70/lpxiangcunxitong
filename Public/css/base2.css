@@ -13,6 +13,37 @@
 .font-black {
   color: #3f3f3f;
 }
+.outline {
+  outline: #b7b7b7 dashed 3px;
+}
+.ul-list {
+  padding: 1rem 0;
+  box-sizing: border-box;
+}
+.ul-title {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 1rem 1rem;
+  background-color: #f7f7f7;
+  box-sizing: border-box;
+}
+.ul-title label {
+  font-size: 18px;
+}
+.ul-title span {
+  font-size: 18px;
+  color: #5665fa;
+}
+.core {
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+.h4-title {
+  font-size: 18px;
+}
 .care h3 {
   font-size: 18px;
 }
@@ -22,6 +53,30 @@
 }
 .care p span {
   color: #5665fa;
+}
+.care .pbox {
+  padding: 1rem 1rem;
+  box-sizing: border-box;
+  margin-top: 1rem;
+  background-color: #f5f5f5;
+}
+.care .pbox p {
+  padding: 0;
+}
+.care .p-flex {
+  display: -ms-flexbox;
+  display: flex;
+}
+.care .p-flex > div {
+  -ms-flex: 1;
+      flex: 1;
+}
+.care .h3-title {
+  padding: 0 0.875rem 0;
+}
+.care .reset-p {
+  padding: 0;
+  font-size: 14px;
 }
 .care .news {
   background-color: #f7f7f7;
@@ -133,30 +188,68 @@
   background-color: #ffffff;
   color: black;
 }
+.bg-box {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  height: 100%;
+}
 .demo {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: row;
       flex-direction: row;
   width: 100%;
+  -ms-flex: 1;
+      flex: 1;
+  -ms-flex-pack: center;
+      justify-content: center;
+  margin-top: 3rem;
 }
 .demo .demo-page {
-  width: 50%;
-  padding: 1rem 1rem;
+  padding: 1rem 0rem;
   box-sizing: border-box;
 }
-.demo .demo-page .img-box {
+.demo .demo-page .demo-pagepd {
+  padding: 1rem 1rem;
+  box-sizing: border-box;
+  position: relative;
+}
+.demo .demo-page .demo-pagepd .img-box {
   width: 27.25rem;
   height: 17.875rem;
 }
-.demo .demo-page .img-box img {
+.demo .demo-page .demo-pagepd .img-box img {
   width: 100%;
+}
+.demo .demo-page .demo-pagepd .img-box2 {
+  width: 17.25rem;
+  height: 17.25rem;
+}
+.demo .demo-page .demo-pagepd .book-box {
+  position: relative;
+}
+.demo .hk-book {
+  padding: 1rem 3rem;
+}
+.demo .hk-book p {
+  text-align: center;
+  font-size: 16px;
+  color: #5665fa;
+  padding: .5rem 0;
 }
 .demo .user-information {
   width: 100%;
   height: 17.875rem;
   background-color: #99ccff;
   border-radius: 1.25rem;
+  padding: 0 3rem;
+  box-sizing: border-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
 }
 .demo .user-information > .information-box {
   display: -ms-flexbox;
@@ -167,16 +260,168 @@
 .demo .user-information > .information-box > div {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: center;
-      justify-content: center;
-  padding: .35rem 0;
+  box-sizing: border-box;
+  padding: .5rem .54rem;
 }
 .demo .user-information > .information-box > div label {
   width: 6rem;
   text-align: right;
   padding-right: .675rem;
   line-height: 2;
+  font-size: 16px;
 }
 .demo .user-information > .information-box > div input {
   width: 15rem;
+}
+.demo .information-search {
+  width: 100%;
+  height: 17.25rem;
+  background-color: #f5f5f5;
+  padding: 3.25rem 3rem;
+  box-sizing: border-box;
+  border-radius: 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+}
+.demo .information-search > div {
+  padding: 1.25rem 0;
+}
+.demo .information-search span {
+  width: 15rem;
+  line-height: 2;
+  font-size: 16px;
+}
+.btn-box {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  margin-bottom: 2.0625rem;
+}
+.btn-box .b-pd {
+  padding: 0 5rem;
+}
+.pay-box {
+  padding: 1rem 1rem;
+}
+.pay-box .paymoney {
+  display: -ms-flexbox;
+  display: flex;
+  height: 4.375rem;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+.pay-box .paymoney li {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+}
+.pay-box .paymoney li .layui-form-radio {
+  line-height: 4.375rem;
+  padding: 0;
+  margin: 0;
+}
+.pay-box span {
+  width: 11.5625rem;
+  height: 4.375rem;
+}
+.wx {
+  background-image: url(../image/wx.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.zfb {
+  background-image: url(../image/zfb.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.yl {
+  background-image: url(../image/yl.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.jh {
+  width: 4.6875rem;
+  height: 4.1875rem;
+  background-image: url(../image/jh.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -25%);
+  z-index: 10;
+}
+.picture {
+  width: 5.125rem;
+  height: 5.125rem;
+  background-image: url(../image/picture.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -25%);
+}
+.pic {
+  width: 100%;
+  height: 100%;
+}
+.pic .pic-box {
+  width: 100%;
+  height: 100%;
+  padding: 3rem 20.0rem;
+  box-sizing: border-box;
+}
+.pic .pic-box .img {
+  width: 100%;
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  position: relative;
+}
+.pic .pic-box .img .pic_box {
+  width: 11.25rem;
+  height: 14.375rem;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+.pic .pic-box p {
+  text-align: center;
+  font-size: 16px;
+  color: #5665fa;
+  padding: .5rem 0;
+}
+.alert {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+.alert .alert-box {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  padding: 2rem 0;
+  box-sizing: border-box;
+}
+.alert .alert-box .bingo {
+  width: 4.5625rem;
+  height: 4.5625rem;
+}
+.alert p {
+  font-size: 30px;
+  text-align: center;
 }
