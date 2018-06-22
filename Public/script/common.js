@@ -113,7 +113,7 @@
         // 显隐导航条
         $('body').on('click', '.menu .header .nav-title', function() {
             var el = $('.menu');
-            var stu = 1;
+            var stu =1;
             if (el.hasClass('menu-cur')) {
                 el.removeClass('menu-cur');
                 el.find('.nava-cur').addClass('navi-cur');
@@ -123,6 +123,23 @@
                 el.find('.nava-cur').removeClass('navi-cur');
                 stu = 2;
             }
+            console.log( $('input[name=menuStatus]').val());
+            $.ajax({
+                type: "post",
+                url: $('input[name=menuStatus]').val(),
+                data: {
+                    //menuStatus: stu
+                },
+                dataType: "json",
+                success: function(data){
+                         sessionStorage.setItem("menuStatus", stu);
+
+                   
+                    // console.log('menuStatus--'+data);
+                }
+            });
+            
+
         });
         // 切换导航条
             // 首页

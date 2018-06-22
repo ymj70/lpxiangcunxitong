@@ -190,7 +190,7 @@
 .login_wrap .login_form .login_box .form_input .login_input > div i {
   line-height: 2.5rem;
   font-size: 1.2rem;
-  margin: 0  0.5rem ;
+  margin: 0 0.5rem;
   color: #969899;
 }
 .login_wrap .login_form .login_box .form_input .login_input > div input {
@@ -400,7 +400,7 @@
 .index .index-content .menu .header .nav-title .seat:hover {
   background-color: #282c2f;
 }
-.index .index-content .menu .nav {
+.index .index-content .menu .control {
   -ms-flex: 1;
       flex: 1;
   -ms-flex-positive: 1;
@@ -411,10 +411,13 @@
       flex-basis: 0%;
   overflow-y: auto;
 }
-.index .index-content .menu .nav::-webkit-scrollbar {
+.index .index-content .menu .control .nav {
+  overflow-y: auto;
+}
+.index .index-content .menu .control .nav::-webkit-scrollbar {
   display: none;
 }
-.index .index-content .menu .nav > ul a {
+.index .index-content .menu .control .nav > ul a {
   color: #fff;
   display: -ms-flexbox;
   display: flex;
@@ -422,7 +425,7 @@
   -ms-flex-align: center;
       align-items: center;
 }
-.index .index-content .menu .nav > ul a span {
+.index .index-content .menu .control .nav > ul a span {
   -ms-flex: 1;
       flex: 1;
   -ms-flex-positive: 1;
@@ -435,60 +438,60 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.index .index-content .menu .nav > ul > li {
+.index .index-content .menu .control .nav > ul > li {
   padding: .5rem 0;
 }
-.index .index-content .menu .nav > ul > li:hover > .seat {
+.index .index-content .menu .control .nav > ul > li:hover > .seat {
   background-color: #333847;
   border-bottom-color: #282c2f;
 }
-.index .index-content .menu .nav > ul > li > .seat {
+.index .index-content .menu .control .nav > ul > li > .seat {
   padding: .75rem 0;
   font-size: 1rem;
   border-bottom: 1px solid transparent;
 }
-.index .index-content .menu .nav > ul > li > .seat .img-box {
+.index .index-content .menu .control .nav > ul > li > .seat .img-box {
   padding-left: .75rem;
   box-sizing: content-box;
 }
-.index .index-content .menu .nav > ul > li > .seat span {
+.index .index-content .menu .control .nav > ul > li > .seat span {
   padding-left: .75rem;
   box-sizing: content-box;
 }
-.index .index-content .menu .nav > ul > li > .seat:hover {
+.index .index-content .menu .control .nav > ul > li > .seat:hover {
   background-color: #333847;
 }
-.index .index-content .menu .nav > ul > li > .seat.nava-cur {
+.index .index-content .menu .control .nav > ul > li > .seat.nava-cur {
   background-color: #333847;
   border-bottom-color: #282c2f;
 }
-.index .index-content .menu .nav > ul > li > .seat.nava-cur + ul {
+.index .index-content .menu .control .nav > ul > li > .seat.nava-cur + ul {
   max-height: 40rem;
 }
-.index .index-content .menu .nav > ul > li > .seat.navi-cur + ul {
+.index .index-content .menu .control .nav > ul > li > .seat.navi-cur + ul {
   transition: all .2s;
   max-height: 0;
 }
-.index .index-content .menu .nav > ul > li ul {
+.index .index-content .menu .control .nav > ul > li ul {
   overflow: hidden;
   max-height: 0rem;
   transition: all .6s;
   background-color: #333847;
 }
-.index .index-content .menu .nav > ul > li ul li {
+.index .index-content .menu .control .nav > ul > li ul li {
   width: 100%;
 }
-.index .index-content .menu .nav > ul > li ul li.nav-cur,
-.index .index-content .menu .nav > ul > li ul li:active,
-.index .index-content .menu .nav > ul > li ul li:hover {
+.index .index-content .menu .control .nav > ul > li ul li.nav-cur,
+.index .index-content .menu .control .nav > ul > li ul li:active,
+.index .index-content .menu .control .nav > ul > li ul li:hover {
   background-color: #282c2f;
 }
-.index .index-content .menu .nav > ul > li ul li .seat {
+.index .index-content .menu .control .nav > ul > li ul li .seat {
   padding: .5rem 0;
   text-align: center;
   font-size: .875rem;
 }
-.index .index-content .menu .nav > ul > li ul li .seat a {
+.index .index-content .menu .control .nav > ul > li ul li .seat a {
   -ms-flex-pack: center;
       justify-content: center;
 }
