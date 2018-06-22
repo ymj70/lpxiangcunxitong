@@ -19,7 +19,8 @@
 .font-black {
     color: #3f3f3f;
 }
-.outline{
+
+.outline {
     outline: #b7b7b7 dashed 3px;
 }
 
@@ -73,12 +74,11 @@
         p {
             padding: 0;
         }
-      
     }
-    .p-flex{
+    .p-flex {
         display: flex;
-        >div{
-            flex:1;
+        >div {
+            flex: 1;
         }
     }
     .h3-title {
@@ -225,28 +225,24 @@
             box-sizing: border-box;
             position: relative;
             .img-box {
-            width: 27.25rem;
-            height: 17.875rem;
-            img {
-                width: 100%;
+                width: 27.25rem;
+                height: 17.875rem;
+                img {
+                    width: 100%;
+                }
             }
-           
-
+            .img-box2 {
+                width: 17.25rem;
+                height: 17.25rem;
+            }
+            .book-box {
+                position: relative;
+            }
         }
-        .img-box2{
-            width: 17.25rem;
-            height: 17.25rem;
-        }
-        .book-box{
-            position: relative;
-        }
-        }
-
-        
     }
-    .hk-book{
+    .hk-book {
         padding: 1rem 3rem;
-        p{
+        p {
             text-align: center;
             font-size: 16px;
             color: #5665fa;
@@ -292,8 +288,8 @@
         border-radius: 0;
         display: flex;
         align-items: center;
-        >div{
-            padding:1.25rem 0;
+        >div {
+            padding: 1.25rem 0;
         }
         span {
             width: 15rem;
@@ -354,21 +350,21 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-.jh{
+
+.jh {
     width: 4.6875rem;
     height: 4.1875rem;
     background-image: url(../image/jh.png);
     background-repeat: no-repeat;
     background-size: cover;
-        position: absolute;
+    position: absolute;
     top: 50%;
     left: 50%;
-     transform: translate(-50% ,-25%);
-     z-index: 10
+    transform: translate(-50%, -25%);
+    z-index: 10
+}
 
-
- }
- .picture{
+.picture {
     width: 5.125rem;
     height: 5.125rem;
     background-image: url(../image/picture.png);
@@ -377,57 +373,83 @@
     position: absolute;
     top: 50%;
     left: 50%;
-   transform: translate(-50% ,-25%);
- }
- .pic{
-        width: 100%;
+    transform: translate(-50%, -25%);
+}
+
+.pic {
+    width: 100%;
     height: 100%;
-    .pic-box{
+    .pic-box {
         width: 100%;
         height: 100%;
         padding: 3rem 20.0rem;
         box-sizing: border-box;
-        .img{
+        .img {
             width: 100%;
             height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
-            .pic_box{
+            .pic_box {
                 width: 11.25rem;
                 height: 14.375rem;
                 display: flex;
                 justify-content: center;
             }
         }
-        p{
+        p {
             text-align: center;
             font-size: 16px;
             color: #5665fa;
             padding: .5rem 0;
         }
     }
- }
- //弹出层
- .alert{
+} //弹出层
+.alert {
     display: flex;
     flex-direction: column;
-    .alert-box{
+    .alert-box {
         display: flex;
         justify-content: center;
         padding: 2rem 0;
         box-sizing: border-box;
-        .bingo{
-    width: 4.5625rem;
-    height: 4.5625rem;
-   
-  }
+        .success {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            .bingo {
+                width: 4.5625rem;
+                height: 4.5625rem;
+            }
+            >div{
+                display: flex;
+                align-items: center;
+                padding: 0 1.0625rem;
+                p{
+                    font-size: 30px;
+                    color: #45b366;
+
+                }
+            }
+        }
     }
-    
-  p{
-    font-size: 30px;
-    text-align: center;
-  }
- }
-  
+
+    p {
+        font-size: 30px;
+        text-align: center;
+    }
+    .p{
+         font-size: 24px;
+        text-align: center;
+    }
+    .btns{
+        display: flex;
+        justify-content: center;
+        padding: 2.6875rem 0;
+        button{
+            padding: 0 3rem;
+            margin: 0 1rem;
+        }
+    }
+}
