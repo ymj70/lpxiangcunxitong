@@ -140,23 +140,23 @@ class PublicController extends controller
        public function cxjmylbxcbdjScwj(){
         $this->display("cxjmylbxcbdjScwj");
     }
-       //社保缴费 > 城乡居民养老保险参保登记
+       //人员登记 > 城乡居民养老保险参保登记
        public function cxjmylcbdj2(){
         $this->display("cxjmylcbdj2");
     }
-       //社保缴费 > 城乡居民养老保险参保登记
+       //人员登记 > 城乡居民养老保险参保登记
        public function cxjmylcbdj3(){
         $this->display("cxjmylcbdj3");
     }
-       //社保缴费 > 城乡居民养老保险参保登记
+       //人员登记 > 城乡居民养老保险参保登记
        public function cxjmylcbdj4(){
         $this->display("cxjmylcbdj4");
     }
-       //社保缴费 > 城乡居民养老保险参保登记
+       //人员登记 > 城乡居民养老保险参保登记
        public function cxjmylcbdj5(){
         $this->display("cxjmylcbdj5");
     }
-       //社保缴费 > 城乡居民养老保险参保登记
+       //人员登记 > 城乡居民养老保险参保登记
        public function cxjmylcbdj6(){
         $this->display("cxjmylcbdj6");
     }
