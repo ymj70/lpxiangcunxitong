@@ -62,7 +62,7 @@ class CommonController extends Controller
             $info["message"]="当前状态：关闭";
         }
         $info["code"]=1;
-        $this->ajaxRetrun($info);
+        $this->ajaxReturn($info);
     }
 
     /**
