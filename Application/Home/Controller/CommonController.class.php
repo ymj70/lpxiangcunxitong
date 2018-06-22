@@ -56,13 +56,13 @@ class CommonController extends Controller
         $status = session("menustatus");
         if ($status == 2) {
             session("menustatus", 1);
-            $this->assign("menustatus", 1);
+            $info["message"]="当前状态：打开";
         } else {
             session("menustatus", 2);
-            $this->assign("menustatus", 1);
+            $info["message"]="当前状态：关闭";
         }
-
-
+        $info["code"]=1;
+        $this->ajaxRetrun($info);
     }
 
     /**
