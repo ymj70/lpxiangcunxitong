@@ -442,7 +442,7 @@
   padding: .5rem 0;
 }
 .index .index-content .menu .control .nav > ul > li:hover > .seat {
-  background-color: #333847;
+  background-color: #282C2F;
   border-bottom-color: #282c2f;
 }
 .index .index-content .menu .control .nav > ul > li > .seat {
@@ -462,7 +462,7 @@
   background-color: #333847;
 }
 .index .index-content .menu .control .nav > ul > li > .seat.nava-cur {
-  background-color: #333847;
+  background-color: #282c2f;
   border-bottom-color: #282c2f;
 }
 .index .index-content .menu .control .nav > ul > li > .seat.nava-cur + ul {
@@ -476,7 +476,7 @@
   overflow: hidden;
   max-height: 0rem;
   transition: all .6s;
-  background-color: #333847;
+  background-color: #282c2f;
 }
 .index .index-content .menu .control .nav > ul > li ul li {
   width: 100%;
@@ -484,7 +484,7 @@
 .index .index-content .menu .control .nav > ul > li ul li.nav-cur,
 .index .index-content .menu .control .nav > ul > li ul li:active,
 .index .index-content .menu .control .nav > ul > li ul li:hover {
-  background-color: #282c2f;
+  background-color: #333847;
 }
 .index .index-content .menu .control .nav > ul > li ul li .seat {
   padding: .5rem 0;
