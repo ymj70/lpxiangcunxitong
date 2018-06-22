@@ -6,7 +6,7 @@ return array(
             "login" => "/user/login",//登录
         ),
         "NotAttendIns" => array(
-            "checkPeopleInsStatus"=>"",//检测是否参保
+            "checkPeopleInsStatus"=>"/userInfo/checkIdCard",//检测是否参保
             "savePeopleInfo"=>"",//将未参保人员信息存入数据库
         ),
         "MedicalInsAttend" => array(

@@ -99,12 +99,7 @@ class EndowmentInsAttendController extends CommonController
         if ($status !== false) {
             $info["code"] = 1;
             $info["message"] = "成功";
-            $age = get_age($data);
-            if ($age < 16) {
-                $info["url"] = U("Home/MedicalInsAttend/gethouseholdImg");
-            } else {
-                $info["url"] = U("Home/MedicalInsAttend/getIdcardImg");
-            }
+            $info["url"] = U("Home/MedicalInsAttend/getIdcardImg");
             session("MedicalInsAttendPeopleInfo", $data);
         } else {
             $info["code"] == -1;
@@ -200,13 +195,14 @@ class EndowmentInsAttendController extends CommonController
             $info["message"] = "成功";
             $info["data"] = $result["data"];
             //将用户信息保存在session中 下一步用
+            $data=$info["data"];
             $data["realName"] = I("post.realName");//姓名
             $data["idCard"] = I("post.idCard");//身份证号
             $data["sex"] = I("post.sex");//性别
             $data["national"] = I("post.national");//民族
             $data["birthday"] = I("post.birthday");//出生日期
             $data["idCardAddress"] = I("post.idCardAddress");//户籍所在地
-            session("MedicalInsAttendPeopleInfo", $info["data"]);
+            session("MedicalInsAttendPeopleInfo", $data);
         } else {
             $info["code"] = -1;
             $info["message"] = $result["msg"];

@@ -8,7 +8,7 @@ class IndexController extends CommonController
     {
         parent::_initialize();
         //为菜单选中状态设置session
-        session("menu", null);
+        session("menu", "首页");
     }
 
     public function index()

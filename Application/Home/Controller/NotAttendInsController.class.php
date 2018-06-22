@@ -30,8 +30,8 @@ class NotAttendInsController extends CommonController
             $this->display();
             return;
         }
-        $data["realName"] = I("post.realName");//姓名
         $data["idCard"] = I("post.idCard");//身份证号
+        $data["idCard"] = "130321199310221238";//身份证号
         $javaurl = $this->javaUrl;
         $url = $javaurl["NotAttendIns"]["checkPeopleInsStatus"];
         //请求接口 检测用户是否参保
@@ -42,6 +42,7 @@ class NotAttendInsController extends CommonController
             $info["code"] = 1;
             $info["message"] = "成功";
             $info["url"] = U("Home/NotAttendIns/getPeopleInfo");
+            $data["realName"] = I("post.realName");//姓名
             $data["sex"] = I("post.sex");//性别
             $data["national"] = I("post.national");//民族
             $data["birthday"] = I("post.birthday");//出生日期

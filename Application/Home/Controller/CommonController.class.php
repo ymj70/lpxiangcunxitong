@@ -11,7 +11,7 @@ class CommonController extends Controller
 
     public function _initialize()
     {
-       /* //获取java接口url的信息
+        //获取java接口url的信息
         $this->javaUrl = C("javaUrl");
         //判断是否登录 没有登录跳转到登录页面
         if (!is_login()) {
@@ -22,7 +22,7 @@ class CommonController extends Controller
         //设置左侧菜单 打开和关闭状态的session 默认是1 打开状态
         if (empty(session("menustatus"))) {
             session("menustatus", 1);
-        }*/
+        }
         //输出账户信息 在网站顶部显示
         $this->showUserInfo();
 
@@ -70,8 +70,9 @@ class CommonController extends Controller
      */
     private function showUserInfo()
     {
-        $uerInfo["userAdress"]="滦平县大屯乡小城子村";
-        $uerInfo["userName"]="王雨栋";
+        $userinfo=S(session("username"));
+        $uerInfo["userAdress"]=$userinfo["place"];
+        $uerInfo["userName"]=$uerInfo["userName"];
         $uerInfo["data1"]=date("Y年m月d日",time());//日期
         $uerInfo["data2"]="星期".mb_substr( "日一二三四五六",date("w"),1,"utf-8" );//星期
         $this->assign("userInfo",$uerInfo);

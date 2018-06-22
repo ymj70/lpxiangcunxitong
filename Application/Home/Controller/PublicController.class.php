@@ -39,7 +39,7 @@ class PublicController extends controller
         if ($result["code"] === 0) {
             //用户名生成session 并将用户相关数据加入缓存 保存一天退出登录时删除缓存
             session("username", $result['data']["userName"]);
-            S($result['data']["userName"], $result, 86400);
+            S($result['data']["userName"], $result["data"], 86400);
             $info['code'] = 1;
             $info['message'] = '登录成功';
             $info['url'] = U("Index/index");
