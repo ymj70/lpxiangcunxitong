@@ -1,6 +1,103 @@
 .flex-1{
 	flex:1;
 }
+// display
+        .df{
+            display: flex;
+        }
+        .flexdc{
+            .df;
+            flex-direction: column;
+        }
+        .flexac{
+            align-items: center;
+        }
+        .flexjc{
+            justify-content: center;
+        }
+        .flexcc{
+            .df;
+            .flexac;
+            .flexjc;
+        }
+        .flexdcc{
+            .flexdc;
+            .flexac;
+            .flexjc;
+        }
+        .flexcb{
+            .df;
+            .flexac;
+            justify-content: space-between;
+        }
+        .flexwp{
+            flex-wrap: wrap;
+        }
+        .flex1{
+            flex: 1;
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+        }
+        .dib{
+            display: inline-block;
+            vertical-align: middle;
+        }
+        // 隐藏
+        .hidden{
+            display: none;
+        }
+        .ov1{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .ov2{
+            overflow : hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            /* autoprefixer: off */
+            -webkit-box-orient: vertical;
+            /* autoprefixer: on */
+        }
+
+        // 颜色
+        .c-blue{
+            color: #7f84f1;
+        }
+        .c-blued{
+            color: #6c72ef;
+        }
+    // 背景色
+        .bgc-green {
+            background-color: #3DC45D;
+        }
+        .bgc-greenl {
+            background-color: #5CB85C;
+        }
+        .bgc-orange {
+            background-color: #F99D3A;
+        }
+        .bgc-red {
+            background-color: #FF573B;
+        }
+        .bgc-blue {
+            background-color: #29C3FF;
+        }
+        .bgc-violet {
+            background-color: #BD85F9;
+        }
+        .bgc-blued {
+            background-color: #5665FA;
+        }
+        .bgc-redd {
+            background-color: #E33A1D;
+        }
+        .back-hui{
+            background-color:#F0F8FA;
+        }
+// 登录
 .login_wrap {
     display: flex;
     background: #f5f5f6 url('../image/login_bc.png');
@@ -62,7 +159,7 @@
                     		line-height: 2.5rem;
                     		font-size: 1.2rem;
                     		margin:0  0.5rem ;
-                            color: #969899;
+                    		color: #969899;
                     	}
                         input {
                         	 background-color: #e5e5e5;
@@ -100,3 +197,387 @@
         }
     }
 }
+
+/* 首页 */
+    .index {
+        .df;
+        .flexdc;
+        .header_nav {
+            width: 100%;
+            .df;
+            // 用户区
+            .header {
+                background-color: #282c2f;
+                height: 2.938rem;
+                box-sizing: border-box;
+                position: relative;
+                box-shadow: 2px 2px 12px 0 #EEEEEE;
+                width: 100%;
+                .df;
+                .flexac;
+                justify-content: space-between;
+                .header-title{
+                    height: 3rem;
+                    box-sizing: border-box;
+                    padding: 0.625rem 0 0.875rem 1.312rem;
+                    transition: all .3s;
+                    .seat{
+                        .df;
+                        .flexac;
+                        .img-box {
+                            width: 2rem;
+                        }
+                        h4 {
+                            .flex1;
+                            .ov1;
+                            font-size: 1.125rem;
+                            font-weight: 500;
+                            padding-left: .5rem;
+                            box-sizing: border-box;
+                            color: #fff;
+                        }
+                    }
+                }
+                .header-btn{
+                    .df;
+                    .seat{
+                        >div{
+                            .dib;
+                            position: relative;
+                            &:first-child{
+                                .headr-btn-title{
+                                    border-left: none;
+                                }
+                            }
+                            .headr-btn-title{
+                                min-width: 3.9375rem;
+                                text-align: center;
+                                box-sizing: border-box;
+                                white-space: nowrap;
+                                padding: 0 .84375rem;
+                                cursor: pointer;
+                                .img-box{
+                                    .dib;
+                                    width: 1.875rem;
+                                    font-size: 0;
+                                    margin-left: .25rem;
+                                    i{
+                                        position: absolute;
+                                        background-color: #C12E11;
+                                        border-radius: 16px;
+                                        font-size: 12px;
+                                        color: #fff;
+                                        min-width: 16px;
+                                        padding: 0 2px;
+                                        box-sizing: border-box;
+                                        height: 16px;
+                                        line-height: 16px;
+                                        top: -0.5rem;
+                                        right: -.1rem;
+                                        transform: scale(.7);
+                                    }
+                                    img {
+                                        width: 19px;
+                                        height: auto;
+                                    }
+                                    .user-img {
+                                        width: 23px;
+                                        height: auto;
+                                    }
+                                    .locl-img {
+                                        width: 12px;
+                                        height: 16px;
+                                    }
+                                }
+                                >span{
+                                    .dib;
+                                    white-space: nowrap;
+                                    font-size: .875rem;
+                                    line-height: normal;
+                                    color: #e3e3e3;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .index-content {
+            .df;
+            height: 100%;
+            // 导航区
+            .menu{
+                transition: all .3s;
+                width: 3rem;
+                height: 100%;
+                background-color: #282c2f;
+                position: relative;
+                z-index: 1;
+                color: #fff;
+                &.menu-cur{
+                    width: 11.25rem;
+                }
+                .flexdc;
+                .seat{
+                    overflow: hidden;
+                    cursor: pointer;
+                    white-space: nowrap;
+                    .df;
+                    .flexac;
+                    .img-box{
+                        height: 1.5625rem;
+                        width: 1.5625rem;
+                        margin: 0;
+                        img{
+                            height: auto;
+                            width: 24px;
+                        }
+                    }
+                }
+                .header{
+                    overflow: hidden;
+                    .nav-title{
+                        .seat{
+                            font-size: 0;
+                            padding: .75rem;
+                            &:active, &:hover{
+                                background-color: #282c2f;
+                            }
+                        }
+                    }
+                }
+                .nav{
+                    .flex1;
+                    overflow-y: auto;
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+                    >ul{
+                        a{
+                            color: #fff;
+                            .df;
+                            width: 100%;
+                            .flexac;
+                            span{
+                                .flex1;
+                                .ov1;
+                            }
+                        }
+                        >li{
+                            padding: .5rem 0;
+                            &:hover{
+                                >.seat{
+                                    background-color: #333847;
+                                    border-bottom-color: #282c2f;
+                                }
+                            }
+                            >.seat{
+                                padding: .75rem 0;
+                                font-size: 1rem;
+                                border-bottom: 1px solid transparent;
+                                .img-box{
+                                    padding-left: .75rem;
+                                    box-sizing: content-box;
+                                }
+                                span{
+                                    padding-left: .75rem;
+                                    box-sizing: content-box;
+                                }
+                                &:hover{
+                                    background-color: #333847;
+                                }
+                                &.nava-cur{
+                                    background-color: #333847;
+                                    border-bottom-color: #282c2f;
+                                    &+ul{
+                                        max-height: 40rem;
+                                    }
+                                }
+                                &.navi-cur{
+                                    &+ul{
+                                        transition: all .2s;
+                                        max-height: 0;
+                                    }
+                                }
+                            }
+                            ul{
+                                overflow: hidden;
+                                max-height: 0rem;
+                                transition: all .6s;
+                                background-color: #333847;
+                                li{
+                                    width: 100%;
+                                    &.nav-cur, &:active, &:hover{
+                                        background-color: #282c2f;
+                                    }
+                                    .seat{
+                                        padding: .5rem 0;
+                                        text-align: center;
+                                        font-size: .875rem;
+                                        a{
+                                            justify-content: center;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            // 内容区
+            .pageContol{
+                    // .flex1;
+                    // .df;
+                    display: flex;
+                    flex-direction: column;
+                    height: 100%;
+                    background-color: #F5F5F5;
+                    width: 88%;
+                    flex: 1;
+                    box-sizing: border-box;
+                    .flexdc;
+                    // 通告通知
+                    .pageContol-top {
+                        width: 100%;
+                        display: flex;
+                        .notice-list {
+                            .df;
+                            .flex1;
+                            .flexdc;
+                            background-color: #fff;
+                            padding: 0.875rem 1.188rem 0 1.0rem;
+                            margin-right: 0.875rem;
+                            .notice-top {
+                                .df;
+                                .flexcb;
+                                padding-bottom: 0.5rem;
+                                span {
+                                    border-left: 4px solid #5078fa;
+                                    padding-left: 0.5rem;
+                                    font-weight: 700;
+                                    font-size: 14px;
+                                    color: #575656;
+                                }
+                                a {
+                                    color: #5078fa;
+                                }
+                            }
+                            .notice-bottom {
+                                border-top: 1px solid #efefef;
+                                padding: 0.875rem 0.188rem 1.062rem;
+                                ul li {
+                                    background-color: #f5f5f6;
+                                    padding: 0.812rem 0.625rem;
+                                    margin-bottom: 0.688rem;
+                                    color: #555656;
+                                    font-size: 12px;
+                                    .df;
+                                    .flexcb;
+                                    .notice-date {
+                                        color: #ababac;
+                                    }
+                                }
+                            }
+                        }
+                        .number-box {
+                            .df;
+                            flex-wrap: wrap;
+                            .num-box {
+                                .df;
+                                justify-content: center;
+                                align-items: center;
+                                flex-direction: column;
+                                padding: 1.125rem 0 0.875rem;
+                                width: 48%;
+                                img {
+                                    width: 15%;
+                                    height: auto;
+                                }
+                                span {
+                                    line-height: 1.75rem;
+                                    color: #fff;
+                                    font-size: 14px;
+                                }
+                                b {
+                                    color: #fff;
+                                    font-size: 14px;
+                                }
+                            }
+                            .mr {
+                                margin-right: 0.875rem;
+                            }
+                            .mb {
+                                margin-bottom: 0.875rem;
+                            }
+                        }
+                    }
+                    // 数据说明
+                    .pageContol-bottom {
+                       width: 100%;
+                       height: 56%;
+                        margin-top: 15px;
+                        display: flex;
+                        flex: 1;
+                        .data-description {
+                            // .df;
+                            // .flex1;
+                            // .flexdc;
+                            width: 100%;
+                            height: 100%;
+                            background-color: #fff;
+                            padding: .875rem .875rem;
+                            box-sizing: border-box;
+                            .description-top {
+                                 .df;
+                                span {
+                                    border-left: 4px solid #5078fa;
+                                    padding-left: 0.5rem;
+                                    font-weight: 700;
+                                    font-size: 14px;
+                                    color: #575656;
+                                }
+                            }
+                            .description-bottom {
+                                width: 100%;
+                                height: 100%;
+                                display: flex;
+                                justify-content: space-between;
+                                .description-box {
+                                   width: 33.3%;
+                                   height: 100%;
+                                   padding: 1.125rem 2.0rem;
+                                   display: flex;
+                                   box-sizing: border-box;
+                                   flex-direction: column;
+                                   .box-word{
+                                        background: #f5f5f5;
+                                        width: 100%;
+                                        height:100%;
+                                        display: flex;
+                                        .demo {
+                                                width: 100%;
+                                                height: 100%;
+                                                padding: 1rem;
+                                                display: flex;
+                                                 box-sizing: border-box;
+                                                >div {
+                                                    width: 100%;
+                                                    margin: 0 auto;
+                                                }
+                                            }
+                                       }
+                                       .word {
+                                                padding: 1.25rem 1.438rem 1.875rem;
+                                                box-sizing: border-box;
+                                            }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+        }
+
+// 信息查询
+// 参保查询

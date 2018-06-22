@@ -1,0 +1,93 @@
+        <div class="framePage">
+            <div class="framePage-title">
+                <a href="javascript:;">人员登记</a>
+                <i>></i>
+                <a href="javascript:;" class="cur-a">未参保人员登记</a>
+            </div>
+            <div class="framePage-body layui-form">
+                <div class="framePage-scroll">
+                    <div class="ovy-a">
+                        <div class="care">
+                            <h3>读取人员身份证信息</h3>
+                            <p>1.请将用户身份证按下图样式放在身份证读卡器上，点击读取按钮读取用户身份证信息，或者手动填写用户信息。</p>
+                           <p>2.读取身份证信息过程中请勿将身份证取出。</p>
+                        </div>
+                        <div class="demo">
+                               <div class="demo-page">
+                                   <div class="img-box">
+                                       <img src="__PUBLIC__/image/demo.png" alt="">
+                                   </div>
+                               </div>
+                               <div class="demo-page">
+                                   <div class="user-information">
+                                    <div class="information-box">
+                                       <div>
+                                           <label for="">姓名</label>
+                                           <input type="text" class="layui-input" id="name">
+                                       </div>
+                                       <div>
+                                           <label for="">身份证号</label>
+                                           <input type="text" class="layui-input" id="idcard">
+                                       </div>
+                                       <div>
+                                           <label for="">出生日期</label>
+                                           <input type="text" class="layui-input" id="birth" readonly>
+                                       </div>
+                                       <div>
+                                           <label for="">性别</label>
+                                           <input type="text" class="layui-input" id="sex"  readonly >
+                                       </div>
+                                       <div>
+                                           <label for="">民族</label>
+                                           <input type="text" class="layui-input">
+                                       </div>
+                                       <div>
+                                           <label for="">户籍所在地址</label>
+                                           <input type="text" class="layui-input">
+                                       </div>
+                                       </div>
+                                   </div>
+                               </div>
+                        </div>
+                        <div class="btn layui-form">
+                            
+                            <div>
+                                <button class="layui-btn bgc-orange">读卡</button>
+                                 <button class="layui-btn bgc-blued ">下一步</button>
+                            </div>                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<include file="Public:footer" />
+<script>
+//校验
+     function check(){;
+        if ($("#name").val()=="") {
+            layer.msg("输入姓名");
+            return false;
+        }
+    }
+$("#idcard").change(function(){
+    var card=/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[A-Z])$/;
+    var idcard=$('#idcard').val();
+        if (card.test(idcard)==false) {
+            layer.msg('请输入正确的身份证号！');
+             return false;
+        }else{
+            var birth=idcard.substring(6,10)+"-"+$("#idcard").val().substring(10,12)+ "-" + $("#idcard").val().substring(12, 14);
+            var sex=idcard.substring(16,17);
+            if(sex%2==1){
+              $("#sex").val("男");
+            }else{
+                 $("#sex").val("女")
+            }
+            $("#birth").val(birth);
+        }
+})
+</script>
+
+</html>
