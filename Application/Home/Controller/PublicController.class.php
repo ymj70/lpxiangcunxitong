@@ -71,11 +71,22 @@ class PublicController extends controller{
     public function pay1(){
         $this->display("pay1");
     }
-//社保缴费 > 城乡居民医疗保险缴费   微信支付
+//社保缴费 > 城乡居民医疗保险缴费   列表
     public function pay2(){
         $this->display("pay2");
     }
 
+
+//社保缴费 > 城乡居民医疗保险缴费   城乡居民医疗保险缴费人员明细
+    public function pay3(){
+        $this->display("pay3");
+    }
+
+
+    //社保缴费 > 城乡居民医疗保险缴费   微信支付
+    public function pay4(){
+        $this->display("pay4");
+    }
 //人员登记 > 城乡居民医疗保险参保登记 > 参保登记进度查询   参保登记审批进度查询结果
        public function cbdjjdcx(){
         $this->display("cbdjjdcx");
@@ -102,5 +113,11 @@ class PublicController extends controller{
        public function homePage(){
         $this->display("homePage");
     }
+
+   //人员登记 > 就业困难人员登记    登记就业困难人员信息须知
+       public function jyknrydj(){
+        $this->display("jyknrydj");
+    }
+
 }
 
