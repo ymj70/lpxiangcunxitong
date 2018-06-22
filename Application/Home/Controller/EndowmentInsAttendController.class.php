@@ -1,29 +1,35 @@
 <?php
 
 namespace Home\Controller;
-class MedicalInsAttendController extends CommonController
+class EndowmentInsAttendController extends CommonController
 {
     public function _initialize()
     {
         parent::_initialize();
         //为菜单选中状态设置session
-        session("menu", "城乡医疗参保登记");
+        session("menu", "城乡养老参保登记");
         session("model", "人员登记");
     }
 
     /**
      *城乡医疗参保登记首页
      */
-    public function medicalInsAttendIndex()
+    public function endowmentInsAttendIndex()
     {
-        $this->display("medicalInsAttendIndex");
+        $this->display("endowmentInsAttendIndex");
     }
 
-    public function checkPeopleMedicalInsStatus()
+    public function checkEndowmentInsAttendStatus()
     {
         $data["idCard"] = I("post.idCard");//身份证号
+        $age=get_age($data["idCard"]);
+        if ($age<16){
+            $info["code"]=-1;
+            $info["message"]="未到参保年龄";
+            $this->ajaxReturn($info);
+        }
         $javaurl = $this->javaUrl;
-        $url = $javaurl["MedicalInsAttend"]["checkPeopleMedicalInsStatus"];
+        $url = $javaurl["EndowmentInsAttend"]["checkEndowmentInsAttendStatus"];
         //请求接口 检测用户是否参保 已参保不用再次登记参保 未参保 查询
         $requestObj = new Request();
         $result = $requestObj->requset($url, $data, "post");

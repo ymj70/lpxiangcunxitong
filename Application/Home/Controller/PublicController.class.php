@@ -106,20 +106,20 @@ class PublicController extends controller
     }
 //人员登记 > 城乡居民养老保险参保登记     城乡居民基本养老保险参保注意事项：
        public function cxjmylcbdj(){
-        $this->display("cxjmylcbdj");
+       // $this->display("cxjmylcbdj");
     }
 //人员登记 > 城乡居民医疗保险参保登记    城乡居民基本医疗保险参保注意事项：
        public function cxylcbdj(){
-        $this->display("cxylcbdj");
+        //$this->display("cxylcbdj");
     }
 //人员登记 > 未参保人员登记   读取人员身份证信息
        public function wcbryba(){
-        $this->display("wcbryba");
+        //$this->display("wcbryba");
     }
 
     //首页
        public function homePage(){
-        $this->display("homePage");
+        //$this->display("homePage");
     }
 
    //人员登记 > 就业困难人员登记    登记就业困难人员信息须知
