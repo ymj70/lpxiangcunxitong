@@ -21,6 +21,10 @@ class EndowmentInsAttendController extends CommonController
 
     public function checkEndowmentInsAttendStatus()
     {
+        if (!IS_POST) {
+            $this->display("checkEndowmentInsAttendStatus");
+            return;
+        }
         $data["idCard"] = I("post.idCard");//身份证号
         $age=get_age($data["idCard"]);
         if ($age<16){
@@ -196,6 +200,12 @@ class EndowmentInsAttendController extends CommonController
             $info["message"] = "成功";
             $info["data"] = $result["data"];
             //将用户信息保存在session中 下一步用
+            $data["realName"] = I("post.realName");//姓名
+            $data["idCard"] = I("post.idCard");//身份证号
+            $data["sex"] = I("post.sex");//性别
+            $data["national"] = I("post.national");//民族
+            $data["birthday"] = I("post.birthday");//出生日期
+            $data["idCardAddress"] = I("post.idCardAddress");//户籍所在地
             session("MedicalInsAttendPeopleInfo", $info["data"]);
         } else {
             $info["code"] = -1;

@@ -22,11 +22,11 @@
                         </div>
                         <div class="btn layui-form">
                             <div>
-                                 <input type="checkbox" class="layui-form-checkbox" lay-skin="primary">
+                                 <input type="checkbox" class="layui-form-checkbox" lay-skin="primary"  id="attention">
                                  <span>我已阅读并理解</span>
                             </div>
                             <div>
-                                 <button class="layui-btn bgc-blued ">开始办理</button>
+                                 <button class="layui-btn bgc-blued " onclick="nextStep()">开始办理</button>
                             </div>                          
                         </div>
                     </div>
@@ -37,3 +37,12 @@
 </body>
 <include file="Public:footer" />
 </html>
+<script>
+    function nextStep(){
+        if($("#attention:checked").val()){
+            window.location.href="{:U('Home/EndowmentInsAttend/checkEndowmentInsAttendStatus')}"
+        }else{
+            layer.alert("请仔细阅读注意事项，并勾选‘我已阅读并理解’按钮");
+        }
+    }
+</script>

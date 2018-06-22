@@ -12,7 +12,12 @@ return array(
         "MedicalInsAttend" => array(
             "getPeopleInfo"=>"",//根据身份证号获取信息
             "checkPeopleMedicalInsStatus"=>"",//根据身份证号检测是否参加城乡居民医疗和城镇职工医疗
-            "savePeopleInfo"=>"",//将参加城乡医疗保险的的人员信息保存到数据路
+            "saveMedicalInsPeopleInfo"=>"",//将参加城乡医疗保险的的人员信息保存到数据路
+        ),
+        "EndowmentInsAttend" => array(
+            "getPeopleInfo"=>"",//根据身份证号获取信息
+            "checkEndowmentInsAttendStatus"=>"",//根据身份证号检测是否参加城乡居民医疗和城镇职工医疗
+            "saveEndowmentInsPeopleInfo"=>"",//将参加城乡医疗保险的的人员信息保存到数据路
         ),
     ),
 );
