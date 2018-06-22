@@ -21,6 +21,10 @@ class MedicalInsAttendController extends CommonController
 
     public function checkPeopleMedicalInsStatus()
     {
+        if (!IS_POST) {
+            $this->display();
+            return;
+        }
         $data["idCard"] = I("post.idCard");//身份证号
         $javaurl = $this->javaUrl;
         $url = $javaurl["MedicalInsAttend"]["checkPeopleMedicalInsStatus"];

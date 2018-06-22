@@ -1,39 +1,48 @@
-        <div class="framePage">
-            <div class="framePage-title">
-                <a href="javascript:;">人员登记</a>
-                <i>></i>
-                <a href="javascript:;" class="cur-a">城乡居民医疗保险参保登记</a>
-            </div>
-            <div class="framePage-body layui-form">
-                <div class="framePage-scroll">
-                    <div class="ovy-a">
-                        <div class="care">
-                            <h3>城乡居民基本医疗保险参保注意事项：</h3>
-                            <p>1.本操作不可逆，请仔细填写人员相关信息，待确认无误后提交</p>
-                            <p>2.登记时非新生儿需要提供参保人员的身份证原件、户口本原件等有效证件照片，需要提前准备好证件</p>
-                            <p>3.新生儿参保需上传<span>监护人户口本首页</span>和<span>户口本本人页照片</span></p>
-                            <p>4.村里登记完成后，需要乡、县审批，需要等待1-3个工作日，待审批完成后即可缴费（流程需要确定）</p>
-                            <p>5. 办理过程中如有问题，请咨询0314-XXXXXX</p>
-                        </div>
-                        <div class="care careful">
-                            <p>注意事项：</p>
-                            <p>点击【开始办理】，办事过程中只能操作下一步，无法退回上一步。</p>
-                            <p>请协办人员仔细阅读注意事项后开始操作，避免办事过程中出现不必要的错误。</p>
-                        </div>
-                        <div class="btn layui-form">
-                            <div>
-                                 <input type="checkbox" class="layui-form-checkbox" lay-skin="primary">
-                                 <span>我已阅读并理解</span>
-                            </div>
-                            <div>
-                                 <button class="layui-btn bgc-blued ">开始办理</button>
-                            </div>                          
-                        </div>
+<div class="framePage">
+    <div class="framePage-title">
+        <a href="javascript:;">人员登记</a>
+        <i>></i>
+        <a href="javascript:;" class="cur-a">城乡居民医疗保险参保登记</a>
+    </div>
+    <div class="framePage-body layui-form">
+        <div class="framePage-scroll">
+            <div class="ovy-a">
+                <div class="care">
+                    <h3>城乡居民基本医疗保险参保注意事项：</h3>
+                    <p>1.本操作不可逆，请仔细填写人员相关信息，待确认无误后提交</p>
+                    <p>2.登记时非新生儿需要提供参保人员的身份证原件、户口本原件等有效证件照片，需要提前准备好证件</p>
+                    <p>3.新生儿参保需上传<span>监护人户口本首页</span>和<span>户口本本人页照片</span></p>
+                    <p>4.村里登记完成后，需要乡、县审批，需要等待1-3个工作日，待审批完成后即可缴费（流程需要确定）</p>
+                    <p>5. 办理过程中如有问题，请咨询0314-XXXXXX</p>
+                </div>
+                <div class="care careful">
+                    <p>注意事项：</p>
+                    <p>点击【开始办理】，办事过程中只能操作下一步，无法退回上一步。</p>
+                    <p>请协办人员仔细阅读注意事项后开始操作，避免办事过程中出现不必要的错误。</p>
+                </div>
+                <div class="btn layui-form">
+                    <div>
+                        <input type="checkbox" class="layui-form-checkbox" lay-skin="primary" id="attention">
+                        <span>我已阅读并理解</span>
+                    </div>
+                    <div>
+                        <button class="layui-btn bgc-blued " onclick="nextStep()">开始办理</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+</div>
 </body>
-<include file="Public:footer" />
+<include file="Public:footer"/>
 </html>
+<script>
+   function nextStep(){
+       if($("#attention:checked").val()){
+           window.location.href="{:U('Home/MedicalInsAttend/checkPeopleMedicalInsStatus')}"
+       }else{
+           layer.alert("请仔细阅读注意事项，并勾选‘我已阅读并理解’按钮");
+       }
+   }
+</script>
