@@ -26,16 +26,16 @@ class NotAttendInsController extends CommonController
      */
     public function checkPeopleInsStatus()
     {
-        if (!IS_POST) {
+        /*if (!IS_POST) {
             $this->display();
             return;
-        }
+        }*/
         $data["idCard"] = I("post.idCard");//身份证号
-        $data["idCard"] = "130321199310221238";//身份证号
+        $data["idCard"] = "130321199310221237";//身份证号
         $javaurl = $this->javaUrl;
-        $url = $javaurl["NotAttendIns"]["checkPeopleInsStatus"];
+        $url = C("REQUEST_URL").$javaurl["javaUrl"]["checkPeopleInsStatus"];
         //请求接口 检测用户是否参保
-        $requestObj = new Request();
+        $requestObj = $this->requestObject;
         $result = $requestObj->requset($url, $data, "post");
         $result = json_decode($result, true, 512, JSON_BIGINT_AS_STRING);
         if ($result["code"] == 0) {
