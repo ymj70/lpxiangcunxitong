@@ -1,4 +1,6 @@
 <?php
+use Org\Request\Request;
+
 /**
  * 检查是否登录
  * @return bool
@@ -29,4 +31,17 @@ function get_age($idcard){
     return $age;
 }
 
-
+function getImg($path){
+    $path="group1+M00/00/02/wKgDDFstk6mAABmWAABY5XwgzCQ708+png";
+    $javaUrl= C("auth");
+    $data["path"]=$path;
+    $url = "http://192.168.100.79:9000/image-service/misauth/getimage";
+    $requestObject = new Request();
+    $result = $requestObject->requset($url, $data,"post");
+    $result = json_decode($result, true,512,JSON_BIGINT_AS_STRING);
+    if ($result["code"]===0){
+        return $result["data"];
+    }else{
+        return "/Public/image/user-info.png";
+    }
+}

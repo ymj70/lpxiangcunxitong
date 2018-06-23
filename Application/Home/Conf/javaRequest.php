@@ -20,6 +20,9 @@ return array(
             "saveEndowmentInsPeopleInfo"=>"",//将参加城乡医疗保险的的人员信息保存到数据路
         ),
     ),
+    "imgUploadUrl" => "http://192.168.100.79:8345/userInfo/uploadFile",//图片上传
+    "imgDownUrl" => "http://192.168.100.79:9000/image-service/misauth/getimage",//图片上传
+
 );
 
 
