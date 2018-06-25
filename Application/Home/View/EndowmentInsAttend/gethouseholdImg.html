@@ -60,7 +60,9 @@
         </div>
         <div class="btn layui-form">
             <div>
-                <button class="layui-btn bgc-green" onclick="flx()">提交</button>
+                <input type="hidden" id="gethouseholdFirstImg" value="group1+M00/00/02/wKgDDVst_pCAFq-uAABY5XwgzCQ610+png">
+                <input type="hidden" id="gethouseholdPeopleImg" value="group1+M00/00/02/wKgDDVst_pCAFq-uAABY5XwgzCQ610+png">
+                <button class="layui-btn bgc-blued " onclick="nextSteup()">下一步</button>
                 <button class="layui-btn bgc-blued ">打印材料</button>
             </div>
         </div>
@@ -82,6 +84,91 @@
 </body>
 <include file="Public:footer" />
 <script>
+    $(function() {
+        $("#idcardBackImgfile").change(function () {
+            alert("llll")
+            imgUpload("idcardBackImgfile");
+        })
+    });
+
+    function choose() {
+        $("#idcardBackImgfile").trigger("click");
+    }
+
+    function imgUpload(){
+        var url=$("#url").val();
+        url="http://"+url;
+        alert(url)
+        $("#form1").ajaxSubmit({
+            success: function (data) {
+                alert("dddd")
+                if (data.code ==0){
+                    var imgpath="{"+data.msg+"|getImg}"
+                    alert(imgpath)
+                    $("#idcardBackImgfilessss").attr("src",imgpath)
+                }
+
+            },
+            error: function (error) {
+                console.log(error)
+            },
+            url:url, /*设置post提交到的页面*/
+            type: "post", /*设置表单以post方法提交*/
+            // dataType: "json" /*设置返回值类型为文本*/
+        });
+    }
+    function nextSteup() {
+        if (check() == false){
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: "{:U('/Home/EndowmentInsAttend/gethouseholdImg')}",
+            data: {
+                gethouseholdFirstImg: $("#gethouseholdFirstImg").val(),//姓名
+                gethouseholdPeopleImg: $("#gethouseholdPeopleImg").val(), //身份证号
+            },
+            dataType: "json",
+            beforeSend: function(){
+            },
+            success: function(ret) {
+                if (ret.code == 1) {
+                    if(ret.url==""){
+                        layer.msg("跳转路径接受失败");
+                    }else {
+                        window.location.href=ret.url;
+                    }
+                    $("#listHtml").html(ret.data)
+                }else {
+                    if (ret.message == ''){
+                        layer.msg('请输入正确的身份证号！');
+                    }else {
+                        layer.msg(ret.message);
+
+                    }
+                }
+            },
+        });
+
+    }
+    //校验
+    function check(){;
+        if ($("#gethouseholdFirstImg").val()=="") {
+            layer.msg("请上传身份证背面图片");
+            return false;
+        }
+        if ($("#gethouseholdPeopleImg").val()=="") {
+            layer.msg("请上传身份证正面图片");
+            return false;
+        }
+
+    }
+    $('#upload').change(function () {
+        // 获取FileList的第一个元素
+        var f = document.getElementById('upload').files[0];
+        src = window.URL.createObjectURL(f);
+        document.getElementById('preview').src = src
+    })
 function flx() {
     layer.open({
         type: 1,
