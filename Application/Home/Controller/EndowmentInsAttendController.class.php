@@ -69,7 +69,7 @@ class EndowmentInsAttendController extends CommonController
         if (!IS_POST) {
             $peopleInfo = session("MedicalInsAttendPeopleInfo");
             $this->assign("peopleInfo", $peopleInfo);
-            $this->display();
+            $this->display("getPeoplePhoto");
             return;
         }
         $data["realName"] = I("post.realName");//姓名
@@ -111,10 +111,35 @@ class EndowmentInsAttendController extends CommonController
     /**
      * 获取身份证照片
      */
+    public function getPeoplePhoto()
+    {
+        if (!IS_POST) {
+            $this->display("getPeoplePhoto");
+            return;
+        }
+        $idcardBackImg = I("idcardBackImg");//身份证背面图片
+        $idcardfrontImg = I("idcardfrontImg");//身份证正面图片
+        if (!empty($idcardBackImg) && !empty($idcardfrontImg)) {
+            $data = session("MedicalInsAttendPeopleInfo");
+            $data["idcardBackImg"] = $idcardBackImg;
+            $data["idcardfrontImg"] = $idcardfrontImg;
+            session("MedicalInsAttendPeopleInfo", $data);
+            $info["code"] = -1;
+            $info["message"] = "成功";
+            $info["url"] = U("Home/MedicalInsAttend/gethouseholdImg");
+        } else {
+            $info["code"] = -1;
+            $info["message"] = "图片路径接收失败";
+        }
+        $this->ajaxReturn($info);
+    }
+    /**
+     * 获取身份证照片
+     */
     public function getIdcardImg()
     {
         if (!IS_POST) {
-            $this->display();
+            $this->display("getIdcardImg");
             return;
         }
         $idcardBackImg = I("idcardBackImg");//身份证背面图片
@@ -140,7 +165,7 @@ class EndowmentInsAttendController extends CommonController
     public function gethouseholdImg()
     {
         if (!IS_POST) {
-            $this->display();
+            $this->display("gethouseholdImg");
             return;
         }
         $gethouseholdFirstImg = I("gethouseholdFirstImg");//户口本主页

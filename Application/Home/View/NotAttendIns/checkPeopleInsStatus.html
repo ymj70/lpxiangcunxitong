@@ -1,100 +1,144 @@
-        <div class="framePage">
-            <div class="framePage-title">
-                <a href="javascript:;">人员登记</a>
-                <i>></i>
-                <a href="javascript:;" class="cur-a">未参保人员登记</a>
-            </div>
-            <div class="framePage-body layui-form">
-                <div class="framePage-scroll">
-                    <div class="ovy-a">
-                        <div class="care">
-                            <h3>读取人员身份证信息</h3>
-                            <p>1.请将用户身份证按下图样式放在身份证读卡器上，点击读取按钮读取用户身份证信息，或者手动填写用户信息。</p>
-                           <p>2.读取身份证信息过程中请勿将身份证取出。</p>
+<div class="framePage">
+    <div class="framePage-title">
+        <a href="javascript:;">人员登记</a>
+        <i>></i>
+        <a href="javascript:;" class="cur-a">未参保人员登记</a>
+    </div>
+    <div class="framePage-body layui-form">
+        <div class="framePage-scroll">
+            <div class="ovy-a">
+                <div class="care">
+                    <h3>读取人员身份证信息</h3>
+                    <p>1.请将用户身份证按下图样式放在身份证读卡器上，点击读取按钮读取用户身份证信息，或者手动填写用户信息。</p>
+                    <p>2.读取身份证信息过程中请勿将身份证取出。</p>
+                </div>
+                <div class="demo">
+                    <div class="demo-page">
+                        <div class="img-box">
+                            <img src="__PUBLIC__/image/demo.png" alt="">
                         </div>
-                        <div class="demo">
-                               <div class="demo-page">
-                                   <div class="img-box">
-                                       <img src="__PUBLIC__/image/demo.png" alt="">
-                                   </div>
-                               </div>
-                               <div class="demo-page">
-                                   <div class="user-information">
-                                    <div class="information-box">
-                                       <div>
-                                           <label for="">姓名</label>
-                                           <input type="text" class="layui-input" id="realName">
-                                       </div>
-                                       <div>
-                                           <label for="">身份证号</label>
-                                           <input type="text" class="layui-input" id="idCard">
-                                       </div>
-                                       <div>
-                                           <label for="">出生日期</label>
-                                           <input type="text" class="layui-input" id="birthday" readonly>
-                                       </div>
-                                       <div>
-                                           <label for="">性别</label>
-                                           <input type="text" class="layui-input" id="sex"  readonly >
-                                       </div>
-                                       <div>
-                                           <label for="">民族</label>
-                                           <input type="text" class="layui-input" id="national">
-                                       </div>
-                                       <div>
-                                           <label for="">户籍所在地址</label>
-                                           <input type="text" class="layui-input" id="idCardAddress">
-                                       </div>
-                                       </div>
-                                   </div>
-                               </div>
+                    </div>
+                    <div class="demo-page">
+                        <div class="user-information">
+                            <div class="information-box">
+                                <div>
+                                    <label for="">姓名</label>
+                                    <input type="text" class="layui-input" id="realName">
+                                </div>
+                                <div>
+                                    <label for="">身份证号</label>
+                                    <input type="text" class="layui-input" id="idCard">
+                                </div>
+                                <div>
+                                    <label for="">出生日期</label>
+                                    <input type="text" class="layui-input" id="birthday" readonly>
+                                </div>
+                                <div>
+                                    <label for="">性别</label>
+                                    <input type="text" class="layui-input" id="sex" readonly>
+                                </div>
+                                <div>
+                                    <label for="">民族</label>
+                                    <input type="text" class="layui-input" id="national">
+                                </div>
+                                <div>
+                                    <label for="">户籍所在地址</label>
+                                    <input type="text" class="layui-input" id="idCardAddress">
+                                </div>
+                            </div>
                         </div>
-                        <div class="btn layui-form">
-                            
-                            <div>
-                                <button class="layui-btn bgc-orange">读卡</button>
-                                 <button class="layui-btn bgc-blued " onclick="nextSteup()">下一步</button>
-                            </div>                          
-                        </div>
+                    </div>
+                </div>
+                <div class="btn layui-form">
+
+                    <div>
+                        <button class="layui-btn bgc-orange" onclick="getidCard()">读卡</button>
+                        <button class="layui-btn bgc-blued " onclick="nextSteup()">下一步</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+</div>
 </body>
-        <include file="Public:footer" />
+<include file="Public:footer"/>
 
-        <script>
+<script>
+    var idCardStatus = true;
+
+    function getidCard() {
+        if (!idCardStatus) {
+            layer.msg("身份证正在读取中请稍后在试");
+            return
+        }
+        idCardStatus = false;
+        $("#realName").attr("value", "")
+        $("#idCard").attr("value", "")
+        try {
+            jsidcard.getIdCard(function (IdNumber, Name) {
+                if (IdNumber && Name) {
+                    $("#realName").attr("value", Name)
+                    $("#idCard").attr("value", IdNumber)
+                    getinfoByIdcard();
+                    idCardStatus = true;
+                } else {
+                    layer.msg("未读取到身份证信息")
+                }
+            });
+        } catch (err) {
+            layer.msg("读取身份证信息失败")
+        }
+    }
+
+    /* function getidCard() {
+         alert("chushihua");
+         try{
+             jssicard.ReadCard(function (idnumber, name) {
+                 if(idnumber && name){
+                     alert("chenggong")
+                     alert(idnumber);
+                     alert(name);
+                 }else {}
+                     alert("else")
+             });
+         } catch(err) {
+             alert(err);
+             popuoOne('读卡器初始化失败');
+         }
+
+     }*/
+
     function nextSteup() {
-        if (check() == false){
+        if (check() == false) {
             return;
         }
         $.ajax({
             type: "post",
             url: "{:U('/Home/NotAttendIns/checkPeopleInsStatus')}",
             data: {
-                    idCard: $("#idCard").val(),//身份证号
-                    realName: $("#realName").val(), //姓名
-                    sex: $("#sex").val(), //性别
-                    national: $("#national").val(), //民族
-                    birthday: $("#birthday").val(), //出生日期
-                    idCardAddress: $("#idCardAddress").val(), //户籍所在地
+                idCard: $("#idCard").val(),//身份证号
+                realName: $("#realName").val(), //姓名
+                sex: $("#sex").val(), //性别
+                national: $("#national").val(), //民族
+                birthday: $("#birthday").val(), //出生日期
+                idCardAddress: $("#idCardAddress").val(), //户籍所在地
             },
             dataType: "json",
-            beforeSend: function(){
+            beforeSend: function () {
             },
-            success: function(ret) {
+            success: function (ret) {
                 if (ret.code == 1) {
-                      if(ret.url==""){
-                          layer.msg("跳转路径接受失败");
-                      }else {
-                          window.location.href=ret.url;
-                      }
+                    if (ret.url == "") {
+                        layer.msg("跳转路径接受失败");
+                    } else {
+                        window.location.href = ret.url;
+                    }
                     $("#listHtml").html(ret.data)
-                }else {
-                    if (ret.message == ''){
+                } else {
+                    if (ret.message == '') {
                         layer.msg('请求失败');
-                    }else {
+                    } else {
                         layer.msg(ret.message);
 
                     }
@@ -103,43 +147,50 @@
         });
 
     }
-//校验
-     function check(){;
-         if ($("#realName").val()=="") {
-             layer.msg("输入姓名");
-             return false;
-         }
-        if ($("#idCard").val()=="") {
+
+    //校验
+    function check() {
+        ;
+        if ($("#realName").val() == "") {
+            layer.msg("输入姓名");
+            return false;
+        }
+        if ($("#idCard").val() == "") {
             layer.msg("输入身份证号");
             return false;
         }
 
-        if ($("#national").val()=="") {
+        if ($("#national").val() == "") {
             layer.msg("输入民族");
             return false;
         }
-        if ($("#idCardAddress").val()=="") {
+        if ($("#idCardAddress").val() == "") {
             layer.msg("输入户籍所在地");
             return false;
         }
     }
-$("#idCard").change(function(){
-    var card=/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[A-Z])$/;
-    var idcard=$('#idCard').val();
-        if (card.test(idcard)==false) {
+
+    $("#idCard").change(function () {
+        getinfoByIdcard();
+    })
+
+    function getinfoByIdcard() {
+        var card = /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[A-Z])$/;
+        var idcard = $('#idCard').val();
+        if (card.test(idcard) == false) {
             layer.msg('请输入正确的身份证号！');
-             return false;
-        }else{
-            var birth=idcard.substring(6,10)+"-"+idcard.substring(10,12)+ "-" + idcard.substring(12, 14);
-            var sex=idcard.substring(16,17);
-            if(sex%2==1){
-              $("#sex").val("男");
-            }else{
-                 $("#sex").val("女")
+            return false;
+        } else {
+            var birth = idcard.substring(6, 10) + "-" + idcard.substring(10, 12) + "-" + idcard.substring(12, 14);
+            var sex = idcard.substring(16, 17);
+            if (sex % 2 == 1) {
+                $("#sex").val("男");
+            } else {
+                $("#sex").val("女")
             }
             $("#birthday").val(birth);
         }
-})
+    }
 </script>
 
 </html>
