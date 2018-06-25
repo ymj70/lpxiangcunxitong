@@ -23,15 +23,15 @@
                                     <div class="information-box">
                                        <div>
                                            <label for="">姓名</label>
-                                           <input type="text" class="layui-input" id="name">
+                                           <input type="text" class="layui-input" id="realName">
                                        </div>
                                        <div>
                                            <label for="">身份证号</label>
-                                           <input type="text" class="layui-input" id="idcard">
+                                           <input type="text" class="layui-input" id="idCard">
                                        </div>
                                        <div>
                                            <label for="">出生日期</label>
-                                           <input type="text" class="layui-input" id="birth" readonly>
+                                           <input type="text" class="layui-input" id="birthday" readonly>
                                        </div>
                                        <div>
                                            <label for="">性别</label>
@@ -39,11 +39,11 @@
                                        </div>
                                        <div>
                                            <label for="">民族</label>
-                                           <input type="text" class="layui-input">
+                                           <input type="text" class="layui-input" id="national">
                                        </div>
                                        <div>
                                            <label for="">户籍所在地址</label>
-                                           <input type="text" class="layui-input">
+                                           <input type="text" class="layui-input" id="idCardAddress">
                                        </div>
                                        </div>
                                    </div>
@@ -53,7 +53,7 @@
                             
                             <div>
                                 <button class="layui-btn bgc-orange">读卡</button>
-                                 <button class="layui-btn bgc-blued ">下一步</button>
+                                 <button class="layui-btn bgc-blued " onclick="nextSteup()">下一步</button>
                             </div>                          
                         </div>
                     </div>
@@ -62,30 +62,82 @@
         </div>
     </div>
 </body>
-<include file="Public:footer" />
-<script>
+        <include file="Public:footer" />
+
+        <script>
+    function nextSteup() {
+        if (check() == false){
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: "{:U('/Home/NotAttendIns/checkPeopleInsStatus')}",
+            data: {
+                    idCard: $("#idCard").val(),//身份证号
+                    realName: $("#realName").val(), //姓名
+                    sex: $("#sex").val(), //性别
+                    national: $("#national").val(), //民族
+                    birthday: $("#birthday").val(), //出生日期
+                    idCardAddress: $("#idCardAddress").val(), //户籍所在地
+            },
+            dataType: "json",
+            beforeSend: function(){
+            },
+            success: function(ret) {
+                if (ret.code == 1) {
+                      if(ret.url==""){
+                          layer.msg("跳转路径接受失败");
+                      }else {
+                          window.location.href=ret.url;
+                      }
+                    $("#listHtml").html(ret.data)
+                }else {
+                    if (ret.message == ''){
+                        layer.msg('请求失败');
+                    }else {
+                        layer.msg(ret.message);
+
+                    }
+                }
+            },
+        });
+
+    }
 //校验
      function check(){;
-        if ($("#name").val()=="") {
-            layer.msg("输入姓名");
+         if ($("#realName").val()=="") {
+             layer.msg("输入姓名");
+             return false;
+         }
+        if ($("#idCard").val()=="") {
+            layer.msg("输入身份证号");
+            return false;
+        }
+
+        if ($("#national").val()=="") {
+            layer.msg("输入民族");
+            return false;
+        }
+        if ($("#idCardAddress").val()=="") {
+            layer.msg("输入户籍所在地");
             return false;
         }
     }
-$("#idcard").change(function(){
+$("#idCard").change(function(){
     var card=/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[A-Z])$/;
-    var idcard=$('#idcard').val();
+    var idcard=$('#idCard').val();
         if (card.test(idcard)==false) {
             layer.msg('请输入正确的身份证号！');
              return false;
         }else{
-            var birth=idcard.substring(6,10)+"-"+$("#idcard").val().substring(10,12)+ "-" + $("#idcard").val().substring(12, 14);
+            var birth=idcard.substring(6,10)+"-"+idcard.substring(10,12)+ "-" + idcard.substring(12, 14);
             var sex=idcard.substring(16,17);
             if(sex%2==1){
               $("#sex").val("男");
             }else{
                  $("#sex").val("女")
             }
-            $("#birth").val(birth);
+            $("#birthday").val(birth);
         }
 })
 </script>

@@ -8,11 +8,13 @@ use Org\Request\Request;
 class CommonController extends Controller
 {
     var $javaUrl = "";//java接口url的信息
+    var $requestObject= "";//java接口url的信息
 
     public function _initialize()
     {
         //获取java接口url的信息
         $this->javaUrl = C("javaUrl");
+        $this->requestObject = new Request();;
         //判断是否登录 没有登录跳转到登录页面
         if (!is_login()) {
             redirect(U("Public/login"));
@@ -72,7 +74,7 @@ class CommonController extends Controller
     {
         $userinfo=S(session("username"));
         $uerInfo["userAdress"]=$userinfo["place"];
-        $uerInfo["userName"]=$uerInfo["userName"];
+        $uerInfo["userName"]=$userinfo["userRealName"];
         $uerInfo["data1"]=date("Y年m月d日",time());//日期
         $uerInfo["data2"]="星期".mb_substr( "日一二三四五六",date("w"),1,"utf-8" );//星期
         $this->assign("userInfo",$uerInfo);
