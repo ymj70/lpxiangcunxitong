@@ -26,10 +26,11 @@
                             </div>
                             <div class="demo">
                                 <div class="demo-page  hk-book">
-                                    <div class="demo-pagepd outline">
-                                 
+                                    <div class="demo-pagepd outline" >
+                                        <img src="" alt="">
                                         <div class="book-box">
-                                            <img src="__PUBLIC__/image/card.png" alt="">
+                                            <label for="upload"><img src="__PUBLIC__/image/card.png" alt="" ></label>
+                                            <input id="upload" type="file" style="display:none">
                                         </div>
                                     </div>
                                     <p>请点击加号上传</p>
@@ -57,4 +58,12 @@
     </div>
 </body>
 <include file="Public:footer" />
+<script>
+    $('#upload').change(function(){
+  // 获取FileList的第一个元素
+  var f = document.getElementById('upload').files[0];
+  src = window.URL.createObjectURL(f);
+  document.getElementById('preview').src = src
+})
+</script>
 </html>
