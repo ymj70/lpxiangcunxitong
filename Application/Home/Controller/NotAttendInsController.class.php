@@ -55,11 +55,11 @@ class NotAttendInsController extends CommonController
     public function getPeopleInfo()
     {
         $peopleInfo=session("NotAttendInsPeopleInfo");
+        session("NotAttendInsPeopleInfo",null);
         if (empty($peopleInfo)){
             $this->redirect("checkPeopleInsStatus");
         }
         if (!IS_POST) {
-            $peopleInfo = session("NotAttendInsPeopleInfo");
             $this->assign("peopleInfo", $peopleInfo);
             $this->display("getPeopleInfo");
             return;
@@ -109,8 +109,8 @@ class NotAttendInsController extends CommonController
     public function getIdcardImg()
     {
         $peopleInfo=session("NotAttendInsPeopleInfo");
+        session("NotAttendInsPeopleInfo", null);
         if (empty($peopleInfo["idCard"])){
-            session("NotAttendInsPeopleInfo", null);
             $this->redirect("checkPeopleInsStatus");
         }
         if (!IS_POST) {
@@ -120,7 +120,7 @@ class NotAttendInsController extends CommonController
         $idcardBackImg = I("idcardBackImg");//身份证背面图片
         $idcardfrontImg = I("idcardfrontImg");//身份证正面图片
         if (!empty($idcardBackImg) && !empty($idcardfrontImg)) {
-            $data = session("NotAttendInsPeopleInfo");
+            $data = $peopleInfo;
             $data["idcardBackImg"] = $idcardBackImg;
             $data["idcardfrontImg"] = $idcardfrontImg;
             session("NotAttendInsPeopleInfo", $data);
@@ -140,8 +140,8 @@ class NotAttendInsController extends CommonController
     public function gethouseholdImg()
     {
         $peopleInfo=session("NotAttendInsPeopleInfo");
+        session("NotAttendInsPeopleInfo", null);
         if (empty($peopleInfo["idcardBackImg"])){
-            session("NotAttendInsPeopleInfo", null);
             $this->redirect("checkPeopleInsStatus");
         }
         if (!IS_POST) {
@@ -151,7 +151,7 @@ class NotAttendInsController extends CommonController
         $gethouseholdFirstImg = I("gethouseholdFirstImg");//户口本主页
         $gethouseholdPeopleImg = I("gethouseholdPeopleImg");//户口本个人页
         if (!empty($gethouseholdFirstImg) && !empty($gethouseholdPeopleImg)) {
-            $sessionInfo = session("NotAttendInsPeopleInfo");
+            $sessionInfo = $peopleInfo;
             $userinfo=S(session("username"));
             $data["userName"] = $sessionInfo["realName"];//姓名
             $data["idCard"] = $sessionInfo["idCard"];//身份证号
