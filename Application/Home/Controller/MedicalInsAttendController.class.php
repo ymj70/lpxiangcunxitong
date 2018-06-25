@@ -21,15 +21,16 @@ class MedicalInsAttendController extends CommonController
 
     public function checkPeopleMedicalInsStatus()
     {
-        if (!IS_POST) {
+       /* if (!IS_POST) {
             $this->display();
             return;
-        }
-        $data["idCard"] = I("post.idCard");//身份证号
+        }*/
+        //$data["idcard"] = I("post.idCard");//身份证号
+        $data["idcard"] = "130321199310221238";//身份证号
         $javaurl = $this->javaUrl;
-        $url = $javaurl["MedicalInsAttend"]["checkPeopleMedicalInsStatus"];
+        $url = C("REQUEST_URL").$javaurl["MedicalInsAttend"]["checkPeopleMedicalInsStatus"];
         //请求接口 检测用户是否参保 已参保不用再次登记参保 未参保 查询
-        $requestObj = new Request();
+        $requestObj = $this->requestObject;
         $result = $requestObj->requset($url, $data, "post");
         $result = json_decode($result, true, 512, JSON_BIGINT_AS_STRING);
         if ($result["code"] == 0) {
@@ -138,21 +139,65 @@ class MedicalInsAttendController extends CommonController
      */
     public function gethouseholdImg()
     {
-        if (!IS_POST) {
+        /*if (!IS_POST) {
             $this->display();
             return;
-        }
-        $gethouseholdFirstImg = I("gethouseholdFirstImg");//户口本主页
-        $gethouseholdPeopleImg = I("gethouseholdPeopleImg");//户口本个人页
-        if (!empty($gethouseholdFirstImg) && !empty($gethouseholdPeopleImg)) {
-            $data = session("MedicalInsAttendPeopleInfo");
-            $data["gethouseholdFirstImg"] = $gethouseholdFirstImg;
-            $data["gethouseholdPeopleImg"] = $gethouseholdPeopleImg;
+        }*/
+        //$gethouseholdFirstImg = I("gethouseholdFirstImg");//户口本主页
+        //$gethouseholdPeopleImg = I("gethouseholdPeopleImg");//户口本个人页
+        //if (!empty($gethouseholdFirstImg) && !empty($gethouseholdPeopleImg)) {
+            //$data = session("MedicalInsAttendPeopleInfo");
+            //$data["gethouseholdFirstImg"] = $gethouseholdFirstImg;
+           // $data["gethouseholdPeopleImg"] = $gethouseholdPeopleImg;
+
+        $data["name"] = "王栋";//姓名
+        $data["idcard"] = "130321199810221238";//身份证号
+        $data["sex"] = "男";//性别
+        $data["nation"] = "满";//民族
+        $data["birthDay"] = "1998-10-22";//出生日期
+        $data["domicile"] = "河北省秦皇岛市";//户籍所在地
+        $data["nowDomicile"] = "河北省秦皇岛市";//家庭住址
+        $data["phonenumber"] = "15033307336 ";//联系电话
+        $data["persontype"] = "未成年";//人员类型
+        $data["maritalStatus"] = "是";//婚否
+        $data["domicileType"] = "农村";//户口性质
+        $data["master"] = "父亲";//户主姓名
+        $data["masteridcard"] = "130321199310221238";//户主身份证号
+        $data["householderMobile"] = "15033307225";//户主电话号码
+        $data["masterShip"] = 0;//与户主关系
+        $data["outCountyInsurance"] ="否";//是否县外参保
+        $data["workStatus"] = "是";//是否就业
+        $data["mobilePersonnel"] = "否";//流动人员
+        $data["uninsuredReson"] ="交不起";//未参保原因
+        $data["hukouBookUrl"] = "sdsfdsfsdfsdfsdfsdfsdfdsf";//户口被主页
+        $data["hukouBookBackUrl"] = "sdsfdsfsdfsdfsdfsdfsdfdsf";//户口被个人也
+        $data["idCardBackUrl"] = "sdsfdsfsdfsdfsdfsdfsdfdsf";//身份证反面
+        $data["idCardUrl"] = "sdsfdsfsdfsdfsdfsdfsdfdsf";//身份证整面
+        $data["countryCode"] = "131464464";//村级机构
+        $data["age"] =get_age($data["idcard"]);//村级机构
+        $data["insuredtype"] = "131464464";//村级机构
+        $data["county"] = "131464464";//村级机构
+        $data["street"] = "131464464";//村级机构
+        $data["coummunity"] = "131464464";//村级机构
+        $data["personalnumber"] = "131464464";//村级机构
+        $data["province"] = "131464464";//村级机构
+        $data["city"] = "131464464";//村级机构
+        $data["companyId"] = "131464464";//村级机构
+        $data["bankName"] = "131464464";//村级机构
+        $data["bankAccount"] = "131464464";//村级机构
+        $data["specialInsurance"] = "1312";//村级机构
+        $data["examineType"] = "0";//村级机构0 医疗 1养老
+        $data["villageId"] = "1312";//村级机构
+        $data["countyCode"] = "1312";//村级机构
+        $data["townTownCode"] = "1312";//村级机构
+
+
+
             //请求接口 检测用户是否参保
             $javaurl = $this->javaUrl;
-            $url = $javaurl["MedicalInsAttend"]["savePeopleInfo"];
-            $requestObj = new Request();
-            $result = $requestObj->requset($url, $data, "post");
+            $url = C("REQUEST_URL").$javaurl["MedicalInsAttend"]["saveMedicalInsPeopleInfo"];
+        $requestObj = $this->requestObject;
+        $result = $requestObj->requset($url, $data, "post");;
             $result = json_decode($result, true);
             if ($result["code"] == 0) {
                 $info["code"] = 1;
@@ -166,10 +211,10 @@ class MedicalInsAttendController extends CommonController
                     $info["message"] = "信息保存接口请求失败";
                 }
             }
-        } else {
+        /*} else {
             $info["code"] = -1;
             $info["message"] = "图片路径接收失败";
-        }
+        }*/
         $this->ajaxReturn($info);
     }
 

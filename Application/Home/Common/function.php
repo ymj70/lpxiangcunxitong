@@ -32,7 +32,6 @@ function get_age($idcard){
 }
 
 function getImg($path){
-    $path="group1+M00/00/02/wKgDDFstk6mAABmWAABY5XwgzCQ708+png";
     $javaUrl= C("auth");
     $data["path"]=$path;
     $url = C("REQUEST_URL2") . C("imgDownUrl") ;
