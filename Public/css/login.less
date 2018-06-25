@@ -82,6 +82,9 @@
         .bgc-greenl {
             background-color: #5CB85C;
         }
+        .bgc-greenll {
+        	background-color: #30c114;
+        }
         .bgc-orange {
             background-color: #F99D3A;
         }
@@ -603,6 +606,10 @@
 		.c-hs;
 		font-weight: 500;
 	}
+	p {
+		color: #ccc;
+		font-size: 16px;
+	}
 	.content_form {
 		display: flex;
 		width: 100%;
@@ -654,6 +661,9 @@
 						}
 						span {
 							float: none;
+						}
+						.ml {
+							margin-left: 1rem;
 						}
 					}
 					.form_cell {
@@ -720,21 +730,45 @@
 				img:hover {
 					cursor: pointer;
 				}
+				input {
+					display: none;
+				}
 			}
 			.img_word {
 				display: flex;
 				justify-content: center;
 				padding: 1.25rem 0;
 				box-sizing: border-box;
-				align-items: center;
-				img {
-					width: 1.25rem;
-					height: auto;
-					margin-right: 0.438rem;
-				}
-				span {
+				flex-direction: column;
+				> span {
 					font-size: 1.0rem;
 					color: #575757;
+					margin-left: 0.438rem;
+					display: flex;
+					align-items: center;
+					i {
+						width: .8125rem;
+					    height: .8125rem;
+					    min-width: .8125rem;
+					    display: inline-block;
+					    background: url('../image/close.png');
+					    background-size: cover;
+					    background-position: center;
+					    margin-left: .5rem;
+					}
+					input {
+						display: none;
+					}
+				}
+				span:before {
+					content: '';
+				    width: .6875rem;
+				    height: .90625rem;
+				    display: inline-block;
+				    background: url('../image/wj.png');
+				    background-size: cover;
+				    background-position: center;
+				    margin-top: -0.4375rem;
 				}
 			}
 		}
@@ -754,3 +788,79 @@
 
 // 信息查询
 // 参保查询
+.content {
+	.information_title {
+		h2 {
+			margin-bottom: 1.0rem;
+			padding-left: 0.875rem;
+			box-sizing: border-box;
+		}
+		p {
+			background-color: #f5f5f5;
+			padding: 1.125rem 2.25rem;
+			box-sizing: border-box;
+			span {
+				line-height: 2.0rem;
+				b {
+					color: #5665fa;
+					font-weight: 400;
+				}
+			}
+		}
+	}
+	.img_content {
+		padding: 2.562rem 0 5.062rem;
+		box-sizing: border-box;
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		.img_left {
+			margin-right: 1.625rem;
+			display: flex;
+			justify-content: space-between;
+			.img1 {
+				margin-right: 3.125rem;
+			}
+			.img {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				button {
+					margin-top: 0.75rem;
+					width: 100%;
+				}
+			}
+		}
+		.img_right {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			.form_warp {
+				display: flex;
+				flex-direction: column;
+				padding: 0.5rem 1.125rem;
+				background-color: #f5f5f5;
+				box-sizing: border-box;
+				.form_cell {
+					padding-bottom: 0.1rem;
+				}
+				.idcard_box {
+					display: flex;
+					justify-content: space-between;
+					img {
+						width: 37px;
+						height: 29px;
+						margin-left: 0.625rem;
+					}
+				}
+			}
+			button {
+				margin: 0 auto;
+				margin-top: 0.75rem;
+				width: 16.75rem;
+				.bgc-blued;
+				align-items: center;
+			}
+		}
+	}
+}

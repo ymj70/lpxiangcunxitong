@@ -100,6 +100,13 @@ class PublicController extends controller
         $this->display("cbdjjdcx");
     }
 
+    
+//人员登记 > 城乡居民医疗保险参保登记 > 参保登记进度查询   参保登记审批进度查询结果
+       public function cbcx(){
+        $this->display("cbcx");
+    }
+
+
 //人员登记 > 城乡居民养老保险参保登记 > 参保登记进度查询    参保登记审批进度查询结果
        public function cbdjjdcx2(){
         $this->display("cbdjjdcx2");
@@ -132,9 +139,17 @@ class PublicController extends controller
 
 
 
-   //人员登记 > 城乡居民养老保险参保登记
+   //人员登记 > 城乡居民养老保险参保登记   填写人员信息及其他参保
        public function cxjmylbxcbdj(){
         $this->display("cxjmylbxcbdj");
+    }
+       //人员登记 > 城乡居民医疗保险参保登记   填写参保人员信息
+       public function cxjmylbxcbdj1(){
+        $this->display("cxjmylbxcbdj1");
+    }
+       //人员登记 > 未参保人员登记    登记人员信息
+       public function cxjmylbxcbdj2(){
+        $this->display("cxjmylbxcbdj2");
     }
        //人员登记 > 城乡居民养老保险参保登记
        public function cxjmylbxcbdjScwj(){

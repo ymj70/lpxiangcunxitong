@@ -2,21 +2,24 @@
             <div class="framePage-title">
                 <a href="javascript:;">人员登记</a>
                 <i>></i>
-                <a href="javascript:;" class="cur-a">城乡居民养老保险参保登记</a>
+                <a href="javascript:;" class="cur-a">城乡居民医疗保险参保登记</a>
             </div>
             <div class="framePage-body layui-form">
                 <div class="framePage-scroll">
                     <div class="ovy-a">
                         <div class="content">
-                            <h2>填写人员信息及其他参保</h2>
+                            <h2>填写参保人员信息</h2>
+                            <p>1.请按下列内容逐一核对并填写用户信息，请仔细核对确认信息无误。</p>
                             <div class="content_form">
                                 <div class="form_box form_bt">
-                                    <h3>人员基本信息<span>（必填）</span></h3>
+                                    <h3>参保人员基本信息<span>（必填）</span></h3>
                                     <div class="inputBox">
                                       <div class="form">
                                         <div class="form-cell">
-                                            <label class="label">姓&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp名</label>
-                                            <span>李玉</span>
+                                            <label>姓&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp名</label>
+                                            <div>
+                                            	<input type="text" name="tel" class="layui-input" id="phone" placeholder="请输入姓名" value="李玉">
+                                            </div>
                                         </div>
                                         <div class="form-cell">
                                             <label>出生日期</label>
@@ -44,7 +47,7 @@
                                         <div class="form-cell">
                                           <label>户籍性质</label>
                                           <div>
-                                               <select name="stu" name="addr" lay-verify="required" id="address">
+                                             <select name="stu" name="addr" lay-verify="required" id="address">
                                                   <option value="">农业</option>
                                                   <option value="0">农业</option>
                                                   <option value="1">非农业</option>
@@ -54,8 +57,10 @@
                                       </div>
                                       <div class="form form_l">
                                         <div class="form-cell">
-                                            <label class="label">身份证号</label>
-                                            <span>130xxxxxxxxxxx</span>
+                                            <label>身份证号</label>
+                                            <div>
+                                            	<input type="text" name="tel" class="layui-input" id="phone" placeholder="请输入身份证号">
+                                            </div>
                                         </div>
                                         <div class="form-cell">
                                           <label>民&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp族</label>
@@ -100,94 +105,72 @@
                                 <div class="form_box form_bt">
                                     <h3>人员账号及缴费信息<span>（必填）</span></h3>
                                     <div class="inputBox">
-                                      <div class="form">
-                                        <div class="form-cell">
-                                          <label>开户银行</label>
-                                          <div>
-                                              <select name="stu" name="addr" lay-verify="required" id="khyh">
-                                                    <option value="">农村信用合作社</option>
-                                                    <option value="0">农村信用合作社</option>
+	                                    <div class="form">
+	                                        <div class="form-cell">
+	                                          <label>开户银行</label>
+	                                          <div>
+	                                              <select name="stu" name="addr" lay-verify="required" id="khyh">
+	                                                  <option value="">农村信用合作社</option>
+	                                                  <option value="0">农村信用合作社</option>
                                                     <option value="1">中国银行</option>
                                                     <option value="2">农业银行</option>
                                                     <option value="3">建设银行</option>
                                                     <option value="4">工商银行</option>
-                                                    <option value="5">交通银行</option>
-                                                </select>
-                                          </div>
-                                        </div>
-                                        <div class="form-cell">
-                                          <label>缴费档次</label>
-                                          <div>
-                                              <select name="stu" name="addr" lay-verify="required" id="jfdc">
-                                                  <option value="">100元</option>
-                                                  <option value="0">200元</option>
-                                                  <option value="1">300元</option>
-                                                  <option value="2">400元</option>
-                                                  <option value="3">500元</option>
-                                                  <option value="4">600元</option>
-                                                  <option value="5">700元</option>
-                                                  <option value="6">800元</option>
-                                                  <option value="7">900元</option>
-                                                  <option value="8">1000元</option>
-                                                  <option value="9">1500元</option>
-                                                  <option value="10">2000元</option>
-                                                  <option value="11">3000元</option>
-                                              </select>
-                                          </div>
-                                          </div>
-                                        </div>
+	                                                  <option value="5">交通银行</option>
+	                                              </select>
+	                                          </div>
+	                                        </div>
+	                                    </div>
                                         <div class="form form_l">
-                                        <div class="form-cell">
-                                          <label class="label_h">银行卡号</label>
-                                          <div>
-                                              <input type="text" name="tel" class="layui-input" id="bank" placeholder="请输入当前用户银行卡号">
-                                          </div>
-                                        </div>
-                                      </div>
-                                      </div>
+	                                        <div class="form-cell">
+	                                          <label class="label_h">银行卡号</label>
+	                                          <div>
+	                                              <input type="text" name="tel" class="layui-input" id="bank" placeholder="请输入当前用户银行卡号">
+	                                          </div>
+	                                        </div>
+	                                      </div>
+                                      	</div>
                                 </div>
-                                <div class="form_box mb">
-                                  <h3>人员曾经参保信息<span>（选填）</span></h3>
+                                <div class="form_box form_bt">
+                                  <h3>户主信息<span>（必填）</span></h3>
                                   <div class="inputBox">
                                     <div class="form">
-                                      <div class="form-cell form_cell">
-                                        <input type="checkbox" name="" title="职工养老保险农村信用合作社" lay-skin="primary">
-                                      </div>
-                                      <div class="form-cell form_cell">
-                                        <input type="checkbox" name="" title="被征地农民社会保障" lay-skin="primary">
-                                      </div>
-                                      <div class="form-cell form_cell">
-                                        <input type="checkbox" name="" title="老农保" lay-skin="primary">
-                                      </div>
-                                      <div class="form-cell form_cell mb">
-                                        <input type="checkbox" name="" title="其他" lay-skin="primary">
-                                      </div>
+                                     	<div class="form-cell">
+                                            <label>户主姓名</label>
+                                            <div>
+                                            	<input type="text" name="tel" class="layui-input" id="phone" placeholder="请输入户主姓名" value="李成昊">
+                                            </div>
+                                        </div>
+                                        <div class="form-cell">
+                                            <label>联系电话</label>
+                                            <div>
+                                            	<input type="text" name="tel" class="layui-input" id="phone" placeholder="请输入联系电话">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form">
-                                      <div class="form-cell">
-                                          <div>
-                                            <input placeholder="请输入开始时间和结束时间" type="text" class="layui-input float-l" id="start">
-                                            <img src="../../image/rydj_rq_03.png" alt="">
-                                          </div>
-                                      </div>
-                                      <div class="form-cell">
-                                          <div>
-                                            <input placeholder="请输入开始时间和结束时间" type="text" class="layui-input float-l" id="start1">
-                                            <img src="../../image/rydj_rq_03.png" alt="">
-                                          </div>
-                                      </div>
-                                      <div class="form-cell">
-                                          <div>
-                                            <input placeholder="请输入开始时间和结束时间" type="text" class="layui-input float-l" id="start2">
-                                            <img src="../../image/rydj_rq_03.png" alt="">
-                                          </div>
-                                      </div>
-                                      <div class="form-cell">
-                                          <div>
-                                            <input placeholder="请输入开始时间和结束时间" type="text" class="layui-input float-l" id="start3">
-                                            <img src="../../image/rydj_rq_03.png" alt="">
-                                          </div>
-                                      </div>
+                                    <div class="form form_l">
+                                    	<div class="form-cell">
+                                            <label>身份证号</label>
+                                            <div>
+                                            	<input type="text" name="tel" class="layui-input" id="phone" placeholder="请输入身份证号">
+                                            </div>
+                                        </div>
+                                        <div class="form-cell">
+	                                        <label class="label_h">与户主关系</label>
+	                                        <div>
+                                              	<select name="stu" name="addr" lay-verify="required" id="khyh">
+                                                  <option value="">本人</option>
+                                                  <option value="0">本人</option>
+                                                  <option value="1">配偶</option>
+                                                  <option value="2">子女</option>
+                                                  <option value="3">父母</option>
+                                                  <option value="4">养父母</option>
+                                                  <option value="5">祖父母</option>
+                                                  <option value="6">外祖父母</option>
+                                                  <option value="7">其他</option>
+                                                </select>
+	                                        </div>
+                                        </div>
                                     </div>
                                   </div>
                                 </div>
