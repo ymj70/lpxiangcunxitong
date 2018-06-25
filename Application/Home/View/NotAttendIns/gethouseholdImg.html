@@ -23,33 +23,23 @@
                             </div>
                         </div>
                     </div>
-                    <!--  <div class="book-box">
-                                <div class="book-div">
-                                    <div class="">
-                                        
-                                    </div>
-                                </div>
-                                <div class="book-div">
-                                  <div class="">
-                                    
-                                  </div>
-                                </div>
-                            </div> -->
                     <div class="demo">
                         <div class="demo-page  hk-book">
                             <div class="demo-pagepd outline">
-                                <i class="jh"></i>
+                                <label for="upload"><i class="jh"></i></label>
+                                <input id="upload" type="file" style="display: none">
                                 <div class="book-box">
-                                    <img src="__PUBLIC__/image/hk.png" alt="">
+                                    <img src="__PUBLIC__/image/hk.png" alt="" id="preview">
                                 </div>
                             </div>
                             <p>请点击加号上传</p>
                         </div>
                         <div class="demo-page  hk-book">
                             <div class="demo-pagepd outline">
-                                <i class="jh"></i>
+                                <label for="upload1"><i class="jh"></i></label>
+                                <input id="upload1" type="file" style="display: none">
                                 <div class="book-box">
-                                    <img src="__PUBLIC__/image/hk2.png" alt="">
+                                    <img src="__PUBLIC__/image/hk2.png" alt="" src="" id="preview1">
                                 </div>
                             </div>
                             <p>请点击加号上传</p>
@@ -60,8 +50,8 @@
         </div>
         <div class="btn layui-form">
             <div>
-                <input type="hidden"  id="gethouseholdFirstImg" value="group1+M00/00/02/wKgDDVst_pCAFq-uAABY5XwgzCQ610+png">
-                <input type="hidden"  id="gethouseholdPeopleImg" value="group1+M00/00/02/wKgDDVst_pCAFq-uAABY5XwgzCQ610+png">
+                <input type="hidden" id="gethouseholdFirstImg" value="group1+M00/00/02/wKgDDVst_pCAFq-uAABY5XwgzCQ610+png">
+                <input type="hidden" id="gethouseholdPeopleImg" value="group1+M00/00/02/wKgDDVst_pCAFq-uAABY5XwgzCQ610+png">
                 <button class="layui-btn bgc-green" onclick="flx()">提交</button>
                 <button class="layui-btn bgc-blued ">打印材料</button>
             </div>
@@ -84,20 +74,32 @@
 </body>
 <include file="Public:footer" />
 <script>
+$('#upload').change(function() {
+    // 获取FileList的第一个元素
+    var f = document.getElementById('upload').files[0];
+    src = window.URL.createObjectURL(f);
+    document.getElementById('preview').src = src
+})
+$('#upload1').change(function() {
+    // 获取FileList的第一个元素
+    var f = document.getElementById('upload1').files[0];
+    src = window.URL.createObjectURL(f);
+    document.getElementById('preview1').src = src
+})
+
 function flx() {
-    if (check() == false){
+    if (check() == false) {
         return;
     }
     $.ajax({
         type: "post",
         url: "{:U('/Home/NotAttendIns/gethouseholdImg')}",
         data: {
-            gethouseholdFirstImg: $("#gethouseholdFirstImg").val(),//传户口本主页
+            gethouseholdFirstImg: $("#gethouseholdFirstImg").val(), //传户口本主页
             gethouseholdPeopleImg: $("#gethouseholdPeopleImg").val(), //传户口本主页
         },
         dataType: "json",
-        beforeSend: function(){
-        },
+        beforeSend: function() {},
         success: function(ret) {
             if (ret.code == 1) {
                 layer.open({
@@ -111,10 +113,10 @@ function flx() {
                         $('.alert').css("display", "none");
                     }
                 });
-            }else {
-                if (ret.message == ''){
+            } else {
+                if (ret.message == '') {
                     layer.msg('请输入正确的身份证号！');
-                }else {
+                } else {
                     layer.msg(ret.message);
 
                 }
@@ -126,31 +128,30 @@ function flx() {
 
 
 function nextSteup() {
-    if (check() == false){
+    if (check() == false) {
         return;
     }
     $.ajax({
         type: "post",
         url: "{:U('/Home/NotAttendIns/gethouseholdImg')}",
         data: {
-            gethouseholdFirstImg: $("#gethouseholdFirstImg").val(),//传户口本主页
+            gethouseholdFirstImg: $("#gethouseholdFirstImg").val(), //传户口本主页
             gethouseholdPeopleImg: $("#gethouseholdPeopleImg").val(), //传户口本主页
         },
         dataType: "json",
-        beforeSend: function(){
-        },
+        beforeSend: function() {},
         success: function(ret) {
             if (ret.code == 1) {
-                if(ret.url==""){
+                if (ret.url == "") {
                     layer.msg("跳转路径接受失败");
-                }else {
-                    window.location.href=ret.url;
+                } else {
+                    window.location.href = ret.url;
                 }
                 $("#listHtml").html(ret.data)
-            }else {
-                if (ret.message == ''){
+            } else {
+                if (ret.message == '') {
                     layer.msg('请输入正确的身份证号！');
-                }else {
+                } else {
                     layer.msg(ret.message);
 
                 }
@@ -160,12 +161,12 @@ function nextSteup() {
 
 }
 //校验
-function check(){;
-    if ($("#gethouseholdFirstImg").val()=="") {
+function check() {;
+    if ($("#gethouseholdFirstImg").val() == "") {
         layer.msg("请上传户口本主页图片");
         return false;
     }
-    if ($("#gethouseholdPeopleImg").val()=="") {
+    if ($("#gethouseholdPeopleImg").val() == "") {
         layer.msg("请上传传户口本主页图片");
         return false;
     }
