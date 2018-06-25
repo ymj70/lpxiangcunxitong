@@ -123,10 +123,6 @@
             data: {
                 idCard: $("#idCard").val(),//身份证号
                 realName: $("#realName").val(), //姓名
-                sex: $("#sex").val(), //性别
-                national: $("#national").val(), //民族
-                birthday: $("#birthday").val(), //出生日期
-                idCardAddress: $("#idCardAddress").val(), //户籍所在地
             },
             dataType: "json",
             beforeSend: function () {
@@ -157,8 +153,11 @@
         if ($("#idCard").val() == "") {
             layer.msg("输入身份证号");
             return false;
-        }
-        ;
+        };
+        if ($("#realName").val() == "") {
+            layer.msg("输入身份证号");
+            return false;
+        };
     }
 
 </script>
