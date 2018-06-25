@@ -1,69 +1,151 @@
-        <div class="framePage">
-            <div class="framePage-title">
-                <a href="javascript:;">人员登记</a>
-                <i>></i>
-                <a href="javascript:;" class="cur-a">城乡居民养老保险参保登记</a>
-            </div>
-            <div class="framePage-body layui-form">
-                <div class="framePage-scroll">
-                    <div class="ovy-a">
-                        <div class="bg-box">
-                            <div class="care">
-                                <div class="h3-title">
-                                    <h3>上传身份证照片</h3>
-                                </div>
-                                <div class="pbox p-flex">
-                                    <div>
-                                        <p>1.请将用户二代居民身份证照片按下图样式上传，上传过程中请耐心等待。</p>
-                                        <p>2.证件照片必须为原件彩色照片，照片清晰无水印。</p>
-                                        <p>3.统一横屏拍摄，周边无大块留白</p>
-                                    </div>
-                                    <div>
-                                        <p>4.证件需在有效期内，证件原件完整（不缺角、无涂改），周边无边框。</p>
-                                        <p>5、未成年没有身份证的无需上传</p>
-                                    </div>
-                                </div>
+<div class="framePage">
+    <div class="framePage-title">
+        <a href="javascript:;">人员登记</a>
+        <i>></i>
+        <a href="javascript:;" class="cur-a">城乡居民养老保险参保登记</a>
+    </div>
+    <div class="framePage-body layui-form">
+        <div class="framePage-scroll">
+            <div class="ovy-a">
+                <div class="bg-box">
+                    <div class="care">
+                        <div class="h3-title">
+                            <h3>上传身份证照片</h3>
+                        </div>
+                        <div class="pbox p-flex">
+                            <div>
+                                <p>1.请将用户二代居民身份证照片按下图样式上传，上传过程中请耐心等待。</p>
+                                <p>2.证件照片必须为原件彩色照片，照片清晰无水印。</p>
+                                <p>3.统一横屏拍摄，周边无大块留白</p>
                             </div>
-                            <div class="demo">
-                                <div class="demo-page  hk-book">
-                                    <div class="demo-pagepd outline" >
-                                        <img src="" alt="">
-                                        <div class="book-box">
-                                            <label for="upload"><img src="__PUBLIC__/image/card.png" alt="" ></label>
-                                            <input id="upload" type="file" style="display:none">
-                                        </div>
-                                    </div>
-                                    <p>请点击加号上传</p>
-                                </div>
-                                <div class="demo-page  hk-book">
-                                   
-                                    <div class="demo-pagepd outline">
-                                        <div class="book-box">
-                                            <img src="__PUBLIC__/image/card2.png" alt="">
-                                        </div>
-                                    </div>
-                                    <p>请点击加号上传</p>
-                                </div>
+                            <div>
+                                <p>4.证件需在有效期内，证件原件完整（不缺角、无涂改），周边无边框。</p>
+                                <p>5、未成年没有身份证的无需上传</p>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="btn layui-form">
-                    <div>
-                        <button class="layui-btn bgc-blued ">下一步</button>
+                    <div class="demo">
+                        <div class="demo-page  hk-book">
+                            <div class="demo-pagepd outline">
+                                <img src="" alt="">
+                                <div class="book-box">
+                                    <label for="upload"><img src="__PUBLIC__/image/card.png" alt=""></label>
+                                    <input id="upload" type="file" style="display:none">
+                                </div>
+                            </div>
+                            <p>请点击加号上传</p>
+                        </div>
+                        <div class="demo-page  hk-book">
+
+                            <div class="demo-pagepd outline">
+                                <div class="book-box">
+                                    <img src="__PUBLIC__/image/card2.png" alt="">
+                                </div>
+                            </div>
+                            <p>请点击加号上传</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="btn layui-form">
+            <div>
+                <input type="hidden" id="idcardBackImg" value="group1+M00/00/02/wKgDDVst_pCAFq-uAABY5XwgzCQ610+png">
+                <input type="hidden" id="idcardfrontImg" value="group1+M00/00/02/wKgDDVst_pCAFq-uAABY5XwgzCQ610+png">
+                <button class="layui-btn bgc-blued " onclick="nextSteup()">下一步</button>
+            </div>
+        </div>
     </div>
+</div>
+</div>
 </body>
-<include file="Public:footer" />
+<include file="Public:footer"/>
 <script>
-    $('#upload').change(function(){
-  // 获取FileList的第一个元素
-  var f = document.getElementById('upload').files[0];
-  src = window.URL.createObjectURL(f);
-  document.getElementById('preview').src = src
-})
+    $(function() {
+        $("#idcardBackImgfile").change(function () {
+            alert("llll")
+            imgUpload("idcardBackImgfile");
+        })
+    });
+
+    function choose() {
+        $("#idcardBackImgfile").trigger("click");
+    }
+
+    function imgUpload(){
+        var url=$("#url").val();
+        url="http://"+url;
+        alert(url)
+        $("#form1").ajaxSubmit({
+            success: function (data) {
+                alert("dddd")
+                if (data.code ==0){
+                    var imgpath="{"+data.msg+"|getImg}"
+                    alert(imgpath)
+                    $("#idcardBackImgfilessss").attr("src",imgpath)
+                }
+
+            },
+            error: function (error) {
+                console.log(error)
+            },
+            url:url, /*设置post提交到的页面*/
+            type: "post", /*设置表单以post方法提交*/
+            // dataType: "json" /*设置返回值类型为文本*/
+        });
+    }
+    function nextSteup() {
+        if (check() == false){
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: "{:U('/Home/EndowmentInsAttend/getIdcardImg')}",
+            data: {
+                idcardBackImg: $("#idcardBackImg").val(),//姓名
+                idcardfrontImg: $("#idcardfrontImg").val(), //身份证号
+            },
+            dataType: "json",
+            beforeSend: function(){
+            },
+            success: function(ret) {
+                if (ret.code == 1) {
+                    if(ret.url==""){
+                        layer.msg("跳转路径接受失败");
+                    }else {
+                        window.location.href=ret.url;
+                    }
+                    $("#listHtml").html(ret.data)
+                }else {
+                    if (ret.message == ''){
+                        layer.msg('请输入正确的身份证号！');
+                    }else {
+                        layer.msg(ret.message);
+
+                    }
+                }
+            },
+        });
+
+    }
+    //校验
+    function check(){;
+        if ($("#idcardBackImg").val()=="") {
+            layer.msg("请上传身份证背面图片");
+            return false;
+        }
+        if ($("#idcardfrontImg").val()=="") {
+            layer.msg("请上传身份证正面图片");
+            return false;
+        }
+
+    }
+    $('#upload').change(function () {
+        // 获取FileList的第一个元素
+        var f = document.getElementById('upload').files[0];
+        src = window.URL.createObjectURL(f);
+        document.getElementById('preview').src = src
+    })
+
 </script>
 </html>

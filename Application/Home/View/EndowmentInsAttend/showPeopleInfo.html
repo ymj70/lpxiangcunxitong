@@ -38,14 +38,14 @@
                                         <div class="form-cell">
                                           <label>联系电话</label>
                                           <div>
-                                              <input type="text" name="tel" class="layui-input" id="telephone" placeholder="请输入当前用户有效联系电话" value="{$peopleInfo['telephone']}">
+                                              <input type="text" name="tel" class="layui-input" id="telephone" placeholder="请输入当前用户有效联系电话" value="{$peopleInfo['phonenumber']}">
                                           </div>
                                         </div>
                                         <div class="form-cell">
                                           <label>户籍性质</label>
                                           <div>
                                                <select name="stu" name="addr" lay-verify="required" id="householdRegister">
-                                                  <option value="{$peopleInfo['householdRegister']}">{$peopleInfo['householdRegister']|}</option>
+                                                  <option value="{$peopleInfo['domicileType']}">{$peopleInfo['domicileType']|}</option>
                                                   <option value="0">农业</option>
                                                   <option value="1">非农业</option>
                                               </select>
@@ -80,8 +80,8 @@
                                         <div class="form-cell">
                                           <label class="label_t">特殊参保群体</label>
                                           <div>
-                                              <select name="stu" name="addr" lay-verify="required" id="specialAttendInsGroup" value="{$peopleInfo['specialAttendInsGroup']|default=''}">
-                                                  <option value="{$peopleInfo['specialAttendInsGroup']|default=''}">{$peopleInfo['specialAttendInsGroup']|default=''}</option>
+                                              <select name="stu" name="addr" lay-verify="required" id="peopleType" value="{$peopleInfo['specialAttendInsGroup']|default=''}">
+                                                  <option value="{$peopleInfo['personIdentity']|default=''}">{$peopleInfo['personIdentity']|default=''}</option>
                                                   <option value="0">无</option>
                                                   <option value="1">低保人员</option>
                                                   <option value="2">五保户</option>
@@ -210,7 +210,7 @@ function nextSteup() {
     }
     $.ajax({
         type: "post",
-        url: "{:U('/Home/NotAttendIns/getPeopleInfo')}",
+        url: "{:U('/Home/EndowmentInsAttend/showPeopleInfo')}",
         data: {
             realName: $("#realName").val(),//姓名
             idCard: $("#idCard").val(), //身份证号
@@ -223,24 +223,13 @@ function nextSteup() {
             peopleType: $("#peopleType").val(), //人员类型
             marriage: $("#marriage").val(), //婚否
             householdRegister: $("#householdRegister").val(), //户口性质
-            householdHeadName: $("#householdHeadName").val(), //户主姓名
-            householdHeadIdCard: $("#householdHeadIdCard").val(), //户主身份证号
-            householdHeadPhone: $("#householdHeadPhone").val(), //户主电话号码
-            householdHeadRelation: $("#householdHeadRelation").val(), //与户主关系
-            whetherOutsideAttendIns: $("#whetherOutsideAttendIns").val(), //是否县外参保
-            whetherEmployment: $("#whetherEmployment").val(), //是否就业
-            flowPeople: $("#flowPeople").val(), //流动人员
-            notAttendInsReason: $("#notAttendInsReason").val(), //未参保原因
-            openBank: $("#openBank").val(), //未参保原因
-
-
-            $data["openBank"] = I("post.openBank");//开户银行
-    $data["bankCard"] = I("post.bankCard");//银行卡号
-    $data["captureLevel"] = I("post.captureLevel");//银行卡号
-    $data["workerMedicalIns"] = I("post.workerMedicalIns");//职工养老保险
-    $data["landlessSocialSecurity"] = I("post.landlessSocialSecurity");//被征地农民社会保障
-    $data["oldFarmerIns"] = I("post.oldFarmerIns");//老农保
-    $data["othersIns"] = I("post.othersIns");//其他保险
+            openBank: $("#openBank").val(), //开户银行
+            bankCard: $("#bankCard").val(), //银行卡号
+            captureLevel: $("#captureLevel").val(), //缴费档次
+            workerMedicalIns: $("#start").val(), //职工医疗
+            landlessSocialSecurity: $("#start1").val(), //被征地社会保障
+            oldFarmerIns: $("#start2").val(), //老农保
+            othersIns: $("#start3").val(), //其他保险
         },
         dataType: "json",
         beforeSend: function(){
@@ -252,7 +241,6 @@ function nextSteup() {
                 }else {
                     window.location.href=ret.url;
                 }
-                $("#listHtml").html(ret.data)
             }else {
                 if (ret.message == ''){
                     layer.msg('请输入正确的身份证号！');

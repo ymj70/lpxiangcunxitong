@@ -50,7 +50,8 @@
                 </div>
                 <div class="btn layui-form">
                     <div>
-                        <button class="layui-btn bgc-blued ">下一步</button>
+                        <button class="layui-btn bgc-blued " onclick="nextSteup()">下一步</button>
+                        <input type="hidden" value="32323232323232322323.png" id="peoplePhoto">
                     </div>
                 </div>
             </div>
@@ -59,3 +60,44 @@
 </body>
 <include file="Public:footer" />
 </html>
+        <script>
+            function nextSteup() {
+                if (check() == false){
+                    return;
+                }
+                $.ajax({
+                    type: "post",
+                    url: "{:U('/Home/EndowmentInsAttend/getPeoplePhoto')}",
+                    data: {
+                        peoplePhoto: $("#peoplePhoto").val(),//姓名
+                    },
+                    dataType: "json",
+                    beforeSend: function(){
+                    },
+                    success: function(ret) {
+                        if (ret.code == 1) {
+                            if(ret.url==""){
+                                layer.msg("跳转路径接受失败");
+                            }else {
+                                window.location.href=ret.url;
+                            }
+                        }else {
+                            if (ret.message == ''){
+                                layer.msg('请输入正确的身份证号！');
+                            }else {
+                                layer.msg(ret.message);
+
+                            }
+                        }
+                    },
+                });
+
+            }
+            //校验
+            function check(){;
+                if ($("#peoplePhoto").val()=="") {
+                    layer.msg("图片路径不能为空");
+                    return false;
+                }
+            }
+        </script>

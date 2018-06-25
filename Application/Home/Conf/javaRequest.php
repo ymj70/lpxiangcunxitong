@@ -7,7 +7,7 @@ return array(
         ),
         "NotAttendIns" => array(
             "checkPeopleInsStatus"=>"/personBase/verificationIdCard",//检测是否参保
-            "savePeopleInfo"=>"/userInfo/save",//将未参保人员信息存入数据库
+            "savePeopleInfo"=>"/personBase/save",//将未参保人员信息存入数据库
         ),
         "MedicalInsAttend" => array(
             "getPeopleInfo"=>"",//根据身份证号获取信息
@@ -16,8 +16,8 @@ return array(
         ),
         "EndowmentInsAttend" => array(
             "getPeopleInfo"=>"",//根据身份证号获取信息
-            "checkEndowmentInsAttendStatus"=>"",//根据身份证号检测是否参加城乡居民医疗和城镇职工医疗
-            "saveEndowmentInsPeopleInfo"=>"",//将参加城乡医疗保险的的人员信息保存到数据路
+            "checkEndowmentInsAttendStatus"=>"/personBase/checkIdCard",//根据身份证号检测是否参加城乡居民医疗和城镇职工医疗
+            "saveEndowmentInsPeopleInfo"=>"/personBase/aveMedical",//将参加城乡医疗保险的的人员信息保存到数据路
         ),
     ),
     "imgUploadUrl" => "/image/uploadFile",//图片上传
