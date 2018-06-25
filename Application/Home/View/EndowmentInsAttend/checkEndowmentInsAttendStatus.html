@@ -77,7 +77,7 @@
         </div>
         <div class="btn-box layui-form">
             <button class="layui-btn bgc-green b-pd" onclick="getidCard()">读卡</button>
-            <button class="layui-btn bgc-blued  b-pd">下一步</button>
+            <button class="layui-btn bgc-blued  b-pd" onclick="nextSteup()">下一步</button>
         </div>
     </div>
 </div>
@@ -102,7 +102,7 @@
                 if (IdNumber && Name) {
                     $("#realName").attr("value", Name)
                     $("#idCard").attr("value", IdNumber)
-                    getinfoByIdcard();
+                    getPeopleInfoByIdcard(IdNumber);
                     idCardStatus = true;
                 } else {
                     layer.msg("未读取到身份证信息")
@@ -112,4 +112,53 @@
             layer.msg("读取身份证信息失败")
         }
     }
+
+    function nextSteup() {
+        if (check() == false) {
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: "{:U('/Home/EndowmentInsAttend/checkEndowmentInsAttendStatus')}",
+            data: {
+                idCard: $("#idCard").val(),//身份证号
+                realName: $("#realName").val(), //姓名
+                sex: $("#sex").val(), //性别
+                national: $("#national").val(), //民族
+                birthday: $("#birthday").val(), //出生日期
+                idCardAddress: $("#idCardAddress").val(), //户籍所在地
+            },
+            dataType: "json",
+            beforeSend: function () {
+            },
+            success: function (ret) {
+                if (ret.code == 1) {
+                    if (ret.url == "") {
+                        layer.msg("跳转路径接受失败");
+                    } else {
+                        window.location.href = ret.url;
+                    }
+                    $("#listHtml").html(ret.data)
+                } else {
+                    if (ret.message == '') {
+                        layer.msg('请求失败');
+                    } else {
+                        layer.msg(ret.message);
+
+                    }
+                }
+            },
+        });
+
+    }
+
+    //校验
+    function check() {
+        if ($("#idCard").val() == "") {
+            layer.msg("输入身份证号");
+            return false;
+        }
+        ;
+    }
+
 </script>

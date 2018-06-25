@@ -26,6 +26,11 @@ class EndowmentInsAttendController extends CommonController
             return;
         }
         $data["idCard"] = I("post.idCard");//身份证号
+        if (empty($data["idCard"])){
+            $info["code"]=-1;
+            $info["message"]="身份证号码不能为空";
+            $this->ajaxReturn($info);
+        }
         $age=get_age($data["idCard"]);
         if ($age<16){
             $info["code"]=-1;
@@ -35,22 +40,19 @@ class EndowmentInsAttendController extends CommonController
         $javaurl = $this->javaUrl;
         $url = $javaurl["EndowmentInsAttend"]["checkEndowmentInsAttendStatus"];
         //请求接口 检测用户是否参保 已参保不用再次登记参保 未参保 查询
-        $requestObj = new Request();
+        $requestObj = $this->requestObject;
         $result = $requestObj->requset($url, $data, "post");
         $result = json_decode($result, true, 512, JSON_BIGINT_AS_STRING);
-        if ($result["code"] == 0) {
+        if (!($result["code"] === 0)) {
             $info["code"] = 1;
             $info["message"] = "成功";
             $info["url"] = U("Home/MedicalInsAttend/showPeopleInfo");
-            if (empty($result["data"])) {
-                $data = $result["data"];
-            } else {
-                $data["sex"] = I("post.sex");//性别
-                $data["national"] = I("post.national");//民族
-                $data["birthday"] = I("post.birthday");//出生日期
-                $data["idCardAddress"] = I("post.idCardAddress");//户籍所在地
+            $peopleInfo=$this->getPeopleInfo($data["idCard"]);
+            if ($peopleInfo["code"]===1){
+                $info["peopleInfo"]="人员信息成功获取";
+            }else{
+                $info["peopleInfo"]=$peopleInfo["message"];
             }
-            session("MedicalInsAttendPeopleInfo", $data);
         } else {
             $info["code"] = -1;
             $info["message"] = $result["msg"];
@@ -66,10 +68,14 @@ class EndowmentInsAttendController extends CommonController
      */
     public function showPeopleInfo()
     {
+        $peopleInfo=session("NotAttendInsPeopleInfo");
+        session("NotAttendInsPeopleInfo",null);
+        if (empty($peopleInfo)){
+            $this->redirect("checkPeopleInsStatus");
+        }
         if (!IS_POST) {
-            $peopleInfo = session("MedicalInsAttendPeopleInfo");
             $this->assign("peopleInfo", $peopleInfo);
-            $this->display("getPeoplePhoto");
+            $this->display("showPeopleInfo");
             return;
         }
         $data["realName"] = I("post.realName");//姓名
@@ -202,9 +208,9 @@ class EndowmentInsAttendController extends CommonController
     /**
      * 根据身份证号获取用户信息
      */
-    public function getPeopleInfo()
+    public function getPeopleInfo($idCard)
     {
-        $data["idCard"] = I("idCard");
+        $data["idCard"] = $idCard;
         if (empty($data["idCard"])) {
             $info["code"] = -1;
             $info["message"] = "身份证号不能为空";
@@ -212,29 +218,23 @@ class EndowmentInsAttendController extends CommonController
         $javaurl = $this->javaUrl;
         $url = $javaurl["MedicalInsAttend"]["getPeopleInfo"];
         //请求接口 获取用户信息
-        $requestObj = new Request();
+        $requestObj = $this->requestObject;
         $result = $requestObj->requset($url, $data, "post");
         $result = json_decode($result, true, 512, JSON_BIGINT_AS_STRING);
-        if ($result["code"] == 0) {
+        if (!($result["code"] === 0)) {
             $info["code"] = 1;
             $info["message"] = "成功";
             $info["data"] = $result["data"];
             //将用户信息保存在session中 下一步用
             $data=$info["data"];
-            $data["realName"] = I("post.realName");//姓名
-            $data["idCard"] = I("post.idCard");//身份证号
-            $data["sex"] = I("post.sex");//性别
-            $data["national"] = I("post.national");//民族
-            $data["birthday"] = I("post.birthday");//出生日期
-            $data["idCardAddress"] = I("post.idCardAddress");//户籍所在地
             session("MedicalInsAttendPeopleInfo", $data);
         } else {
             $info["code"] = -1;
             $info["message"] = $result["msg"];
             if (empty($info["message"])) {
-                $info["message"] = "获取信息接口请求失败";
+                $info["message"] = "获取人员信息接口请求失败";
             }
         }
-        $this->ajaxReturn($info);
+        return $info;
     }
 }

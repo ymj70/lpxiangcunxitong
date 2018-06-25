@@ -55,7 +55,7 @@ class NotAttendInsController extends CommonController
     public function getPeopleInfo()
     {
         $peopleInfo=session("NotAttendInsPeopleInfo");
-        session("NotAttendInsPeopleInfo",null);
+        session("NotAttendInsPeopleInfo", null);
         if (empty($peopleInfo)){
             $this->redirect("checkPeopleInsStatus");
         }
@@ -97,8 +97,8 @@ class NotAttendInsController extends CommonController
             $info["url"] = U("Home/NotAttendIns/getIdcardImg");
             session("NotAttendInsPeopleInfo", $data);
         } else {
-            $info["code"] == -1;
-            $info["message"] == "信息未添写完整";
+            $info["code"] = -1;
+            $info["message"] = "信息未添写完整";
         }
         $this->ajaxReturn($info);
     }
