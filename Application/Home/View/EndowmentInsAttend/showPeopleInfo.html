@@ -16,20 +16,20 @@
                                       <div class="form">
                                         <div class="form-cell">
                                             <label class="label">姓&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp名</label>
-                                            <span>李玉</span>
+                                            <span><input type="text" id="realName" value="{$peopleInfo['realName']}"></span>
                                         </div>
                                         <div class="form-cell">
                                             <label>出生日期</label>
                                             <div>
-                                              <input placeholder="选择日期" type="text" class="layui-input float-l" id="month">
+                                              <input placeholder="选择日期" type="text" class="layui-input float-l" id="month" value="{$peopleInfo['birthday']}">>
                                               <img src="../../image/rydj_rq_03.png" alt="">
                                             </div>
                                         </div>
                                         <div class="form-cell">
                                           <label>性&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp别</label>
                                           <div>
-                                              <select name="stu" name="addr" lay-verify="required" id="sax">
-                                                  <option value="">男</option>
+                                              <select name="stu" name="addr" lay-verify="required" id="sex">
+                                                  <option value="{$peopleInfo['sex']|default=''}">{$peopleInfo['sex']|default="请选择"}</option>
                                                   <option value="0">男</option>
                                                   <option value="1">女</option>
                                               </select>
@@ -38,14 +38,14 @@
                                         <div class="form-cell">
                                           <label>联系电话</label>
                                           <div>
-                                              <input type="text" name="tel" class="layui-input" id="phone" placeholder="请输入当前用户有效联系电话">
+                                              <input type="text" name="tel" class="layui-input" id="telephone" placeholder="请输入当前用户有效联系电话" value="{$peopleInfo['telephone']}">
                                           </div>
                                         </div>
                                         <div class="form-cell">
                                           <label>户籍性质</label>
                                           <div>
-                                               <select name="stu" name="addr" lay-verify="required" id="address">
-                                                  <option value="">农业</option>
+                                               <select name="stu" name="addr" lay-verify="required" id="householdRegister">
+                                                  <option value="{$peopleInfo['householdRegister']}">{$peopleInfo['householdRegister']|}</option>
                                                   <option value="0">农业</option>
                                                   <option value="1">非农业</option>
                                               </select>
@@ -55,33 +55,33 @@
                                       <div class="form form_l">
                                         <div class="form-cell">
                                             <label class="label">身份证号</label>
-                                            <span>130xxxxxxxxxxx</span>
+                                            <span><input type="text" id="idCard" value="{$peopleInfo['idCard']|default=''}"></span>
                                         </div>
                                         <div class="form-cell">
                                           <label>民&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp族</label>
                                           <div>
                                               <select name="stu3" lay-verify="required" id="mz">
-                                                  <option value=""></option>
+                                                  <option value="{$peopleInfo['national']|default=''}">{$peopleInfo['national']|default=''}</option>
                                               </select>
                                           </div>
                                         </div>
                                         <div class="form-cell">
                                           <label class="label_h">戶籍所在地</label>
                                           <div>
-                                              <input type="text" name="tel" class="layui-input" id="address1" placeholder="请输入戶籍所在地">
+                                              <input type="text" name="tel" class="layui-input" id="idCardAddress" placeholder="请输入戶籍所在地" value="{$peopleInfo['idCardAddress']|default=''}">
                                           </div>
                                         </div>
                                         <div class="form-cell">
                                           <label>居住地址</label>
                                           <div>
-                                              <input type="text" name="tel" class="layui-input" id="jzaddress" placeholder="请输入居住地址">
+                                              <input type="text" name="tel" class="layui-input" id="familyAddress" placeholder="请输入居住地址" value="{$peopleInfo['familyAddress']|default=''}">
                                           </div>
                                         </div>
                                         <div class="form-cell">
                                           <label class="label_t">特殊参保群体</label>
                                           <div>
-                                              <select name="stu" name="addr" lay-verify="required" id="people">
-                                                  <option value="">无</option>
+                                              <select name="stu" name="addr" lay-verify="required" id="specialAttendInsGroup" value="{$peopleInfo['specialAttendInsGroup']|default=''}">
+                                                  <option value="{$peopleInfo['specialAttendInsGroup']|default=''}">{$peopleInfo['specialAttendInsGroup']|default=''}</option>
                                                   <option value="0">无</option>
                                                   <option value="1">低保人员</option>
                                                   <option value="2">五保户</option>
@@ -104,7 +104,7 @@
                                         <div class="form-cell">
                                           <label>开户银行</label>
                                           <div>
-                                              <select name="stu" name="addr" lay-verify="required" id="khyh">
+                                              <select name="stu" name="addr" lay-verify="required" id="openBank">
                                                     <option value="">农村信用合作社</option>
                                                     <option value="0">农村信用合作社</option>
                                                     <option value="1">中国银行</option>
@@ -118,7 +118,7 @@
                                         <div class="form-cell">
                                           <label>缴费档次</label>
                                           <div>
-                                              <select name="stu" name="addr" lay-verify="required" id="jfdc">
+                                              <select name="stu" name="addr" lay-verify="required" id="captureLevel">
                                                   <option value="">100元</option>
                                                   <option value="0">200元</option>
                                                   <option value="1">300元</option>
@@ -140,7 +140,7 @@
                                         <div class="form-cell">
                                           <label class="label_h">银行卡号</label>
                                           <div>
-                                              <input type="text" name="tel" class="layui-input" id="bank" placeholder="请输入当前用户银行卡号">
+                                              <input type="text" name="tel" class="layui-input" id="bankCard" placeholder="请输入当前用户银行卡号">
                                           </div>
                                         </div>
                                       </div>
@@ -193,7 +193,7 @@
                                 </div>
                             </div>
                             <div class="formBtn">
-                              <button id="next" class="layui-btn bgc-blued">下一步</button>
+                              <button id="next" class="layui-btn bgc-blued" onclick="nextSteup()">下一步</button>
                             </div>
                         </div>
                     </div>
@@ -204,6 +204,87 @@
 </body>
 <include file="Public:footer" />
 <script>
+function nextSteup() {
+    if (check() == false){
+        return;
+    }
+    $.ajax({
+        type: "post",
+        url: "{:U('/Home/NotAttendIns/getPeopleInfo')}",
+        data: {
+            realName: $("#realName").val(),//姓名
+            idCard: $("#idCard").val(), //身份证号
+            sex: $("#sex").val(), //性别
+            national: $("#mz").val(), //民族
+            birthday: $("#month").val(), //出生日期
+            idCardAddress: $("#idCardAddress").val(), //户籍所在地
+            familyAddress: $("#familyAddress").val(), //家庭住址
+            telephone: $("#telephone").val(), //联系电话
+            peopleType: $("#peopleType").val(), //人员类型
+            marriage: $("#marriage").val(), //婚否
+            householdRegister: $("#householdRegister").val(), //户口性质
+            householdHeadName: $("#householdHeadName").val(), //户主姓名
+            householdHeadIdCard: $("#householdHeadIdCard").val(), //户主身份证号
+            householdHeadPhone: $("#householdHeadPhone").val(), //户主电话号码
+            householdHeadRelation: $("#householdHeadRelation").val(), //与户主关系
+            whetherOutsideAttendIns: $("#whetherOutsideAttendIns").val(), //是否县外参保
+            whetherEmployment: $("#whetherEmployment").val(), //是否就业
+            flowPeople: $("#flowPeople").val(), //流动人员
+            notAttendInsReason: $("#notAttendInsReason").val(), //未参保原因
+            openBank: $("#openBank").val(), //未参保原因
+
+
+            $data["openBank"] = I("post.openBank");//开户银行
+    $data["bankCard"] = I("post.bankCard");//银行卡号
+    $data["captureLevel"] = I("post.captureLevel");//银行卡号
+    $data["workerMedicalIns"] = I("post.workerMedicalIns");//职工养老保险
+    $data["landlessSocialSecurity"] = I("post.landlessSocialSecurity");//被征地农民社会保障
+    $data["oldFarmerIns"] = I("post.oldFarmerIns");//老农保
+    $data["othersIns"] = I("post.othersIns");//其他保险
+        },
+        dataType: "json",
+        beforeSend: function(){
+        },
+        success: function(ret) {
+            if (ret.code == 1) {
+                if(ret.url==""){
+                    layer.msg("跳转路径接受失败");
+                }else {
+                    window.location.href=ret.url;
+                }
+                $("#listHtml").html(ret.data)
+            }else {
+                if (ret.message == ''){
+                    layer.msg('请输入正确的身份证号！');
+                }else {
+                    layer.msg(ret.message);
+
+                }
+            }
+        },
+    });
+
+}
+    //校验
+    function check(){;
+        if ($("#realName").val()=="") {
+            layer.msg("输入姓名");
+            return false;
+        }
+        if ($("#idCard").val()=="") {
+            layer.msg("输入身份证号");
+            return false;
+        }
+
+        if ($("#national").val()=="") {
+            layer.msg("输入民族");
+            return false;
+        }
+        if ($("#idCardAddress").val()=="") {
+            layer.msg("输入户籍所在地");
+            return false;
+        }
+    }
 $(document).ready(function() {
 // 日期
   var laydate = layui.laydate;

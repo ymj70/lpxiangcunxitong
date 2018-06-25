@@ -20,7 +20,7 @@ class NotAttendInsController extends CommonController
             $this->display("checkPeopleInsStatus");
             return;
         }
-        $data["idCard"] = I("post.idCard");//身份证号
+        $data["idcard"] = I("post.idCard");//身份证号
         $javaurl = $this->javaUrl;
         $url = C("REQUEST_URL").$javaurl["NotAttendIns"]["checkPeopleInsStatus"];
         //请求接口 检测用户是否参保
@@ -55,7 +55,6 @@ class NotAttendInsController extends CommonController
     public function getPeopleInfo()
     {
         $peopleInfo=session("NotAttendInsPeopleInfo");
-        session("NotAttendInsPeopleInfo", null);
         if (empty($peopleInfo)){
             $this->redirect("checkPeopleInsStatus");
         }
@@ -109,7 +108,6 @@ class NotAttendInsController extends CommonController
     public function getIdcardImg()
     {
         $peopleInfo=session("NotAttendInsPeopleInfo");
-        session("NotAttendInsPeopleInfo", null);
         if (empty($peopleInfo["idCard"])){
             $this->redirect("checkPeopleInsStatus");
         }
@@ -140,7 +138,6 @@ class NotAttendInsController extends CommonController
     public function gethouseholdImg()
     {
         $peopleInfo=session("NotAttendInsPeopleInfo");
-        session("NotAttendInsPeopleInfo", null);
         if (empty($peopleInfo["idcardBackImg"])){
             $this->redirect("checkPeopleInsStatus");
         }
@@ -153,21 +150,22 @@ class NotAttendInsController extends CommonController
         if (!empty($gethouseholdFirstImg) && !empty($gethouseholdPeopleImg)) {
             $sessionInfo = $peopleInfo;
             $userinfo=S(session("username"));
-            $data["userName"] = $sessionInfo["realName"];//姓名
-            $data["idCard"] = $sessionInfo["idCard"];//身份证号
+            $data["stateParticipation"] = 1;//参保状态
+            $data["name"] = $sessionInfo["realName"];//姓名
+            $data["idcard"] = $sessionInfo["idCard"];//身份证号
             $data["sex"] = $sessionInfo["sex"];//性别
-            $data["ethnicGroup"] = $sessionInfo["national"];//民族
+            $data["nation"] = $sessionInfo["national"];//民族
             $data["birthDay"] = $sessionInfo["birthday"];//出生日期
             $data["domicile"] = $sessionInfo["idCardAddress"];//户籍所在地
             $data["nowDomicile"] = $sessionInfo["familyAddress"];//家庭住址
-            $data["mobile"] = $sessionInfo["telephone"];//联系电话
+            $data["phonenumber"] = $sessionInfo["telephone"];//联系电话
             $data["personIdentity"] = $sessionInfo["peopleType"];//人员类型
             $data["maritalStatus"] =$sessionInfo["marriage"];//婚否
             $data["domicileType"] =$sessionInfo["householdRegister"];//户口性质
             $data["householderName"] = $sessionInfo["householdHeadName"];//户主姓名
             $data["householderIdCard"] = $sessionInfo["householdHeadIdCard"];//户主身份证号
             $data["householderMobile"] = $sessionInfo["householdHeadPhone"];//户主电话号码
-            $data["householderShip"] = $sessionInfo["householdHeadRelation"];//与户主关系
+            $data["masterShip"] = $sessionInfo["householdHeadRelation"];//与户主关系
             $data["outCountyInsurance"] =$sessionInfo["whetherOutsideAttendIns"];//是否县外参保
             $data["workStatus"] = $sessionInfo["whetherEmployment"];//是否就业
             $data["mobilePersonnel"] =$sessionInfo["flowPeople"];//流动人员
@@ -176,7 +174,7 @@ class NotAttendInsController extends CommonController
             $data["hukouBookBackUrl"] =$gethouseholdPeopleImg;//户口被个人也
             $data["IdCardBackUrl"] = $sessionInfo["idcardBackImg"];//身份证反面
             $data["IdCardUrl"] = $sessionInfo["idcardfrontImg"];//身份证正面
-            $data["countryCode"] = $userinfo["villageId"];//村级机构
+            $data["villageId"] = $userinfo["villageId"];//村级机构
 
             //请求接口 检测用户是否参保
             $javaurl = $this->javaUrl;

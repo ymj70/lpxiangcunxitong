@@ -26,6 +26,8 @@ class EndowmentInsAttendController extends CommonController
             return;
         }
         $data["idCard"] = I("post.idCard");//身份证号
+        $data["realName"] = I("post.realName");//身份证号
+
         if (empty($data["idCard"])){
             $info["code"]=-1;
             $info["message"]="身份证号码不能为空";
@@ -46,8 +48,8 @@ class EndowmentInsAttendController extends CommonController
         if (!($result["code"] === 0)) {
             $info["code"] = 1;
             $info["message"] = "成功";
-            $info["url"] = U("Home/MedicalInsAttend/showPeopleInfo");
-            $peopleInfo=$this->getPeopleInfo($data["idCard"]);
+            $info["url"] = U("Home/EndowmentInsAttend/showPeopleInfo");
+            $peopleInfo=$this->getPeopleInfo($data);
             if ($peopleInfo["code"]===1){
                 $info["peopleInfo"]="人员信息成功获取";
             }else{
@@ -68,12 +70,29 @@ class EndowmentInsAttendController extends CommonController
      */
     public function showPeopleInfo()
     {
-        $peopleInfo=session("NotAttendInsPeopleInfo");
-        session("NotAttendInsPeopleInfo",null);
+        $peopleInfo=session("EndowmentInsAttendPeopleInfo");
+        session("EndowmentInsAttendPeopleInfo",null);
         if (empty($peopleInfo)){
-            $this->redirect("checkPeopleInsStatus");
+            $this->redirect("checkEndowmentInsAttendStatus");
         }
         if (!IS_POST) {
+            $data["realName"] = I("post.realName");//姓名
+            $data["idCard"] = I("post.idCard");//身份证号
+            $data["sex"] = I("post.sex");//性别
+            $data["national"] = I("post.national");//民族
+            $data["birthday"] = I("post.birthday");//出生日期
+            $data["idCardAddress"] = I("post.idCardAddress");//户籍所在地
+            $data["familyAddress"] = I("post.familyAddress");//家庭住址
+            $data["telephone"] = I("post.telephone");//联系电话
+            $data["specialAttendInsGroup"] = I("post.specialAttendInsGroup");//人员类型
+            $data["householdRegister"] = I("post.householdRegister");//户口性质
+            $data["openBank"] = I("post.openBank");//开户银行
+            $data["bankCard"] = I("post.bankCard");//银行卡号
+            $data["captureLevel"] = I("post.captureLevel");//银行卡号
+            $data["workerMedicalIns"] = I("post.workerMedicalIns");//职工养老保险
+            $data["landlessSocialSecurity"] = I("post.landlessSocialSecurity");//被征地农民社会保障
+            $data["oldFarmerIns"] = I("post.oldFarmerIns");//老农保
+            $data["othersIns"] = I("post.othersIns");//其他保险
             $this->assign("peopleInfo", $peopleInfo);
             $this->display("showPeopleInfo");
             return;
@@ -88,13 +107,13 @@ class EndowmentInsAttendController extends CommonController
         $data["telephone"] = I("post.telephone");//联系电话
         $data["specialAttendInsGroup"] = I("post.specialAttendInsGroup");//人员类型
         $data["householdRegister"] = I("post.householdRegister");//户口性质
-        $data["householdHeadName"] = I("post.householdHeadName");//户主姓名
-        $data["householdHeadIdCard"] = I("post.householdHeadIdCard");//户主身份证号
-        $data["householdHeadRelation"] = I("post.householdHeadRelation");//与户主关系
-        $data["whetherOutsideAttendIns"] = I("post.whetherOutsideAttendIns");//是否县外参保
         $data["openBank"] = I("post.openBank");//开户银行
         $data["bankCard"] = I("post.bankCard");//银行卡号
-        $info["params"] = "未填写字段：";
+        $data["captureLevel"] = I("post.captureLevel");//银行卡号
+        $data["workerMedicalIns"] = I("post.workerMedicalIns");//职工养老保险
+        $data["landlessSocialSecurity"] = I("post.landlessSocialSecurity");//被征地农民社会保障
+        $data["oldFarmerIns"] = I("post.oldFarmerIns");//老农保
+        $data["othersIns"] = I("post.othersIns");//其他保险
         //遍历检测字段是否都是非空的 有一个字段为空就返回信息不完整
         foreach ($data as $key => $value) {
             if (empty($value)) {
@@ -106,7 +125,7 @@ class EndowmentInsAttendController extends CommonController
             $info["code"] = 1;
             $info["message"] = "成功";
             $info["url"] = U("Home/MedicalInsAttend/getIdcardImg");
-            session("MedicalInsAttendPeopleInfo", $data);
+            session("EndowmentInsAttendPeopleInfo", $data);
         } else {
             $info["code"] == -1;
             $info["message"] == "信息未添写完整";
@@ -126,10 +145,10 @@ class EndowmentInsAttendController extends CommonController
         $idcardBackImg = I("idcardBackImg");//身份证背面图片
         $idcardfrontImg = I("idcardfrontImg");//身份证正面图片
         if (!empty($idcardBackImg) && !empty($idcardfrontImg)) {
-            $data = session("MedicalInsAttendPeopleInfo");
+            $data = session("EndowmentInsAttendPeopleInfo");
             $data["idcardBackImg"] = $idcardBackImg;
             $data["idcardfrontImg"] = $idcardfrontImg;
-            session("MedicalInsAttendPeopleInfo", $data);
+            session("EndowmentInsAttendPeopleInfo", $data);
             $info["code"] = -1;
             $info["message"] = "成功";
             $info["url"] = U("Home/MedicalInsAttend/gethouseholdImg");
@@ -151,10 +170,10 @@ class EndowmentInsAttendController extends CommonController
         $idcardBackImg = I("idcardBackImg");//身份证背面图片
         $idcardfrontImg = I("idcardfrontImg");//身份证正面图片
         if (!empty($idcardBackImg) && !empty($idcardfrontImg)) {
-            $data = session("MedicalInsAttendPeopleInfo");
+            $data = session("EndowmentInsAttendPeopleInfo");
             $data["idcardBackImg"] = $idcardBackImg;
             $data["idcardfrontImg"] = $idcardfrontImg;
-            session("MedicalInsAttendPeopleInfo", $data);
+            session("EndowmentInsAttendPeopleInfo", $data);
             $info["code"] = -1;
             $info["message"] = "成功";
             $info["url"] = U("Home/MedicalInsAttend/gethouseholdImg");
@@ -177,7 +196,7 @@ class EndowmentInsAttendController extends CommonController
         $gethouseholdFirstImg = I("gethouseholdFirstImg");//户口本主页
         $gethouseholdPeopleImg = I("gethouseholdPeopleImg");//户口本个人页
         if (!empty($gethouseholdFirstImg) && !empty($gethouseholdPeopleImg)) {
-            $data = session("MedicalInsAttendPeopleInfo");
+            $data = session("EndowmentInsAttendPeopleInfo");
             $data["gethouseholdFirstImg"] = $gethouseholdFirstImg;
             $data["gethouseholdPeopleImg"] = $gethouseholdPeopleImg;
             //请求接口 检测用户是否参保
@@ -190,7 +209,7 @@ class EndowmentInsAttendController extends CommonController
                 $info["code"] = 1;
                 $info["message"] = "成功";
                 $info["url"] = U("Home/MedicalInsAttend/MedicalInsAttendIndex");
-                session("NotAttendInsPeopleInfo", null);
+                session("EndowmentInsAttendPeopleInfo", null);
             } else {
                 $info["code"] = -1;
                 $info["message"] = $result["msg"];
@@ -208,9 +227,8 @@ class EndowmentInsAttendController extends CommonController
     /**
      * 根据身份证号获取用户信息
      */
-    public function getPeopleInfo($idCard)
+    public function getPeopleInfo($data)
     {
-        $data["idCard"] = $idCard;
         if (empty($data["idCard"])) {
             $info["code"] = -1;
             $info["message"] = "身份证号不能为空";
@@ -226,8 +244,10 @@ class EndowmentInsAttendController extends CommonController
             $info["message"] = "成功";
             $info["data"] = $result["data"];
             //将用户信息保存在session中 下一步用
-            $data=$info["data"];
-            session("MedicalInsAttendPeopleInfo", $data);
+            if (!empty($info["data"])){
+                $data=$info["data"];
+            }
+            session("EndowmentInsAttendPeopleInfo", $data);
         } else {
             $info["code"] = -1;
             $info["message"] = $result["msg"];
