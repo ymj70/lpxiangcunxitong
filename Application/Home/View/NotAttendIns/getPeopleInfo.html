@@ -114,7 +114,18 @@
                                     <div class="form-cell">
                                         <label>与户主关系</label>
                                         <div>
-                                            <input type="text" name="text" class="layui-input" id="householdHeadRelation" placeholder="请输入与户主关系">
+                                       <!--      <input type="text" name="text" class="layui-input" id="householdHeadRelation" placeholder="请输入与户主关系"> -->
+                                          <select name="stu" name="addr" lay-verify="required" id="householdHeadRelation">
+                                                <option value="{$peopleInfo['householdHeadRelation']|default=''}">{$peopleInfo['householdHeadRelation']|default=''}"</option>
+                                                <option value="0">本人</option>
+                                                <option value="1">配偶</option>
+                                                <option value="2">子女</option>
+                                                <option value="3">父母</option>
+                                                <option value="4">养父母</option>
+                                                <option value="5">祖父母</option>
+                                                <option value="6">外祖父母</option>
+                                                <option value="7">其他</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
