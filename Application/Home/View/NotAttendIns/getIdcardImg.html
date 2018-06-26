@@ -31,11 +31,10 @@
                                     <input type="file" name="file" style="display:none" id="idcardBackImgfile">
                                 </form>
                                 <input type="hidden" value="{$Think.config.REQUEST_URL}{$Think.config.imgUploadUrl}" id="url" name="url">
-                                <!--   <input id="upload" type="file" style="display: none"> -->
                                 <label for="upload"><i class="jh"></i></label>
                                 <input id="upload" type="file" style="display: none">
                                 <div class="book-box">
-                                    <img src="__PUBLIC__/image/card.png" alt="" id="idcardBackImgfilessss">
+                                    <img src="__PUBLIC__/image/card1.png" alt="" id="preview">
                                 </div>
                             </div>
                             <p>请点击加号上传</p>
@@ -68,7 +67,7 @@
 <include file="Public:footer" />
 <script>
       //上传图片
-    uploadimg("upload","idcardBackImgfilessss");
+    uploadimg("upload","preview");
     uploadimg("upload1","preview1");
 
 function choose() {

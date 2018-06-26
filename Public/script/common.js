@@ -181,6 +181,7 @@ $('#' + uploatid + '').change(function() {
     // 获取FileList的第一个元素
     var f = document.getElementById('' + uploatid + '').files[0];
     var src = window.URL.createObjectURL(f);
-    document.getElementById('' + uploatid + '').src = src;
+
+    document.getElementById('' + imgid + '').src = src;
 })
 }
