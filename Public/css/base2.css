@@ -7,6 +7,9 @@
 .bgc-red {
   background-color: #be0b20;
 }
+.bgc-greend {
+  background-color: #30c114;
+}
 .font-white {
   color: #edebeb;
 }
@@ -467,4 +470,159 @@
 .alert .btns button {
   padding: 0 3rem;
   margin: 0 1rem;
+}
+.pay-alert {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+.pay-alert .pd {
+  padding: 4.75rem 5.875rem;
+  box-sizing: border-box;
+}
+.pay-alert .pd label {
+  width: 10rem;
+  text-align: left;
+}
+.pay-alert .pd .form-cell > div {
+  padding-left: 0;
+}
+.pay-alert .pay-btn {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+.pay-alert .pay-btn button {
+  padding: 0 3rem;
+  position: relative;
+  bottom: 3.4375rem;
+}
+.button {
+  width: 100%;
+  padding-top: 0.75rem;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+.button > button {
+  width: 100%;
+}
+.button .size {
+  width: 17.25rem;
+}
+.pding {
+  padding: 0 24.875rem;
+}
+.pageList {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+.pageList .pageTitle {
+  text-align: center;
+}
+.pageList .pageTitle p {
+  font-size: 16px;
+  line-height: 1.5625rem;
+  color: #727272;
+}
+.pageList .pagecontent {
+  padding: 2.625rem 10.8rem;
+  box-sizing: border-box;
+}
+.pageList .pagecontent p {
+  font-size: 16px;
+  text-indent: 1.25rem;
+  line-height: 2rem;
+}
+.pageList .pagebtn {
+  margin: 0 auto;
+}
+.pageList .pagebtn button {
+  padding: 0 7.625rem;
+}
+.center-main {
+  width: 70%;
+  margin: 0 auto;
+  height: 100%;
+}
+.center-main .center-box {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+}
+.center-main .center-box .label-title {
+  width: 5rem;
+  -ms-flex: 1;
+      flex: 1;
+  margin-top: 1.5rem;
+  text-align: right;
+  margin-right: 0.5rem;
+}
+.center-main .center-box .label-content {
+  width: 100%;
+  padding: 1rem 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex: 9;
+      flex: 9;
+}
+.center-main .center-box .label-content span {
+  position: relative;
+  right: 25px;
+  top: 4px;
+}
+.center-main .center-box .label-content .label-top {
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 50%;
+  margin: .5rem 0;
+}
+.center-main .center-box .label-content .label-top .flex-1 {
+  -ms-flex: 1;
+      flex: 1;
+}
+.center-main .center-box .label-content .label-top .flex-5 {
+  -ms-flex: 5;
+      flex: 5;
+}
+.center-main .center-box .label-content .m0 {
+  margin: 0;
+}
+.center-main .center-box .label-content .m5 {
+  margin-top: .5rem;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+.center-main .center-box .label-content .m5 .ckbox {
+  padding: 0 .5rem;
+}
+.center-main .center-box .wj {
+  position: relative;
+  left: 8rem;
+  color: #5656fa;
+  bottom: 1rem;
+}
+.center-main .center-box #wj {
+  position: relative;
+  left: 8rem;
+}
+.center-main .btn-bo {
+  width: 100%;
+  text-align: center;
+  left: 0;
+  margin-top: 20px;
+}
+.center-main .btn-bo button {
+  padding: 0 4.25rem 0 4.25rem;
+  box-sizing: border;
 }

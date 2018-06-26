@@ -175,5 +175,94 @@ class PublicController extends controller
        public function cxjmylcbdj6(){
         $this->display("cxjmylcbdj6");
     }
+
+
+
+
+
+           //我的消息   创建消息
+       public function xcreatnews1(){
+        $this->display("xcreatnews1");
+    }
+           //我的消息
+       public function xcreatnews2(){
+        $this->display("xcreatnews2");
+    }
+           //我的消息   消息详情
+       public function xcreatnews3(){
+        $this->display("xcreatnews3");
+    }
+           //待遇资格认证
+       public function xdyzgrz1(){
+        $this->display("xdyzgrz1");
+    }
+           //待遇资格认证
+       public function xdyzgrz2(){
+        $this->display("xdyzgrz2");
+    }
+           //社保缴费   城乡养老缴费档次变更
+       public function xpay5(){
+        $this->display("xpay5");
+    }
+           //信息查询   城乡养老缴费信息查询
+       public function xyljfcx1(){
+        $this->display("xyljfcx1");
+    }
+           //信息查询    城乡医疗缴费信息查询
+       public function xyljfcx10(){
+        $this->display("xyljfcx10");
+    }
+           //信息查询   医疗提高查询
+       public function xyljfcx11(){
+        $this->display("xyljfcx11");
+    }
+           //信息查询     医疗报销查询
+       public function xyljfcx12(){
+        $this->display("xyljfcx12");
+    }
+           //信息查询     城乡居民养老保险参保登记    参保登记进度查询
+       public function xyljfcx13(){
+        $this->display("xyljfcx13");
+    }
+           //信息查询   城乡居民养老保险参保登记    参保登记进度查询
+       public function xyljfcx14(){
+        $this->display("xyljfcx14");
+    }
+           //信息查询    城乡养老缴费信息查询
+       public function xyljfcx15(){
+        $this->display("xyljfcx15");
+    }
+           //信息查询    参保信息查询
+       public function xyljfcx2(){
+        $this->display("xyljfcx2");
+    }
+           //信息查询    待遇领取信息查询
+       public function xyljfcx3(){
+        $this->display("xyljfcx3");
+    }
+           //信息查询    待遇领取信息查询
+       public function xyljfcx4(){
+        $this->display("xyljfcx4");
+    }
+           //信息查询    医疗报销查询
+       public function xyljfcx5(){
+        $this->display("xyljfcx5");
+    }
+               //信息查询    医疗报销结果查询
+       public function xyljfcx6(){
+        $this->display("xyljfcx6");
+    }
+               //信息查询    城乡居民医疗保险参保登记    参保登记进度查询
+       public function xyljfcx7(){
+        $this->display("xyljfcx7");
+    }
+               //信息查询    城乡居民医疗保险参保登记    参保登记进度查询
+       public function xyljfcx8(){
+        $this->display("xyljfcx8");
+    }
+               //信息查询   城乡医疗缴费信息查询
+       public function xyljfcx9(){
+        $this->display("xyljfcx9");
+    }
 }
 
