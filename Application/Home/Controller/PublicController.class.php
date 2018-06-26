@@ -109,7 +109,7 @@ class PublicController extends controller
 
 //人员登记 > 城乡居民养老保险参保登记 > 参保登记进度查询    参保登记审批进度查询结果
        public function cbdjjdcx2(){
-        $this->display("cbdjjdcx2");
+       // $this->display("cbdjjdcx2");
     }
 //人员登记 > 城乡居民养老保险参保登记     城乡居民基本养老保险参保注意事项：
        public function cxjmylcbdj(){
@@ -222,7 +222,7 @@ class PublicController extends controller
     }
            //信息查询     城乡居民养老保险参保登记    参保登记进度查询
        public function xyljfcx13(){
-        $this->display("xyljfcx13");
+       $this->display("xyljfcx13");
     }
            //信息查询   城乡居民养老保险参保登记    参保登记进度查询
        public function xyljfcx14(){
@@ -254,11 +254,11 @@ class PublicController extends controller
     }
                //信息查询    城乡居民医疗保险参保登记    参保登记进度查询
        public function xyljfcx7(){
-        $this->display("xyljfcx7");
+    //    $this->display("xyljfcx7");
     }
                //信息查询    城乡居民医疗保险参保登记    参保登记进度查询
        public function xyljfcx8(){
-        $this->display("xyljfcx8");
+       // $this->display("xyljfcx8");
     }
                //信息查询   城乡医疗缴费信息查询
        public function xyljfcx9(){

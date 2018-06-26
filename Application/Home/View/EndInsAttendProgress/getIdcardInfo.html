@@ -1,2 +1,93 @@
-<h1>养老参保进度查询 读取身份证信息页</h1>
-<a href="{:U('Home/EndInsAttendProgress/showResult')}"> 下一页</a>
+        <div class="framePage">
+            <div class="framePage-title">
+               <a href="javascript:;">人员登记</a>
+                <i>></i>
+                <a href="javascript:;">城乡居民医疗保险参保登记</a>
+                <i>></i>
+                <a href="javascript:;" class="cur-a">参保登记进度查询</a>
+            </div>
+            <div class="framePage-body layui-form">
+                <div class="framePage-scroll">
+                    <div class="ovy-a">
+                        <div class="bg-box">
+                            <div class="care">
+                                <div class="h3-title">
+                                    <h3>读取身份证信息</h3>
+                                </div>
+                                <div class="pbox">
+                                    <p>1.请将用户身份证按<span>下图样式</span>放在身份证读卡器上，点击<span>【读取】</span>按钮读取用户身份证信息，或者手动填写用户身份证号码，点击<span>查询</span>按钮进入制卡进度页面；
+
+</p>
+                                    <p>2.读取身份证信息过程中请勿将身份证取出。</p>
+                                </div>
+                            </div>
+                            <div class="demo">
+                                <div class="demo-page">
+                                    <div class="demo-pagepd">
+                                        <div class="img-box2">
+                                        <img src="__PUBLIC__/image/dk.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="demo-page">
+                                    <div class="demo-pagepd">
+                                         <div class="user-information information-search">
+                                        <div class="information-box">
+                                            <div>
+                                                <div>
+                                                    <label for="">身份证号</label>
+                                                </div>
+                                                <div>
+                                                    <input type="text" class="layui-input" id="name">
+                                                    <button class="bgc-blued layui-btn" onclick="getData()">
+                                                        <i class="layui-icon layui-icon-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    <label for="">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label>
+                                                </div>
+                                                <div>
+                                                    <span>杨梦洁</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    <label for="">身份证号</label>
+                                                </div>
+                                                <div>
+                                                    <span>130204199403173144</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    <label for="">户籍地址</label>
+                                                </div>
+                                                <div>
+                                                    <span>河北省秦皇岛市天涯海角</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-box layui-form">
+                    <button class="layui-btn bgc-green b-pd">读取</button>
+                    <button class="layui-btn bgc-blued  b-pd" onclick="qquery()">查询</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<include file="Public:footer" />
+<script>
+	function qquery(){
+		window.location.href="{:U('Home/EndInsAttendProgress/showResult')}"
+	}
+</script>
+</html>
