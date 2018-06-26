@@ -28,12 +28,12 @@ class MedicalInsAttendController extends CommonController
         $data["idcard"] = I("post.idCard");//身份证号
         $data["insuredtype"] = 0;//险种类型
         $javaurl = $this->javaUrl;
-        $url = C("REQUEST_URL") . $javaurl["MedicalInsAttend"]["showPeopleInfo"];
-        //请求接口 检测用户是否参保 已参保不用再次登记参保 未参保 查询
+        $url = C("REQUEST_URL") . $javaurl["MedicalInsAttend"]["checkPeopleMedicalInsStatus"];
+        //请求接口
         $requestObj = $this->requestObject;
         $result = $requestObj->requset($url, $data, "post");
         $result = json_decode($result, true, 512, JSON_BIGINT_AS_STRING);
-        if ($result["code"] !== 0) {
+        if ($result["code"] === 0) {
             $info["code"] = 1;
             $info["message"] = "成功";
             $info["url"] = U("Home/MedicalInsAttend/showPeopleInfo");
@@ -66,9 +66,9 @@ class MedicalInsAttendController extends CommonController
      */
     public function showPeopleInfo()
     {
-        $peopleInfo = session("EndowmentInsAttendPeopleInfo");
+        $peopleInfo = session("MedicalInsAttendPeopleInfo");
         if (empty($peopleInfo)) {
-            $this->redirect("checkEndowmentInsAttendStatus");
+            $this->redirect("medicalInsAttendIndex");
         }
         if (!IS_POST) {
             $data["realName"] = $peopleInfo["name"];//姓名
@@ -76,16 +76,15 @@ class MedicalInsAttendController extends CommonController
             $data["sex"] = $peopleInfo["sex"];//性别
             $data["national"] = $peopleInfo["national"];//民族
             $data["birthday"] = $peopleInfo["birthDay"];//出生日期
-            $data["idCardAddress"] = $peopleInfo[""];//户籍所在地
-            $data["familyAddress"] = $peopleInfo[""];//家庭住址
-            $data["telephone"] = $peopleInfo[""];//联系电话
-            $data["specialAttendInsGroup"] = $peopleInfo[""];//人员类型
-            $data["householdRegister"] = $peopleInfo[""];//户口性质
-            $data["householdHeadName"] = $peopleInfo[""];//户主姓名
-            $data["householdHeadIdCard"] = $peopleInfo[""];//户主身份证号
-            $data["householdHeadRelation"] = $peopleInfo[""];//与户主关系
-            $data["householdHeadPhone"] = $peopleInfo[""];//与户主关系
-            $data["whetherOutsideAttendIns"] = $peopleInfo[""];//是否县外参保
+            $data["idCardAddress"] = $peopleInfo["domicile"];//户籍所在地
+            $data["familyAddress"] = $peopleInfo["nowDomicile"];//家庭住址
+            $data["telephone"] = $peopleInfo["phonenumber"];//联系电话
+            $data["specialAttendInsGroup"] = $peopleInfo["specialInsurance"];//特殊参保人权
+            $data["householdRegister"] = $peopleInfo["domicileType"];//户口性质
+            $data["householdHeadName"] = $peopleInfo["master"];//户主姓名
+            $data["householdHeadIdCard"] = $peopleInfo["masteridcard"];//户主身份证号
+            $data["householdHeadRelation"] = $peopleInfo["masterShip"];//与户主关系
+            $data["householdHeadPhone"] = $peopleInfo["householderMobile"];//与户主关系
             $this->assign("peopleInfo", $data);
             $this->display();
             return;
@@ -136,9 +135,9 @@ class MedicalInsAttendController extends CommonController
      */
     public function getIdcardImg()
     {
-        $peopleInfo = session("EndowmentInsAttendPeopleInfo");
+        $peopleInfo = session("MedicalInsAttendPeopleInfo");
         if (empty($peopleInfo)) {
-            $this->redirect("checkEndowmentInsAttendStatus");
+            $this->redirect("medicalInsAttendIndex");
         }
         if (!IS_POST) {
             $this->display();
@@ -166,9 +165,9 @@ class MedicalInsAttendController extends CommonController
      */
     public function gethouseholdImg()
     {
-        $peopleInfo = session("EndowmentInsAttendPeopleInfo");
+        $peopleInfo = session("MedicalInsAttendPeopleInfo");
         if (empty($peopleInfo)) {
-            $this->redirect("checkEndowmentInsAttendStatus");
+            $this->redirect("medicalInsAttendIndex");
         }
         if (!IS_POST) {
             $this->display();
