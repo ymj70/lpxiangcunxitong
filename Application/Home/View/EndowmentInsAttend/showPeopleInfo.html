@@ -21,14 +21,14 @@
                                         <div class="form-cell">
                                             <label>出生日期</label>
                                             <div>
-                                              <input placeholder="选择日期" type="text" class="layui-input float-l" id="month" value="{$peopleInfo['birthday']}">>
-                                              <img src="../../image/rydj_rq_03.png" alt="">
+                                              <input placeholder="选择日期" type="text" class="layui-input float-l" id="month" value="{$peopleInfo['birthday']}" disabled>
+                                              <img src="__PUBLIC__/image/rydj_rq_03.png" alt="">
                                             </div>
                                         </div>
                                         <div class="form-cell">
                                           <label>性&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp别</label>
                                           <div>
-                                              <select name="stu" name="addr" lay-verify="required" id="sex">
+                                              <select name="stu" name="addr" lay-verify="required" id="sex" disabled>
                                                   <option value="{$peopleInfo['sex']|default=''}">{$peopleInfo['sex']|default="请选择"}</option>
                                                   <option value="0">男</option>
                                                   <option value="1">女</option>
@@ -167,25 +167,25 @@
                                       <div class="form-cell">
                                           <div>
                                             <input placeholder="请输入开始时间和结束时间" type="text" class="layui-input float-l" id="start">
-                                            <img src="../../image/rydj_rq_03.png" alt="">
+                                            <img src="__PUBLIC__/image/rydj_rq_03.png" alt="">
                                           </div>
                                       </div>
                                       <div class="form-cell">
                                           <div>
                                             <input placeholder="请输入开始时间和结束时间" type="text" class="layui-input float-l" id="start1">
-                                            <img src="../../image/rydj_rq_03.png" alt="">
+                                            <img src="__PUBLIC__/image/rydj_rq_03.png" alt="">
                                           </div>
                                       </div>
                                       <div class="form-cell">
                                           <div>
                                             <input placeholder="请输入开始时间和结束时间" type="text" class="layui-input float-l" id="start2">
-                                            <img src="../../image/rydj_rq_03.png" alt="">
+                                            <img src="__PUBLIC__/image/rydj_rq_03.png" alt="">
                                           </div>
                                       </div>
                                       <div class="form-cell">
                                           <div>
                                             <input placeholder="请输入开始时间和结束时间" type="text" class="layui-input float-l" id="start3">
-                                            <img src="../../image/rydj_rq_03.png" alt="">
+                                            <img src="__PUBLIC__/image/rydj_rq_03.png" alt="">
                                           </div>
                                       </div>
                                     </div>
@@ -206,9 +206,9 @@
 <script>
 function nextSteup() {
     if (check() == false){
-        return;
-    }
-    $.ajax({
+        return false;
+    }else{
+          $.ajax({
         type: "post",
         url: "{:U('/Home/EndowmentInsAttend/showPeopleInfo')}",
         data: {
@@ -252,26 +252,54 @@ function nextSteup() {
         },
     });
 
+    }
+
 }
     //校验
-    function check(){;
-        if ($("#realName").val()=="") {
-            layer.msg("输入姓名");
+    function check(){
+      var phoneStr = /^[1][3,4,5,7,8][0-9]{9}$/;
+      var mz=$("#mz").val();
+      var idCardAddress = $("#idCardAddress").val();
+      var telephone=$("#telephone").val();
+      var familyAddress=$("#familyAddress").val();
+      var householdRegister=$("#householdRegister").val();
+      var peopleType=$("#peopleType").val();
+      var openBank=$("#openBank").val();
+      var bankCard=$("#bankCard").val();
+      var captureLevel=$("#captureLevel").val();
+      if(mz==""){
+         layer.msg("请选择民族");
+         return false;
+      }else if(idCardAddress==""){
+         layer.msg("请填写戶籍所在地");
+         return false;
+      }else if(telephone==""){
+         layer.msg("请填写联系电话");
+         return false;
+      }else if (phoneStr.test(telephone) == false) {
+            layer.msg('联系电话格式不正确')
             return false;
-        }
-        if ($("#idCard").val()=="") {
-            layer.msg("输入身份证号");
-            return false;
-        }
-
-        if ($("#national").val()=="") {
-            layer.msg("输入民族");
-            return false;
-        }
-        if ($("#idCardAddress").val()=="") {
-            layer.msg("输入户籍所在地");
-            return false;
-        }
+        }else if(familyAddress==""){
+         layer.msg("请填写居住地址");
+         return false;
+      }else if(householdRegister==""){
+         layer.msg("请选择户籍性质");
+         return false;
+      }else if(peopleType==""){
+         layer.msg("请选择特殊参保群体");
+         return false;
+      }else if(openBank==""){
+         layer.msg("请选择开户银行");
+         return false;
+      }else if(bankCard==""){
+         layer.msg("请填写银行卡号");
+         return false;
+      }else if(captureLevel==""){
+         layer.msg("请选择缴费档次");
+         return false;
+      }else{
+        return true;
+      }
     }
 $(document).ready(function() {
 // 日期
@@ -308,24 +336,6 @@ var nations = ["汉族", "蒙古族", "回族", "藏族", "维吾尔族", "苗�
         nation.append("<option value='" + a + "'>" + a + "</option>");
     }
     layuiform()
-
-// 验证input
-  var layer = layui.layer
-    $('#next').click(function() {
-      var phoneStr = /^[1][3,4,5,7,8][0-9]{9}$/
-      var pattern = /^([1-9]{1})(\d{14}|\d{18})$/
-      if($('#month').val() === '' || $('#sex').val() === '' || $('#phone').val().trim() === '' || $('#address').val().trim() === '' || $('#mz').val() === '' || $('#address1').val().trim() === '' || $('#jzaddress').val().trim() === '' || $('#people').val() === '' || $('#khyh').val() === '' || $('#bank').val().trim() === '') {
-        layer.msg('内容不能为空')
-      } else if(!phoneStr.test($('#phone').val())) {
-        var error = layer.msg('手机号格式不正确')
-        return error
-      } else if(!pattern.test($('#bank').val())) {
-        var error = layer.msg('银行卡格式不正确')
-        return error
-      } else {
-        
-      }
-    })
   })
 </script>
 </html>
