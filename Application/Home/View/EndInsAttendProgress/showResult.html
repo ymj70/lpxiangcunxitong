@@ -13,8 +13,8 @@
                         <div class="care">
                             <h3>参保登记审批进度查询结果</h3>
                             <div class="news">
-                                <label for="">姓名： <span>fengwang</span></label>
-                                <label for="">身份证号： <span>13030219942252</span></label>
+                                <label for="">姓名： <span id="realName"></span></label>
+                                <label for="">身份证号： <span id="idCard"></span></label>
                             </div>
                         </div>
                         <div class="approval">
@@ -23,19 +23,19 @@
                             </div>
                             <div class="approval-box">
                                 <div>
-                                    <span class="bgc-green font-white">采集状态</span>
+                                    <span class="bgc-gary font-black" id="cun">采集状态</span>
+                                </div>
+                                <div class="imge-box">
+                                    <img src="__PUBLIC__/image/jt.png" alt="" >
+                                </div>
+                                <div>
+                                    <span class="bgc-gary font-black" id="xiang">乡级审批</span>
                                 </div>
                                 <div class="imge-box">
                                     <img src="__PUBLIC__/image/jt.png" alt="">
                                 </div>
                                 <div>
-                                    <span class="bgc-green font-white">乡级审批</span>
-                                </div>
-                                <div class="imge-box">
-                                    <img src="__PUBLIC__/image/jt.png" alt="">
-                                </div>
-                                <div>
-                                    <span class="bgc-gary font-black">县级审批</span>
+                                    <span class="bgc-gary font-black" id="xian">县级审批</span>
                                 </div>
                             </div>
                         </div>
@@ -78,6 +78,33 @@
               beforeSend: function() {},
               success: function(ret) {
                   if (ret.code == 1) {
+                      var data=ret.data;
+                      console.log(data);
+
+                      $("#realName").html(data.realName);
+                      $("#idCard").html(data.idcard);
+                      //判断村的状态
+                      if (data.status >=0){
+                          $("#cun").attr("class","bgc-green font-white")
+                      }else {
+                          $("#cun").attr("class","bgc-gary font-black")
+                      }
+                      ////判断乡的状态
+                      if(data.status >=1 && data.status != 2){
+                          $("#xiang").attr("class","bgc-green font-white")
+                      }else if(data.status == 2){
+                          $("#xiang").attr("class","bgc-gary font-black")
+                      }else {
+                          $("#xiang").attr("class","bgc-gary font-black")
+                      }
+                      //判断县的状态
+                      if(data.status >=3 && data.status != 4){
+                          $("#xian").attr("class","bgc-green font-white")
+                      }else if(data.status == 4){
+                          $("#xian").attr("class","bgc-gary font-black")
+                      }else {
+                          $("#xian").attr("class","bgc-gary font-black")
+                      }
 
                   } else {
                       if (ret.message == '') {

@@ -11,9 +11,6 @@ class EndInsAttendProgressController extends CommonController
         session("model", "信息查询");
     }
 
-    /**
-     *城乡医疗参保登记首页
-     */
     public function attentionMatters(){
         $this->display("attentionMatters");
     }
@@ -36,7 +33,10 @@ class EndInsAttendProgressController extends CommonController
         if ($result["code"] === 0) {
             $info["code"] = 1;
             $info["message"] = "成功";
-            $info["data"] = $result["data"];
+            $resultdata["realName"]=$result["data"]["personName"];
+            $resultdata["idcard"]=$result["data"]["personIdcard"];
+            $resultdata["status"]=$result["data"]["status"];
+            $info["data"] = $resultdata;
         } else {
             $info["code"] = -1;
             $info["message"] = $result["msg"];
@@ -44,5 +44,6 @@ class EndInsAttendProgressController extends CommonController
                 $info["message"] = "信息保存接口请求失败";
             }
         }
+        $this->ajaxReturn($info);
     }
 }

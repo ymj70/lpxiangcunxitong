@@ -25,6 +25,9 @@ return array(
         "QueryTreatmentCollect" => array(
             "showResult"=>"/grant/upTr",//待遇领取查询
         ),
+        "MedInsAttendProgress" => array(
+            "showResult"=>"/personBase/speedPension",//医疗参保登记进度查询
+        ),
     ),
     "imgUploadUrl" => "/image/uploadFile",//图片上传
     "imgDownUrl" => "/image-service/misauth/getimage",//图片上传

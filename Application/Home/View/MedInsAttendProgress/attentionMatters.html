@@ -3,7 +3,7 @@
             <div class="framePage-title">
                 <a href="javascript:;">人员登记</a>
                 <i>></i>
-                <a href="javascript:;">城乡居民养老保险参保登记</a>
+                <a href="javascript:;">城乡居民医疗保险参保登记</a>
                 <i>></i>
                 <a href="javascript:;" class="cur-a">参保登记进度查询</a>
             </div>
@@ -22,7 +22,7 @@
                         </div>
                         <div class="btn layui-form">
                             <div>
-                                 <input type="checkbox" class="layui-form-checkbox" lay-skin="primary" checked="checked">
+                                 <input type="checkbox" class="layui-form-checkbox" lay-skin="primary" id="attention">
                                  <span>我已阅读并理解</span>
                             </div>
                             <div>
@@ -38,7 +38,11 @@
 <include file="Public:footer" />
 <script>
   function opLook () {
-    window.location.href="{:U('Home/MedInsAttendProgress/getIdcardInfo')}"
+      if($("#attention:checked").val()){
+          window.location.href="{:U('Home/MedInsAttendProgress/getIdcardInfo')}"
+      }else{
+          layer.alert("请仔细阅读注意事项，并勾选‘我已阅读并理解’按钮");
+      }
 }
 </script>
 </html>
