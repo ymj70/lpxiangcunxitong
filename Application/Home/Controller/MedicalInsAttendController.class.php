@@ -81,13 +81,16 @@ class MedicalInsAttendController extends CommonController
             $data["telephone"] = $peopleInfo["phonenumber"];//联系电话
             $data["specialAttendInsGroup"] = $peopleInfo["specialInsurance"];//特殊参保人权
             $data["householdRegister"] = $peopleInfo["domicileType"];//户口性质
-            $data["householdHeadName"] = $peopleInfo["master"];//户主姓名
-            $data["householdHeadIdCard"] = $peopleInfo["masteridcard"];//户主身份证号
+            $data["householdHeadName"] = $peopleInfo["householderName"];//户主姓名
+            $data["householdHeadIdCard"] = $peopleInfo["householderIdCard"];//户主身份证号
             $data["householdHeadRelation"] = $peopleInfo["masterShip"];//与户主关系
             $data["householdHeadPhone"] = $peopleInfo["householderMobile"];//与户主关系
             $this->assign("peopleInfo", $data);
             $this->display();
             return;
+        }
+        if (!empty($peopleInfo["id"])){
+            $data["id"] =$peopleInfo["id"];//人员id 有就传没有就不穿
         }
         $data["realName"] = I("post.realName");//姓名
         $data["idCard"] = I("post.idCard");//身份证号
@@ -97,7 +100,7 @@ class MedicalInsAttendController extends CommonController
         $data["idCardAddress"] = I("post.idCardAddress");//户籍所在地
         $data["familyAddress"] = I("post.familyAddress");//家庭住址
         $data["telephone"] = I("post.telephone");//联系电话
-        $data["specialAttendInsGroup"] = I("post.specialAttendInsGroup");//人员类型
+        $data["specialAttendInsGroup"] = I("post.specialAttendInsGroup");//特殊人权
         $data["householdRegister"] = I("post.householdRegister");//户口性质
         $data["householdHeadName"] = I("post.householdHeadName");//户主姓名
         $data["householdHeadIdCard"] = I("post.householdHeadIdCard");//户主身份证号
@@ -179,7 +182,9 @@ class MedicalInsAttendController extends CommonController
             $peopleInfo =$peopleInfo;
             $userInfo=S(session("username"));
 
-            $data["naexamineTypeme"] = 1;////险种类型 0 代表医疗  1代表养老
+            $data["examineType"] =0 ;//村级机构0 医疗 1养老
+
+            $data["id"] = $peopleInfo["id"];//姓名
             $data["name"] = $peopleInfo["realName"];//姓名
             $data["idcard"] = $peopleInfo["idCard"];//身份证号
             $data["sex"] = $peopleInfo["sex"];//性别
@@ -188,37 +193,23 @@ class MedicalInsAttendController extends CommonController
             $data["domicile"] = $peopleInfo["idCardAddress"];//户籍所在地
             $data["nowDomicile"] = $peopleInfo["familyAddress"];//家庭住址
             $data["phonenumber"] = $peopleInfo["telephone"];//联系电话
-            $data["persontype"] = $peopleInfo["specialAttendInsGroup"];//人员类型
-            $data["maritalStatus"] = $peopleInfo[""];//婚否
             $data["domicileType"] = $peopleInfo["householdRegister"];//户口性质
-            $data["master"] = $peopleInfo["householdHeadName"];//户主姓名
-            $data["masteridcard"] = $peopleInfo["householdHeadIdCard"];//户主身份证号
+            $data["householderName"] = $peopleInfo["householdHeadName"];//户主姓名
+            $data["householderIdCard"] = $peopleInfo["householdHeadIdCard"];//户主身份证号
             $data["householderMobile"] = $peopleInfo["householdHeadPhone"];//户主电话号码
-            $data["masterShip"] = $peopleInfo["householdHeadPhone"];//与户主关系
-            $data["outCountyInsurance"] = $peopleInfo[""];//是否县外参保
-            $data["workStatus"] = $peopleInfo[""];//是否就业
-            $data["mobilePersonnel"] = $peopleInfo[""];//流动人员
-            $data["uninsuredReson"] = $peopleInfo[""];//未参保原因
+            $data["householderRelation"] = $peopleInfo["householdHeadRelation"];//与户主关系
             $data["hukouBookUrl"] = $gethouseholdFirstImg;//户口被主页
             $data["hukouBookBackUrl"] = $gethouseholdPeopleImg;//户口被个人也
             $data["idCardBackUrl"] = $peopleInfo["idcardBackImg"];//身份证反面
             $data["idCardUrl"] = $peopleInfo["idcardfrontImg"];//身份证整面
             $data["age"] = get_age($data["idcard"]);//村级机构
-            $data["insuredtype"] = $peopleInfo[""];//村级机构
-            $data["county"] = $peopleInfo[""];//村级机构
-            $data["street"] = $peopleInfo[""];//村级机构
-            $data["coummunity"] = $peopleInfo[""];//村级机构
-            $data["personalnumber"] = $peopleInfo[""];//村级机构
-            $data["province"] = $peopleInfo[""];//村级机构
-            $data["city"] = $peopleInfo[""];//村级机构
-            $data["companyId"] = $peopleInfo[""];//村级机构
+            $data["insuredtype"] =0;//参加险种
             $data["bankName"] = $peopleInfo["openBank"];//村级机构
             $data["bankAccount"] = $peopleInfo["bankCard"];//村级机构
-            $data["specialInsurance"] = $peopleInfo[""];//村级机构
-            $data["examineType"] = $peopleInfo[""];//村级机构0 医疗 1养老
-            $data["villageId"] = $userInfo[""];//村级机构
-            $data["countyCode"] = $userInfo[""];//村级机构
-            $data["townTownCode"] = $userInfo[""];//村级机构
+            $data["specialInsurance"] = $peopleInfo["specialAttendInsGroup"];//村级机构
+            $data["villageId"] = $userInfo["villageId"];//村级机构
+            $data["countyCode"] = $userInfo["countyCode"];//村级机构
+            $data["townTownCode"] = $userInfo["townTownCode"];//村级机构
 
 
             //请求接口 检测用户是否参保
@@ -227,7 +218,7 @@ class MedicalInsAttendController extends CommonController
             $requestObj = $this->requestObject;
             $result = $requestObj->requset($url, $data, "post");;
             $result = json_decode($result, true);
-            if ($result["code"] == 0) {
+            if ($result["code"] === 0) {
                 $info["code"] = 1;
                 $info["message"] = "成功";
                 $info["url"] = U("Home/MedicalInsAttend/MedicalInsAttendIndex");

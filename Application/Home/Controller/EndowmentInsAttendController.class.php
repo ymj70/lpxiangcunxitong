@@ -240,6 +240,7 @@ class EndowmentInsAttendController extends CommonController
         if (!empty($registrationForm)) {
             $peopleInfo = session("EndowmentInsAttendPeopleInfo");
             $data["registrationForm"] = $registrationForm;
+            $userInfo=S(session("username"));
 
             $data["naexamineTypeme"] = 1;////险种类型 0 代表医疗  1代表养老
             $data["name"] = $peopleInfo["realName"];//姓名
@@ -269,10 +270,10 @@ class EndowmentInsAttendController extends CommonController
             $data["bankName"] = $peopleInfo["openBank"];//村级机构
             $data["bankAccount"] = $peopleInfo["bankCard"];//村级机构
             $data["specialInsurance"] = $peopleInfo[""];//村级机构
-            $data["examineType"] = $peopleInfo[""];//村级机构0 医疗 1养老
-            $data["villageId"] = $peopleInfo[""];//村级机构
-            $data["countyCode"] = $peopleInfo[""];//村级机构
-            $data["townTownCode"] = $peopleInfo[""];//村级机构
+            $data["examineType"] = 1;//村级机构0 医疗 1养老
+            $data["villageId"] = $userInfo["villageId"];//村级机构
+            $data["countyCode"] = $userInfo["countyCode"];//村级机构
+            $data["townTownCode"] = $userInfo["townTownCode"];//村级机构
 
 
             //请求接口 检测用户是否参保
