@@ -23,7 +23,29 @@ class MedicalInsPayingController extends CommonController
             $this->display("choosePayingPeople");
             return;
         }
-        $idcard=I("pos.idcard");
+        $data["idcard"]=I("pos.idcard");
+        //请求接口 检测用户是否参保
+        $javaurl = $this->javaUrl;
+        $url = $javaurl["EndowmentInsAttend"]["saveEndowmentInsPeopleInfo"];
+        $requestObj = $this->requestObject;
+        $result = $requestObj->requset($url, $data, "post");
+        $result = json_decode($result, true);
+        if ($result["code"] === 0) {
+            $info["code"] = 1;
+            $info["message"] = "成功";
+            $info["data"] =$result["data"];
+            foreach ($result["data"] as $key=>$value){
+                $idcard=$value["idcard"];
+                $sessionData[$idcard]=$value;
+            }
+            session("EndowmentInsAttendPeopleInfo", $sessionData);
+        } else {
+            $info["code"] = -1;
+            $info["message"] = $result["msg"];
+            if (empty($info["message"])) {
+                $info["message"] = "接口请求失败";
+            }
+        }
     }
     public function payingPeopleList(){
         $this->display("payingPeopleList");

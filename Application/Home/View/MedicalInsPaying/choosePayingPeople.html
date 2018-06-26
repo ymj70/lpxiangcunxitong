@@ -183,6 +183,34 @@
             }
             function getPeopleInfo(){
 
+                $.ajax({
+                    type: "post",
+                    url: "{:U('/Home/MedicalInsPaying/choosePayingPeople')}",
+                    data: {
+                        idcardBackImg: $("#idcardBackImg").val(),//姓名
+                        idcardfrontImg: $("#idcardfrontImg").val(), //身份证号
+                    },
+                    dataType: "json",
+                    beforeSend: function(){
+                    },
+                    success: function(ret) {
+                        if (ret.code == 1) {
+                            if(ret.url==""){
+                                layer.msg("跳转路径接受失败");
+                            }else {
+                                window.location.href=ret.url;
+                            }
+                            $("#listHtml").html(ret.data)
+                        }else {
+                            if (ret.message == ''){
+                                layer.msg('请输入正确的身份证号！');
+                            }else {
+                                layer.msg(ret.message);
+
+                            }
+                        }
+                    },
+                });
             }
         </script>
 </html>
