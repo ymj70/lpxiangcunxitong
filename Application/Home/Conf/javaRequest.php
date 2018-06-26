@@ -17,7 +17,7 @@ return array(
         "EndowmentInsAttend" => array(
             "getPeopleInfo"=>"",//根据身份证号获取信息
             "checkEndowmentInsAttendStatus"=>"/personBase/checkIdCard",//根据身份证号检测是否参加城乡居民医疗和城镇职工医疗
-            "saveEndowmentInsPeopleInfo"=>"/personBase/aveMedical",//将参加城乡医疗保险的的人员信息保存到数据路
+            "saveEndowmentInsPeopleInfo"=>"/personBase/saveMedical",//将参加城乡医疗保险的的人员信息保存到数据路
         ),
     ),
     "imgUploadUrl" => "/image/uploadFile",//图片上传

@@ -216,7 +216,7 @@ class MedicalInsAttendController extends CommonController
             $javaurl = $this->javaUrl;
             $url = C("REQUEST_URL") . $javaurl["MedicalInsAttend"]["saveMedicalInsPeopleInfo"];
             $requestObj = $this->requestObject;
-            $result = $requestObj->requset($url, $data, "post");;
+            $result = $requestObj->requset($url, $data, "json");;
             $result = json_decode($result, true);
             if ($result["code"] === 0) {
                 $info["code"] = 1;

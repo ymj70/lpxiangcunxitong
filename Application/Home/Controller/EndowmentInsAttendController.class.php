@@ -98,6 +98,9 @@ class EndowmentInsAttendController extends CommonController
             $this->display("showPeopleInfo");
             return;
         }
+        if (empty($peopleInfo["id"])){
+            $data["id"] = I("post.id");//姓名
+        }
         $data["realName"] = I("post.realName");//姓名
         $data["idCard"] = I("post.idCard");//身份证号
         $data["sex"] = I("post.sex");//性别
@@ -111,10 +114,12 @@ class EndowmentInsAttendController extends CommonController
         $data["openBank"] = I("post.openBank");//开户银行
         $data["bankCard"] = I("post.bankCard");//银行卡号
         $data["captureLevel"] = I("post.captureLevel");//银行卡号
-        $data["workerMedicalIns"] = I("post.workerMedicalIns");//职工养老保险
-        $data["landlessSocialSecurity"] = I("post.landlessSocialSecurity");//被征地农民社会保障
-        $data["oldFarmerIns"] = I("post.oldFarmerIns");//老农保
-        $data["othersIns"] = I("post.othersIns");//其他保险
+        $otherInsured["workerMedicalIns"]= I("post.workerMedicalIns");
+        $otherInsured["landlessSocialSecurity"]= I("post.landlessSocialSecurity");
+        $otherInsured["oldFarmerIns"]= I("post.oldFarmerIns");
+        $otherInsured["othersIns"]= I("post.othersIns");
+        $otherInsured=$this->getOtherInsured($otherInsured);
+        $data["otherInsured"] = $otherInsured;//其他险种
         $info["params"] = "";
         //遍历检测字段是否都是非空的 有一个字段为空就返回信息不完整
         foreach ($data as $key => $value) {
@@ -133,6 +138,24 @@ class EndowmentInsAttendController extends CommonController
             $info["message"] = "信息未添写完整";
         }
         $this->ajaxReturn($info);
+    }
+    public function getOtherInsured($otherInsured){
+        $params=$this->params;
+        $otherInsuredParams=$params["otherInsured"];
+        $otherInsuredParams=array(
+            "workerMedicalIns"=>3,
+            "landlessSocialSecurity"=>4,
+            "oldFarmerIns"=>5,
+            "othersIns"=>6,
+        );
+        foreach ($otherInsured as $key=>$value){
+            $time=explode("--",$value);
+            $tempdata["insured"]=$otherInsuredParams[$key];
+            $tempdata["startTime"]=$time["0"];
+            $tempdata["endTime"]=$time["1"];
+            $data[]=$tempdata;
+        }
+         return $data;
     }
 
     /**
@@ -239,9 +262,9 @@ class EndowmentInsAttendController extends CommonController
         $registrationForm = I("registrationForm");//户口本主页
         if (!empty($registrationForm)) {
             $peopleInfo = session("EndowmentInsAttendPeopleInfo");
-            $data["registrationForm"] = $registrationForm;
             $userInfo=S(session("username"));
 
+            $data["fileUrl"] = $registrationForm;
             $data["naexamineTypeme"] = 1;////险种类型 0 代表医疗  1代表养老
             $data["name"] = $peopleInfo["realName"];//姓名
             $data["idcard"] = $peopleInfo["idCard"];//身份证号
@@ -252,35 +275,29 @@ class EndowmentInsAttendController extends CommonController
             $data["nowDomicile"] = $peopleInfo["familyAddress"];//家庭住址
             $data["phonenumber"] = $peopleInfo["telephone"];//联系电话
             $data["persontype"] = $peopleInfo["peopleType"];//人员类型
-            $data["maritalStatus"] = $peopleInfo[""];//婚否
             $data["domicileType"] = $peopleInfo["householdRegister"];//户口性质
             $data["hukouBookUrl"] = $peopleInfo["gethouseholdFirstImg"];//户口被主页
             $data["hukouBookBackUrl"] = $peopleInfo["gethouseholdPeopleImg"];//户口被个人也
             $data["idCardBackUrl"] = $peopleInfo["idcardBackImg"];//身份证反面
             $data["idCardUrl"] = $peopleInfo["idcardfrontImg"];//身份证整面
-            $data["age"] = get_age($data["idcard"]);//村级机构
-            $data["insuredtype"] = $peopleInfo[""];//村级机构
-            $data["county"] = $peopleInfo[""];//村级机构
-            $data["street"] = $peopleInfo[""];//村级机构
-            $data["coummunity"] = $peopleInfo[""];//村级机构
-            $data["personalnumber"] = $peopleInfo[""];//村级机构
-            $data["province"] = $peopleInfo[""];//村级机构
-            $data["city"] = $peopleInfo[""];//村级机构
-            $data["companyId"] = $peopleInfo[""];//村级机构
+            $data["insuredtype"] = $peopleInfo["peopleType"];//村级机构
             $data["bankName"] = $peopleInfo["openBank"];//村级机构
             $data["bankAccount"] = $peopleInfo["bankCard"];//村级机构
-            $data["specialInsurance"] = $peopleInfo[""];//村级机构
+            $data["specialInsurance"] = $peopleInfo["peopleType"];//村级机构
             $data["examineType"] = 1;//村级机构0 医疗 1养老
             $data["villageId"] = $userInfo["villageId"];//村级机构
             $data["countyCode"] = $userInfo["countyCode"];//村级机构
             $data["townTownCode"] = $userInfo["townTownCode"];//村级机构
+            $data["payGrade"] = $peopleInfo["captureLevel"];//村级机构
+            $data["headPortrait"] = $peopleInfo["peoplePhoto"];//村级机构
+            $data["otherInsured"] = $peopleInfo["otherInsured"];//村级机构
 
 
             //请求接口 检测用户是否参保
             $javaurl = $this->javaUrl;
-            $url = $javaurl["EndowmentInsAttend"]["saveEndowmentInsPeopleInfo"];
+            $url = C("REQUEST_URL") . $javaurl["EndowmentInsAttend"]["saveEndowmentInsPeopleInfo"];
             $requestObj = $this->requestObject;
-            $result = $requestObj->requset($url, $data, "post");
+            $result = $requestObj->requset($url, $data, "json");
             $result = json_decode($result, true);
             if ($result["code"] === 0) {
                 $info["code"] = 1;
@@ -299,39 +316,5 @@ class EndowmentInsAttendController extends CommonController
             $info["message"] = "图片路径接收失败";
         }
         $this->ajaxReturn($info);
-    }
-
-    /**
-     * 根据身份证号获取用户信息
-     */
-    public function getPeopleInfo($data)
-    {
-        if (empty($data["idCard"])) {
-            $info["code"] = -1;
-            $info["message"] = "身份证号不能为空";
-        }
-        $javaurl = $this->javaUrl;
-        $url = $javaurl["MedicalInsAttend"]["getPeopleInfo"];
-        //请求接口 获取用户信息
-        $requestObj = $this->requestObject;
-        $result = $requestObj->requset($url, $data, "post");
-        $result = json_decode($result, true, 512, JSON_BIGINT_AS_STRING);
-        if (!($result["code"] === 0)) {
-            $info["code"] = 1;
-            $info["message"] = "成功";
-            $info["data"] = $result["data"];
-            //将用户信息保存在session中 下一步用
-            if (!empty($info["data"])) {
-                $data = $info["data"];
-            }
-            session("EndowmentInsAttendPeopleInfo", $data);
-        } else {
-            $info["code"] = -1;
-            $info["message"] = $result["msg"];
-            if (empty($info["message"])) {
-                $info["message"] = "获取人员信息接口请求失败";
-            }
-        }
-        return $info;
     }
 }
