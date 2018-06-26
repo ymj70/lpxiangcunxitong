@@ -27,10 +27,10 @@
                     <div class="demo">
                         <div class="demo-page  hk-book">
                             <div class="demo-pagepd outline">
-                                <img src="" alt="">
+                                <label for="upload"><i class="jh"></i></label>
+                                <input id="upload" type="file" style="display: none">
                                 <div class="book-box">
-                                    <label for="upload"><img src="__PUBLIC__/image/card.png" alt=""></label>
-                                    <input id="upload" type="file" style="display:none">
+                                    <img src="__PUBLIC__/image/card1.png" alt="" id="preview">
                                 </div>
                             </div>
                             <p>请点击加号上传</p>
@@ -38,8 +38,10 @@
                         <div class="demo-page  hk-book">
 
                             <div class="demo-pagepd outline">
+                                <label for="upload1"><i class="jh"></i></label>
+                                <input id="upload1" type="file" style="display: none">
                                 <div class="book-box">
-                                    <img src="__PUBLIC__/image/card2.png" alt="">
+                                    <img src="__PUBLIC__/image/card2.png" alt=""  id="preview1">
                                 </div>
                             </div>
                             <p>请点击加号上传</p>
@@ -66,7 +68,9 @@
             imgUpload("idcardBackImgfile");
         })
     });
-
+    //上传图片
+    uploadimg("upload","preview");
+    uploadimg("upload1","preview1");
     function imgUpload(){
         var url=$("#url").val();
         url="http://"+url;

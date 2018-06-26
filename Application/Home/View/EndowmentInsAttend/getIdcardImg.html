@@ -28,18 +28,20 @@
                         <div class="demo-page  hk-book">
                             <div class="demo-pagepd outline">
                                 <img src="" alt="">
+                                <label for="upload"><i class="jh"></i></label>
+                                <input id="upload" type="file" style="display: none">
                                 <div class="book-box">
-                                    <label for="upload"><img src="__PUBLIC__/image/card.png" alt=""></label>
-                                    <input id="upload" type="file" style="display:none">
+                                    <img src="__PUBLIC__/image/card1.png" alt="" id="idcardBackImgfilessss">
                                 </div>
                             </div>
                             <p>请点击加号上传</p>
                         </div>
                         <div class="demo-page  hk-book">
-
+                            <label for="upload1"><i class="jh"></i></label>
+                            <input id="upload1" type="file" style="display: none">
                             <div class="demo-pagepd outline">
                                 <div class="book-box">
-                                    <img src="__PUBLIC__/image/card2.png" alt="">
+                                    <img src="__PUBLIC__/image/card2.png" alt="" id="preview1">
                                 </div>
                             </div>
                             <p>请点击加号上传</p>
@@ -59,93 +61,92 @@
 </div>
 </div>
 </body>
-<include file="Public:footer"/>
+<include file="Public:footer" />
 <script>
-    $(function() {
-        $("#idcardBackImgfile").change(function () {
-            alert("llll")
-            imgUpload("idcardBackImgfile");
-        })
+//上传图片
+uploadimg("upload", "idcardBackImgfilessss");
+uploadimg("upload1", "preview1");
+
+function choose() {
+    $("#idcardBackImgfile").trigger("click");
+}
+
+function imgUpload() {
+    var url = $("#url").val();
+    url = "http://" + url;
+    alert(url)
+    $("#form1").ajaxSubmit({
+        success: function(data) {
+            alert("dddd")
+            if (data.code == 0) {
+                var imgpath = "{" + data.msg + "|getImg}"
+                alert(imgpath)
+                $("#idcardBackImgfilessss").attr("src", imgpath)
+            }
+
+        },
+        error: function(error) {
+            console.log(error)
+        },
+        url: url,
+        /*设置post提交到的页面*/
+        type: "post",
+        /*设置表单以post方法提交*/
+        // dataType: "json" /*设置返回值类型为文本*/
+    });
+}
+
+function nextSteup() {
+    if (check() == false) {
+        return;
+    }
+    $.ajax({
+        type: "post",
+        url: "{:U('/Home/EndowmentInsAttend/getIdcardImg')}",
+        data: {
+            idcardBackImg: $("#idcardBackImg").val(), //姓名
+            idcardfrontImg: $("#idcardfrontImg").val(), //身份证号
+        },
+        dataType: "json",
+        beforeSend: function() {},
+        success: function(ret) {
+            if (ret.code == 1) {
+                if (ret.url == "") {
+                    layer.msg("跳转路径接受失败");
+                } else {
+                    window.location.href = ret.url;
+                }
+                $("#listHtml").html(ret.data)
+            } else {
+                if (ret.message == '') {
+                    layer.msg('请输入正确的身份证号！');
+                } else {
+                    layer.msg(ret.message);
+
+                }
+            }
+        },
     });
 
-    function choose() {
-        $("#idcardBackImgfile").trigger("click");
+}
+//校验
+function check() {;
+    if ($("#idcardBackImg").val() == "") {
+        layer.msg("请上传身份证背面图片");
+        return false;
+    }
+    if ($("#idcardfrontImg").val() == "") {
+        layer.msg("请上传身份证正面图片");
+        return false;
     }
 
-    function imgUpload(){
-        var url=$("#url").val();
-        url="http://"+url;
-        alert(url)
-        $("#form1").ajaxSubmit({
-            success: function (data) {
-                alert("dddd")
-                if (data.code ==0){
-                    var imgpath="{"+data.msg+"|getImg}"
-                    alert(imgpath)
-                    $("#idcardBackImgfilessss").attr("src",imgpath)
-                }
-
-            },
-            error: function (error) {
-                console.log(error)
-            },
-            url:url, /*设置post提交到的页面*/
-            type: "post", /*设置表单以post方法提交*/
-            // dataType: "json" /*设置返回值类型为文本*/
-        });
-    }
-    function nextSteup() {
-        if (check() == false){
-            return;
-        }
-        $.ajax({
-            type: "post",
-            url: "{:U('/Home/EndowmentInsAttend/getIdcardImg')}",
-            data: {
-                idcardBackImg: $("#idcardBackImg").val(),//姓名
-                idcardfrontImg: $("#idcardfrontImg").val(), //身份证号
-            },
-            dataType: "json",
-            beforeSend: function(){
-            },
-            success: function(ret) {
-                if (ret.code == 1) {
-                    if(ret.url==""){
-                        layer.msg("跳转路径接受失败");
-                    }else {
-                        window.location.href=ret.url;
-                    }
-                    $("#listHtml").html(ret.data)
-                }else {
-                    if (ret.message == ''){
-                        layer.msg('请输入正确的身份证号！');
-                    }else {
-                        layer.msg(ret.message);
-
-                    }
-                }
-            },
-        });
-
-    }
-    //校验
-    function check(){;
-        if ($("#idcardBackImg").val()=="") {
-            layer.msg("请上传身份证背面图片");
-            return false;
-        }
-        if ($("#idcardfrontImg").val()=="") {
-            layer.msg("请上传身份证正面图片");
-            return false;
-        }
-
-    }
-    $('#upload').change(function () {
-        // 获取FileList的第一个元素
-        var f = document.getElementById('upload').files[0];
-        src = window.URL.createObjectURL(f);
-        document.getElementById('preview').src = src
-    })
-
+}
+$('#upload').change(function() {
+    // 获取FileList的第一个元素
+    var f = document.getElementById('upload').files[0];
+    src = window.URL.createObjectURL(f);
+    document.getElementById('preview').src = src
+})
 </script>
+
 </html>

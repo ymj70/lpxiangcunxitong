@@ -67,18 +67,9 @@
 </body>
 <include file="Public:footer" />
 <script>
-$('#upload').change(function() {
-    // 获取FileList的第一个元素
-    var f = document.getElementById('upload').files[0];
-    src = window.URL.createObjectURL(f);
-    document.getElementById('idcardBackImgfilessss').src = src
-})
-$('#upload1').change(function() {
-    // 获取FileList的第一个元素
-    var f = document.getElementById('upload1').files[0];
-    src = window.URL.createObjectURL(f);
-    document.getElementById('preview1').src = src
-})
+      //上传图片
+    uploadimg("upload","idcardBackImgfilessss");
+    uploadimg("upload1","preview1");
 
 function choose() {
     $("#idcardBackImgfile").trigger("click");
