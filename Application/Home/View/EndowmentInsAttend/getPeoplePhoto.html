@@ -37,9 +37,10 @@
                             <div class="pic">
                                 <div class="pic-box">
                                     <div class="img  outline">
-                                        <i class="picture"></i>
+                                        <label for="upload"><i class="picture"></i></label>
+                                        <input id="upload" type="file" style="display: none">
                                         <div class="pic_box">
-                                            <img src="__PUBLIC__/image/pic.png" alt="">
+                                            <img src="__PUBLIC__/image/pic.png" alt="" id="preview">
                                         </div>
                                     </div>
                                     <p>请点击照相机拍照按钮拍照</p>
@@ -61,6 +62,8 @@
 <include file="Public:footer" />
 </html>
         <script>
+               //上传图片
+    uploadimg("upload","preview");
             function nextSteup() {
                 if (check() == false){
                     return;
