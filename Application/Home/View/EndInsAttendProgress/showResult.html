@@ -63,3 +63,31 @@
 </body>
 <include file="Public:footer" />
 </html>
+  <script>
+      $(function () {
+          $.ajax({
+              type: "post",
+              url: "{:U('/Home/EndInsAttendProgress/showResult')}",
+              data: {
+                  //idCard: $("#idCard").val(), //身份证号
+                  //realName: $("#realName").val(), //姓名
+                  idCard:"130321199310221238", //身份证号
+                  realName:"王雨栋", //姓名
+              },
+              dataType: "json",
+              beforeSend: function() {},
+              success: function(ret) {
+                  if (ret.code == 1) {
+
+                  } else {
+                      if (ret.message == '') {
+                          layer.msg('请求失败');
+                      } else {
+                          layer.msg(ret.message);
+
+                      }
+                  }
+              },
+          });
+      })
+  </script>
