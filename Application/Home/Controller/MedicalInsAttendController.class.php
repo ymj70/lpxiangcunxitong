@@ -150,7 +150,7 @@ class MedicalInsAttendController extends CommonController
             $data["idcardBackImg"] = $idcardBackImg;
             $data["idcardfrontImg"] = $idcardfrontImg;
             session("MedicalInsAttendPeopleInfo", $data);
-            $info["code"] = -1;
+            $info["code"] = 1;
             $info["message"] = "成功";
             $info["url"] = U("Home/MedicalInsAttend/gethouseholdImg");
         } else {
@@ -242,38 +242,6 @@ class MedicalInsAttendController extends CommonController
         } else {
             $info["code"] = -1;
             $info["message"] = "图片路径接收失败";
-        }
-        $this->ajaxReturn($info);
-    }
-
-    /**
-     * 根据身份证号获取用户信息
-     */
-    public function getPeopleInfo()
-    {
-        $data["idCard"] = I("idCard");
-        if (empty($data["idCard"])) {
-            $info["code"] = -1;
-            $info["message"] = "身份证号不能为空";
-        }
-        $javaurl = $this->javaUrl;
-        $url = $javaurl["MedicalInsAttend"]["getPeopleInfo"];
-        //请求接口 获取用户信息
-        $requestObj = new Request();
-        $result = $requestObj->requset($url, $data, "post");
-        $result = json_decode($result, true, 512, JSON_BIGINT_AS_STRING);
-        if ($result["code"] == 0) {
-            $info["code"] = 1;
-            $info["message"] = "成功";
-            $info["data"] = $result["data"];
-            //将用户信息保存在session中 下一步用
-            session("MedicalInsAttendPeopleInfo", $info["data"]);
-        } else {
-            $info["code"] = -1;
-            $info["message"] = $result["msg"];
-            if (empty($info["message"])) {
-                $info["message"] = "获取信息接口请求失败";
-            }
         }
         $this->ajaxReturn($info);
     }

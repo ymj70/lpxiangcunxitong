@@ -16,9 +16,9 @@ class CommonController extends Controller
         $this->javaUrl = C("javaUrl");
         $this->requestObject = new Request();;
         //判断是否登录 没有登录跳转到登录页面
-        /*if (!is_login()) {
+        if (!is_login()) {
             redirect(U("Public/login"));
-        }*/
+        }
         //检测用户是否10分钟没有动作 是退出登录
         $this->checkActivityTime();
         //设置左侧菜单 打开和关闭状态的session 默认是1 打开状态
