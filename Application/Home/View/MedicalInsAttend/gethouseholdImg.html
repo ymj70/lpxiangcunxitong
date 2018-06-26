@@ -125,41 +125,6 @@ function flx() {
     });
 
 }
-
-
-function nextSteup() {
-    if (check() == false) {
-        return;
-    }
-    $.ajax({
-        type: "post",
-        url: "{:U('/Home/NotAttendIns/gethouseholdImg')}",
-        data: {
-            gethouseholdFirstImg: $("#gethouseholdFirstImg").val(), //传户口本主页
-            gethouseholdPeopleImg: $("#gethouseholdPeopleImg").val(), //传户口本主页
-        },
-        dataType: "json",
-        beforeSend: function() {},
-        success: function(ret) {
-            if (ret.code == 1) {
-                if (ret.url == "") {
-                    layer.msg("跳转路径接受失败");
-                } else {
-                    window.location.href = ret.url;
-                }
-                $("#listHtml").html(ret.data)
-            } else {
-                if (ret.message == '') {
-                    layer.msg('请输入正确的身份证号！');
-                } else {
-                    layer.msg(ret.message);
-
-                }
-            }
-        },
-    });
-
-}
 //校验
 function check() {;
     if ($("#gethouseholdFirstImg").val() == "") {

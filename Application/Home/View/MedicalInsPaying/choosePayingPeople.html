@@ -127,11 +127,62 @@
                 </div>
                  <div class="btn-box">
                     	<button class="layui-btn bgc-orange">返回首页</button>
-                    	<button class="layui-btn bgc-blued">确认缴费</button>
+                    	<button class="layui-btn bgc-blued" onclick="nextSteup()">确认缴费</button>
                     </div>
             </div>
         </div>
     </div>
 </body>
 <include file="Public:footer" />
+        <script>
+            function nextSteup() {
+                if (check() == false){
+                    return;
+                }
+                $.ajax({
+                    type: "post",
+                    url: "{:U('/Home/MedicalInsPaying/choosePayingPeople')}",
+                    data: {
+                        idcardBackImg: $("#idcardBackImg").val(),//姓名
+                        idcardfrontImg: $("#idcardfrontImg").val(), //身份证号
+                    },
+                    dataType: "json",
+                    beforeSend: function(){
+                    },
+                    success: function(ret) {
+                        if (ret.code == 1) {
+                            if(ret.url==""){
+                                layer.msg("跳转路径接受失败");
+                            }else {
+                                window.location.href=ret.url;
+                            }
+                            $("#listHtml").html(ret.data)
+                        }else {
+                            if (ret.message == ''){
+                                layer.msg('请输入正确的身份证号！');
+                            }else {
+                                layer.msg(ret.message);
+
+                            }
+                        }
+                    },
+                });
+
+            }
+            //校验
+            function check(){;
+                if ($("#idcardBackImg").val()=="") {
+                    layer.msg("请上传身份证背面图片");
+                    return false;
+                }
+                if ($("#idcardfrontImg").val()=="") {
+                    layer.msg("请上传身份证正面图片");
+                    return false;
+                }
+
+            }
+            function getPeopleInfo(){
+
+            }
+        </script>
 </html>
