@@ -20,12 +20,10 @@
                     <div class="demo">
                         <div class="demo-page">
                             <div class="demo-pagepd">
-
                                 <div class="img-box2">
                                     <img src="__PUBLIC__/image/dk.png" alt="">
                                 </div>
                             </div>
-
                         </div>
                         <div class="demo-page">
                             <div class="demo-pagepd">
@@ -66,7 +64,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -80,80 +77,93 @@
 </div>
 </div>
 </body>
-<include file="Public:footer"/>
+<include file="Public:footer" />
+
 </html>
-
 <script>
-    var idCardStatus = true;
+var idCardStatus = true;
 
-    function getidCard() {
-        if (!idCardStatus) {
-            layer.msg("身份证正在读取中请稍后在试");
-            return
-        }
-        idCardStatus = false;
-        $("#realName").attr("value", "")
-        $("#idCard").attr("value", "")
-        try {
-            jsidcard.getIdCard(function (IdNumber, Name) {
-                if (IdNumber && Name) {
-                    $("#realName").attr("value", Name)
-                    $("#idCard").attr("value", IdNumber)
-                    idCardStatus = true;
-                } else {
-                    layer.msg("未读取到身份证信息")
-                }
-            });
-        } catch (err) {
-            layer.msg("读取身份证信息失败")
-        }
+function getidCard() {
+    if (!idCardStatus) {
+        layer.msg("身份证正在读取中请稍后在试");
+        return
     }
-
-    function nextSteup() {
-        if (check() == false) {
-            return;
-        }
-        $.ajax({
-            type: "post",
-            url: "{:U('/Home/MedicalInsAttend/checkPeopleMedicalInsStatus')}",
-            data: {
-                idCard: $("#idCard").val(),//身份证号
-                realName: $("#realName").val(), //姓名
-            },
-            dataType: "json",
-            beforeSend: function () {
-            },
-            success: function (ret) {
-                if (ret.code == 1) {
-                    if (ret.url == "") {
-                        layer.msg("跳转路径接受失败");
-                    } else {
-                        window.location.href = ret.url;
-                    }
-                    $("#listHtml").html(ret.data)
-                } else {
-                    if (ret.message == '') {
-                        layer.msg('请求失败');
-                    } else {
-                        layer.msg(ret.message);
-
-                    }
-                }
-            },
+    idCardStatus = false;
+    $("#realName").attr("value", "")
+    $("#idCard").attr("value", "")
+    try {
+        jsidcard.getIdCard(function(IdNumber, Name) {
+            if (IdNumber && Name) {
+                $("#realName").attr("value", Name)
+                $("#idCard").attr("value", IdNumber)
+                idCardStatus = true;
+            } else {
+                layer.msg("未读取到身份证信息")
+            }
         });
-
+    } catch (err) {
+        layer.msg("读取身份证信息失败")
     }
+}
 
-    //校验
-    function check() {
-        if ($("#idCard").val() == "") {
-            layer.msg("输入身份证号");
-            return false;
-        };
-        if ($("#realName").val() == "") {
-            layer.msg("输入身份证号");
-            return false;
-        };
+function nextSteup() {
+    if (check() == false) {
+        return;
     }
+    $.ajax({
+        type: "post",
+        url: "{:U('/Home/MedicalInsAttend/checkPeopleMedicalInsStatus')}",
+        data: {
+            idCard: $("#idCard").val(), //身份证号
+            realName: $("#realName").val(), //姓名
+        },
+        dataType: "json",
+        beforeSend: function() {},
+        success: function(ret) {
+            if (ret.code == 1) {
+                if (ret.url == "") {
+                    layer.msg("跳转路径接受失败");
+                } else {
+                    window.location.href = ret.url;
+                }
+                $("#listHtml").html(ret.data)
+            } else {
+                if (ret.message == '') {
+                    layer.msg('请求失败');
+                } else {
+                    layer.msg(ret.message);
 
+                }
+            }
+        },
+    });
+
+}
+
+//校验
+function check() {
+    var idCard = $("#idCard").val();
+    var realName = $("#realName").val();
+    var idCardAddress = $("#idCardAddress").val();
+    var card = /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[A-Z])$/;
+    if (realName == "") {
+        layer.msg("输入姓名");
+        return false;
+    } else if (idCard == "") {
+        layer.msg("输入身份证号");
+        return false;
+    } else if (card.test(idCard) == false) {
+        layer.msg('请输入正确的身份证号！');
+        return false;
+    } else if (idCardAddress == "") {
+        layer.msg("输入户籍地址");
+        return false;
+    } else {
+        return true;
+    }
+}
+//获取查询数据
+function getData() {
+
+}
 </script>
