@@ -45,7 +45,7 @@ class EndowmentInsAttendController extends CommonController
         $requestObj = $this->requestObject;
         $result = $requestObj->requset($url, $data, "post");
         $result = json_decode($result, true, 512, JSON_BIGINT_AS_STRING);
-        if ($result["code"] !== 0) {
+        if ($result["code"] === 0) {
             $info["code"] = 1;
             $info["message"] = "成功";
             $info["url"] = U("Home/EndowmentInsAttend/showPeopleInfo");
