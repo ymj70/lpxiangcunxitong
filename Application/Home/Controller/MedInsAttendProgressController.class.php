@@ -38,8 +38,7 @@ class MedInsAttendProgressController extends CommonController
             $info["message"] = "成功";
             $resultdata["realName"]=$result["data"]["personName"];
             $resultdata["idcard"]=$result["data"]["personIdcard"];
-           // $resultdata["status"]=$result["data"]["status"];
-            $resultdata["status"]=4;
+            $resultdata["status"]=$result["data"]["status"];
             $info["data"] = $resultdata;
         } else {
             $info["code"] = -1;
