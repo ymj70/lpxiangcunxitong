@@ -11,6 +11,10 @@
     background-color: #be0b20;
 }
 
+.bgc-greend {
+    background-color: #30c114;
+}
+
 //字体颜色
 .font-white {
     color: #edebeb;
@@ -459,6 +463,152 @@
         button {
             padding: 0 3rem;
             margin: 0 1rem;
+        }
+    }
+}
+
+.pay-alert {
+    display: flex;
+    flex-direction: column;
+    .pd {
+        padding: 4.75rem 5.875rem;
+        box-sizing: border-box;
+        label {
+            width: 10rem;
+            text-align: left;
+        }
+        .form-cell>div {
+            padding-left: 0;
+        }
+    }
+    .pay-btn {
+        display: flex;
+        justify-content: center;
+        button {
+            padding: 0 3rem;
+            position: relative;
+            bottom: 3.4375rem;
+        }
+    }
+}
+
+.button {
+    width: 100%;
+    padding-top: 0.75rem;
+    display: flex;
+    justify-content: center;
+    >button {
+        width: 100%;
+    }
+    .size {
+        width: 17.25rem;
+    }
+}
+
+.pding {
+    padding: 0 24.875rem;
+}
+
+//消息详情
+.pageList {
+    display: flex;
+    flex-direction: column;
+    .pageTitle {
+        text-align: center;
+        p {
+            font-size: 16px;
+            line-height: 1.5625rem;
+            color: #727272;
+        }
+    }
+    .pagecontent {
+        padding: 2.625rem 10.8rem;
+        box-sizing: border-box;
+        p {
+            font-size: 16px;
+            text-indent: 1.25rem;
+            line-height: 2rem;
+        }
+    }
+    .pagebtn {
+        margin: 0 auto;
+        button {
+            padding: 0 7.625rem;
+        }
+    }
+}
+
+//新建消息
+.center-main {
+    width: 70%;
+    margin: 0 auto;
+    height: 100%;
+    .center-box {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        .label-title {
+            width: 5rem;
+            flex: 1;
+            margin-top: 1.5rem;
+            text-align: right;
+            margin-right: 0.5rem;
+        }
+        .label-content {
+            width: 100%;
+            padding: 1rem 0;
+            display: flex;
+            flex-direction: column;
+            flex: 9;
+            span {
+                position: relative;
+                right: 25px;
+                top: 4px;
+            }
+            .label-top {
+                display: flex;
+                width: 100%;
+                height: 50%;
+                margin: .5rem 0;
+                .flex-1 {
+                    flex: 1;
+                }
+                .flex-5 {
+                    flex: 5;
+                }
+            }
+            .m0 {
+                margin: 0;
+            }
+            .m5 {
+                margin-top: .5rem;
+                justify-content: space-around;
+                .ckbox {
+                    padding: 0 .5rem;
+                }
+            }
+        }
+        .wj {
+            position: relative;
+            left: 8rem;
+            color: #5656fa;
+            bottom: 1rem;
+        }
+        #wj {
+            position: relative;
+            left: 8rem;
+        }
+    }
+    .btn-bo {
+
+        width: 100%;
+        text-align: center;
+        left: 0;
+        margin-top: 20px;
+
+        button {
+            padding: 0 4.25rem 0 4.25rem;
+            box-sizing: border
         }
     }
 }
