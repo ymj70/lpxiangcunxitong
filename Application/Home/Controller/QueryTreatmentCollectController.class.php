@@ -51,14 +51,15 @@ class QueryTreatmentCollectController extends CommonController
         if (!empty($result["list"])) {
             $list=$result["list"];
             foreach ($list as $key=>$value){
-                $list[$key]["grantTime"]=ss;
+                $list[$key]["dayinUrl"]="http://".C("REQUEST_URL") .  $javaurl["QueryTreatmentCollect"]["dayinUrl"]."?id=".$value["id"];
             }
-            $this->assign("list",$result["list"]);
-            $data=$this->fetch("list");
+            $this->assign("list",$list);
+            $htmlData=$this->fetch("list");
             $info["code"] = 1;
             $info["message"] = "成功";
-            $info["data"] = $data;
+            $info["data"] = $htmlData;
             $info["total"] = $result["total"];
+            $info["dayinAllurl"] ="http://".C("REQUEST_URL") .  $javaurl["QueryTreatmentCollect"]["dayinAllurl"]."?startTime=".$data["startTime"]."&endTime=".$data["endTime"]."&idcard=".$data["idcard"];
         } else {
             $info["code"] = -1;
             $info["message"] = $result["msg"];

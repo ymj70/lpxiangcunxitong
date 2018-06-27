@@ -24,15 +24,17 @@ return array(
         ),
         "QueryTreatmentCollect" => array(
             "showResult"=>"/grant/upTr",//待遇领取查询
-            "dayinAllurl"=>"/grant/printUpInsured",//待遇领取查询
-            "dayinUrl"=>"/grant/printReceipt",//待遇领取查询
+            "dayinAllurl"=>"/grant/pringUpTr",//待遇领取查询
+            "dayinUrl"=>"/grant/printOne",//待遇领取查询
         ),
         "MedInsAttendProgress" => array(
             "showResult"=>"/personBase/speedPension",//医疗参保登记进度查询
         ),
         "QueryEndInsPay" => array(
-            "getPeopleInfo"=>"/personBase/verificationIdCard",//检测身份证号
+            "getPeopleInfo"=>"/personBase/verificationIdCard",
             "showResult"=>"/grant/upPay",
+            "dayinAllurl"=>"/grant/printUpInsured",
+            "dayinUrl"=>"/grant/printReceipt",
         ),
         "QueryAttendInsInfo" => array(
             "getPeopleInfo"=>"/personBase/verificationIdCard",//检测身份证号

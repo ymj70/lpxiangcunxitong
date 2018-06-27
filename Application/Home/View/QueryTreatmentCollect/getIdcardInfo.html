@@ -119,9 +119,73 @@
 <include file="Public:footer" />
 <script>
     function opLook () {
-        var idcard=$("#idcard").val();
-        var realName=$("#realName").val();
-        window.location.href="{:U('Home/QueryTreatmentCollect/showResult/idcard/"+idcard+"/realName/"+realName+"')}"
+        var idCardhtml=$("#idCardhtml").html();
+        var realName=$("#realName").html();
+        $.ajax({
+            type: "post",
+            url: "{:U('Home/QueryTreatmentCollect/showResult')}",
+            data: {
+                idCard:idCardhtml,//姓名
+            },
+            dataType: "json",
+            beforeSend: function(){
+                if (idCardhtml==''){
+                    layer.msg('身份证号不能为空');
+                    return false;
+                }
+            },
+            success: function(ret) {
+                if (ret.code == 1) {
+                    window.location.href="{:U('Home/QueryTreatmentCollect/showResult/idcard/"+idCardhtml+"/realName/"+realName+"')}"
+                }else {
+                    if (ret.message == ''){
+                        layer.msg('请求失败');
+                    }else {
+                        layer.msg(ret.message);
+                    }
+                }
+            },
+        });
+    }
+    function getPeopleInfo(){
+        if (check() == false){
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: "{:U('/Home/QueryAttendInsInfo/getPeopleInfo')}",
+            data: {
+                idcard: $("#idcard").val(),//姓名
+            },
+            dataType: "json",
+            beforeSend: function(){
+            },
+            success: function(ret) {
+                if (ret.code == 1) {
+                    var data=ret.data;
+                    $("#realName").html(data.realName);
+                    $("#idCardhtml").html(data.idcard);
+                    $("#sex").html(data.sex);
+                    $("#nation ").html(data.nation);
+                    $("#idcardAddress").html(data.idcardAddress);
+                    $("#birthday").html(data.birthday);
+                }else {
+                    if (ret.message == ''){
+                        layer.msg('请求失败');
+                    }else {
+                        layer.msg(ret.message);
+                    }
+                }
+            },
+        });
+    }
+
+    //校验
+    function check(){;
+        if ($("#idcard").val()=="") {
+            layer.msg("请填写身份证号码");
+            return false;
+        }
     }
 </script>
 </html>

@@ -57,14 +57,14 @@ class QueryEndInsPayController extends CommonController
                 $list[$key]["payTime"]=date("Y-m-d",strtotime($value["payTime"]));
                 $list[$key]["payYear"]=date("Y",strtotime($value["payYear"]));
                 $list[$key]["arrivalTime"]=date("Y-m-d",strtotime($value["arrivalTime"]));
-                $list[$key]["dayinUrl"]="http://".C("REQUEST_URL") .  $javaurl["QueryTreatmentCollect"]["dayinUrl"]."?id=".$value["id"];
+                $list[$key]["dayinUrl"]="http://".C("REQUEST_URL") .  $javaurl["QueryEndInsPay"]["dayinUrl"]."?id=".$value["id"];
             }
             $this->assign("list",$list);
             $htmlData=$this->fetch("list");
             $info["code"] = 1;
             $info["message"] = "成功";
             $info["data"] = $htmlData;
-            $info["dayinAllurl"] ="http://".C("REQUEST_URL") .  $javaurl["QueryTreatmentCollect"]["dayinAllurl"]."?startTime=".$data["startTime"]."&endTime=".$data["endTime"]."&idcard=".$data["idcard"];
+            $info["dayinAllurl"] ="http://".C("REQUEST_URL") .  $javaurl["QueryEndInsPay"]["dayinAllurl"]."?startTime=".$data["startTime"]."&endTime=".$data["endTime"]."&idcard=".$data["idcard"];
             $info["total"] = $result["total"];
         } else {
             $info["code"] = -1;

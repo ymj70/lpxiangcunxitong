@@ -24,8 +24,7 @@
                 </div>
             </div>
             <div class="searchBtns">
-                <button class="bgc-blued layui-btn" onclick="opLook()">打印</button>
-                <button class="bgc-redd layui-btn" onclick="opClose()">关闭</button>
+                <a href="" target="_blank" id="dayinAllurl"> <button class="bgc-blued layui-btn" >打印</button></a>
             </div>
         </div>
         <div class="framePage-scroll">
@@ -72,6 +71,7 @@
             success: function(ret) {
                 if (ret.code == 1) {
                     $("#list").html(ret.data)
+                    $("#dayinAllurl").attr("href",ret.dayinAllurl)
                 } else {
                     if (ret.message == '') {
                         layer.msg('请求失败');
