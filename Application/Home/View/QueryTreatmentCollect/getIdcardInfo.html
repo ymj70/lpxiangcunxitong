@@ -19,7 +19,7 @@
                         <div class="demo-page">
                             <div class="demo-pagepd">
                                 <div class="img-box2">
-                                    <img src="__PUBLIC__/image/dk.png" alt=""  class="imgCenter">
+                                    <img src="__PUBLIC__/image/xx_cb_03.png" alt=""  class="imgCenter">
                                 </div>
                                 <div class="button">
                                     <button class="layui-btn bgc-greend bttn-green">读取身份证</button>
@@ -29,7 +29,7 @@
                         <div class="demo-page">
                             <div class="demo-pagepd">
                                 <div class="img-box2">
-                                    <img src="__PUBLIC__/image/sbk.png" alt="" class="imgCenter">
+                                    <img src="__PUBLIC__/image/xx_cb1_05.png" alt="" class="imgCenter">
                                 </div>
                                 <div class="button">
                                     <button class="layui-btn bgc-greend bttn-green">读取社保卡</button>
@@ -45,20 +45,20 @@
                                                 <label for="">身份证号</label>
                                             </div>
                                             <div>
-                                                <input type="text" class="layui-input" id="name">
+                                                <input type="text" class="layui-input" id="idcard">
                                             </div>
                                             <div>
-                                              <button class="bgc-blued layui-btn" onclick="getData()">
+                                              <button class="bgc-blued layui-btn" onclick="getPeopleInfo()">
                                                     <i class="layui-icon layui-icon-search"></i>
                                                 </button>
                                             </div>
                                         </div>
                                         <div>
                                             <div>
-                                                <label for="">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label>
+                                                <label for="">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label >
                                             </div>
                                             <div>
-                                                <span>杨梦洁</span>
+                                                <span id="realName"></span>
                                             </div>
                                         </div>
                                         <div>
@@ -66,7 +66,7 @@
                                                 <label for="">身份证号</label>
                                             </div>
                                             <div>
-                                                <span>130204199403173144</span>
+                                                <span id="idCardhtml"></span>
                                             </div>
                                         </div>
                                         <div>
@@ -74,7 +74,7 @@
                                                 <label for="">出生日期</label>
                                             </div>
                                             <div>
-                                                <span>1994-03-17</span>
+                                                <span id="birthday"></span>
                                             </div>
                                         </div>
                                           <div>
@@ -82,7 +82,7 @@
                                                 <label for="">性别</label>
                                             </div>
                                             <div>
-                                                <span>男</span>
+                                                <span id="sex"></span>
                                             </div>
                                         </div>
                                           <div>
@@ -90,7 +90,7 @@
                                                 <label for="">民族</label>
                                             </div>
                                             <div>
-                                                <span>汉</span>
+                                                <span id="nation"></span>
                                             </div>
                                         </div>
                                         <div>
@@ -98,13 +98,13 @@
                                                 <label for="">户籍地址</label>
                                             </div>
                                             <div>
-                                                <span>河北省秦皇岛市天涯海角</span>
+                                                <span id="idcardAddress"></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="button">
-                                    <button class="layui-btn bgc-blued  size butt" onclick="search()">查询</button>
+                                    <button class="layui-btn bgc-blued butt size" onclick="opLook()" id="close">查询</button>
                                 </div>
                             </div>
                         </div>
