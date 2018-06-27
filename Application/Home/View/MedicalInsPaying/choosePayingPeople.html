@@ -9,7 +9,7 @@
             		<ul class="ul-title">
             			<li>
             				<label for="">缴费年度：</label>
-            				<span>2018年</span>
+            				<span id="year">2018</span>
             			</li>
             			<li>
             				<label for="">缴费人数：</label>
@@ -23,13 +23,13 @@
             	</div>
             	 <div class="operationControl">
                     <div class="searchBox">
-                        <input type="text" class="layui-input" id="sname"  placeholder="请输入您想要查询的身份证号或姓名" style="width: 15.8rem">
-                        <button class="bgc-blued layui-btn" onclick="getData()">
+                        <input type="text" class="layui-input" id="idcard"  placeholder="请输入您想要查询的身份证号" style="width: 15.8rem" >
+                        <button class="bgc-blued layui-btn" onclick="clickQurey()">
                             <i class="layui-icon layui-icon-search"></i>
                         </button>
                     </div>
                     <div class="searchBtns">
-                        <button class="bgc-orange layui-btn" onclick="opAdd()">读身份证</button>
+                        <button class="bgc-orange layui-btn" onclick="getidCard()">读身份证</button>
                         <button class="bgc-orange layui-btn" onclick="opEdit()">读社保卡</button>
                     </div>
                 </div>
@@ -57,73 +57,10 @@
                                     <td><span>180</span></td>
                                     <td><button class='layui-btn bgc-blued'>删除</button></td>
                                 </tr>
-                                 <tr>
-                                    <td><span>2</span></td>
-                                    <td><span>李雷</span></td>
-                                    <td><span>230205166548510</span></td>
-                                    <td><span>女</span></td>
-                                    <td><span>大屯乡小城子村1组11号</span></td>
-                                    <td><span>180</span></td>
-                                    <td><button class='layui-btn bgc-blued'>删除</button></td>
-                                </tr>
-                                 <tr>
-                                    <td><span>3</span></td>
-                                    <td><span>柳淑兰</span></td>
-                                    <td><span>230205166548510</span></td>
-                                    <td><span>男</span></td>
-                                    <td><span>大屯乡小城子村1组11号</span></td>
-                                    <td><span>180</span></td>
-                                    <td><button class='layui-btn bgc-blued'>删除</button></td>
-                                </tr>
-                                 <tr>
-                                    <td><span>4</span></td>
-                                    <td><span>李伟</span></td>
-                                    <td><span>230205166548510</span></td>
-                                    <td><span>男</span></td>
-                                    <td><span>大屯乡小城子村1组11号</span></td>
-                                    <td><span>180</span></td>
-                                    <td><button class='layui-btn bgc-blued'>删除</button></td>
-                                </tr>
-                                 <tr>
-                                    <td><span>5</span></td>
-                                    <td><span>陈英娣</span></td>
-                                    <td><span>230205166548510</span></td>
-                                    <td><span>男</span></td>
-                                    <td><span>大屯乡小城子村1组11号</span></td>
-                                    <td><span>180</span></td>
-                                    <td><button class='layui-btn bgc-blued'>删除</button></td>
-                                </tr>
-                                 <tr>
-                                    <td><span>6</span></td>
-                                    <td><span>陈平</span></td>
-                                    <td><span>230205166548510</span></td>
-                                    <td><span>男</span></td>
-                                    <td><span>大屯乡小城子村1组11号</span></td>
-                                    <td><span>180</span></td>
-                                    <td><button class='layui-btn bgc-blued'>删除</button></td>
-                                </tr>
-                                 <tr>
-                                    <td><span>7</span></td>
-                                    <td><span>杨猛</span></td>
-                                    <td><span>230205166548510</span></td>
-                                    <td><span>男</span></td>
-                                    <td><span>大屯乡小城子村1组11号</span></td>
-                                    <td><span>180</span></td>
-                                    <td><button class='layui-btn bgc-blued'>删除</button></td>
-                                </tr>
-                                <tr>
-                                    <td><span>8</span></td>
-                                    <td><span>李兴亮</span></td>
-                                    <td><span>230205166548510</span></td>
-                                    <td><span>男</span></td>
-                                    <td><span>大屯乡小城子村1组11号</span></td>
-                                    <td><span>180</span></td>
-                                    <td><button class='layui-btn bgc-blued'>删除</button></td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
-                   
+
                 </div>
                  <div class="btn-box">
                     	<button class="layui-btn bgc-orange bttn-orange">返回首页</button>
@@ -181,6 +118,86 @@
                 }
 
             }
+            function clickQurey(){
+                 var idcard=$("#idcard").val();
+                 getpeopleinfo(idcard);
 
+            }
+            function getpeopleinfo(idNumber){
+                if (idNumber==''){
+                    layer.msg("身份证号码是空的");
+                    return false;
+                }
+                var year=$("#year").html()
+                $.ajax({
+                    type: "post",
+                    url: "{:U('/Home/MedicalInsPaying/getPeoplePayInfo')}",
+                    data: {
+                        idcard:idNumber,//身份证号
+                        year:year, //年度
+                    },
+                    dataType: "json",
+                    beforeSend: function(){
+                    },
+                    success: function(ret) {
+                        if (ret.code == 1) {
+
+                        }else {
+                            if (ret.message == ''){
+                                layer.msg('请求失败！');
+                            }else {
+                                layer.msg(ret.message);
+
+                            }
+                        }
+                    },
+                });
+
+
+            }
+
+            var idCardStatus = true;
+            function getidCard() {
+                if (!idCardStatus) {
+                    layer.msg("身份证正在读取中请稍后在试");
+                    return
+                }
+                idCardStatus = false;
+                $("#realName").attr("value", "")
+                $("#idCard").attr("value", "")
+                try{
+                    jsidcard.getIdCardInfo(function (idnumber, name, nation, gender, birthDate, addr, idBeginDate, idEndDate) {
+                        if(idnumber && name && nation && gender && birthDate && addr && idBeginDate && idEndDate){
+                            readIdcardSwitch = false;
+                            birthDate = birthDate.replace(/年/g,'-').replace(/月/g,'-').replace(/日/g,'');
+                            idBeginDate = idBeginDate.replace(/年/g,'-').replace(/月/g,'-').replace(/日/g,'');
+                            idEndDate = idEndDate.replace(/年/g,'-').replace(/月/g,'-').replace(/日/g,'');
+                            var info = {
+                                idcard: $.trim(idnumber),
+                                name: $.trim(name),
+                                nation: $.trim(nation),
+                                gender: $.trim(gender),
+                                birthdate: $.trim(birthDate),
+                                addr: $.trim(addr),
+                                idBeginDate: $.trim(idBeginDate),
+                                idEndDate: $.trim(idEndDate)
+                            };
+                            idCardStatus = true;
+                            getpeopleinfo(info.idcard)
+                            infoTuiSong(info)
+                        } else {
+                            layer.msg("未读取到身份证信息")
+                            idCardStatus = true;
+                        }
+                    });
+                } catch(err) {
+                    layer.msg("读取身份证信息失败")
+                    alert(err)
+                    idCardStatus = true;
+                }
+            }
+            function infoTuiSong(info) {
+
+            }
         </script>
 </html>

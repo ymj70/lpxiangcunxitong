@@ -18,72 +18,41 @@ class MedicalInsPayingController extends CommonController
     {
         $this->display("medicalInsPayingIndex");
     }
-    public function choosePayingPeople(){
+
+    public function choosePayingPeople()
+    {
         $this->display("choosePayingPeople");
     }
-    public function payingPeopleList(){
+
+    public function payingPeopleList()
+    {
         $this->display("payingPeopleList");
     }
-    public function toMedicalInsPaying(){
+
+    public function toMedicalInsPaying()
+    {
         $this->display("toMedicalInsPaying");
     }
-    public function getPeoplePayInfo(){
-        $data["idcard"]=I("pos.idcard");
-        if ($data["idcard"]==''){
+
+    public function getPeoplePayInfo()
+    {
+        $data["idcard"] = I("post.idcard");
+        $data["year"] = I("post.year");
+        if ($data["idcard"] == ''||$data["year"] == '') {
             $info["code"] = -1;
-            $info["message"] = "身份证号不能为空";
+            $info["message"] = "身份证号或者年度是空的";
             $this->ajaxReturn($info);
         }
         //请求接口 检测用户是否参保
         $javaurl = $this->javaUrl;
-        $url =C("REQUEST_URL") .  $javaurl["EndowmentInsAttend"]["saveEndowmentInsPeopleInfo"];
+        $url = C("REQUEST_URL") . $javaurl["MedicalInsPaying"]["getPeoplePayInfo"];
         $requestObj = $this->requestObject;
         $result = $requestObj->requset($url, $data, "post");
-        $result = json_decode($result, true);
+        $result = json_decode($result, true, 512, JSON_BIGINT_AS_STRING);
         if ($result["code"] === 0) {
-            $result["data"][]=array(
-                "realName"=>"wyd",
-                "idCard"=>"130321199310221238",
-                "sex"=>"男",
-                "adress"=>"河北秦皇岛",
-                "payMoney"=>"100",
-            );
-            $result["data"][]=array(
-                "realName"=>"wyd",
-                "idCard"=>"130321199310221239",
-                "sex"=>"男",
-                "adress"=>"河北秦皇岛",
-                "payMoney"=>"100",
-            );
-            $result["data"][]=array(
-                "realName"=>"wyd",
-                "idCard"=>"130321199310221230",
-                "sex"=>"男",
-                "adress"=>"河北秦皇岛",
-                "payMoney"=>"100",
-            );
-            $result["data"][]=array(
-                "realName"=>"wyd",
-                "idCard"=>"130321199310221231",
-                "sex"=>"男",
-                "adress"=>"河北秦皇岛",
-                "payMoney"=>"100",
-            );
-            $result["data"][]=array(
-                "realName"=>"wyd",
-                "idCard"=>"130321199310221232",
-                "sex"=>"男",
-                "adress"=>"河北秦皇岛",
-                "payMoney"=>"100",
-            );
             $info["code"] = 1;
             $info["message"] = "成功";
-            $info["data"] =$result["data"];
-            foreach ($result["data"] as $key=>$value){
-                $idcard=$value["idcard"];
-                $sessionData[$idcard]=$value;
-            }
-            session("EndowmentInsAttendPeopleInfo", $sessionData);
+            $info["data"] = $result["data"];
         } else {
             $info["code"] = -1;
             $info["message"] = $result["msg"];

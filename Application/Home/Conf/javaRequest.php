@@ -41,6 +41,10 @@ return array(
             "getPeopleInfo"=>"/personBase/verificationIdCard",//检测身份证号
             "getPeopleAttndIns"=>"/personBase/getPensionMedical",
         ),
+        //居民医疗缴费
+        "MedicalInsPaying" => array(
+            "getPeoplePayInfo"=>"/umi/payCheck",//根据身份证号和年份获取人员信息
+        ),
     ),
     "imgUploadUrl" => "/image/uploadFile",//图片上传
     "imgDownUrl" => "/image-service/misauth/getimage",//图片上传
