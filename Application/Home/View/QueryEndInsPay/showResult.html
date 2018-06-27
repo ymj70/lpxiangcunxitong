@@ -16,7 +16,8 @@
               </div>
               <div class="operationControl operationControl1">
                 <div class="searchBox searchBoxNew">
-                    <input placeholder="选择日期范围" type="text" class="layui-input float-l" id="month">
+                    <input placeholder="选择日期范围" type="text" class="layui-input float-l year" id="year">
+                    <input type="text " class="layui-input float-l" id="year2">
                     <div class="float-l input-btn">
                         <button class="bgc-blued layui-btn" onclick="opSearch()">
                             <i class="layui-icon layui-icon-search"></i>
@@ -87,15 +88,42 @@
     function getData(){
 
     }
-  var laydate = layui.laydate;
-  laydate.render({
-    elem: '#month' //指定元素
-        ,
-    range: true
-})
 
 function opClose () {
   window.location.href='yliaojfcx.html'
 }
+var sta = "1";
+var da = "";
+layui.use('laydate', function() {
+    var laydate = layui.laydate;
+
+    //执行一个laydate实例
+    laydate.render({
+        elem: '#year',
+        type: 'year',
+        done: function(value, year, endYear) {
+            sta == "2";
+            da = value;
+         $("#year").val();
+    
+        },
+        ready: function(year) {
+            if (sta == "1") {
+               year;
+            } else {
+                year = da;
+            }
+        }
+    });
+    //执行一个laydate实例
+    laydate.render({
+        elem: '#year2',
+        type:"year",
+        min:$("#year").val()
+
+    });
+    
+
+});
 </script>
 </html>
