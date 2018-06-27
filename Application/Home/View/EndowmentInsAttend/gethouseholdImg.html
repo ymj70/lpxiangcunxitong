@@ -38,18 +38,20 @@
                     <div class="demo">
                         <div class="demo-page  hk-book">
                             <div class="demo-pagepd outline">
-                                <i class="jh"></i>
+                               <label for="upload1"><i class="jh"></i></label>
+                                <input id="upload1" type="file" style="display: none">
                                 <div class="book-box">
-                                    <img src="__PUBLIC__/image/hk.png" alt="">
+                                    <img src="__PUBLIC__/image/hk.png" alt="" id="preview1">
                                 </div>
                             </div>
                             <p>请点击加号上传</p>
                         </div>
                         <div class="demo-page  hk-book">
                             <div class="demo-pagepd outline">
-                                <i class="jh"></i>
+                                <label for="upload"><i class="jh"></i></label>
+                                <input id="upload" type="file" style="display: none">
                                 <div class="book-box">
-                                    <img src="__PUBLIC__/image/hk2.png" alt="">
+                                    <img src="__PUBLIC__/image/hk2.png" alt="" id="preview">
                                 </div>
                             </div>
                             <p>请点击加号上传</p>
@@ -84,6 +86,9 @@
 </body>
 <include file="Public:footer" />
 <script>
+      //上传图片
+    uploadimg("upload","preview");
+    uploadimg("upload1","preview1");
     $(function() {
         $("#idcardBackImgfile").change(function () {
             alert("llll")
