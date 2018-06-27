@@ -17,5 +17,14 @@ class QueryHiringController extends CommonController
     public function index(){
         $this->display();
     }
+    public function add(){
+        $this->display("add");
+    }
+    public function update(){
+        $this->display("update");
+    }
+    public function delete(){
+        $this->display("delete");
+    }
 
 }
