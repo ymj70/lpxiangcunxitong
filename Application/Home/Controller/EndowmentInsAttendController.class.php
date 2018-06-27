@@ -98,7 +98,7 @@ class EndowmentInsAttendController extends CommonController
             $this->display("showPeopleInfo");
             return;
         }
-        if (empty($peopleInfo["id"])){
+        if (!empty($peopleInfo["id"])){
             $data["id"] = I("post.id");//姓名
         }
         $data["realName"] = I("post.realName");//姓名
@@ -226,6 +226,9 @@ class EndowmentInsAttendController extends CommonController
             $this->redirect("checkEndowmentInsAttendStatus");
         }
         if (!IS_POST) {
+            $javaurl = $this->javaUrl;
+            $dayinUrl="http://".C("REQUEST_URL") .  $javaurl["EndowmentInsAttend"]["dayinUrl"];
+            $this->assign("dayinUrl",$dayinUrl);
             $this->display("gethouseholdImg");
             return;
         }
