@@ -2,15 +2,15 @@
             <div class="framePage-title">
                 <a href="javascript:;">信息查询</a>
                 <i>></i>
-                <a href="javascript:;" class="cur-a">城乡医疗缴费信息查询</a>
+                <a href="javascript:;" class="cur-a">城乡养老缴费信息查询</a>
             </div>
             <div class="framePage-body layui-form">
               <div class="content">
                 <div class="title information_title news_title news_title1">
                   <h2>缴费信息查询</h2>
                   <p>
-                    <span class="mr">姓名：于海英</span>
-                    <span>身份证号码：13030219960526114X</span>
+                    <span class="mr">姓名：{$userinfo["realName"]|default=""}</span>
+                    <span>身份证号码：<span id="idcard">{$userinfo["idcard"]|default=""}</span></span>
                   </p>
                 </div>
               </div>
@@ -36,79 +36,16 @@
                                 <td><span><b>缴费时间</b></span></td>
                                 <td><span><b>缴费年度</b></span></td>
                                 <td><span><b>缴费金额</b></span></td>
-                                <td><span><b>实缴金额</b></span></td>
-                                <td><span><b>待遇期</b></span></td>
-                                <td><span><b>人员类型</b></span></td>
+                                <td><span><b>缴费状态</b></span></td>
+                                <td><span><b>征收方式</b></span></td>
+                                <td><span><b>记账年限</b></span></td>
+                                <td><span><b>到账日期</b></span></td>
                                 <td><span><b>打印</b></span></td>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td><span>2016-01-01</span></td>
-                                <td><span>2016</span></td>
-                                <td><span>180</span></td>
-                                <td><span>180</span></td>
-                                <td><span>201701-201712</span></td>
-                                <td><span>普通成年人</span></td>
-                                <td>
-                                    <button class="layui-btn bgc-blued">打印收据</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><span>2016-01-01</span></td>
-                                <td><span>2016</span></td>
-                                <td><span>180</span></td>
-                                <td><span>180</span></td>
-                                <td><span>201701-201712</span></td>
-                                <td><span>普通成年人</span></td>
-                                <td>
-                                    <button class="layui-btn bgc-blued">打印收据</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><span>2016-01-01</span></td>
-                                <td><span>2016</span></td>
-                                <td><span>180</span></td>
-                                <td><span>180</span></td>
-                                <td><span>201701-201712</span></td>
-                                <td><span>普通成年人</span></td>
-                                <td>
-                                    <button class="layui-btn bgc-blued">打印收据</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><span>2016-01-01</span></td>
-                                <td><span>2016</span></td>
-                                <td><span>180</span></td>
-                                <td><span>180</span></td>
-                                <td><span>201701-201712</span></td>
-                                <td><span>普通成年人</span></td>
-                                <td>
-                                    <button class="layui-btn bgc-blued">打印收据</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><span>2016-01-01</span></td>
-                                <td><span>2016</span></td>
-                                <td><span>180</span></td>
-                                <td><span>180</span></td>
-                                <td><span>201701-201712</span></td>
-                                <td><span>普通成年人</span></td>
-                                <td>
-                                    <button class="layui-btn bgc-blued">打印收据</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><span>2016-01-01</span></td>
-                                <td><span>2016</span></td>
-                                <td><span>180</span></td>
-                                <td><span>180</span></td>
-                                <td><span>201701-201712</span></td>
-                                <td><span>普通成年人</span></td>
-                                <td>
-                                    <button class="layui-btn bgc-blued">打印收据</button>
-                                </td>
-                            </tr>
+                        <tbody id="list">
+
+
                         </tbody>
                     </table>
                   </div>
@@ -120,6 +57,36 @@
 </body>
 <include file="Public:footer" />
 <script>
+    $(function () {
+        $.ajax({
+            type: "post",
+            url: "{:U('Home/QueryEndInsPay/showResult')}",
+            data: {
+                idcard: $("#idcard").html(),//姓名
+            },
+            dataType: "json",
+            beforeSend: function(){
+                if ($("#idCardhtml").html()==''){
+                    layer.msg('身份证号不能为空');
+                    return false;
+                }
+            },
+            success: function(ret) {
+                if (ret.code == 1) {
+                    $("#list").html(ret.data);
+                }else {
+                    if (ret.message == ''){
+                        layer.msg('请求失败');
+                    }else {
+                        layer.msg(ret.message);
+                    }
+                }
+            },
+        });
+    })
+    function getData(){
+
+    }
   var laydate = layui.laydate;
   laydate.render({
     elem: '#month' //指定元素

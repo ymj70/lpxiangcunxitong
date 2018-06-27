@@ -21,15 +21,14 @@ class QueryEndInsPayController extends CommonController
 
     public function showResult()
     {
-       /* if (!IS_POST){
+        if (!IS_POST){
             $data["idcard"]=I("get.idcard");
             $data["realName"]=I("get.realName");
             $this->assign("userinfo",$data);
             $this->display("showResult");
             return;
-        }*/
-       // $data["idcard"]=I("post.idCard");
-        $data["idcard"]="130321199310221238";
+        }
+        $data["idcard"]=I("post.idcard");
         $data["pageNum"]=I("post.pageNum");
         $data["pageSize"]=I("post.pageSize");
         $data["startTime"]=I("post.startTime");
@@ -50,48 +49,21 @@ class QueryEndInsPayController extends CommonController
         $javaurl = $this->javaUrl;
         $url = C("REQUEST_URL") . $javaurl["QueryEndInsPay"]["showResult"];
         $requestObj = $this->requestObject;
-        $result = $requestObj->requset($url, $data, "post");;
+        $result = $requestObj->requset($url, $data, "post");
         $result = json_decode($result, true, 512, JSON_BIGINT_AS_STRING);
         if (!empty($result["list"])) {
             $list=$result["list"];
             foreach ($list as $key=>$value){
-                $list[$key]["grantTime"]=ss;
+                $list[$key]["payTime"]=date("Y-m-d",strtotime($value["payTime"]));
+                $list[$key]["payYear"]=date("Y",strtotime($value["payYear"]));
+                $list[$key]["arrivalTime"]=date("Y-m-d",strtotime($value["arrivalTime"]));
             }
-            $this->assign("list",$result["list"]);
+            $this->assign("list",$list);
             $data=$this->fetch("list");
             $info["code"] = 1;
             $info["message"] = "成功";
             $info["data"] = $data;
             $info["total"] = $result["total"];
-        } else {
-            $info["code"] = -1;
-            $info["message"] = $result["msg"];
-            if (empty($info["message"])) {
-                $info["message"] = "请求失败";
-            }
-        }
-        $this->ajaxReturn($info);
-    }
-
-    public function getPeopleInfo()
-    {
-        //$data["idcard"]=I("post.idcard");
-        $data["idcard"]="130321199310221238";
-        //请求接口 检测用户是否参保
-        $javaurl = $this->javaUrl;
-        $url = C("REQUEST_URL") . $javaurl["QueryEndInsPay"]["getPeopleInfo"];
-        $requestObj = $this->requestObject;
-        $result = $requestObj->requset($url, $data, "post");;
-        $result = json_decode($result, true, 512, JSON_BIGINT_AS_STRING);
-        if (!empty($result["data"])) {
-            $data[""]="";
-            $data[""]="";
-            $data[""]="";
-            $data[""]="";
-            $data[""]="";
-            $info["code"] = 1;
-            $info["message"] = "成功";
-            $info["data"] = $data;
         } else {
             $info["code"] = -1;
             $info["message"] = $result["msg"];

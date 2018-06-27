@@ -23,7 +23,7 @@
                                   </div>
                                   <div class="img2 img">
                                       <img src="__PUBLIC__/image/xx_cb1_05.png" alt="">
-                                      <button id="close" class="layui-btn bgc-greenll">读取社保卡</button>
+                                      <button id="" class="layui-btn bgc-greenll">读取社保卡</button>
                                   </div>
                               </div>
                               <div class="img_right">
@@ -31,38 +31,38 @@
                                         <div class="form-cell">
                                           <label>身份证号</label>
                                           <div class="idcard_box">
-                                                <input type="text" name="tel" class="layui-input" id="phone" placeholder="请输入有效身份证号码">
-                                                <a href="javascript:;"><img src="__PUBLIC__/image//search-btn.png" alt=""></a>
+                                                <input type="text" name="tel" class="layui-input" id="idcard" placeholder="请输入有效身份证号码">
+                                                <a href="javascript:;" onclick="getPeopleInfo()"><img src="__PUBLIC__/image//search-btn.png" alt=""></a>
                                           </div>
                                         </div>
                                         <div class="form-show">
                                             <div class="form-cell">
                                                 <label class="label">姓&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp名：</label>
-                                                <span>李玉</span>
+                                                <span id="realName"></span>
                                             </div>
                                             <div class="form-cell form_cell">
                                                 <label class="label">身份证号：</label>
-                                                <span>xxxxxxxxxxxxxx</span>
+                                                <span id="idCardhtml"></span>
                                             </div>
                                             <div class="form-cell form_cell">
                                                 <label class="label">出生日期：</label>
-                                                <span>1992-08-22</span>
+                                                <span id="birthday"></span>
                                             </div>
                                              <div class="form-cell form_cell">
                                                 <label class="label">性别：</label>
-                                                <span>男</span>
+                                                <span id="sex"></span>
                                             </div>
                                              <div class="form-cell form_cell">
                                                 <label class="label">民族：</label>
-                                                <span>汉</span>
+                                                <span id="nation"></span>
                                             </div>
                                             <div class="form-cell form_cell">
                                                 <label class="label">户籍地址：</label>
-                                                <span>xxxxxxxxxxxxxxxxxxxxx</span>
+                                                <span id="idcardAddress"></span>
                                             </div>
                                         </div>
                                   </div>
-                                  <button onclick="opLook()" id="close" class="layui-btn bgc-greenll">查询</button>
+                                  <button onclick="opLook()"  class="layui-btn bgc-greenll">查询</button>
                               </div>
                           </div>
                         </div>
@@ -75,7 +75,73 @@
 <include file="Public:footer" />
 <script>
   function opLook () {
-    window.location.href="{:U('Home/QueryEndInsPay/showResult')}"
+      var idCardhtml=$("#idCardhtml").html();
+      var realName=$("#realName").html();
+      $.ajax({
+          type: "post",
+          url: "{:U('/Home/QueryEndInsPay/showResult')}",
+          data: {
+              idcard:idCardhtml,//姓名
+          },
+          dataType: "json",
+          beforeSend: function(){
+              if (idCardhtml==''){
+                  layer.msg('身份证号不能为空');
+                  return false;
+              }
+          },
+          success: function(ret) {
+              if (ret.code == 1) {
+                  window.location.href = "{:U('Home/QueryEndInsPay/showResult/realName/"+realName+"/idcard/"+idCardhtml+"')}"
+              }else {
+                  if (ret.message == ''){
+                      layer.msg('请求失败');
+                  }else {
+                      layer.msg(ret.message);
+                  }
+              }
+          },
+      });
 }
+  function getPeopleInfo(){
+      if (check() == false){
+          return;
+      }
+      $.ajax({
+          type: "post",
+          url: "{:U('/Home/QueryAttendInsInfo/getPeopleInfo')}",
+          data: {
+              idcard: $("#idcard").val(),//姓名
+          },
+          dataType: "json",
+          beforeSend: function(){
+          },
+          success: function(ret) {
+              if (ret.code == 1) {
+                  var data=ret.data;
+                  $("#realName").html(data.realName);
+                  $("#idCardhtml").html(data.idcard);
+                  $("#sex").html(data.sex);
+                  $("#nation ").html(data.nation);
+                  $("#idcardAddress").html(data.idcardAddress);
+                  $("#birthday").html(data.birthday);
+              }else {
+                  if (ret.message == ''){
+                      layer.msg('请求失败');
+                  }else {
+                      layer.msg(ret.message);
+                  }
+              }
+          },
+      });
+  }
+
+  //校验
+  function check(){;
+      if ($("#idcard").val()=="") {
+          layer.msg("请填写身份证号码");
+          return false;
+      }
+  }
 </script>
 </html>

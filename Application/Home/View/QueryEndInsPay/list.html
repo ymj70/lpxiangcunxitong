@@ -1,16 +1,15 @@
 {__NOLAYOUT__}
 <volist name="list" id="vo">
-<tr>
-    <td><span>{$vo["grantTime"]|default=""}</span></td>
-    <td><span>{$vo["grantTime"]|default=""}</span></td>
-    <td><span>{$vo["grantType"]|default=""}</span></td><!--//待遇发放类型：0 等待发放 1 正在发放 ；2 补发-->
-    <td><span>{$vo["grantMoney"]|default=""}</span></td>
-    <td><span>银行发放</span></td>
-    <td><span>农村信用合作社</span></td>
-    <td><span>{$vo["remarks"]|default=""}</span></td>
-    <td><span></span></td>
-    <td>
-        <button class="layui-btn bgc-blued">打印收据</button>
-    </td>
-</tr>
+    <tr>
+        <td><span>{$vo.payTime|default=""}</span></td>
+        <td><span>{$vo.payYear|default=""}</span></td>
+        <td><span>{$vo.payMoney|default=""}</span></td>
+        <td><span>{$vo.status|default=""}</span></td>
+        <td><span>{$vo.collectionMethod|default=""}</span></td>
+        <td><span>{$vo.accountingYear|default=""}</span></td>
+        <td><span>{$vo.arrivalTime|default=""}</span></td>
+        <td>
+            <button class="layui-btn bgc-blued">打印</button>
+        </td>
+    </tr>
 </volist>
