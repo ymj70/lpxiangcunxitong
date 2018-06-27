@@ -16,12 +16,12 @@
                             <p>请协办人员仔细阅读注意事项后开始操作，避免办事过程中出现不必要的错误。</p>
                         </div>
                         <div class="btn layui-form">
-                            <div>
-                                 <input type="checkbox" class="layui-form-checkbox" lay-skin="primary">
+                            <div class="item">
+                                 <input type="checkbox" class="layui-form-checkbox" lay-skin="primary" id="attention">
                                  <span>我已阅读并理解</span>
                             </div>
                             <div>
-                                 <button class="layui-btn bgc-blued " onclick="handle()">开始办理</button>
+                                 <button class="layui-btn bgc-blued butt " onclick="handle()">开始办理</button>
                             </div>                          
                         </div>
                     </div>
@@ -33,7 +33,12 @@
 <include file="Public:footer" />
 <script>
 	function handle(){
-		window.location.href = "{:U('Home/CertTreatmentQualified/getIdcardInfo')}"
+        if($("#attention:checked").val()){
+           window.location.href = "{:U('Home/CertTreatmentQualified/getIdcardInfo')}"
+       }else{
+           layer.msg("请仔细阅读注意事项，并勾选‘我已阅读并理解’按钮");
+       }
+		
 	}
 </script>
 </html>
