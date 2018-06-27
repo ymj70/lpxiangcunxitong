@@ -70,7 +70,7 @@ class QueryEndInsPayController extends CommonController
             $info["code"] = -1;
             $info["message"] = $result["msg"];
             if (empty($info["message"])) {
-                $info["message"] = "请求失败";
+                $info["message"] = "未查询到数据";
             }
         }
         $this->ajaxReturn($info);

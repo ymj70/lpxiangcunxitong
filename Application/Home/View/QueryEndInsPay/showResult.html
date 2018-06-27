@@ -16,10 +16,10 @@
               </div>
               <div class="operationControl operationControl1">
                 <div class="searchBox searchBoxNew">
-                    <input placeholder="选择日期范围" type="text" class="layui-input float-l year" id="year">
-                    <input type="text " class="layui-input float-l" id="year2">
+                    <input placeholder="选择开始年度" type="text" class="layui-input float-l year" id="year">
+                    <input type="text " class="layui-input float-l" id="year2" placeholder="选择结束年度">
                     <div class="float-l input-btn">
-                        <button class="bgc-blued layui-btn" onclick="opSearch()">
+                        <button class="bgc-blued layui-btn" onclick="getData()">
                             <i class="layui-icon layui-icon-search"></i>
                         </button>
                     </div>
@@ -58,11 +58,22 @@
 <include file="Public:footer" />
 <script>
     $(function () {
+        getData()
+    })
+    function getData(){
+        var startTime=$("#year").val();
+        var endTime=$("#year2").val();
+        if (startTime > endTime){
+            layer.msg('结束年度不能小于开始年度');
+            return false;
+        }
         $.ajax({
             type: "post",
             url: "{:U('Home/QueryEndInsPay/showResult')}",
             data: {
                 idcard: $("#idcard").html(),//姓名
+                startTime: startTime,//开始时间
+                endTime:endTime,//结束时间
             },
             dataType: "json",
             beforeSend: function(){
@@ -84,9 +95,6 @@
                 }
             },
         });
-    })
-    function getData(){
-
     }
 
 function opLook () {
