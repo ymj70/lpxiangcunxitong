@@ -15,54 +15,98 @@
                             <span>2.读取身份证或社保卡信息过程中请勿将身份证或社保卡取出。</span>
                         </p>
                     </div>
-                    <div class="img_content">
-                        <div class="img_left">
-                            <div class="img1 img">
-                                <img src="__PUBLIC__/image/xx_cb_03.png" alt="">
-                                <button id="close" class="layui-btn bgc-greenll bttn-green">读取身份证</button>
-                            </div>
-                            <div class="img2 img">
-                                <img src="__PUBLIC__/image/xx_cb1_05.png" alt="">
-                                <button id="close" class="layui-btn bgc-greenll  bttn-green">读取社保卡</button>
+                    <div class="demo">
+                        <div class="demo-page">
+                            <div class="demo-pagepd">
+                                <div class="img-box2">
+                                    <img src="__PUBLIC__/image/dk.png" alt=""  class="imgCenter">
+                                </div>
+                                <div class="button">
+                                    <button class="layui-btn bgc-greend bttn-green">读取身份证</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="img_right">
-                            <div class="form_warp">
-                                <div class="form-cell">
-                                    <label>身份证号</label>
-                                    <div class="idcard_box">
-                                        <input type="text" name="tel" class="layui-input" id="idcard4" placeholder="请输入有效身份证号码">
-                                        <a href="javascript:;"><img src="__PUBLIC__/image//search-btn.png" alt=""></a>
-                                    </div>
+                        <div class="demo-page">
+                            <div class="demo-pagepd">
+                                <div class="img-box2">
+                                    <img src="__PUBLIC__/image/sbk.png" alt="" class="imgCenter">
                                 </div>
-                                <div class="form-show">
-                                    <div class="form-cell">
-                                        <label class="label">姓&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp名：</label>
-                                        <span><input type="text" name="tel" class="layui-input" id="realName" placeholder="请输入姓名"></span>
-                                    </div>
-                                    <div class="form-cell form_cell">
-                                        <label class="label">身份证号：</label>
-                                        <span><input type="text" name="tel" class="layui-input" id="idcard" placeholder="请输入有效身份证号码"></span>
-                                    </div>
-                                    <div class="form-cell form_cell">
-                                        <label class="label">出生日期：</label>
-                                        <span></span>
-                                    </div>
-                                    <div class="form-cell form_cell">
-                                        <label class="label">性别：</label>
-                                        <span></span>
-                                    </div>
-                                    <div class="form-cell form_cell">
-                                        <label class="label">民族：</label>
-                                        <span></span>
-                                    </div>
-                                    <div class="form-cell form_cell">
-                                        <label class="label">户籍地址：</label>
-                                        <span></span>
-                                    </div>
+                                <div class="button">
+                                    <button class="layui-btn bgc-greend bttn-green">读取社保卡</button>
                                 </div>
                             </div>
-                            <button id="close" onclick="opLook()" class="layui-btn bgc-greenll butt">查询</button>
+                        </div>
+                        <div class="demo-page">
+                            <div class="demo-pagepd">
+                                <div class="user-information information-search">
+                                    <div class="information-box">
+                                        <div>
+                                            <div>
+                                                <label for="">身份证号</label>
+                                            </div>
+                                            <div>
+                                                <input type="text" class="layui-input" id="name">
+                                            </div>
+                                            <div>
+                                              <button class="bgc-blued layui-btn" onclick="getData()">
+                                                    <i class="layui-icon layui-icon-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <label for="">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label>
+                                            </div>
+                                            <div>
+                                                <span>杨梦洁</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <label for="">身份证号</label>
+                                            </div>
+                                            <div>
+                                                <span>130204199403173144</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <label for="">出生日期</label>
+                                            </div>
+                                            <div>
+                                                <span>1994-03-17</span>
+                                            </div>
+                                        </div>
+                                          <div>
+                                            <div>
+                                                <label for="">性别</label>
+                                            </div>
+                                            <div>
+                                                <span>男</span>
+                                            </div>
+                                        </div>
+                                          <div>
+                                            <div>
+                                                <label for="">民族</label>
+                                            </div>
+                                            <div>
+                                                <span>汉</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <label for="">户籍地址</label>
+                                            </div>
+                                            <div>
+                                                <span>河北省秦皇岛市天涯海角</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="button">
+                                    <button class="layui-btn bgc-blued  size butt" onclick="search()">查询</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
