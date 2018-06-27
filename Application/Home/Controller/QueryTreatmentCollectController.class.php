@@ -18,37 +18,54 @@ class QueryTreatmentCollectController extends CommonController
         $this->display("getIdcardInfo");
     }
     public function showResult(){
-     /*   if (!IS_POST){
+        if (!IS_POST){
+            $data["idcard"]=I("get.idcard");
+            $data["realName"]=I("get.realName");
+            $this->assign("userinfo",$data);
             $this->display("showResult");
-        }*/
-        //String startTime, String endTime, String idcard,Integer pageNum, Integer pageSize
-
-        /*$data["idcard"]=I("post.idCard");
+            return;
+        }
+        $data["idcard"]=I("post.idCard");
+        $data["pageNum"]=I("post.pageNum");
+        $data["pageSize"]=I("post.pageSize");
         $data["startTime"]=I("post.startTime");
         $data["endTime"]=I("post.endTime");
-        $data["pageNum"]=I("post.pageNum");
-        $data["pageSize"]=I("post.pageSize"); */
-        $data["idcard"]="132626193811254014";
-        $data["startTime"]="2017";
-        $data["endTime"]="2018";
-        $data["pageNum"]=1;
-        $data["pageSize"]=10;
+        if (empty($data["startTime"])){
+            $data["startTime"]=date('Y',strtotime('-1year'));
+        }
+        if (empty($data["endTime"])){
+            $data["endTime"]=date('Y',time());
+        }
+        if (empty($data["pageNum"])){
+            $data["pageNum"]=1;
+        }
+        if (empty($data["pageSize"])){
+            $data["pageSize"]=10;
+        }
         //请求接口 检测用户是否参保
         $javaurl = $this->javaUrl;
         $url = C("REQUEST_URL") . $javaurl["QueryTreatmentCollect"]["showResult"];
         $requestObj = $this->requestObject;
         $result = $requestObj->requset($url, $data, "post");;
         $result = json_decode($result, true, 512, JSON_BIGINT_AS_STRING);
-        if ($result["code"] === 0) {
+        if (!empty($result["list"])) {
+            $list=$result["list"];
+            foreach ($list as $key=>$value){
+                $list[$key]["grantTime"]=ss;
+            }
+            $this->assign("list",$result["list"]);
+            $data=$this->fetch("list");
             $info["code"] = 1;
             $info["message"] = "成功";
-            $info["data"] = $result["data"];
+            $info["data"] = $data;
+            $info["total"] = $result["total"];
         } else {
             $info["code"] = -1;
             $info["message"] = $result["msg"];
             if (empty($info["message"])) {
-                $info["message"] = "信息保存接口请求失败";
+                $info["message"] = "请求失败";
             }
         }
+        $this->ajaxReturn($info);
     }
 }
