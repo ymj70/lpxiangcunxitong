@@ -64,10 +64,10 @@
   font-size: 18px;
 }
 .care h3 {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
 }
 .care p {
-  font-size: 1.25rem;
+  font-size: 1rem;
   padding: 0.78rem 0;
 }
 .care p span {
@@ -128,7 +128,7 @@
 }
 .approval .p-box p {
   text-align: center;
-  font-size: 16px;
+  font-size: 1rem;
 }
 .approval .approval-box {
   display: -ms-flexbox;
@@ -139,7 +139,7 @@
       align-items: center;
 }
 .approval .approval-box span {
-  font-size: 16px;
+  font-size: 1rem;
   padding: 0.875rem 8.125rem;
   border-radius: 0.625rem;
   box-shadow: 4px 8px 10px #c8c6c6;
@@ -163,7 +163,7 @@
   margin: .25rem .5rem;
 }
 .approval .approval-box .explain p {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 .approval .pd-t {
   padding: 2.1875rem;
@@ -177,6 +177,12 @@
   display: flex;
   -ms-flex-pack: center;
       justify-content: center;
+}
+.btn .item {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
 }
 .btn input {
   width: 1.0625rem;
@@ -842,4 +848,186 @@ section .job span em {
 }
 .more-news .btn button {
   margin: 0 3rem;
+}
+.Office {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  width: 100%;
+}
+.Office .office-page h4 {
+  font-size: 1rem;
+}
+.Office .office-left .office-main {
+  width: 100%;
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+.Office .office-left .office-main .office-h4 {
+  position: relative;
+  padding: .2rem 0 0 1.5rem;
+}
+.Office .office-left .office-main .office-gary {
+  position: relative;
+  width: 100%;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+.Office .office-left .office-main .office-gary .gary {
+  background-color: #f5f5f5;
+  width: 20.4375rem;
+  height: 26.125rem;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+}
+.Office .office-left .office-main .office-gary .gary .header-box {
+  width: 8.75rem;
+  height: 8.75rem;
+}
+.Office .office-left .office-main .office-gary .gary .p-b {
+  padding: 2.125rem 4rem;
+}
+.Office .office-left .office-main .office-gary .gary .p-b p {
+  font-size: 0.875rem;
+}
+.Office .office-right {
+  width: 70%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+.Office .office-right .office-mian {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  position: relative;
+}
+.Office .office-right .office-mian .large-box {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  /* align-items: center; */
+  padding: 1.375rem 0;
+}
+.Office .office-right .office-mian .office-h4 {
+  position: relative;
+  padding: .2rem 3rem 0;
+}
+.Office .office-right .office-mian .office-information {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  padding: 0rem 10.625rem;
+  box-sizing: border-box;
+}
+.Office .office-right .office-mian .office-information .information-box {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  padding: .5625rem 0rem;
+}
+.Office .office-right .office-mian .office-information .information-box label {
+  width: 5rem;
+  text-align: right;
+  font-size: 0.875rem;
+  padding: 0 1rem;
+  line-height: 2;
+}
+.Office .office-right .office-mian .office-information .information-box .input-box {
+  -ms-flex: 1;
+      flex: 1;
+}
+.Office .office-right .office-mian .office-information .information-box .ppd {
+  -ms-flex: 1;
+      flex: 1;
+  padding: 0 .5rem 0 0;
+}
+.office-h4:before {
+  content: "";
+  border-left: 3px solid #5665fa;
+  position: relative;
+  top: 20px;
+  right: 6px;
+}
+.office-gary:after {
+  content: "";
+  border-right: 1px solid #efefef;
+  position: absolute;
+  bottom: 2.0625rem;
+  left: right;
+  height: 100%;
+  right: 0;
+}
+.off:after {
+  content: "";
+  border-bottom: 1px solid #efefef;
+  position: absolute;
+  top: 1.25rem;
+  left: 2.0rem;
+  /* height: 89%; */
+  width: 90%;
+}
+.butt {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+  border-radius: 1rem;
+  box-shadow: inset 0 0.3rem 0.2rem rgba(86, 101, 250, 0.85), inset 0 -0.3rem 0.2rem rgba(0, 0, 0, 0.2), 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+  color: #fff;
+  cursor: pointer;
+  margin: 1rem;
+  text-align: center;
+  height: 2.5rem;
+  text-shadow: 0 0.05rem rgba(0, 0, 0, 0.8), 0 0.3rem 0.4rem rgba(0, 0, 0, 0.2), 0 -0.2rem 0.4rem rgba(255, 255, 255, 0.2);
+}
+.bttn-green {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+  border-radius: 1rem;
+  box-shadow: inset 0 0.3rem 0.2rem rgba(48, 193, 20, 0.85), inset 0 -0.3rem 0.2rem rgba(0, 0, 0, 0.2), 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+  color: #fff;
+  cursor: pointer;
+  margin: 1rem;
+  text-align: center;
+  height: 2.5rem;
+  text-shadow: 0 0.05rem rgba(0, 0, 0, 0.8), 0 0.3rem 0.4rem rgba(0, 0, 0, 0.2), 0 -0.2rem 0.4rem rgba(255, 255, 255, 0.2);
+}
+.bttn-orange {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+  border-radius: 1rem;
+  box-shadow: inset 0 0.3rem 0.2rem rgba(249, 157, 58, 0.85), inset 0 -0.3rem 0.2rem rgba(0, 0, 0, 0.2), 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+  color: #fff;
+  cursor: pointer;
+  margin: 1rem;
+  text-align: center;
+  height: 2.5rem;
+  text-shadow: 0 0.05rem rgba(0, 0, 0, 0.8), 0 0.3rem 0.4rem rgba(0, 0, 0, 0.2), 0 -0.2rem 0.4rem rgba(255, 255, 255, 0.2);
+}
+.bttn-red {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+  border-radius: 1rem;
+  box-shadow: inset 0 0.3rem 0.2rem rgba(190, 11, 32, 0.85), inset 0 -0.3rem 0.2rem rgba(0, 0, 0, 0.2), 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+  color: #fff;
+  cursor: pointer;
+  margin: 1rem;
+  text-align: center;
+  height: 2.5rem;
+  text-shadow: 0 0.05rem rgba(0, 0, 0, 0.8), 0 0.3rem 0.4rem rgba(0, 0, 0, 0.2), 0 -0.2rem 0.4rem rgba(255, 255, 255, 0.2);
 }

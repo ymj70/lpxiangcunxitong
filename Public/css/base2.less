@@ -14,19 +14,20 @@
 .bgc-greend {
     background-color: #30c114;
 }
-    .imgCenter{
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            width: auto;
-            height: auto;
-            max-width: 100%;
-            max-height: 100%;
-            margin: auto;
-            z-index: 1;
-        }
+
+.imgCenter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    z-index: 1;
+}
 
 //字体颜色
 .font-white {
@@ -36,13 +37,15 @@
 .font-black {
     color: #3f3f3f;
 }
-.font-orange{
-    color:#ee8706;
+
+.font-orange {
+    color: #ee8706;
 }
 
 .outline {
     outline: #b7b7b7 dashed 3px;
 }
+
 //ul
 .ul-list {
     padding: 1rem 0;
@@ -76,10 +79,10 @@
 //城乡养老参保登记
 .care {
     h3 {
-        font-size: 1.25rem;
+        font-size: 1.125rem;
     }
     p {
-        font-size: 1.25rem;
+        font-size: 1rem;
         padding: 0.78rem 0;
         span {
             color: #5665fa;
@@ -142,7 +145,7 @@
         padding: 2.8125rem;
         p {
             text-align: center;
-            font-size: 16px;
+            font-size: 1rem;
         }
     }
     .approval-box {
@@ -150,7 +153,7 @@
         flex-direction: column;
         align-items: center;
         span {
-            font-size: 16px;
+            font-size: 1rem;
             padding: 0.875rem 8.125rem;
             border-radius: 0.625rem;
             box-shadow: 4px 8px 10px #c8c6c6;
@@ -172,7 +175,7 @@
                 margin: .25rem .5rem;
             }
             p {
-                font-size: 14px;
+                font-size: 0.875rem;
             }
         }
     }
@@ -189,6 +192,10 @@
     text-align: center;
     display: flex;
     justify-content: center;
+    .item{
+        display: flex;
+        align-items: center;
+    }
     input {
         width: 1.0625rem;
         height: 1.0625rem;
@@ -253,9 +260,9 @@
             }
             .img-box2 {
                 width: 17.25rem;
-                height:25rem;
-                img{
-                        .imgCenter;
+                height: 25rem;
+                img {
+                    .imgCenter;
                 }
             }
             .book-box {
@@ -488,10 +495,10 @@
 .pay-alert {
     display: flex;
     flex-direction: column;
-    .alert-title{
+    .alert-title {
         font-size: 1.25rem;
         text-align: center;
-        color:#5665fa;
+        color: #5665fa;
         padding: 1.8125rem 0;
     }
     .pd {
@@ -511,52 +518,53 @@
         button {
             padding: 0 3rem;
             position: relative;
-           
         }
     }
 }
-.pd{
+
+.pd {
     padding: 2rem 2.875rem;
-    .form-c{
+    .form-c {
         display: flex;
         padding: 0.5rem 0rem;
-        label{
+        label {
             width: 4rem;
             line-height: 3;
         }
-        .flex-box{
+        .flex-box {
             flex: 1;
             display: flex;
             position: relative;
-           .layui-form-select{
-            width: 100%;
-           }
-           .date-change{
-            width: 100%;
-            position: relative;
-           }
-         
-           .date{
-      position:absolute;
-    right: 0.25rem;
-    font-size: 1.5rem;
-    color: #5665fa;
-    top: 0.35rem;
-}
+            .layui-form-select {
+                width: 100%;
+            }
+            .date-change {
+                width: 100%;
+                position: relative;
+            }
+
+            .date {
+                position: absolute;
+                right: 0.25rem;
+                font-size: 1.5rem;
+                color: #5665fa;
+                top: 0.35rem;
+            }
         }
-        .test{
+        .test {
             width: 100%;
         }
-        .test:before{
-         content: "";
-    border-bottom: 1px solid #cecdcd;
-    position: absolute;
-    width: 25%;
-    top: 47%;
-    left: 37%;
+        .test:before {
+            content: "";
+            border-bottom: 1px solid #cecdcd;
+            position: absolute;
+            width: 25%;
+            top: 47%;
+            left: 37%;
         }
     }
 }
+
 .button {
     width: 100%;
     padding-top: 0.75rem;
@@ -696,29 +704,33 @@
     position: relative;
     top: 6px;
 }
-figure{
+
+figure {
     width: 8.75rem;
     height: 8.75rem;
-    figcaption{
+    figcaption {
         text-align: center;
-        font-size:2rem;
-        color:#9999b0;
+        font-size: 2rem;
+        color: #9999b0;
         font-weight: 700;
         padding: 2.1875rem 0;
     }
 }
+
 //认证成功
-.rz-succcess{
-        height: 100%;
+.rz-succcess {
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 //帮村民找工作
-.bg-color{
-    background-color:transparent!important;
+.bg-color {
+    background-color: transparent!important;
 }
-  section{
+
+section {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -727,83 +739,270 @@ figure{
     box-sizing: border-box;
     text-align: center;
     font-size: 1.25rem;
-        justify-content: space-between;
-        margin:0.75rem 0;
-      .job{
+    justify-content: space-between;
+    margin: 0.75rem 0;
+    .job {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        .job-box{
+        .job-box {
             width: 3.4375rem;
             height: 3.4375rem;
         }
-        .p-left{
+        .p-left {
             padding: 0 2.375rem;
         }
-        span{
-            color:#8c8c8c;
+        span {
+            color: #8c8c8c;
             padding: 0 0.4375rem;
-            em{
-                 color:#8c8c8c;
-                 padding: 0 .4375rem;
+            em {
+                color: #8c8c8c;
+                padding: 0 .4375rem;
             }
         }
+    }
+}
 
-      }
-  }
-  .number{
+.number {
     font-size: 1.125rem;
     text-align: center;
-  }
-  .tel{
+}
+
+.tel {
     width: 0.8125rem;
     height: 1.25rem;
-       background-image: url(../image/tel.png);
-       background-repeat: no-repeat;
-  }
-  //工作详情
-    .more-news{
+    background-image: url(../image/tel.png);
+    background-repeat: no-repeat;
+} //工作详情
+.more-news {
+    display: flex;
+    flex-direction: column;
+    .more-title {
+        display: flex;
+        justify-content: space-between;
+        h4 {
+            font-size: 1.0rem;
+            color: #5665fa;
+        }
+        span {
+            font-size: 1.0rem;
+            color: #;
+        }
+    }
+    .imgbox {
+        width: 1.625rem;
+        height: 1.625rem;
+    }
+    .title-new {
+        padding: 1.625rem 0;
+        ul {
+            display: flex;
+            li {
+                display: flex;
+                flex: 1;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.0rem;
+            }
+        }
+    }
+    .treatment {
+        font-size: 1rem;
+        padding: 1.0625rem 0;
+    }
+    .btn {
+        justify-content: center;
+        padding-top: 5rem;
+        button {
+            margin: 0 3rem;
+        }
+    }
+}
+
+.Office {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    .office-page {
+
+        h4 {
+            font-size: 1rem;
+        }
+    }
+    .office-left {
+        .office-main {
+
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            .office-h4 {
+                position: relative;
+                padding: .2rem 0 0 1.5rem;
+            }
+            .office-gary {
+                position: relative;
+                width: 100%;
+                padding: 2rem 1rem;
+                box-sizing: border-box;
+
+                display: flex;
+
+                flex-direction: column;
+                .gary {
+                    background-color: #f5f5f5;
+                    width: 20.4375rem;
+                    height: 26.125rem;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    .header-box {
+                        width: 8.75rem;
+                        height: 8.75rem;
+                    }
+                    .p-b {
+                        padding: 2.125rem 4rem;
+                        p {
+                            font-size: 0.875rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .office-right {
+        width: 70%;
         display: flex;
         flex-direction: column;
-        .more-title{
+        .office-mian {
+            width: 100%;
             display: flex;
-            justify-content: space-between;
-            h4{
-                font-size: 1.0rem;
-                color:#5665fa;
-            }
-            span{
-                font-size: 1.0rem;
-                color:#;
-            }
-        }
-        .imgbox{
-            width: 1.625rem;
-            height: 1.625rem;
-        }
-        .title-new{
-            padding: 1.625rem 0;
-              ul{
-            display: flex;
-            li{
+            flex-direction: column;
+            position: relative;
+            .large-box {
                 display: flex;
-                    flex: 1;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.0rem;
+                flex-direction: column;
+                /* align-items: center; */
+                padding: 1.375rem 0;
+            }
+            .office-h4 {
+                position: relative;
+                padding: .2rem 3rem 0;
+            }
+            .office-information {
+                display: flex;
+                flex-direction: column;
+                padding: 0rem 10.625rem;
+                box-sizing: border-box;
+                .information-box {
+                    display: flex;
+                    flex-direction: row;
+                    padding: .5625rem 0rem;
+                    label {
+                        width: 5rem;
+                        text-align: right;
+                        font-size: 0.875rem;
+                        padding: 0 1rem;
+                        line-height: 2;
+                    }
+                    .input-box {
+                        flex: 1;
+                    }
+                    .ppd {
+                        flex: 1;
+                        padding: 0 .5rem 0 0;
+                    }
+                }
             }
         }
-        }
-        .treatment{
-            font-size: 1rem;
-            padding: 1.0625rem 0;
-        }
-        .btn{
-            justify-content: center;
-            padding-top: 5rem;
-            button{
-                margin: 0 3rem;
-            }
-        }
-      
     }
+}
+
+.office-h4:before {
+    content: "";
+    border-left: 3px solid #5665fa;
+    position: relative;
+    top: 20px;
+    right: 6px;
+}
+
+.office-gary:after {
+    content: "";
+    border-right: 1px solid #efefef;
+    position: absolute;
+    bottom: 2.0625rem;
+    left: right;
+    height: 100%;
+    right: 0;
+}
+
+.off:after {
+    content: "";
+    border-bottom: 1px solid #efefef;
+    position: absolute;
+    top: 1.25rem;
+    left: 2.0rem;
+    /* height: 89%; */
+    width: 90%;
+}
+
+.butt {
+    // display: inline-block;
+    // position: relative;
+    // text-align: center;
+    // text-decoration: none;
+    // text-shadow: 0px 1px 0px rgb(204, 204, 204);
+    // -webkit-border-radius: 30px;
+    // -moz-border-radius: 30px;
+    // border-radius: 30px;
+    // box-shadow: 1px 5px 1px rgba(86, 101, 250, .85), inset 2px 3px 9px rgba(255, 255, 255, 0.44);
+    // -webkit-transition: all 0.15s ease;
+    // -moz-transition: all 0.15s ease;
+    // -o-transition: all 0.15s ease;
+    // -ms-transition: all 0.15s ease;
+    // transition: all 0.15s ease;
+    // background: linear-gradient( #5660fa 45%, #5665fa 55%);
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+    border-radius: 1rem;
+    box-shadow: inset 0 0.3rem 0.2rem rgba(86, 101, 250, .85,0.2), inset 0 -0.3rem 0.2rem rgba(0, 0, 0, 0.2), 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+    color: #fff;
+    cursor: pointer;
+    margin: 1rem;
+    text-align: center;
+    height: 2.5rem;
+    text-shadow: 0 0.05rem rgba(0, 0, 0, 0.8), 0 0.3rem 0.4rem rgba(0, 0, 0, 0.2), 0 -0.2rem 0.4rem rgba(255, 255, 255, 0.2);
+}
+.bttn-green{
+       background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+    border-radius: 1rem;
+    box-shadow: inset 0 0.3rem 0.2rem rgba(48, 193,20, .85,0.2), inset 0 -0.3rem 0.2rem rgba(0, 0, 0, 0.2), 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+    color: #fff;
+    cursor: pointer;
+    margin: 1rem;
+    text-align: center;
+    height: 2.5rem;
+    text-shadow: 0 0.05rem rgba(0, 0, 0, 0.8), 0 0.3rem 0.4rem rgba(0, 0, 0, 0.2), 0 -0.2rem 0.4rem rgba(255, 255, 255, 0.2)
+}
+.bttn-orange{
+       background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+    border-radius: 1rem;
+    box-shadow: inset 0 0.3rem 0.2rem rgba(249, 157,58, .85,0.2), inset 0 -0.3rem 0.2rem rgba(0, 0, 0, 0.2), 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+    color: #fff;
+    cursor: pointer;
+    margin: 1rem;
+    text-align: center;
+    height: 2.5rem;
+    text-shadow: 0 0.05rem rgba(0, 0, 0, 0.8), 0 0.3rem 0.4rem rgba(0, 0, 0, 0.2), 0 -0.2rem 0.4rem rgba(255, 255, 255, 0.2)
+}
+.bttn-red{
+       background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+    border-radius: 1rem;
+    box-shadow: inset 0 0.3rem 0.2rem rgba(190,11,32, .85,0.2), inset 0 -0.3rem 0.2rem rgba(0, 0, 0, 0.2), 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+    color: #fff;
+    cursor: pointer;
+    margin: 1rem;
+    text-align: center;
+    height: 2.5rem;
+    text-shadow: 0 0.05rem rgba(0, 0, 0, 0.8), 0 0.3rem 0.4rem rgba(0, 0, 0, 0.2), 0 -0.2rem 0.4rem rgba(255, 255, 255, 0.2)
+}

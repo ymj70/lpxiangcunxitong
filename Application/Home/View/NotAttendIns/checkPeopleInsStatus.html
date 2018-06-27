@@ -1,71 +1,79 @@
-<div class="framePage">
-    <div class="framePage-title">
-        <a href="javascript:;">人员登记</a>
-        <i>></i>
-        <a href="javascript:;" class="cur-a">未参保人员登记</a>
-    </div>
-    <div class="framePage-body layui-form">
-        <div class="framePage-scroll">
-            <div class="ovy-a">
-                <div class="care">
-                    <h3>读取人员身份证信息</h3>
-                    <p>1.请将用户身份证按下图样式放在身份证读卡器上，点击读取按钮读取用户身份证信息，或者手动填写用户信息。</p>
-                    <p>2.读取身份证信息过程中请勿将身份证取出。</p>
-                </div>
-                <div class="demo">
-                    <div class="demo-page">
-                        <div class="img-box">
-                            <img src="__PUBLIC__/image/demo.png" alt="">
+        <div class="framePage">
+            <div class="framePage-title">
+                <a href="javascript:;">人员登记</a>
+                <i>></i>
+                <a href="javascript:;" class="cur-a">未参保人员登记</a>
+            </div>
+            <div class="framePage-body layui-form">
+                <div class="framePage-scroll">
+                    <div class="ovy-a">
+                        <div class="care">
+                            <div class="h3-title">
+                                    <h3>读取人员身份证信息</h3>
+                                </div>
+                                <div class="pbox">
+                                    <p>1.请将用户身份证按下图样式放在身份证读卡器上，点击【读取】按钮读取用户身份证信息，或者手动填写用户身份证号码。</p>
+                                    <p>2.读取身份证信息过程中请勿将身份证取出。</p>
+                                </div>
                         </div>
-                    </div>
-                    <div class="demo-page">
-                        <div class="user-information">
-                            <div class="information-box">
-                                <div>
-                                    <label for="">姓名</label>
-                                    <input type="text" class="layui-input" id="realName">
+                        <div class="demo">
+                               <div class="demo-page">
+                                <div class="demo-pagepd">
+                                  <div class="img-box">
+                                       <img src="__PUBLIC__/image/demo.png" alt="" class="imgCenter">
+                                   </div>
                                 </div>
-                                <div>
-                                    <label for="">身份证号</label>
-                                    <input type="text" class="layui-input" id="idCard">
+                               </div>
+                               <div class="demo-page">
+                                <div class="demo-pagepd">
+                                    <div class="user-information">
+                                    <div class="information-box">
+                                       <div>
+                                           <label for="">姓名</label>
+                                           <input type="text" class="layui-input" id="realName">
+                                       </div>
+                                       <div>
+                                           <label for="">身份证号</label>
+                                           <input type="text" class="layui-input" id="idCard">
+                                       </div>
+                                       <div>
+                                           <label for="">出生日期</label>
+                                           <input type="text" class="layui-input" id="birthday" readonly>
+                                       </div>
+                                       <div>
+                                           <label for="">性别</label>
+                                           <input type="text" class="layui-input" id="sex"  readonly >
+                                       </div>
+                                       <div>
+                                           <label for="">民族</label>
+                                           <input type="text" class="layui-input" id="national">
+                                       </div>
+                                       <div>
+                                           <label for="">户籍所在地址</label>
+                                           <input type="text" class="layui-input" id="idCardAddress">
+                                       </div>
+                                       </div>
+                                   </div>
+                               </div>
                                 </div>
-                                <div>
-                                    <label for="">出生日期</label>
-                                    <input type="text" class="layui-input" id="birthday" readonly>
-                                </div>
-                                <div>
-                                    <label for="">性别</label>
-                                    <input type="text" class="layui-input" id="sex" readonly>
-                                </div>
-                                <div>
-                                    <label for="">民族</label>
-                                    <input type="text" class="layui-input" id="national">
-                                </div>
-                                <div>
-                                    <label for="">户籍所在地址</label>
-                                    <input type="text" class="layui-input" id="idCardAddress">
-                                </div>
-                            </div>
+                                 
                         </div>
+                      
                     </div>
                 </div>
-                <div class="btn layui-form">
-
-                    <div>
-                        <button class="layui-btn bgc-orange" onclick="getidCard()">读卡</button>
-                        <button class="layui-btn bgc-blued " onclick="nextSteup()">下一步</button>
-                    </div>
-                </div>
+                  <div class="btn layui-form">
+                            <div>
+                                <button class="layui-btn bgc-orange layui-btn-orange" onclick="getidCard()">读卡</button>
+                                 <button class="layui-btn bgc-blued " onclick="nextSteup()">下一步</button>
+                            </div>                          
+                        </div>
             </div>
         </div>
     </div>
-</div>
-</div>
 </body>
 <include file="Public:footer"/>
-
 <script>
-    var idCardStatus = true;
+ var idCardStatus = true;
 
     function getidCard() {
         if (!idCardStatus) {
