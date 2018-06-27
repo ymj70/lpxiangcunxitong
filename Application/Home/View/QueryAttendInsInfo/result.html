@@ -1,0 +1,104 @@
+{__NOLAYOUT__}
+<if condition="$upInsured neq '' ">
+    <div class="form-wrap">
+        <h3>城乡居民养老保险</h3>
+        <div class="form_box form_bt form_box1">
+            <div class="inputBox">
+                <div class="form">
+                    <div class="form-cell">
+                        <label>参&nbsp&nbsp&nbsp保&nbsp&nbsp日&nbsp&nbsp期：</label>
+                        <div>
+                            <span>{$upInsured.insuredTime|date="Y-m-d",###}</span>
+                        </div>
+                    </div>
+                    <div class="form-cell">
+                        <label>累计缴费年限：</label>
+                        <div>
+                            <span>{$upInsured.accumulatedPaymentPeriod|default=""}</span>
+                        </div>
+                    </div>
+                    <div class="form-cell">
+                        <label>特&nbsp&nbsp&nbsp殊&nbsp&nbsp待&nbsp&nbsp遇：</label>
+                        <div>
+                            <span>{$upInsured.specialTreatment|default=""}</span>
+                        </div>
+                    </div>
+                    <div class="form-cell">
+                        <label>当前缴费档次：</label>
+                        <div>
+                            <span>{$upInsured.payGradeId|default=""}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form form_l">
+                    <div class="form-cell">
+                        <label>账&nbsp&nbsp&nbsp户&nbsp&nbsp余&nbsp&nbsp额：</label>
+                        <div>
+                            <span>{$upInsured.accountBalance|default=""}</span>
+                        </div>
+                    </div>
+                    <div class="form-cell">
+                        <label>发&nbsp&nbsp&nbsp放&nbsp&nbsp状&nbsp&nbsp态：</label>
+                        <div>
+                            <switch name="upInsured.grantStatus">
+                            <case value="0">在保</case>
+                            <case value="1">停保</case>
+                            <case value="2">账户封存</case>
+                            <default />
+                            </switch>
+                        </div>
+                    </div>
+                    <div class="form-cell">
+                        <label>发&nbsp&nbsp&nbsp放&nbsp&nbsp方&nbsp&nbsp式：</label>
+                        <div>
+                            <span>{$upInsured.paymentMethod|default=""}</span>
+                        </div>
+                    </div>
+                    <div class="form-cell">
+                        <label>委托发放机构：</label>
+                        <div>
+                            <span>{$upInsured.mechanismName|default=""}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</if>
+<if condition="$umiInsured neq '' ">
+<div class="form-wrap">
+    <h3>城乡居民医疗保险</h3>
+    <div class="form_box form_bt form_box1">
+        <div class="inputBox">
+            <div class="form">
+                <div class="form-cell">
+                    <label>参保日期：</label>
+                    <div>
+                        <span>{$umiInsured.insuredFirstTime|default=""}</span>
+                    </div>
+                </div>
+                <div class="form-cell">
+                    <label>账户余额：</label>
+                    <div>
+                        <span>{$umiInsured.accountBalance|default=""}元</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form form_l">
+                <div class="form-cell">
+                    <label>参保状态：</label>
+                    <div>
+                        <span class="c-bluedd">{$umiInsured.insuredStatus|default=""}</span>
+                    </div>
+                </div>
+                <div class="form-cell">
+                    <label>经办机构：</label>
+                    <div>
+                        <span>{$umiInsured.handleMechanism|default=""}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</if>
