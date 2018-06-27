@@ -1,4 +1,134 @@
-<h1>个人求职登记</h1>
-<a href="{:U('Home/PersonalJobReg/add')}">添加</a>
-<a href="{:U('Home/PersonalJobReg/update')}">修改</a>
-<a href="{:U('Home/PersonalJobReg/delete')}">删除</a>
+        <div class="framePage">
+            <div class="framePage-title">
+                <a href="javascript:;">帮村民找工作</a>
+                <i>></i>
+                <a href="javascript:;" class="cur-a">个人求职登记</a>
+            </div>
+            <div class="framePage-body layui-form">
+              <div class="operationControl operationControl1">
+                <div class="searchBox searchBoxNew">
+                    <input type="text">
+                    <div class="float-l input-btn">
+                        <input type="text" class="layui-input" id="sname" placeholder="请输入要查询的身份证号码">
+                        <button class="bgc-blued layui-btn" onclick="opSearch()">
+                            <i class="layui-icon layui-icon-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="searchBtns">
+                    <button class="bgc-blued layui-btn" onclick="opAdd()">新增登记</button>
+                    <button class="bgc-orange layui-btn" onclick="opChange()">修改</button>
+                    <button class="bgc-redd layui-btn" onclick="opRemove()">删除</button>
+                </div>
+              </div>
+              <div class="framePage-scroll">
+                  <div class="ovy-a">
+                    <table class="grid-table grid-tableNew" id="gridTable">
+                        <thead>
+                            <tr>
+                                <td class="tdCheckbox"><input type="checkbox" name="list">&nbsp&nbsp<span><b>全选</b></span></td>
+                                <td><span><b>姓名</b></span></td>
+                                <td><span><b>身份证号</b></span></td>
+                                <td><span><b>文化程度</b></span></td>
+                                <td><span><b>求职意向</b></span></td>
+                                <td><span><b>期望薪资</b></span></td>
+                                <td><span><b>联系方式</b></span></td>
+                                <td><span><b>登记人</b></span></td>
+                                <td><span><b>登记时间</b></span></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="tdCheckbox"><input type="checkbox" name="list">&nbsp&nbsp<span><b>1</b></span></td>
+                                <td><span>李存亮</span></td>
+                                <td><span>13030219960526114X</span></td>
+                                <td><span>初中</span></td>
+                                <td><span>厨师</span></td>
+                                <td><span>2000-5000</span></td>
+                                <td><span>13363669541</span></td>
+                                <td><span>李存亮</span></td>
+                                <td><span>2018-01-04 12:37</span></td>
+                            </tr>
+                            <tr>
+                                <td class="tdCheckbox"><input type="checkbox" name="list">&nbsp&nbsp<span><b>2</b></span></td>
+                                <td><span>李存亮</span></td>
+                                <td><span>13030219960526114X</span></td>
+                                <td><span>初中</span></td>
+                                <td><span>厨师</span></td>
+                                <td><span>2000-5000</span></td>
+                                <td><span>13363669541</span></td>
+                                <td><span>李存亮</span></td>
+                                <td><span>2018-01-04 12:37</span></td>
+                            </tr>
+                            <tr>
+                                <td class="tdCheckbox"><input type="checkbox" name="list">&nbsp&nbsp<span><b>3</b></span></td>
+                                <td><span>李存亮</span></td>
+                                <td><span>13030219960526114X</span></td>
+                                <td><span>初中</span></td>
+                                <td><span>厨师</span></td>
+                                <td><span>2000-5000</span></td>
+                                <td><span>13363669541</span></td>
+                                <td><span>李存亮</span></td>
+                                <td><span>2018-01-04 12:37</span></td>
+                            </tr>
+                            <tr>
+                                <td class="tdCheckbox"><input type="checkbox" name="list">&nbsp&nbsp<span><b>4</b></span></td>
+                                <td><span>李存亮</span></td>
+                                <td><span>13030219960526114X</span></td>
+                                <td><span>初中</span></td>
+                                <td><span>厨师</span></td>
+                                <td><span>2000-5000</span></td>
+                                <td><span>13363669541</span></td>
+                                <td><span>李存亮</span></td>
+                                <td><span>2018-01-04 12:37</span></td>
+                            </tr>
+                            <tr>
+                                <td class="tdCheckbox"><input type="checkbox" name="list">&nbsp&nbsp<span><b>5</b></span></td>
+                                <td><span>李存亮</span></td>
+                                <td><span>13030219960526114X</span></td>
+                                <td><span>初中</span></td>
+                                <td><span>厨师</span></td>
+                                <td><span>2000-5000</span></td>
+                                <td><span>13363669541</span></td>
+                                <td><span>李存亮</span></td>
+                                <td><span>2018-01-04 12:37</span></td>
+                            </tr>
+                            <tr>
+                                <td class="tdCheckbox"><input type="checkbox" name="list">&nbsp&nbsp<span><b>6</b></span></td>
+                                <td><span>李存亮</span></td>
+                                <td><span>13030219960526114X</span></td>
+                                <td><span>初中</span></td>
+                                <td><span>厨师</span></td>
+                                <td><span>2000-5000</span></td>
+                                <td><span>13363669541</span></td>
+                                <td><span>李存亮</span></td>
+                                <td><span>2018-01-04 12:37</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                  </div>
+              </div>
+              <div class="pageNum" id="pageNum"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<include file="Public:footer" />
+<script>
+  var laydate = layui.laydate;
+  laydate.render({
+    elem: '#month' //指定元素
+        ,
+    range: true
+})
+function opAdd () {
+    window.location.href = "{:U('Home/PersonalJobReg/add')}"
+}
+function opChange(){
+    window.location.href = "{:U('Home/PersonalJobReg/update')}"
+}
+function opRemove(){
+ window.location.href = "{:U('Home/PersonalJobReg/delete')}"
+}
+</script>
+</html>

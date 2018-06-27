@@ -450,7 +450,6 @@
                     flex-direction: column;
                     height: 100%;
                     background-color: #F5F5F5;
-                    width: 88%;
                     flex: 1;
                     box-sizing: border-box;
                     .flexdc;
@@ -599,7 +598,9 @@
 
 // 人员登记
 // 填写表格
-
+.form_cell {
+	font-size: 1.25rem;
+}
 .content {
 	display: flex;
 	width: 100%;
@@ -654,10 +655,10 @@
 						}
 						img {
 							position: absolute;
-							top: 0.25rem;
-							right: .5rem;
-							width: 26px;
-							height: auto;
+						    top: 0.5rem;
+						    right: .5rem;
+						    width: 1.2rem;
+						    height: auto;
 						}
 						i {
 							float: left;
@@ -701,13 +702,13 @@
 		h2 {
 			font-weight: 500;
 			.c-hs;
-			font-size: 1.125rem;
+			font-size: 1.25rem;
 			margin-bottom: 2.375rem;
 		}
 		p {
 			span {
 				line-height: 2.562rem;
-				font-size: 1.0rem;
+				font-size: 1.25rem;
 				color: #373636;
 				display: block;
 			}
@@ -812,7 +813,7 @@
 		}
 	}
 	.img_content {
-		padding: 2.562rem 0 5.062rem;
+		padding: 2.562rem 3rem 5.062rem;
 		box-sizing: border-box;
 		width: 100%;
 		display: flex;
@@ -887,10 +888,10 @@
 			h3 {
 				background: url('../image/title_bg.png');
 				color: #fff;
-				font-size: 16px;
+				font-size: 1.25rem;
 				background-position: 0 0;
 				background-repeat: no-repeat;
-				padding: 0.688rem 3.438rem 0.875rem 1.75rem;
+				padding: 0.4rem 3.438rem 0.875rem 1.75rem;
 				box-sizing: border-box;
 				margin-bottom: 1.125rem;
 			}
@@ -924,3 +925,245 @@
 	}
 }
 
+
+// 帮村民找工作
+// 个人求职登记
+.framePage-body {
+	#gridTable {
+		span {
+		font-size: 1.25rem;
+		}
+	}
+	.job_top {
+		border: 0;
+		justify-content: flex-end
+	}
+	.tab_wrap {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		.tab_title {
+			display: flex;
+			justify-content: center;
+			border: 0;
+			background-color: #f7f7f7;
+			padding: 1.0rem 0;
+			height: auto;
+			align-items: center;
+			.hidden1 {
+				display: none;
+			}
+			li {
+				padding: 0.75rem 1.0rem 0.562rem;
+				box-sizing: border-box;
+				margin-right: 6.438rem;
+				
+				>div {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					span {
+						color: #555656;
+						font-size: 1rem;
+					}
+				}
+			}
+			.show {
+				display: none;
+				img {
+					display: flex;
+					align-items: center;
+					width: 5.375rem;
+					height: 5.188rem;
+				}
+			}
+			.active {
+				display: block;
+			}
+			.mr {
+				margin-right: 0;
+			}
+			.layui-this:after {
+				border: 0;
+				
+			}
+		}
+		.tab_content {
+			padding: 1.375rem 0 0;
+			box-sizing: border-box;
+			width: 100%;
+			.content_item {
+				.active1 {
+					display: none !important;
+				}
+				h3 {
+					border-left: 4px solid #5665FA;
+					padding-left: 0.5rem;
+					box-sizing: border-box;
+					font-size: 1.25rem;
+					margin-bottom: 1.875rem;
+				}
+				.content_box {
+					display: flex;
+					width: 100%;
+					justify-content: space-between;
+					.box_left {
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						width: 30%;
+						.img_top {
+							display: flex;
+							flex-direction: column;
+							background-color: #f7f7f7;
+							padding: 1.875rem 2.312rem 1.562rem;
+							box-sizing: border-box;
+							justify-content: center;
+							align-items: center;
+							img {
+								border: 1px solid #ccc;
+								margin-bottom: 1.5rem;
+								width: 9.688rem;
+								height: auto;
+							}
+							span {
+								color: #232323;
+								font-size: 1.125rem;
+								display: block;
+							}
+						}
+						button {
+							width: 9.625rem;
+							margin: 1.188rem auto 2.375rem;
+						}
+					}
+					.box_right {
+						display: flex;
+						flex: 1;
+						flex-direction: column;
+						.cell_box {
+							display: flex;
+							justify-content: space-between;
+							margin-left: 9rem;
+							.ml {
+								margin-left: 3.0rem;
+							}
+							label {
+								text-align: right;
+							}
+						}
+						.form-cell {
+							position: relative;
+							flex: 1;
+							img {
+								position: absolute;
+							    top: 0.5rem;
+							    right: .5rem;
+							    width: 1.2rem;
+							    height: auto;
+							}
+						}
+						.ml-cell {
+							margin-left: 6.125rem;
+						}
+						.ml-cell1 {
+							margin-left: 7.3rem;
+						}
+						.ml-cell2 {
+							margin-left: 2.5rem;
+						}
+					}
+				}
+				.educational_title {
+					display: flex;
+					justify-content: space-between;
+				}
+				.educational_bgc {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					.form {
+						display: flex;
+						border-top: 1px solid #efefef;
+						padding: 1.0rem 10rem;
+						flex-direction: column;
+						box-sizing: border-box;
+						.textarea_h {
+							height: 6.125rem;
+						}
+						.form-cell {
+							position: relative;
+							flex: 1;
+							img {
+								position: absolute;
+							    top: 0.5rem;
+							    right: .5rem;
+							    width: 1.2rem;
+							    height: auto;
+							}
+							.po-r {
+								position: relative;
+								img {
+									position: absolute;
+								    top: 0.5rem;
+								    right: .5rem;
+								    width: 1.2rem;
+								    height: auto;
+								}
+							}
+							span {
+								margin-left: 1.25rem;
+							}
+							.yx_ml {
+								margin-left: 2.5rem;
+							}
+						}
+					}
+					.form_show {
+						display: none;
+						position: relative;
+						.po-o {
+							position: absolute;
+							right: 0;
+							bottom: 1.5rem;
+						}
+					}
+
+				}
+			}
+		}
+	}
+}
+body .demo-class {
+            border: none;
+        }
+
+// body .demo-class .layui-layer-content {
+//     padding: 3rem 3rem 0 3rem;
+//     text-align: center;
+//     font-size: 1.2rem;
+//     font-weight: bold;
+//     height: 1px;
+// }
+
+// body .demo-class .layui-layer-btn {
+//     margin-top: 0rem;
+// }
+
+// body .demo-class .layui-layer-btn a {
+//     border: 0px;
+// }
+
+// body .demo-class .layui-layer-btn .layui-layer-btn1 {
+//     border: 0px;
+// }
+// body .layui-layer-dialog .layui-layer-content {
+//  	text-align: center;
+//     font-size: 1.5rem;
+//     font-weight: 700;
+//     padding: 2.5rem;
+// }
+// body .layui-layer-btn a {
+// 	padding: 0 2rem;
+// 	border-radius: 0.25rem;
+// }

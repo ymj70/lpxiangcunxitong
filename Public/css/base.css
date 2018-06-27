@@ -314,7 +314,7 @@ body {
   background-position: center;
 }
 .c-blue {
-  color: #7f84f1;
+  color: #7f84f1!important;
 }
 .c-blued {
   color: #6c72ef;
@@ -655,7 +655,7 @@ body {
 }
 .framePage .framePage-title a {
   color: #444444;
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 .framePage .framePage-title a:hover,
 .framePage .framePage-title a.cur-a {
