@@ -1,0 +1,67 @@
+       <div class="framePage">
+            <div class="framePage-title">
+                <a href="javascript:;">社保缴费</a>
+                <i>></i>
+                <a href="javascript:;" class="cur-a">城乡居民医疗保险缴费</a>
+            </div>
+            <div class="framePage-body layui-form">
+                <div class="framePage-scroll">
+                    <div class="ovy-a">
+                        <div class="care">
+                            <h3>微信支付</h3>
+                            <p>1.请打开微信“扫一扫”功能，对准屏幕二维码进行付款操作；</p>
+                            <p>2.反聩付款成功后，系统将自动提示您是否打印缴费凭证，点击“是”，即可打印缴费凭证。</p>
+                        </div>
+                          <div class="pay">
+                            <div class="ibox">
+                                <img src="__PUBLIC__/image/ewm.png" alt="">
+                            </div>
+                              
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <!-- 弹出层 -->
+       <div class="alert" style="display:none">
+             <div class="alert-box">
+                <div class="success">
+                    <div class="bingo">
+                        <img src="__PUBLIC__/image/bingo.png" alt="">
+                    </div>
+                      <div>
+                           <p>缴费成功</p>
+                      </div>
+                     
+                </div>
+             </div>
+             <div>
+                 <p class="p">是否打印缴费凭证？</p>
+             </div>
+             <div class="btns">
+                 <button class="layui-btn bgc-orange" onclick="isNo()">否</button>
+                 <button class="layui-btn bgc-blued" onclick="isYes()">是</button>
+             </div>
+        </div>
+</body>
+<include file="Public:footer" />
+<script>
+var index=layer.open({
+  type: 1,
+  content: $('.alert'), //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+  area:["478px","304px"],
+  title:false,
+  closeBtn:0
+});
+ function isNo(){
+    layer.close(index);
+    $(".alert").css("display","none");
+ }
+  function isYes(){
+    layer.close(index);
+    $(".alert").css("display","none");
+ }
+</script>
+</html>

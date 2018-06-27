@@ -34,7 +34,7 @@ return array(
         ),
         "QueryAttendInsInfo" => array(
             "getPeopleInfo"=>"/personBase/verificationIdCard",//检测身份证号
-            "showResult"=>"/grant/upPay",
+            "getIdcardInfo"=>"/personBase/getPensionMedical",
         ),
     ),
     "imgUploadUrl" => "/image/uploadFile",//图片上传

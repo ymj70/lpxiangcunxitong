@@ -1,0 +1,186 @@
+        <div class="framePage">
+            <div class="framePage-title">
+                <a href="javascript:;">社保缴费</a>
+                <i>></i>
+                <a href="javascript:;" class="cur-a">城乡居民医疗保险缴费</a>
+            </div>
+            <div class="framePage-body layui-form">
+            	<div class="ul-list">
+            		<ul class="ul-title">
+            			<li>
+            				<label for="">缴费年度：</label>
+            				<span>2018年</span>
+            			</li>
+            			<li>
+            				<label for="">缴费人数：</label>
+            				<span>0人</span>
+            			</li>
+            			<li>
+            				<label for="">缴费金额：</label>
+            				<span>0元</span>
+            			</li>
+            		</ul>
+            	</div>
+            	 <div class="operationControl">
+                    <div class="searchBox">
+                        <input type="text" class="layui-input" id="sname"  placeholder="请输入您想要查询的身份证号或姓名" style="width: 15.8rem">
+                        <button class="bgc-blued layui-btn" onclick="getData()">
+                            <i class="layui-icon layui-icon-search"></i>
+                        </button>
+                    </div>
+                    <div class="searchBtns">
+                        <button class="bgc-orange layui-btn" onclick="opAdd()">读身份证</button>
+                        <button class="bgc-orange layui-btn" onclick="opEdit()">读社保卡</button>
+                    </div>
+                </div>
+                <div class="framePage-scroll">
+                    <div class="ovy-a">
+                       <table class="grid-table" id="gridTable">
+                            <thead>
+                                <tr>
+                                   <td><span>序号</span></td>
+                                    <td><span>姓名</span></td>
+                                    <td><span>身份证号</span></td>
+                                    <td><span>性别</span></td>
+                                    <td><span>地址</span></td>
+                                    <td><span>金额</span></td>
+                                    <td><span>操作</span></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span>1</span></td>
+                                    <td><span>李兴亮</span></td>
+                                    <td><span>230205166548510</span></td>
+                                    <td><span>男</span></td>
+                                    <td><span>大屯乡小城子村1组11号</span></td>
+                                    <td><span>180</span></td>
+                                    <td><button class='layui-btn bgc-blued'>删除</button></td>
+                                </tr>
+                                 <tr>
+                                    <td><span>2</span></td>
+                                    <td><span>李雷</span></td>
+                                    <td><span>230205166548510</span></td>
+                                    <td><span>女</span></td>
+                                    <td><span>大屯乡小城子村1组11号</span></td>
+                                    <td><span>180</span></td>
+                                    <td><button class='layui-btn bgc-blued'>删除</button></td>
+                                </tr>
+                                 <tr>
+                                    <td><span>3</span></td>
+                                    <td><span>柳淑兰</span></td>
+                                    <td><span>230205166548510</span></td>
+                                    <td><span>男</span></td>
+                                    <td><span>大屯乡小城子村1组11号</span></td>
+                                    <td><span>180</span></td>
+                                    <td><button class='layui-btn bgc-blued'>删除</button></td>
+                                </tr>
+                                 <tr>
+                                    <td><span>4</span></td>
+                                    <td><span>李伟</span></td>
+                                    <td><span>230205166548510</span></td>
+                                    <td><span>男</span></td>
+                                    <td><span>大屯乡小城子村1组11号</span></td>
+                                    <td><span>180</span></td>
+                                    <td><button class='layui-btn bgc-blued'>删除</button></td>
+                                </tr>
+                                 <tr>
+                                    <td><span>5</span></td>
+                                    <td><span>陈英娣</span></td>
+                                    <td><span>230205166548510</span></td>
+                                    <td><span>男</span></td>
+                                    <td><span>大屯乡小城子村1组11号</span></td>
+                                    <td><span>180</span></td>
+                                    <td><button class='layui-btn bgc-blued'>删除</button></td>
+                                </tr>
+                                 <tr>
+                                    <td><span>6</span></td>
+                                    <td><span>陈平</span></td>
+                                    <td><span>230205166548510</span></td>
+                                    <td><span>男</span></td>
+                                    <td><span>大屯乡小城子村1组11号</span></td>
+                                    <td><span>180</span></td>
+                                    <td><button class='layui-btn bgc-blued'>删除</button></td>
+                                </tr>
+                                 <tr>
+                                    <td><span>7</span></td>
+                                    <td><span>杨猛</span></td>
+                                    <td><span>230205166548510</span></td>
+                                    <td><span>男</span></td>
+                                    <td><span>大屯乡小城子村1组11号</span></td>
+                                    <td><span>180</span></td>
+                                    <td><button class='layui-btn bgc-blued'>删除</button></td>
+                                </tr>
+                                <tr>
+                                    <td><span>8</span></td>
+                                    <td><span>李兴亮</span></td>
+                                    <td><span>230205166548510</span></td>
+                                    <td><span>男</span></td>
+                                    <td><span>大屯乡小城子村1组11号</span></td>
+                                    <td><span>180</span></td>
+                                    <td><button class='layui-btn bgc-blued'>删除</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                   
+                </div>
+                 <div class="btn-box">
+                    	<button class="layui-btn bgc-orange">返回首页</button>
+                    	<button class="layui-btn bgc-blued" onclick="nextSteup()">确认缴费</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+<include file="Public:footer" />
+        <script>
+            function nextSteup() {
+                if (check() == false){
+                    return;
+                }
+                $.ajax({
+                    type: "post",
+                    url: "{:U('/Home/MedicalInsPaying/choosePayingPeople')}",
+                    data: {
+                        idcardBackImg: $("#idcardBackImg").val(),//姓名
+                        idcardfrontImg: $("#idcardfrontImg").val(), //身份证号
+                    },
+                    dataType: "json",
+                    beforeSend: function(){
+                    },
+                    success: function(ret) {
+                        if (ret.code == 1) {
+                            if(ret.url==""){
+                                layer.msg("跳转路径接受失败");
+                            }else {
+                                window.location.href=ret.url;
+                            }
+                            $("#listHtml").html(ret.data)
+                        }else {
+                            if (ret.message == ''){
+                                layer.msg('请输入正确的身份证号！');
+                            }else {
+                                layer.msg(ret.message);
+
+                            }
+                        }
+                    },
+                });
+
+            }
+            //校验
+            function check(){;
+                if ($("#idcardBackImg").val()=="") {
+                    layer.msg("请上传身份证背面图片");
+                    return false;
+                }
+                if ($("#idcardfrontImg").val()=="") {
+                    layer.msg("请上传身份证正面图片");
+                    return false;
+                }
+
+            }
+
+        </script>
+</html>
