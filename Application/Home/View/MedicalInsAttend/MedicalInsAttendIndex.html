@@ -21,12 +21,12 @@
                     <p>请协办人员仔细阅读注意事项后开始操作，避免办事过程中出现不必要的错误。</p>
                 </div>
                 <div class="btn layui-form">
-                    <div>
+                    <div class="item">
                         <input type="checkbox" class="layui-form-checkbox" lay-skin="primary" id="attention">
                         <span>我已阅读并理解</span>
                     </div>
                     <div>
-                        <button class="layui-btn bgc-blued " onclick="nextStep()">开始办理</button>
+                        <button class="layui-btn bgc-blued butt" onclick="nextStep()">开始办理</button>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
        if($("#attention:checked").val()){
            window.location.href="{:U('Home/MedicalInsAttend/checkPeopleMedicalInsStatus')}"
        }else{
-           layer.alert("请仔细阅读注意事项，并勾选‘我已阅读并理解’按钮");
+           layer.msg("请仔细阅读注意事项，并勾选‘我已阅读并理解’按钮");
        }
    }
 </script>
