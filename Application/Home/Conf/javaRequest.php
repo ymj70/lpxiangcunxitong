@@ -32,6 +32,10 @@ return array(
             "getPeopleInfo"=>"/personBase/verificationIdCard",//检测身份证号
             "showResult"=>"/grant/upPay",
         ),
+        "QueryAttendInsInfo" => array(
+            "getPeopleInfo"=>"/personBase/verificationIdCard",//检测身份证号
+            "showResult"=>"/grant/upPay",
+        ),
     ),
     "imgUploadUrl" => "/image/uploadFile",//图片上传
     "imgDownUrl" => "/image-service/misauth/getimage",//图片上传
