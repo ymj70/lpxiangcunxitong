@@ -7,8 +7,7 @@
     <div class="framePage-body layui-form">
         <div class="framePage-scroll">
             <div class="ovy-a">
-                <div class="bg-box">
-                    <div class="care">
+                   <div class="care">
                         <div class="h3-title">
                             <h3>读取身份证信息</h3>
                         </div>
@@ -17,53 +16,29 @@
                             <p>2.读取身份证信息过程中请勿将身份证取出。</p>
                         </div>
                     </div>
-                    <div class="demo">
-                        <div class="demo-page">
-                            <div class="demo-pagepd">
-                                <div class="img-box2">
-                                    <img src="__PUBLIC__/image/dk.png" alt="">
-                                </div>
+                <div class="demo">
+                    <div class="demo-page">
+                        <div class="demo-pagepd">
+                            <div class="img-box">
+                                <img src="__PUBLIC__/image/dk.png" alt="" class="imgCenter">
                             </div>
                         </div>
-                        <div class="demo-page">
-                            <div class="demo-pagepd">
-                                <div class="user-information information-search">
-                                    <div class="information-box">
-                                        <!--                <div>
-                                            <div>
-                                                <label for="">身份证号</label>
-                                            </div>
-                                            <div>
-                                                <input type="text" class="layui-input" id="name">
-                                                <button class="bgc-blued layui-btn" onclick="getData()">
-                                                    <i class="layui-icon layui-icon-search"></i>
-                                                </button>
-                                            </div>
-                                        </div> -->
-                                        <div>
-                                            <div>
-                                                <label for="">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label>
-                                            </div>
-                                            <div>
-                                                <span><input type="text" id="realName" class="layui-input"</span>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div>
-                                                <label for="">身份证号</label>
-                                            </div>
-                                            <div>
-                                                <span><input type="text" id="idCard" class="layui-input"></span>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div>
-                                                <label for="">户籍地址</label>
-                                            </div>
-                                            <div>
-                                                <span><input type="text" id="idCardAddress" class="layui-input"></span>
-                                            </div>
-                                        </div>
+                    </div>
+                    <div class="demo-page">
+                        <div class="demo-pagepd">
+                            <div class="user-information">
+                                <div class="information-box">
+                                    <div>
+                                        <label for="">姓名</label>
+                                        <input type="text" class="layui-input" id="realName">
+                                    </div>
+                                    <div>
+                                        <label for="">身份证号</label>
+                                        <input type="text" class="layui-input" id="idCard">
+                                    </div>
+                                    <div>
+                                        <label for="">户籍地址</label>
+                                        <input type="text" class="layui-input" id="idCardAddress">
                                     </div>
                                 </div>
                             </div>
@@ -72,17 +47,17 @@
                 </div>
             </div>
         </div>
-        <div class="btn-box layui-form">
-            <button class="layui-btn bgc-green b-pd bttn-green butt" onclick="getidCard()">读卡</button>
-            <button class="layui-btn bgc-blued  b-pd" onclick="nextSteup()">下一步</button>
+        <div class="btn layui-form">
+            <div>
+                <button class="layui-btn bgc-green b-pd bttn-green butt" onclick="getidCard()">读卡</button>
+            <button class="layui-btn bgc-blued  b-pd butt" onclick="nextSteup()">下一步</button>
+            </div>
         </div>
     </div>
 </div>
 </div>
 </body>
 <include file="Public:footer" />
-
-</html>
 <script>
 var idCardStatus = true;
 
@@ -168,3 +143,5 @@ function check() {
     }
 }
 </script>
+
+</html>

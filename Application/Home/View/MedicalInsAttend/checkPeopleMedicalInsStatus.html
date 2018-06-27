@@ -2,65 +2,47 @@
     <div class="framePage-title">
         <a href="javascript:;">人员登记</a>
         <i>></i>
-        <a href="javascript:;" class="cur-a">城乡居民医疗保险参保登记</a>
+        <a href="javascript:;" class="cur-a">未参保人员登记</a>
     </div>
     <div class="framePage-body layui-form">
         <div class="framePage-scroll">
             <div class="ovy-a">
-                <div class="bg-box">
-                    <div class="care">
-                        <div class="h3-title">
-                            <h3>读取身份证信息</h3>
-                        </div>
-                        <div class="pbox">
-                            <p>1.请将用户身份证按下图样式放在身份证读卡器上，点击【读取】按钮读取用户身份证信息，或者手动填写用户身份证号码。</p>
-                            <p>2.读取身份证信息过程中请勿将身份证取出。</p>
-                        </div>
+                <div class="care">
+                    <div class="h3-title">
+                        <h3>读取人员身份证信息</h3>
                     </div>
-                    <div class="demo">
-                        <div class="demo-page">
-                            <div class="demo-pagepd">
-                                <div class="img-box2">
-                                    <img src="__PUBLIC__/image/dk.png" alt="">
-                                </div>
+                    <div class="pbox">
+                        <p>1.请将用户身份证按下图样式放在身份证读卡器上，点击【读取】按钮读取用户身份证信息，或者手动填写用户身份证号码。</p>
+                        <p>2.读取身份证信息过程中请勿将身份证取出。</p>
+                    </div>
+                </div>
+                <div class="demo">
+                    <div class="demo-page">
+                        <div class="demo-pagepd">
+                            <div class="img-box">
+                                <img src="__PUBLIC__/image/dk.png" alt="" class="imgCenter">
                             </div>
                         </div>
-                        <div class="demo-page">
-                            <div class="demo-pagepd">
-                                <div class="user-information information-search">
-                                    <div class="information-box">
-                                        <div>
-                                            <div>
-                                                <label for="">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label>
-                                            </div>
-                                            <div>
-                                                <span><input type="text" id="realName" class="layui-input"</span>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div>
-                                                <label for="">身份证号</label>
-                                            </div>
-                                            <div>
-                                                <span><input type="text" id="idCard" class="layui-input"></span>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div>
-                                                <label for="">民   族</label>
-                                            </div>
-                                            <div>
-                                                <span><input type="text" id="mz" class="layui-input"></span>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div>
-                                                <label for="">户籍地址</label>
-                                            </div>
-                                            <div>
-                                                <span><input type="text" id="idCardAddress" class="layui-input"></span>
-                                            </div>
-                                        </div>
+                    </div>
+                    <div class="demo-page">
+                        <div class="demo-pagepd">
+                            <div class="user-information">
+                                <div class="information-box">
+                                    <div>
+                                        <label for="">姓名</label>
+                                        <input type="text" class="layui-input" id="realName">
+                                    </div>
+                                    <div>
+                                        <label for="">身份证号</label>
+                                        <input type="text" class="layui-input" id="idCard">
+                                    </div>
+                                    <div>
+                                        <label for="">民族</label>
+                                        <input type="text" class="layui-input" id="mz">
+                                    </div>
+                                    <div>
+                                        <label for="">户籍地址</label>
+                                        <input type="text" class="layui-input" id="idCardAddress">
                                     </div>
                                 </div>
                             </div>
@@ -69,17 +51,17 @@
                 </div>
             </div>
         </div>
-        <div class="btn-box layui-form">
-            <button class="layui-btn bgc-green b-pd bttn-green" onclick="getidCard()">读卡</button>
-            <button class="layui-btn bgc-blued  b-pd butt" onclick="nextSteup()">下一步</button>
+        <div class="btn layui-form">
+            <div>
+                <button class="layui-btn bgc-green b-pd bttn-green" onclick="getidCard()">读卡</button>
+                <button class="layui-btn bgc-blued  b-pd butt" onclick="nextSteup()">下一步</button>
+            </div>
         </div>
     </div>
 </div>
 </div>
 </body>
 <include file="Public:footer" />
-
-</html>
 <script>
 var idCardStatus = true;
 
@@ -169,3 +151,5 @@ function getData() {
 
 }
 </script>
+
+</html>
