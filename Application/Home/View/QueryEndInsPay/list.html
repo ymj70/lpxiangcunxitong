@@ -9,7 +9,7 @@
         <td><span>{$vo.accountingYear|default=""}</span></td>
         <td><span>{$vo.arrivalTime|default=""}</span></td>
         <td>
-            <button class="layui-btn bgc-blued">打印</button>
+            <a href="{$vo.dayinUrl}" target="_blank"><button class="layui-btn bgc-blued" >打印</button></a>
         </td>
     </tr>
 </volist>

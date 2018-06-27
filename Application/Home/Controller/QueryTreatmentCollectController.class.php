@@ -63,7 +63,7 @@ class QueryTreatmentCollectController extends CommonController
             $info["code"] = -1;
             $info["message"] = $result["msg"];
             if (empty($info["message"])) {
-                $info["message"] = "请求失败";
+                $info["message"] = "未获取到数据信息";
             }
         }
         $this->ajaxReturn($info);

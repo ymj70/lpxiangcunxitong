@@ -24,6 +24,8 @@ return array(
         ),
         "QueryTreatmentCollect" => array(
             "showResult"=>"/grant/upTr",//待遇领取查询
+            "dayinAllurl"=>"/grant/printUpInsured",//待遇领取查询
+            "dayinUrl"=>"/grant/printReceipt",//待遇领取查询
         ),
         "MedInsAttendProgress" => array(
             "showResult"=>"/personBase/speedPension",//医疗参保登记进度查询
