@@ -14,6 +14,19 @@
 .bgc-greend {
     background-color: #30c114;
 }
+    .imgCenter{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            margin: auto;
+            z-index: 1;
+        }
 
 //字体颜色
 .font-white {
@@ -23,11 +36,13 @@
 .font-black {
     color: #3f3f3f;
 }
+.font-orange{
+    color:#ee8706;
+}
 
 .outline {
     outline: #b7b7b7 dashed 3px;
 }
-
 //ul
 .ul-list {
     padding: 1rem 0;
@@ -61,10 +76,10 @@
 //城乡养老参保登记
 .care {
     h3 {
-        font-size: 18px;
+        font-size: 1.25rem;
     }
     p {
-        font-size: 16px;
+        font-size: 1.25rem;
         padding: 0.78rem 0;
         span {
             color: #5665fa;
@@ -216,30 +231,32 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 100%;
     flex: 1;
     justify-content: center;
-    margin-top: 3rem;
     .demo-page {
         // width: 50%;
-        padding: 1rem 0rem;
+        padding: 1rem 0.4rem;
         box-sizing: border-box;
         .demo-pagepd {
             // height: 100%;
-            padding: 1rem 1rem;
+            padding: 1rem 0rem;
             box-sizing: border-box;
             position: relative;
             height: 100%;
             .img-box {
                 width: 27.25rem;
-                height: 17.875rem;
+                height: 24rem;
+                border: 1px solid #EAEAEA;
                 img {
                     width: 100%;
                 }
             }
             .img-box2 {
                 width: 17.25rem;
-                height: 17.25rem;
+                height:25rem;
+                img{
+                        .imgCenter;
+                }
             }
             .book-box {
                 position: relative;
@@ -265,7 +282,7 @@
     }
     .user-information {
         width: 100%;
-        height: 17.875rem;
+        height: 24rem;
         background-color: #99ccff;
         border-radius: 1.25rem;
         padding: 0 3rem;
@@ -279,13 +296,13 @@
                 display: flex; // justify-content: center;
                 // padding: .35rem 5rem;
                 box-sizing: border-box;
-                padding: .5rem .54rem;
+                padding: .4rem .25rem;
                 label {
-                    width: 6rem;
+                    width: 7.5rem;
                     text-align: right;
                     padding-right: .675rem;
                     line-height: 2;
-                    font-size: 16px;
+                    font-size: 20px;
                 }
                 input {
                     width: 15rem;
@@ -295,9 +312,9 @@
     }
     .information-search {
         width: 100%;
-        height: 17.25rem;
+        height: 25rem;
         background-color: #f5f5f5;
-        padding: 3.25rem 3rem;
+        padding: 1.25rem 1rem;
         box-sizing: border-box;
         border-radius: 0;
         display: flex;
@@ -308,7 +325,7 @@
         span {
             width: 15rem;
             line-height: 2;
-            font-size: 16px;
+            font-size: 20px;
         }
     }
 }
@@ -467,11 +484,18 @@
     }
 }
 
+
 .pay-alert {
     display: flex;
     flex-direction: column;
+    .alert-title{
+        font-size: 1.25rem;
+        text-align: center;
+        color:#5665fa;
+        padding: 1.8125rem 0;
+    }
     .pd {
-        padding: 4.75rem 5.875rem;
+        padding: 2rem 2.875rem;
         box-sizing: border-box;
         label {
             width: 10rem;
@@ -487,11 +511,52 @@
         button {
             padding: 0 3rem;
             position: relative;
-            bottom: 3.4375rem;
+           
         }
     }
 }
-
+.pd{
+    padding: 2rem 2.875rem;
+    .form-c{
+        display: flex;
+        padding: 0.5rem 0rem;
+        label{
+            width: 4rem;
+            line-height: 3;
+        }
+        .flex-box{
+            flex: 1;
+            display: flex;
+            position: relative;
+           .layui-form-select{
+            width: 100%;
+           }
+           .date-change{
+            width: 100%;
+            position: relative;
+           }
+         
+           .date{
+      position:absolute;
+    right: 0.25rem;
+    font-size: 1.5rem;
+    color: #5665fa;
+    top: 0.35rem;
+}
+        }
+        .test{
+            width: 100%;
+        }
+        .test:before{
+         content: "";
+    border-bottom: 1px solid #cecdcd;
+    position: absolute;
+    width: 25%;
+    top: 47%;
+    left: 37%;
+        }
+    }
+}
 .button {
     width: 100%;
     padding-top: 0.75rem;
@@ -612,3 +677,133 @@
         }
     }
 }
+
+.layui-btn-orange {
+    position: relative;
+    color: rgba(255, 255, 255, 1);
+    text-decoration: none;
+    padding: 4px;
+    border-radius: 5px;
+    box-shadow: 0px 7px 21px #F99D3A, 0px 10px 6px rgba(0, 0, 0, 0.9);
+    text-align: center;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.layui-btn:active {
+    box-shadow: 0px 3px 0px #aaa, 0px 3px 6px rgba(0, 0, 0, .9);
+    position: relative;
+    top: 6px;
+}
+figure{
+    width: 8.75rem;
+    height: 8.75rem;
+    figcaption{
+        text-align: center;
+        font-size:2rem;
+        color:#9999b0;
+        font-weight: 700;
+        padding: 2.1875rem 0;
+    }
+}
+//认证成功
+.rz-succcess{
+        height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+//帮村民找工作
+.bg-color{
+    background-color:transparent!important;
+}
+  section{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    padding: 1.3125rem 1.625rem;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 1.25rem;
+        justify-content: space-between;
+        margin:0.75rem 0;
+      .job{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .job-box{
+            width: 3.4375rem;
+            height: 3.4375rem;
+        }
+        .p-left{
+            padding: 0 2.375rem;
+        }
+        span{
+            color:#8c8c8c;
+            padding: 0 0.4375rem;
+            em{
+                 color:#8c8c8c;
+                 padding: 0 .4375rem;
+            }
+        }
+
+      }
+  }
+  .number{
+    font-size: 1.125rem;
+    text-align: center;
+  }
+  .tel{
+    width: 0.8125rem;
+    height: 1.25rem;
+       background-image: url(../image/tel.png);
+       background-repeat: no-repeat;
+  }
+  //工作详情
+    .more-news{
+        display: flex;
+        flex-direction: column;
+        .more-title{
+            display: flex;
+            justify-content: space-between;
+            h4{
+                font-size: 1.0rem;
+                color:#5665fa;
+            }
+            span{
+                font-size: 1.0rem;
+                color:#;
+            }
+        }
+        .imgbox{
+            width: 1.625rem;
+            height: 1.625rem;
+        }
+        .title-new{
+            padding: 1.625rem 0;
+              ul{
+            display: flex;
+            li{
+                display: flex;
+                    flex: 1;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.0rem;
+            }
+        }
+        }
+        .treatment{
+            font-size: 1rem;
+            padding: 1.0625rem 0;
+        }
+        .btn{
+            justify-content: center;
+            padding-top: 5rem;
+            button{
+                margin: 0 3rem;
+            }
+        }
+      
+    }

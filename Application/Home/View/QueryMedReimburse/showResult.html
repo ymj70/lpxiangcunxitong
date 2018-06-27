@@ -1,1 +1,148 @@
-<h1>医疗报销查询 展示结果页</h1>
+        <div class="framePage">
+            <div class="framePage-title">
+                <a href="javascript:;">信息查询</a>
+                <i>></i>
+                <a href="javascript:;" class="cur-a">医疗报销结果查询</a>
+            </div>
+            <div class="framePage-body layui-form">
+              <div class="content">
+                <div class="title information_title news_title news_title1">
+                  <h2>医疗报销结果查询</h2>
+                  <p>
+                    <span class="mr">姓名：于海英</span>
+                    <span>身份证号码：13030219960526114X</span>
+                  </p>
+                </div>
+              </div>
+              <div class="operationControl operationControl1">
+                <div class="searchBox searchBoxNew">
+                    <input placeholder="选择日期范围" type="text" class="layui-input float-l" id="month">
+                    <div class="float-l input-btn">
+                        <button class="bgc-blued layui-btn" onclick="opSearch()">
+                            <i class="layui-icon layui-icon-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="searchBtns">
+                    <button class="bgc-blued layui-btn" onclick="opLook()">打印</button>
+                    <button class="bgc-redd layui-btn" onclick="opClose()">关闭</button>
+                </div>
+              </div>
+              <div class="framePage-scroll">
+                  <div class="ovy-a">
+                    <table class="grid-table grid-tableNew" id="gridTable">
+                        <thead>
+                            <tr>
+                                <td><span><b>结算时间</b></span></td>
+                                <td><span><b>就诊类别</b></span></td>
+                                <td><span><b>定点机构</b></span></td>
+                                <td><span><b>总费用</b></span></td>
+                                <td><span><b>个人支付</b></span></td>
+                                <td><span><b>基本医疗报销</b></span></td>
+                                <td><span><b>报销收款银行</b></span></td>
+                                <td><span><b>报销收款卡号</b></span></td>
+                                <td><span><b>打印</b></span></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span>2018-01-03</span></td>
+                                <td><span>住院</span></td>
+                                <td><span>滦平县医院</span></td>
+                                <td><span>5381.355</span></td>
+                                <td><span>222</span></td>
+                                <td><span>1733.86</span></td>
+                                <td><span>农村信用合作社</span></td>
+                                <td><span>*********4567</span></td>
+                                <td>
+                                    <button class="layui-btn bgc-blued">打印收据</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span>2018-01-03</span></td>
+                                <td><span>门诊</span></td>
+                                <td><span>滦平县医院</span></td>
+                                <td><span>5381.355</span></td>
+                                <td><span>222</span></td>
+                                <td><span>1733.86</span></td>
+                                <td><span>农村信用合作社</span></td>
+                                <td><span>*********4567</span></td>
+                                <td>
+                                    <button class="layui-btn bgc-blued">打印收据</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span>2018-01-03</span></td>
+                                <td><span>住院</span></td>
+                                <td><span>滦平县医院</span></td>
+                                <td><span>5381.355</span></td>
+                                <td><span>222</span></td>
+                                <td><span>1733.86</span></td>
+                                <td><span>农村信用合作社</span></td>
+                                <td><span>*********4567</span></td>
+                                <td>
+                                    <button class="layui-btn bgc-blued">打印收据</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span>2018-01-03</span></td>
+                                <td><span>住院</span></td>
+                                <td><span>滦平县医院</span></td>
+                                <td><span>5381.355</span></td>
+                                <td><span>222</span></td>
+                                <td><span>1733.86</span></td>
+                                <td><span>农村信用合作社</span></td>
+                                <td><span>*********4567</span></td>
+                                <td>
+                                    <button class="layui-btn bgc-blued">打印收据</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span>2018-01-03</span></td>
+                                <td><span>住院</span></td>
+                                <td><span>滦平县医院</span></td>
+                                <td><span>5381.355</span></td>
+                                <td><span>222</span></td>
+                                <td><span>1733.86</span></td>
+                                <td><span>农村信用合作社</span></td>
+                                <td><span>*********4567</span></td>
+                                <td>
+                                    <button class="layui-btn bgc-blued">打印收据</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span>2018-01-03</span></td>
+                                <td><span>住院</span></td>
+                                <td><span>滦平县医院</span></td>
+                                <td><span>5381.355</span></td>
+                                <td><span>222</span></td>
+                                <td><span>1733.86</span></td>
+                                <td><span>农村信用合作社</span></td>
+                                <td><span>*********4567</span></td>
+                                <td>
+                                    <button class="layui-btn bgc-blued">打印收据</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                  </div>
+              </div>
+              <div class="pageNum" id="pageNum"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<include file="Public:footer" />
+<script>
+  var laydate = layui.laydate;
+  laydate.render({
+    elem: '#month' //指定元素
+        ,
+    range: true
+})
+
+function opClose () {
+  window.location.href='yliaobxcx.html'
+}
+</script>
+</html>

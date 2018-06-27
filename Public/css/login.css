@@ -510,7 +510,6 @@
 .index .index-content .pageContol {
   height: 100%;
   background-color: #F5F5F5;
-  width: 88%;
   -ms-flex: 1;
       flex: 1;
   box-sizing: border-box;
@@ -685,6 +684,9 @@
   padding: 1.25rem 1.438rem 1.875rem;
   box-sizing: border-box;
 }
+.form_cell {
+  font-size: 1.25rem;
+}
 .content {
   display: -ms-flexbox;
   display: flex;
@@ -755,9 +757,9 @@
 }
 .content .content_form .form_box .inputBox .form .form-cell img {
   position: absolute;
-  top: 0.25rem;
+  top: 0.5rem;
   right: .5rem;
-  width: 26px;
+  width: 1.2rem;
   height: auto;
 }
 .content .content_form .form_box .inputBox .form .form-cell i {
@@ -795,12 +797,12 @@
 .content .title h2 {
   font-weight: 500;
   color: #555656;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   margin-bottom: 2.375rem;
 }
 .content .title p span {
   line-height: 2.562rem;
-  font-size: 1.0rem;
+  font-size: 1.25rem;
   color: #373636;
   display: block;
 }
@@ -906,7 +908,7 @@
   font-weight: 400;
 }
 .content .img_content {
-  padding: 2.562rem 0 5.062rem;
+  padding: 2.562rem 3rem 5.062rem;
   box-sizing: border-box;
   width: 100%;
   display: -ms-flexbox;
@@ -994,10 +996,10 @@
 .content .content_form .form-wrap h3 {
   background: url('../image/title_bg.png');
   color: #fff;
-  font-size: 16px;
+  font-size: 1.25rem;
   background-position: 0 0;
   background-repeat: no-repeat;
-  padding: 0.688rem 3.438rem 0.875rem 1.75rem;
+  padding: 0.4rem 3.438rem 0.875rem 1.75rem;
   box-sizing: border-box;
   margin-bottom: 1.125rem;
 }
@@ -1020,4 +1022,238 @@
   border-top: 1px solid #efefef;
   padding-top: 0.625rem;
   box-sizing: border-box;
+}
+.framePage-body #gridTable span {
+  font-size: 1.25rem;
+}
+.framePage-body .job_top {
+  border: 0;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+}
+.framePage-body .tab_wrap {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  width: 100%;
+}
+.framePage-body .tab_wrap .tab_title {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  border: 0;
+  background-color: #f7f7f7;
+  padding: 1.0rem 0;
+  height: auto;
+  -ms-flex-align: center;
+      align-items: center;
+}
+.framePage-body .tab_wrap .tab_title .hidden1 {
+  display: none;
+}
+.framePage-body .tab_wrap .tab_title li {
+  padding: 0.75rem 1.0rem 0.562rem;
+  box-sizing: border-box;
+  margin-right: 6.438rem;
+}
+.framePage-body .tab_wrap .tab_title li > div {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align: center;
+      align-items: center;
+}
+.framePage-body .tab_wrap .tab_title li > div span {
+  color: #555656;
+  font-size: 1rem;
+}
+.framePage-body .tab_wrap .tab_title .show {
+  display: none;
+}
+.framePage-body .tab_wrap .tab_title .show img {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  width: 5.375rem;
+  height: 5.188rem;
+}
+.framePage-body .tab_wrap .tab_title .active {
+  display: block;
+}
+.framePage-body .tab_wrap .tab_title .mr {
+  margin-right: 0;
+}
+.framePage-body .tab_wrap .tab_title .layui-this:after {
+  border: 0;
+}
+.framePage-body .tab_wrap .tab_content {
+  padding: 1.375rem 0 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+.framePage-body .tab_wrap .tab_content .content_item .active1 {
+  display: none !important;
+}
+.framePage-body .tab_wrap .tab_content .content_item h3 {
+  border-left: 4px solid #5665FA;
+  padding-left: 0.5rem;
+  box-sizing: border-box;
+  font-size: 1.25rem;
+  margin-bottom: 1.875rem;
+}
+.framePage-body .tab_wrap .tab_content .content_item .content_box {
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+}
+.framePage-body .tab_wrap .tab_content .content_item .content_box .box_left {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  width: 30%;
+}
+.framePage-body .tab_wrap .tab_content .content_item .content_box .box_left .img_top {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  background-color: #f7f7f7;
+  padding: 1.875rem 2.312rem 1.562rem;
+  box-sizing: border-box;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+}
+.framePage-body .tab_wrap .tab_content .content_item .content_box .box_left .img_top img {
+  border: 1px solid #ccc;
+  margin-bottom: 1.5rem;
+  width: 9.688rem;
+  height: auto;
+}
+.framePage-body .tab_wrap .tab_content .content_item .content_box .box_left .img_top span {
+  color: #232323;
+  font-size: 1.125rem;
+  display: block;
+}
+.framePage-body .tab_wrap .tab_content .content_item .content_box .box_left button {
+  width: 9.625rem;
+  margin: 1.188rem auto 2.375rem;
+}
+.framePage-body .tab_wrap .tab_content .content_item .content_box .box_right {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex: 1;
+      flex: 1;
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+.framePage-body .tab_wrap .tab_content .content_item .content_box .box_right .cell_box {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  margin-left: 9rem;
+}
+.framePage-body .tab_wrap .tab_content .content_item .content_box .box_right .cell_box .ml {
+  margin-left: 3.0rem;
+}
+.framePage-body .tab_wrap .tab_content .content_item .content_box .box_right .cell_box label {
+  text-align: right;
+}
+.framePage-body .tab_wrap .tab_content .content_item .content_box .box_right .form-cell {
+  position: relative;
+  -ms-flex: 1;
+      flex: 1;
+}
+.framePage-body .tab_wrap .tab_content .content_item .content_box .box_right .form-cell img {
+  position: absolute;
+  top: 0.5rem;
+  right: .5rem;
+  width: 1.2rem;
+  height: auto;
+}
+.framePage-body .tab_wrap .tab_content .content_item .content_box .box_right .ml-cell {
+  margin-left: 6.125rem;
+}
+.framePage-body .tab_wrap .tab_content .content_item .content_box .box_right .ml-cell1 {
+  margin-left: 7.3rem;
+}
+.framePage-body .tab_wrap .tab_content .content_item .content_box .box_right .ml-cell2 {
+  margin-left: 2.5rem;
+}
+.framePage-body .tab_wrap .tab_content .content_item .educational_title {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+}
+.framePage-body .tab_wrap .tab_content .content_item .educational_bgc {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+.framePage-body .tab_wrap .tab_content .content_item .educational_bgc .form {
+  display: -ms-flexbox;
+  display: flex;
+  border-top: 1px solid #efefef;
+  padding: 1.0rem 10rem;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  box-sizing: border-box;
+}
+.framePage-body .tab_wrap .tab_content .content_item .educational_bgc .form .textarea_h {
+  height: 6.125rem;
+}
+.framePage-body .tab_wrap .tab_content .content_item .educational_bgc .form .form-cell {
+  position: relative;
+  -ms-flex: 1;
+      flex: 1;
+}
+.framePage-body .tab_wrap .tab_content .content_item .educational_bgc .form .form-cell img {
+  position: absolute;
+  top: 0.5rem;
+  right: .5rem;
+  width: 1.2rem;
+  height: auto;
+}
+.framePage-body .tab_wrap .tab_content .content_item .educational_bgc .form .form-cell .po-r {
+  position: relative;
+}
+.framePage-body .tab_wrap .tab_content .content_item .educational_bgc .form .form-cell .po-r img {
+  position: absolute;
+  top: 0.5rem;
+  right: .5rem;
+  width: 1.2rem;
+  height: auto;
+}
+.framePage-body .tab_wrap .tab_content .content_item .educational_bgc .form .form-cell span {
+  margin-left: 1.25rem;
+}
+.framePage-body .tab_wrap .tab_content .content_item .educational_bgc .form .form-cell .yx_ml {
+  margin-left: 2.5rem;
+}
+.framePage-body .tab_wrap .tab_content .content_item .educational_bgc .form_show {
+  display: none;
+  position: relative;
+}
+.framePage-body .tab_wrap .tab_content .content_item .educational_bgc .form_show .po-o {
+  position: absolute;
+  right: 0;
+  bottom: 1.5rem;
+}
+body .demo-class {
+  border: none;
 }

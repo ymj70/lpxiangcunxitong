@@ -10,11 +10,27 @@
 .bgc-greend {
   background-color: #30c114;
 }
+.imgCenter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  z-index: 1;
+}
 .font-white {
   color: #edebeb;
 }
 .font-black {
   color: #3f3f3f;
+}
+.font-orange {
+  color: #ee8706;
 }
 .outline {
   outline: #b7b7b7 dashed 3px;
@@ -48,10 +64,10 @@
   font-size: 18px;
 }
 .care h3 {
-  font-size: 18px;
+  font-size: 1.25rem;
 }
 .care p {
-  font-size: 16px;
+  font-size: 1.25rem;
   padding: 0.78rem 0;
 }
 .care p span {
@@ -204,33 +220,45 @@
   -ms-flex-direction: row;
       flex-direction: row;
   width: 100%;
-  height: 100%;
   -ms-flex: 1;
       flex: 1;
   -ms-flex-pack: center;
       justify-content: center;
-  margin-top: 3rem;
 }
 .demo .demo-page {
-  padding: 1rem 0rem;
+  padding: 1rem 0.4rem;
   box-sizing: border-box;
 }
 .demo .demo-page .demo-pagepd {
-  padding: 1rem 1rem;
+  padding: 1rem 0rem;
   box-sizing: border-box;
   position: relative;
   height: 100%;
 }
 .demo .demo-page .demo-pagepd .img-box {
   width: 27.25rem;
-  height: 17.875rem;
+  height: 24rem;
+  border: 1px solid #EAEAEA;
 }
 .demo .demo-page .demo-pagepd .img-box img {
   width: 100%;
 }
 .demo .demo-page .demo-pagepd .img-box2 {
   width: 17.25rem;
-  height: 17.25rem;
+  height: 25rem;
+}
+.demo .demo-page .demo-pagepd .img-box2 img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  z-index: 1;
 }
 .demo .demo-page .demo-pagepd .book-box {
   position: relative;
@@ -254,7 +282,7 @@
 }
 .demo .user-information {
   width: 100%;
-  height: 17.875rem;
+  height: 24rem;
   background-color: #99ccff;
   border-radius: 1.25rem;
   padding: 0 3rem;
@@ -274,23 +302,23 @@
   display: -ms-flexbox;
   display: flex;
   box-sizing: border-box;
-  padding: .5rem .54rem;
+  padding: .4rem .25rem;
 }
 .demo .user-information > .information-box > div label {
-  width: 6rem;
+  width: 7.5rem;
   text-align: right;
   padding-right: .675rem;
   line-height: 2;
-  font-size: 16px;
+  font-size: 20px;
 }
 .demo .user-information > .information-box > div input {
   width: 15rem;
 }
 .demo .information-search {
   width: 100%;
-  height: 17.25rem;
+  height: 25rem;
   background-color: #f5f5f5;
-  padding: 3.25rem 3rem;
+  padding: 1.25rem 1rem;
   box-sizing: border-box;
   border-radius: 0;
   display: -ms-flexbox;
@@ -304,7 +332,7 @@
 .demo .information-search span {
   width: 15rem;
   line-height: 2;
-  font-size: 16px;
+  font-size: 20px;
 }
 .btn-box {
   display: -ms-flexbox;
@@ -477,8 +505,14 @@
   -ms-flex-direction: column;
       flex-direction: column;
 }
+.pay-alert .alert-title {
+  font-size: 1.25rem;
+  text-align: center;
+  color: #5665fa;
+  padding: 1.8125rem 0;
+}
 .pay-alert .pd {
-  padding: 4.75rem 5.875rem;
+  padding: 2rem 2.875rem;
   box-sizing: border-box;
 }
 .pay-alert .pd label {
@@ -497,7 +531,50 @@
 .pay-alert .pay-btn button {
   padding: 0 3rem;
   position: relative;
-  bottom: 3.4375rem;
+}
+.pd {
+  padding: 2rem 2.875rem;
+}
+.pd .form-c {
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.5rem 0rem;
+}
+.pd .form-c label {
+  width: 4rem;
+  line-height: 3;
+}
+.pd .form-c .flex-box {
+  -ms-flex: 1;
+      flex: 1;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+.pd .form-c .flex-box .layui-form-select {
+  width: 100%;
+}
+.pd .form-c .flex-box .date-change {
+  width: 100%;
+  position: relative;
+}
+.pd .form-c .flex-box .date {
+  position: absolute;
+  right: 0.25rem;
+  font-size: 1.5rem;
+  color: #5665fa;
+  top: 0.35rem;
+}
+.pd .form-c .test {
+  width: 100%;
+}
+.pd .form-c .test:before {
+  content: "";
+  border-bottom: 1px solid #cecdcd;
+  position: absolute;
+  width: 25%;
+  top: 47%;
+  left: 37%;
 }
 .button {
   width: 100%;
@@ -625,4 +702,144 @@
 .center-main .btn-bo button {
   padding: 0 4.25rem 0 4.25rem;
   box-sizing: border;
+}
+.layui-btn-orange {
+  position: relative;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 4px;
+  border-radius: 5px;
+  box-shadow: 0px 7px 21px #F99D3A, 0px 10px 6px rgba(0, 0, 0, 0.9);
+  text-align: center;
+  transition: all .1s ease;
+}
+.layui-btn:active {
+  box-shadow: 0px 3px 0px #aaa, 0px 3px 6px rgba(0, 0, 0, 0.9);
+  position: relative;
+  top: 6px;
+}
+figure {
+  width: 8.75rem;
+  height: 8.75rem;
+}
+figure figcaption {
+  text-align: center;
+  font-size: 2rem;
+  color: #9999b0;
+  font-weight: 700;
+  padding: 2.1875rem 0;
+}
+.rz-succcess {
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+.bg-color {
+  background-color: transparent!important;
+}
+section {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  background-color: #ffffff;
+  padding: 1.3125rem 1.625rem;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 1.25rem;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  margin: 0.75rem 0;
+}
+section .job {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+}
+section .job .job-box {
+  width: 3.4375rem;
+  height: 3.4375rem;
+}
+section .job .p-left {
+  padding: 0 2.375rem;
+}
+section .job span {
+  color: #8c8c8c;
+  padding: 0 0.4375rem;
+}
+section .job span em {
+  color: #8c8c8c;
+  padding: 0 .4375rem;
+}
+.number {
+  font-size: 1.125rem;
+  text-align: center;
+}
+.tel {
+  width: 0.8125rem;
+  height: 1.25rem;
+  background-image: url(../image/tel.png);
+  background-repeat: no-repeat;
+}
+.more-news {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+.more-news .more-title {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+}
+.more-news .more-title h4 {
+  font-size: 1.0rem;
+  color: #5665fa;
+}
+.more-news .more-title span {
+  font-size: 1.0rem;
+  color: #;
+}
+.more-news .imgbox {
+  width: 1.625rem;
+  height: 1.625rem;
+}
+.more-news .title-new {
+  padding: 1.625rem 0;
+}
+.more-news .title-new ul {
+  display: -ms-flexbox;
+  display: flex;
+}
+.more-news .title-new ul li {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex: 1;
+      flex: 1;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  font-size: 1.0rem;
+}
+.more-news .treatment {
+  font-size: 1rem;
+  padding: 1.0625rem 0;
+}
+.more-news .btn {
+  -ms-flex-pack: center;
+      justify-content: center;
+  padding-top: 5rem;
+}
+.more-news .btn button {
+  margin: 0 3rem;
 }

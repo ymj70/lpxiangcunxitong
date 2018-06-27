@@ -1,2 +1,138 @@
-<h1>待遇资格认证  获取身份证信息页</h1>
-<a href="{:U('Home/CertTreatmentQualified/startCert')}">下一步</a>
+       <div class="framePage">
+            <div class="framePage-title">
+                <a href="javascript:;" class="cur-a">待遇资格认证</a>
+            </div>
+            <div class="framePage-body layui-form">
+                <div class="framePage-scroll">
+                    <div class="ovy-a">
+                        <div class="bg-box">
+                            <div class="care">
+                                <div class="h3-title">
+                                    <h3>参保缴费查询</h3>
+                                </div>
+                                <div class="pbox">
+                                    <p>1.请将用户身份证或社保卡按下图样式放在读卡器上，点击【读取】按钮读取人员信息。</p>
+                                    <p>2.读取信息过程中请勿将身份证或社保卡拨出。</p>
+                                </div>
+                            </div>
+                            <div class="demo">
+                                <div class="demo-page">
+                                    <div class="demo-pagepd">
+                                        <div class="img-box2">
+                                            <img src="__PUBLIC__/image/dk.png" alt="">
+                                        </div>
+                                        <div class="button">
+                                            <button class="layui-btn bgc-greend">读取身份证</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="demo-page">
+                                    <div class="demo-pagepd">
+                                        <div class="img-box2">
+                                            <img src="__PUBLIC__/image/sbk.png" alt="">
+                                        </div>
+                                        <div class="button">
+                                            <button class="layui-btn bgc-greend">读取社保卡</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="demo-page">
+                                    <div class="demo-pagepd">
+                                        <div class="user-information information-search">
+                                            <div class="information-box">
+                                                <div class="p0">
+                                                    <div>
+                                                        <label for="">身份证号</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="text" class="layui-input" id="idCard">
+                                                        <button class="bgc-blued layui-btn" onclick="goSearch()">
+                                                            <i class="layui-icon layui-icon-search"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="p0">
+                                                    <div>
+                                                        <label for="">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label>
+                                                    </div>
+                                                    <div>
+                                                        <span>杨梦洁</span>
+                                                    </div>
+                                                </div>
+                                                <div class="p0">
+                                                    <div>
+                                                        <label for="">身份证号</label>
+                                                    </div>
+                                                    <div>
+                                                        <span>130204199403173144</span>
+                                                    </div>
+                                                </div>
+                                                <div class="p0">
+                                                    <div>
+                                                        <label for="">出生日期</label>
+                                                    </div>
+                                                    <div>
+                                                        <span>1994-03-17</span>
+                                                    </div>
+                                                </div>
+                                                <div class="p0">
+                                                    <div>
+                                                        <label for="">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>
+                                                    </div>
+                                                    <div>
+                                                        <span>女</span>
+                                                    </div>
+                                                </div>
+                                                <div class="p0">
+                                                    <div>
+                                                        <label for="">民&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;族</label>
+                                                    </div>
+                                                    <div>
+                                                        <span>汉</span>
+                                                    </div>
+                                                </div>
+                                                <div class="p0">
+                                                    <div>
+                                                        <label for="">户籍地址</label>
+                                                    </div>
+                                                    <div>
+                                                        <span>河北省秦皇岛市天涯海角</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="button">
+                                            <button class="layui-btn bgc-blued  size" onclick="authen()">开始认证</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<include file="Public:footer" />
+<script>
+    //校验
+     function check(){
+        var card=/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[A-Z])$/;
+        if (!card.test($('#idCard').val())) {
+            layer.msg('请输入正确的身份证号！');
+            return false;
+        }else{
+            return true;
+        }
+    }
+    function goSearch(){
+        if(check()){
+           //ajax
+        }
+    }
+    function authen(){
+    	 window.location.href = "{:U('Home/CertTreatmentQualified/startCert')}"
+    }
+</script>
+</html>
