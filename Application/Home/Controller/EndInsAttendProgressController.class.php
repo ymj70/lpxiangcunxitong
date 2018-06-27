@@ -19,10 +19,13 @@ class EndInsAttendProgressController extends CommonController
     }
     public function showResult(){
         if (!IS_POST){
+            $userinfo["realName"]=I("get.realName");
+            $userinfo["idcard"]=I("get.idcard");
+            $this->assign("userinfo",$userinfo);
             $this->display("showResult");
             return;
         }
-        $data["idcard"]=I("post.idCard");
+        $data["idcard"]=I("post.idcard");
         $data["examineType"]=1;
         //请求接口 检测用户是否参保
         $javaurl = $this->javaUrl;
@@ -41,7 +44,7 @@ class EndInsAttendProgressController extends CommonController
             $info["code"] = -1;
             $info["message"] = $result["msg"];
             if (empty($info["message"])) {
-                $info["message"] = "信息保存接口请求失败";
+                $info["message"] = "接口请求失败";
             }
         }
         $this->ajaxReturn($info);

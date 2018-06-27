@@ -39,7 +39,7 @@
                                                 </div>
                                                 <div>
                                                     <label for="">身份证号</label>
-                                                    <input type="text" class="layui-input" id="idCard">
+                                                    <input type="text" class="layui-input" id="idcard">
                                                 </div>
                                                 <div>
                                                     <label for="">民族</label>
@@ -70,7 +70,32 @@
   function opLook () {
       var idcard=$("#idcard").val();
       var realName=$("#realName").val();
-      window.location.href="{:U('Home/MedInsAttendProgress/showResult/idcard/"+idcard+"/realName/"+realName+"')}"
+      $.ajax({
+          type: "post",
+          url: "{:U('/Home/MedInsAttendProgress/showResult')}",
+          data: {
+              idcard:idcard,//姓名
+          },
+          dataType: "json",
+          beforeSend: function(){
+              if (idcard==''){
+                  layer.msg('身份证号不能为空');
+                  return false;
+              }
+          },
+          success: function(ret) {
+              if (ret.code == 1) {
+                  window.location.href="{:U('Home/MedInsAttendProgress/showResult/idcard/"+idcard+"/realName/"+realName+"')}"
+              }else {
+                  if (ret.message == ''){
+                      layer.msg('请求失败');
+                  }else {
+                      layer.msg(ret.message);
+                  }
+              }
+          },
+      });
+
 }
 </script>
 </html>

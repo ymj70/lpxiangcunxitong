@@ -68,9 +68,33 @@
 <include file="Public:footer" />
 <script>
 	function qquery(){
-	    var idcard=$("#idcard").val();
-	    var realName=$("#realName").val();
-		window.location.href="{:U('Home/EndInsAttendProgress/showResult/idcard/"+idcard+"/realName/"+realName+"')}"
+        var idcard=$("#idCard").val();
+        var realName=$("#realName").val();
+        $.ajax({
+            type: "post",
+            url: "{:U('/Home/EndInsAttendProgress/showResult')}",
+            data: {
+                idcard:idcard,//姓名
+            },
+            dataType: "json",
+            beforeSend: function(){
+                if (idcard==''){
+                    layer.msg('身份证号不能为空');
+                    return false;
+                }
+            },
+            success: function(ret) {
+                if (ret.code == 1) {
+                    window.location.href="{:U('Home/EndInsAttendProgress/showResult/idcard/"+idcard+"/realName/"+realName+"')}"
+                }else {
+                    if (ret.message == ''){
+                        layer.msg('请求失败');
+                    }else {
+                        layer.msg(ret.message);
+                    }
+                }
+            },
+        });
 	}
 </script>
 </html>

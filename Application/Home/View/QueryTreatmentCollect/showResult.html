@@ -18,7 +18,7 @@
             <div class="searchBox searchBoxNew">
                 <input placeholder="选择日期范围" type="text" class="layui-input float-l" id="month">
                 <div class="float-l input-btn">
-                    <button class="bgc-blued layui-btn" onclick="opSearch()">
+                    <button class="bgc-blued layui-btn" onclick="getData()">
                         <i class="layui-icon layui-icon-search"></i>
                     </button>
                 </div>
@@ -57,14 +57,23 @@
 <include file="Public:footer" />
 <script>
     $(function () {
+        getData()
+    })
+    function getData(){
+        var startTime=$("#year").val();
+        var endTime=$("#year2").val();
+        if (startTime > endTime){
+            layer.msg('结束年度不能小于开始年度');
+            return false;
+        }
         $.ajax({
             type: "post",
             url: "{:U('/Home/QueryTreatmentCollect/showResult')}",
             data: {
                 idCard: $("#idCard").html(), //身份证号
                 realName: $("#realName").html(), //姓名
-                //idCard:"130321199310221238", //身份证号
-               // realName:"王雨栋", //姓名
+                startTime: startTime,//开始时间
+                endTime:endTime,//结束时间
             },
             dataType: "json",
             beforeSend: function() {},
@@ -82,7 +91,7 @@
                 }
             },
         });
-    })
+    }
     var laydate = layui.laydate;
     laydate.render({
         elem: '#month' //指定元素

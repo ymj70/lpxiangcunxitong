@@ -13,8 +13,8 @@
                         <div class="care">
                             <h3>参保登记审批进度查询结果</h3>
                             <div class="news">
-                                <label for="">姓名： <span id="realName"></span></label>
-                                <label for="">身份证号： <span id="idCard"></span></label>
+                                <label for="">姓名： <span id="realName">{$userinfo["realName"]}</span></label>
+                                <label for="">身份证号： <span id="idCard">{$userinfo["idcard"]}</span></label>
                             </div>
                         </div>
                         <div class="approval">
@@ -69,20 +69,14 @@
               type: "post",
               url: "{:U('/Home/EndInsAttendProgress/showResult')}",
               data: {
-                  //idCard: $("#idCard").val(), //身份证号
-                  //realName: $("#realName").val(), //姓名
-                  idCard:"130321199310221238", //身份证号
-                  realName:"王雨栋", //姓名
+                  idcard: $("#idCard").html(), //身份证号
+                  realName: $("#realName").html(), //姓名
               },
               dataType: "json",
               beforeSend: function() {},
               success: function(ret) {
                   if (ret.code == 1) {
                       var data=ret.data;
-                      console.log(data);
-
-                      $("#realName").html(data.realName);
-                      $("#idCard").html(data.idcard);
                       //判断村的状态
                       if (data.status >=0){
                           $("#cun").attr("class","bgc-green font-white")

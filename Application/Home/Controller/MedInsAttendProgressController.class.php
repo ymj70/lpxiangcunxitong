@@ -22,10 +22,13 @@ class MedInsAttendProgressController extends CommonController
     }
     public function showResult(){
         if (!IS_POST){
+            $userinfo["realName"]=I("get.realName");
+            $userinfo["idcard"]=I("get.idcard");
+            $this->assign("userinfo",$userinfo);
             $this->display("showResult");
             return;
         }
-        $data["idcard"]=I("post.idCard");
+        $data["idcard"]=I("post.idcard");
         $data["examineType"]=0;
         //请求接口 检测用户是否参保
         $javaurl = $this->javaUrl;
