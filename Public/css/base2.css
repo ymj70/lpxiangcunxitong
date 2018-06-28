@@ -236,7 +236,7 @@
   box-sizing: border-box;
 }
 .demo .demo-page .demo-pagepd {
-  padding: 1rem 0rem;
+  width: 100%;
   box-sizing: border-box;
   position: relative;
 }
@@ -267,13 +267,21 @@
 }
 .demo .demo-page .demo-pagepd .book-box {
   position: relative;
-  height: 100%;
+  width: 100%;
+  padding-top: 100%;
 }
 .demo .demo-page .demo-pagepd .book-box img {
-  width: 100%;
-  height: inherit;
-  position: relative;
-  bottom: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  z-index: 1;
 }
 .demo .hk-book {
   padding: 1rem 3rem;
