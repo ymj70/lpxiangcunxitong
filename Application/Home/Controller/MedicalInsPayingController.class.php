@@ -34,6 +34,13 @@ class MedicalInsPayingController extends CommonController
             return;
         }
         $peopleArr=$_POST;
+        foreach ($peopleArr as $value){
+           $data["name"]=$value["realName"];
+           $data["sex"]=$value["sex"];;
+           $data["amount"]=$value["money"];
+           $data["place"]=$value["address"];
+           $data["idcard"]=$value["idcard"];
+        }
 
         if (empty($peopleArr)){
             $info["code"]=-1;

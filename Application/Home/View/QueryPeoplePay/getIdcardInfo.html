@@ -22,7 +22,7 @@
                                             <img src="__PUBLIC__/image/xx_cb_03.png" alt=""  class="imgCenter">
                                         </div>
                                         <div class="button">
-                                            <button class="layui-btn bgc-greend bttn-green">读取身份证</button>
+                                            <button class="layui-btn bgc-greend bttn-green" onclick="getidCard()">读取身份证</button>
                                         </div>
                                     </div>
                                 </div>
@@ -32,7 +32,7 @@
                                             <img src="__PUBLIC__/image/xx_cb1_05.png" alt="" class="imgCenter">
                                         </div>
                                         <div class="button">
-                                            <button class="layui-btn bgc-greend bttn-green">读取社保卡</button>
+                                            <button class="layui-btn bgc-greend bttn-green" onclick="getSBCard()">读取社保卡</button>
                                         </div>
                                     </div>
                                 </div>
@@ -121,5 +121,88 @@
   function opLook () {
     window.location.href="{:U('Home/QueryPeoplePay/showResult')}"
 }
+
+
+  /************************读取社保卡和身份证开始***********************************/
+  var idCardStatus = true;
+  function getidCard() {
+      if (!idCardStatus) {
+          layer.msg("身份证正在读取中请稍后在试");
+          return
+      }
+      idCardStatus = false;
+      $("#realName").attr("value", "")
+      $("#idCard").attr("value", "")
+      try {
+          jsidcard.getIdCardInfo(function (idnumber, name, nation, gender, birthDate, addr, idBeginDate, idEndDate) {
+              if (idnumber && name && nation && gender && birthDate && addr && idBeginDate && idEndDate) {
+                  readIdcardSwitch = false;
+                  birthDate = birthDate.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '');
+                  idBeginDate = idBeginDate.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '');
+                  idEndDate = idEndDate.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '');
+                  var info = {
+                      idcard: $.trim(idnumber),
+                      name: $.trim(name),
+                      nation: $.trim(nation),
+                      gender: $.trim(gender),
+                      birthdate: $.trim(birthDate),
+                      addr: $.trim(addr),
+                      idBeginDate: $.trim(idBeginDate),
+                      idEndDate: $.trim(idEndDate)
+                  };
+                  idCardStatus = true;
+                  infoTuiSong(info)
+              } else {
+                  layer.msg("未读取到身份证信息")
+                  idCardStatus = true;
+              }
+          });
+      } catch (err) {
+          layer.msg("读取身份证信息失败")
+          idCardStatus = true;
+      }
+  }
+
+  function getSBCard() {
+      if (!idCardStatus) {
+          layer.msg("社保卡正在读取中请稍后在试");
+          return
+      }
+      idCardStatus = false;
+      try {
+          jssicard.ReadCard(function (idnumber, name) {
+              if (idnumber && name) {
+                  var info = {
+                      idcard: idnumber,
+                      name: name,
+                  };
+                  idCardStatus = true;
+                  infoTuiSong(info)
+              } else {
+                  layer.msg("未读取到社保卡信息")
+                  idCardStatus = true;
+              }
+          });
+      } catch (err) {
+          layer.msg("读取社保卡信息失败")
+          idCardStatus = true;
+      }
+  }
+
+  function infoTuiSong(info) {
+      $("#realName").html('')
+      $("#idCardhtml").html()
+      $("#nation").html('')
+      $("#sex").html('')
+      $("#birthday").html('')
+      $("#idcardAddress").html('')
+      $("#realName").html(info.name)
+      $("#idCardhtml").html(info.idcard)
+      $("#nation").html(info.nation)
+      $("#sex").html(info.gender)
+      $("#birthday").html(info.birthdate)
+      $("#idcardAddress").html(info.addr)
+  }
+  /************************读取社保卡和身份证结束***********************************/
 </script>
 </html>
