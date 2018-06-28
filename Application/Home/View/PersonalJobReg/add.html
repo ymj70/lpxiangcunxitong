@@ -107,7 +107,7 @@
                                           <label><b>*</b>&nbsp出生日期</label>
                                           <div>
                                             <input placeholder="选择日期" type="text" class="layui-input float-l" id="month">
-                                            <img src="__PUBLIC__/image/rydj_rq_03.png" alt="">
+                                            <i class="layui-icon layui-icon-date date birsday" id="month""></i>
                                           </div>
                                       </div>
                                   </div>
@@ -289,12 +289,12 @@
                                       <label>在职时间</label>
                                       <div class="po-r">
                                         <input placeholder="选择日期" type="text" class="layui-input float-l" id="month2">
-                                        <img src="__PUBLIC__/image/rydj_rq_03.png" alt="">
+                                        <i class="layui-icon layui-icon-date date birsday" id="month2""></i>
                                       </div>
                                       <span>至</span>
-                                      <div>
+                                      <div class="po-r">
                                         <input placeholder="选择日期" type="text" class="layui-input float-l" id="month3">
-                                        <img src="__PUBLIC__/image/rydj_rq_03.png" alt="">
+                                        <i class="layui-icon layui-icon-date date birsday" id="month3""></i>
                                       </div>
                                   </div>
                                   <div class="form-cell form_cell">
@@ -320,13 +320,13 @@
                                   <div class="form-cell form_cell">
                                       <label>在职时间</label>
                                       <div class="po-r">
-                                        <input placeholder="选择日期" type="text" class="layui-input float-l" id="month2">
-                                        <img src="__PUBLIC__/image/rydj_rq_03.png" alt="">
+                                        <input placeholder="选择日期" type="text" class="layui-input float-l" id="month22">
+                                        <i class="layui-icon layui-icon-date date birsday" id="month22""></i>
                                       </div>
                                       <span>至</span>
-                                      <div>
-                                        <input placeholder="选择日期" type="text" class="layui-input float-l" id="month3">
-                                        <img src="__PUBLIC__/image/rydj_rq_03.png" alt="">
+                                      <div class="po-r">
+                                        <input placeholder="选择日期" type="text" class="layui-input float-l" id="month33">
+                                        <i class="layui-icon layui-icon-date date birsday" id="month33""></i>
                                       </div>
                                   </div>
                                   <div class="form-cell form_cell">
@@ -458,6 +458,30 @@
   laydate.render({
     elem: '#month3', //指定元素
     min: $('#month2').val()
+})
+  var sta1="1";
+  var da1="";
+  laydate.render({
+    elem: '#month22', //指定元素
+    done: function(value, date, endDate){
+        sta1=="2";
+        da1=date;
+        $("#month22").val(value);
+        $("#month22").text("");
+      },
+    ready: function(date){
+      if(sta1=="1"){
+       date;
+      }else{
+      date=da1;
+      }
+      // console.log(date);
+    }
+})
+
+  laydate.render({
+    elem: '#month33', //指定元素
+    min: $('#month22').val()
 })
 
 // 上传图片

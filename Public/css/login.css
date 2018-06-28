@@ -1172,12 +1172,12 @@
   -ms-flex: 1;
       flex: 1;
 }
-.framePage-body .tab_wrap .tab_content .content_item .content_box .box_right .form-cell img {
+.framePage-body .tab_wrap .tab_content .content_item .content_box .box_right .form-cell .birsday {
   position: absolute;
-  top: 0.5rem;
-  right: .5rem;
-  width: 1.2rem;
-  height: auto;
+  top: 0.25rem;
+  right: 0.25rem;
+  color: #5665fa;
+  font-size: 1.5rem;
 }
 .framePage-body .tab_wrap .tab_content .content_item .content_box .box_right .ml-cell {
   margin-left: 6.125rem;
@@ -1219,22 +1219,15 @@
   -ms-flex: 1;
       flex: 1;
 }
-.framePage-body .tab_wrap .tab_content .content_item .educational_bgc .form .form-cell img {
-  position: absolute;
-  top: 0.5rem;
-  right: .5rem;
-  width: 1.2rem;
-  height: auto;
-}
 .framePage-body .tab_wrap .tab_content .content_item .educational_bgc .form .form-cell .po-r {
   position: relative;
 }
-.framePage-body .tab_wrap .tab_content .content_item .educational_bgc .form .form-cell .po-r img {
+.framePage-body .tab_wrap .tab_content .content_item .educational_bgc .form .form-cell .po-r .birsday {
   position: absolute;
-  top: 0.5rem;
-  right: .5rem;
-  width: 1.2rem;
-  height: auto;
+  top: 0.25rem;
+  right: 0.25rem;
+  color: #5665fa;
+  font-size: 1.5rem;
 }
 .framePage-body .tab_wrap .tab_content .content_item .educational_bgc .form .form-cell span {
   margin-left: 1.25rem;
