@@ -29,17 +29,19 @@ class QueryMedReimburseController extends CommonController
             return;
         }
         $data["idcard"] = I("post.idcard");
-        $data["pageNum"] = I("post.pageNum");
-        $data["startTime"] = I("post.startTime");
-        $data["endTime"] = I("post.endTime");
+        $data["page"] = I("post.pageNum");
+        /*$data["startTime"] = I("post.startTime");
+        $data["endTime"] = I("post.endTime");*/
+        $data["startTime"] ="201703";
+        $data["endTime"] = "201805";
         if (empty($data["startTime"])) {
             $data["startTime"] = date('Ym', strtotime('-1month'));
         }
         if (empty($data["endTime"])) {
             $data["endTime"] = date('Ym', time());
         }
-        if (empty($data["pageNum"])) {
-            $data["pageNum"] = 1;
+        if (empty($data["page"])) {
+            $data["page"] = 1;
         }
         if (empty($data["idcard"])) {
             $info["code"] = -1;
@@ -52,12 +54,13 @@ class QueryMedReimburseController extends CommonController
         $requestObj = $this->requestObject;
         $result = $requestObj->requset($url, $data, "post");
         $result = json_decode($result, true, 512, JSON_BIGINT_AS_STRING);
-        if (!empty($result["list"])) {
-            $list = $result["list"];
+        if ($result["code"]===0) {
+            $list = $result["data"];
             foreach ($list as $key => $value) {
-                $list[$key]["payTime"] = date("Y-m-d", strtotime($value["payTime"]));
-                $list[$key]["payYear"] = date("Y", strtotime($value["payYear"]));
-                $list[$key]["arrivalTime"] = date("Y-m-d", strtotime($value["arrivalTime"]));
+                $list[$key]["visitTime"] = date("Y-m-d", strtotime($value["payTime"]));
+                $list[$key]["admissionTime"] = date("Y-m-d", strtotime($value["payYear"]));
+                $list[$key]["dischargeTime"] = date("Y-m-d", strtotime($value["arrivalTime"]));
+                $list[$key]["clearingTime"] = date("Y-m-d", strtotime($value["clearingTime"]));
                 $list[$key]["dayinUrl"] = "http://" . C("REQUEST_URL") . $javaurl["QueryEndInsPay"]["dayinUrl"] . "?id=" . $value["id"];
             }
             $this->assign("list", $list);

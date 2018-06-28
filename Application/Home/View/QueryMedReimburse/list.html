@@ -1,0 +1,16 @@
+{__NOLAYOUT__}
+<volist name="list" id="vo">
+    <tr>
+        <td><span>{$vo.clearingTime|default=""}</span></td>
+        <td><span>{$vo.medicalType|default=""}</span></td>
+        <td><span>定点机构</span></td>
+        <td><span>{$vo.totalCost|default=""}</span></td>
+        <td><span>{$vo.personalPay|default=""}</span></td>
+        <td><span>{$vo.baseMedicalPay|default=""}</span></td>
+        <td><span>{$vo.dueBame|default=""}</span></td>
+        <td><span>{$vo.cardNumber|default=""}</span></td>
+       <!-- <td>
+            <a href="{$vo.dayinUrl}" target="_blank"><button class="layui-btn bgc-blued" >打印</button></a>
+        </td>-->
+    </tr>
+</volist>

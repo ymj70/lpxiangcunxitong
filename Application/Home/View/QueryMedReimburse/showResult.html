@@ -9,8 +9,8 @@
                 <div class="title information_title news_title news_title1">
                   <h2>医疗报销结果查询</h2>
                   <p>
-                    <span class="mr">姓名：于海英</span>
-                    <span>身份证号码：13030219960526114X</span>
+                    <span class="mr">姓名：{$userinfo["realName"]}</span>
+                    <span>身份证号码：<span id="idcard">{$userinfo["idcard"]}</span></span>
                   </p>
                 </div>
               </div>
@@ -24,8 +24,7 @@
                     </div>
                 </div>
                 <div class="searchBtns">
-                    <button class="bgc-blued layui-btn" onclick="opLook()">打印</button>
-                    <button class="bgc-redd layui-btn" onclick="opClose()">关闭</button>
+                    <a href="" target="_blank" id="dayinAllurl"> <button class="bgc-blued layui-btn" >打印</button></a>
                 </div>
               </div>
               <div class="framePage-scroll">
@@ -41,88 +40,13 @@
                                 <td><span><b>基本医疗报销</b></span></td>
                                 <td><span><b>报销收款银行</b></span></td>
                                 <td><span><b>报销收款卡号</b></span></td>
+<!--
                                 <td><span><b>打印</b></span></td>
+-->
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td><span>2018-01-03</span></td>
-                                <td><span>住院</span></td>
-                                <td><span>滦平县医院</span></td>
-                                <td><span>5381.355</span></td>
-                                <td><span>222</span></td>
-                                <td><span>1733.86</span></td>
-                                <td><span>农村信用合作社</span></td>
-                                <td><span>*********4567</span></td>
-                                <td>
-                                    <button class="layui-btn bgc-blued">打印收据</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><span>2018-01-03</span></td>
-                                <td><span>门诊</span></td>
-                                <td><span>滦平县医院</span></td>
-                                <td><span>5381.355</span></td>
-                                <td><span>222</span></td>
-                                <td><span>1733.86</span></td>
-                                <td><span>农村信用合作社</span></td>
-                                <td><span>*********4567</span></td>
-                                <td>
-                                    <button class="layui-btn bgc-blued">打印收据</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><span>2018-01-03</span></td>
-                                <td><span>住院</span></td>
-                                <td><span>滦平县医院</span></td>
-                                <td><span>5381.355</span></td>
-                                <td><span>222</span></td>
-                                <td><span>1733.86</span></td>
-                                <td><span>农村信用合作社</span></td>
-                                <td><span>*********4567</span></td>
-                                <td>
-                                    <button class="layui-btn bgc-blued">打印收据</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><span>2018-01-03</span></td>
-                                <td><span>住院</span></td>
-                                <td><span>滦平县医院</span></td>
-                                <td><span>5381.355</span></td>
-                                <td><span>222</span></td>
-                                <td><span>1733.86</span></td>
-                                <td><span>农村信用合作社</span></td>
-                                <td><span>*********4567</span></td>
-                                <td>
-                                    <button class="layui-btn bgc-blued">打印收据</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><span>2018-01-03</span></td>
-                                <td><span>住院</span></td>
-                                <td><span>滦平县医院</span></td>
-                                <td><span>5381.355</span></td>
-                                <td><span>222</span></td>
-                                <td><span>1733.86</span></td>
-                                <td><span>农村信用合作社</span></td>
-                                <td><span>*********4567</span></td>
-                                <td>
-                                    <button class="layui-btn bgc-blued">打印收据</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><span>2018-01-03</span></td>
-                                <td><span>住院</span></td>
-                                <td><span>滦平县医院</span></td>
-                                <td><span>5381.355</span></td>
-                                <td><span>222</span></td>
-                                <td><span>1733.86</span></td>
-                                <td><span>农村信用合作社</span></td>
-                                <td><span>*********4567</span></td>
-                                <td>
-                                    <button class="layui-btn bgc-blued">打印收据</button>
-                                </td>
-                            </tr>
+                        <tbody id="list">
+
                         </tbody>
                     </table>
                   </div>
@@ -134,7 +58,47 @@
 </body>
 <include file="Public:footer" />
 <script>
-  var laydate = layui.laydate;
+    $(function () {
+        getData()
+    })
+    function getData(){
+        var startTime=$("#year").val();
+        var endTime=$("#year2").val();
+        if (startTime > endTime){
+            layer.msg('结束年度不能小于开始年度');
+            return false;
+        }
+        $.ajax({
+            type: "post",
+            url: "{:U('Home/QueryMedReimburse/showResult')}",
+            data: {
+                idcard: $("#idcard").html(),//姓名
+                startTime: startTime,//开始时间
+                endTime:endTime,//结束时间
+            },
+            dataType: "json",
+            beforeSend: function(){
+                if ($("#idCardhtml").html()==''){
+                    layer.msg('身份证号不能为空');
+                    return false;
+                }
+            },
+            success: function(ret) {
+                if (ret.code == 1) {
+                    $("#dayinAllurl").attr("href",ret.dayinAllurl)
+                    $("#list").html(ret.data);
+                }else {
+                    if (ret.message == ''){
+                        layer.msg('请求失败');
+                    }else {
+                        layer.msg(ret.message);
+                    }
+                }
+            },
+        });
+    }
+
+    var laydate = layui.laydate;
   laydate.render({
     elem: '#month' //指定元素
         ,
