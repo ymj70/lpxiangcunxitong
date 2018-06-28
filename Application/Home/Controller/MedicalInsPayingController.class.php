@@ -16,12 +16,33 @@ class MedicalInsPayingController extends CommonController
      */
     public function medicalInsPayingIndex()
     {
-        $this->display("medicalInsPayingIndex");
+        if (!IS_POST) {
+            $this->display("medicalInsPayingIndex");
+            return false;
+        }
+        $info = $this->checkYear();
+        $this->ajaxReturn($info);
+
     }
 
     public function choosePayingPeople()
     {
-        $this->display("choosePayingPeople");
+        if (!IS_POST){
+            $year = I("get.year");
+            $this->assign("year", $year);
+            $this->display("choosePayingPeople");
+            return;
+        }
+        $peopleArr=$_POST;
+
+        if (empty($peopleArr)){
+            $info["code"]=-1;
+            $info["message"]="失败";
+        }else{
+            $info["code"]=1;
+            $info["message"]="成功";
+        }
+        $this->ajaxReturn($info);
     }
 
     public function payingPeopleList()
@@ -38,7 +59,7 @@ class MedicalInsPayingController extends CommonController
     {
         $data["idcard"] = I("post.idcard");
         $data["year"] = I("post.year");
-        if ($data["idcard"] == ''||$data["year"] == '') {
+        if ($data["idcard"] == '' || $data["year"] == '') {
             $info["code"] = -1;
             $info["message"] = "身份证号或者年度是空的";
             $this->ajaxReturn($info);
@@ -61,6 +82,28 @@ class MedicalInsPayingController extends CommonController
             }
         }
         $this->ajaxReturn($info);
+    }
+
+    public function checkYear()
+    {
+        $data["insuredtype"]=0;//缴费类型 0医疗 1养老
+        $javaurl = $this->javaUrl;
+        $url = C("REQUEST_URL") . $javaurl["MedicalInsPaying"]["medicalInsPayingIndex"];
+        $requestObj = $this->requestObject;
+        $result = $requestObj->requset($url, $data, "post");
+        $result = json_decode($result, true, 512, JSON_BIGINT_AS_STRING);
+        if ($result["code"] === 0) {
+            $info["code"] = 1;
+            $info["message"] = "成功";
+            $info["data"] = $result["data"];
+        } else {
+            $info["code"] = -1;
+            $info["message"] = $result["msg"];
+            if (empty($info["message"])) {
+                $info["message"] = "接口请求失败";
+            }
+        }
+        return $info;
     }
 
 }

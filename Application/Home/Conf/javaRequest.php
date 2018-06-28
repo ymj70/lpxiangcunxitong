@@ -44,6 +44,7 @@ return array(
         //居民医疗缴费
         "MedicalInsPaying" => array(
             "getPeoplePayInfo"=>"/umi/payCheck",//根据身份证号和年份获取人员信息
+            "medicalInsPayingIndex"=>"/umi/umiCheckTime",//根据身份证号和年份获取人员信息
         ),
     ),
     "imgUploadUrl" => "/image/uploadFile",//图片上传

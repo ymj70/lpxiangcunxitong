@@ -41,7 +41,7 @@ class CommonController extends Controller
             session("activityTime",time());
         }else{
             $timeLong=time()-$activityTime;
-            if ($timeLong >600){
+            if ($timeLong >6000){
                 A("Public")->outLogin();
             }else{
                 session("activityTime",time());

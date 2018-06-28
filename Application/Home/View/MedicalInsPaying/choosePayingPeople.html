@@ -9,7 +9,7 @@
             		<ul class="ul-title">
             			<li>
             				<label for="">缴费年度：</label>
-            				<span id="year">2018</span>
+            				<span id="year">{$year|default=""}</span>
             			</li>
             			<li>
             				<label for="">缴费人数：</label>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="searchBtns">
                         <button class="bgc-orange layui-btn" onclick="getidCard()">读身份证</button>
-                        <button class="bgc-orange layui-btn" onclick="opEdit()">读社保卡</button>
+                        <button class="bgc-orange layui-btn" onclick="getSBCard()">读社保卡</button>
                     </div>
                 </div>
                 <div class="framePage-scroll">
@@ -80,8 +80,7 @@
                     type: "post",
                     url: "{:U('/Home/MedicalInsPaying/choosePayingPeople')}",
                     data: {
-                        idcardBackImg: $("#idcardBackImg").val(),//姓名
-                        idcardfrontImg: $("#idcardfrontImg").val(), //身份证号
+
                     },
                     dataType: "json",
                     beforeSend: function(){
@@ -142,6 +141,7 @@
                     success: function(ret) {
                         if (ret.code == 1) {
 
+
                         }else {
                             if (ret.message == ''){
                                 layer.msg('请求失败！');
@@ -156,6 +156,7 @@
 
             }
 
+            /************************读取社保卡和身份证开始***********************************/
             var idCardStatus = true;
             function getidCard() {
                 if (!idCardStatus) {
@@ -165,13 +166,13 @@
                 idCardStatus = false;
                 $("#realName").attr("value", "")
                 $("#idCard").attr("value", "")
-                try{
+                try {
                     jsidcard.getIdCardInfo(function (idnumber, name, nation, gender, birthDate, addr, idBeginDate, idEndDate) {
-                        if(idnumber && name && nation && gender && birthDate && addr && idBeginDate && idEndDate){
+                        if (idnumber && name && nation && gender && birthDate && addr && idBeginDate && idEndDate) {
                             readIdcardSwitch = false;
-                            birthDate = birthDate.replace(/年/g,'-').replace(/月/g,'-').replace(/日/g,'');
-                            idBeginDate = idBeginDate.replace(/年/g,'-').replace(/月/g,'-').replace(/日/g,'');
-                            idEndDate = idEndDate.replace(/年/g,'-').replace(/月/g,'-').replace(/日/g,'');
+                            birthDate = birthDate.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '');
+                            idBeginDate = idBeginDate.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '');
+                            idEndDate = idEndDate.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '');
                             var info = {
                                 idcard: $.trim(idnumber),
                                 name: $.trim(name),
@@ -184,20 +185,42 @@
                             };
                             idCardStatus = true;
                             getpeopleinfo(info.idcard)
-                            infoTuiSong(info)
                         } else {
                             layer.msg("未读取到身份证信息")
                             idCardStatus = true;
                         }
                     });
-                } catch(err) {
+                } catch (err) {
                     layer.msg("读取身份证信息失败")
-                    alert(err)
                     idCardStatus = true;
                 }
             }
-            function infoTuiSong(info) {
 
+            function getSBCard() {
+                if (!idCardStatus) {
+                    layer.msg("社保卡正在读取中请稍后在试");
+                    return
+                }
+                idCardStatus = false;
+                try {
+                    jssicard.ReadCard(function (idnumber, name) {
+                        if (idnumber && name) {
+                            var info = {
+                                idcard: idnumber,
+                                name: name,
+                            };
+                            idCardStatus = true;
+                            getpeopleinfo(info.idcard)
+                        } else {
+                            layer.msg("未读取到社保卡信息")
+                            idCardStatus = true;
+                        }
+                    });
+                } catch (err) {
+                    layer.msg("读取身份证信息失败")
+                    idCardStatus = true;
+                }
             }
+            /************************读取社保卡和身份证结束***********************************/
         </script>
 </html>
