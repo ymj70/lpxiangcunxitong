@@ -5,6 +5,9 @@ return array(
         "Public" => array(
             "login" => "/user/login",//登录
         ),
+        "Index" => array(
+            "getVillageInsInfo" => "/home/proportion",//登录
+        ),
         "NotAttendIns" => array(
             "checkPeopleInsStatus"=>"/personBase/verificationIdCard",//检测是否参保
             "savePeopleInfo"=>"/personBase/save",//将未参保人员信息存入数据库

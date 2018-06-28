@@ -13,6 +13,8 @@ class IndexController extends CommonController
 
     public function index()
     {
+        $villageInsInfo=$this->getVillageInsInfo();
+        $this->assign("villageInsInfo",$villageInsInfo);
         $this->display();
     }
 
@@ -21,19 +23,27 @@ class IndexController extends CommonController
      * @param $url 接口请求地址
      * @return mixed|string 接口返回的数据
      */
-    private function indexListRequest($url)
+    private function getVillageInsInfo()
     {
-        $data["pagesize"] = "10";
-        $data["pagenumber"] = "1";
-        $url = C("REQUEST_URL") . $url;
-        $result = curl_request($url, $data);
-        $result = json_decode($result, true);
-        $list = $result["data"]["list"];
-        foreach ($list as $key => $value) {
-            $list[$key]["id"] = number_format($value["id"], 0, "", "");
+        $userinfo=S(session("username"));
+        $data["villageCode"]=$userinfo["villageId"];//缴费类型 0医疗 1养老
+        $javaurl = $this->javaUrl;
+        $url = C("REQUEST_URL") . $javaurl["Index"]["getVillageInsInfo"];
+        $requestObj = $this->requestObject;
+        $result = $requestObj->requset($url, $data, "post");
+        $result = json_decode($result, true, 512, JSON_BIGINT_AS_STRING);
+        if ($result["code"] === 0) {
+            $info["code"] = 1;
+            $info["message"] = "成功";
+            $info["data"] = $result["data"];
+        } else {
+            $info["code"] = -1;
+            $info["message"] = $result["msg"];
+            if (empty($info["message"])) {
+                $info["message"] = "接口请求失败";
+            }
         }
-        $result["data"]["list"] = $list;
-        return $result;
+        $this->ajaxReturn($info);
 
     }
 }
