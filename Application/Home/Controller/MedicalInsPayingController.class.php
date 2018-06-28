@@ -33,22 +33,16 @@ class MedicalInsPayingController extends CommonController
             $this->display("choosePayingPeople");
             return;
         }
-        $peopleArr=$_POST;
-        foreach ($peopleArr as $value){
-           $data["name"]=$value["realName"];
-           $data["sex"]=$value["sex"];;
-           $data["amount"]=$value["money"];
-           $data["place"]=$value["address"];
-           $data["idcard"]=$value["idcard"];
+        $peopleArr=I("post.peopleArr");
+        foreach ($peopleArr as $key=>$value){
+           $data[$key]["name"]=$value["realName"];
+           $data[$key]["sex"]=$value["sex"];;
+           $data[$key]["amount"]=$value["money"];
+           $data[$key]["place"]=$value["address"];
+           $data[$key]["idcard"]=$value["idcard"];
         }
 
-        if (empty($peopleArr)){
-            $info["code"]=-1;
-            $info["message"]="失败";
-        }else{
-            $info["code"]=1;
-            $info["message"]="成功";
-        }
+        $info=$this->pushPeopleinfo($data);
         $this->ajaxReturn($info);
     }
 
@@ -118,9 +112,8 @@ class MedicalInsPayingController extends CommonController
         return $info;
     }
     public function pushPeopleinfo($data){
-        $data["insuredtype"]=0;//缴费类型 0医疗 1养老
         $javaurl = $this->javaUrl;
-        $url = C("REQUEST_URL") . $javaurl["MedicalInsPaying"]["medicalInsPayingIndex"];
+        $url = C("REQUEST_URL") . $javaurl["MedicalInsPaying"]["pushPeopleinfo"];
         $requestObj = $this->requestObject;
         $result = $requestObj->requset($url, $data, "post");
         $result = json_decode($result, true, 512, JSON_BIGINT_AS_STRING);

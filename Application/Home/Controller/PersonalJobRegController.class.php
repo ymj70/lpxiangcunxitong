@@ -26,5 +26,7 @@ class PersonalJobRegController extends CommonController
     public function delete(){
         $this->display("delete");
     }
+    public  function getInfoByIdcard(){
 
+    }
 }

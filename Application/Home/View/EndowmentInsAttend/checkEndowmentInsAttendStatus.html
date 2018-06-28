@@ -37,6 +37,10 @@
                                         <input type="text" class="layui-input" id="idCard">
                                     </div>
                                     <div>
+                                        <label for="">民族</label>
+                                        <input type="text" class="layui-input" id="mz">
+                                    </div>
+                                    <div>
                                         <label for="">户籍地址</label>
                                         <input type="text" class="layui-input" id="idCardAddress">
                                     </div>
@@ -59,31 +63,6 @@
 </body>
 <include file="Public:footer" />
 <script>
-var idCardStatus = true;
-
-function getidCard() {
-    if (!idCardStatus) {
-        layer.msg("身份证正在读取中请稍后在试");
-        return
-    }
-    idCardStatus = false;
-    $("#realName").attr("value", "")
-    $("#idCard").attr("value", "")
-    try {
-        jsidcard.getIdCard(function(IdNumber, Name) {
-            if (IdNumber && Name) {
-                $("#realName").attr("value", Name)
-                $("#idCard").attr("value", IdNumber)
-                idCardStatus = true;
-            } else {
-                layer.msg("未读取到身份证信息")
-            }
-        });
-    } catch (err) {
-        layer.msg("读取身份证信息失败")
-    }
-}
-
 function nextSteup() {
     if (check() == false) {
         return false;
@@ -141,6 +120,88 @@ function check() {
     } else {
         return true;
     }
+}
+
+/************************读取社保卡和身份证开始***********************************/
+var idCardStatus = true;
+function getidCard() {
+    if (!idCardStatus) {
+        layer.msg("身份证正在读取中请稍后在试");
+        return
+    }
+    idCardStatus = false;
+    $("#realName").attr("value", "")
+    $("#idCard").attr("value", "")
+    try {
+        jsidcard.getIdCardInfo(function (idnumber, name, nation, gender, birthDate, addr, idBeginDate, idEndDate) {
+            if (idnumber && name && nation && gender && birthDate && addr && idBeginDate && idEndDate) {
+                readIdcardSwitch = false;
+                birthDate = birthDate.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '');
+                idBeginDate = idBeginDate.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '');
+                idEndDate = idEndDate.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '');
+                var info = {
+                    idcard: $.trim(idnumber),
+                    name: $.trim(name),
+                    nation: $.trim(nation),
+                    gender: $.trim(gender),
+                    birthdate: $.trim(birthDate),
+                    addr: $.trim(addr),
+                    idBeginDate: $.trim(idBeginDate),
+                    idEndDate: $.trim(idEndDate)
+                };
+                idCardStatus = true;
+                infoTuiSong(info)
+            } else {
+                layer.msg("未读取到身份证信息")
+                idCardStatus = true;
+            }
+        });
+    } catch (err) {
+        alert(err)
+        layer.msg("读取身份证信息失败")
+        idCardStatus = true;
+    }
+}
+
+function getSBCard() {
+    if (!idCardStatus) {
+        layer.msg("社保卡正在读取中请稍后在试");
+        return
+    }
+    idCardStatus = false;
+    try {
+        jssicard.ReadCard(function (idnumber, name) {
+            if (idnumber && name) {
+                var info = {
+                    idcard: idnumber,
+                    name: name,
+                };
+                idCardStatus = true;
+                infoTuiSong(info)
+            } else {
+                layer.msg("未读取到社保卡信息")
+                idCardStatus = true;
+            }
+        });
+    } catch (err) {
+        layer.msg("读取社保卡信息失败")
+        idCardStatus = true;
+    }
+}
+
+function infoTuiSong(info) {
+    $("#realName").val('')
+    $("#idCard").val()
+    $("#mz").val('')
+    $("#sex").val('')
+    $("#birthday").val('')
+    $("#idcardAddress").val('')
+    $("#realName").val(info.name)
+    $("#idCard").val(info.idcard)
+    $("#mz").val(info.nation)
+    $("#sex").val(info.gender)
+    $("#birthday").val(info.birthdate)
+    $("#idCardAddress").val(info.addr)
 }
 </script>
 

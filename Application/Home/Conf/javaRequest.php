@@ -48,6 +48,7 @@ return array(
         "MedicalInsPaying" => array(
             "getPeoplePayInfo"=>"/umi/payCheck",//根据身份证号和年份获取人员信息
             "medicalInsPayingIndex"=>"/umi/umiCheckTime",//根据身份证号和年份获取人员信息
+            "pushPeopleinfo"=>"/umi/pageJump",//根据身份证号和年份获取人员信息
         ),
         //医疗报销查询
         "QueryMedReimburse" => array(
