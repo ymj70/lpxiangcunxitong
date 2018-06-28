@@ -56,7 +56,6 @@ function get_birthday($idcard) {
     return $year . "-" . $month . "-" . $day;
 }
 function getImg($path){
-    $javaUrl= C("auth");
     $data["path"]=$path;
     $url = C("REQUEST_URL2") . C("imgDownUrl") ;
     $requestObject = new Request();

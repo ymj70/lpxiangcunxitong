@@ -80,6 +80,19 @@ class CommonController extends Controller
         $this->assign("userInfo",$uerInfo);
 
     }
+    public function getimg(){
+        $imgPath=I("imgpath");
+        if (empty($imgpath)){
+            $info["code"]=-1;
+            $info["mesage"]="图片路径为空";
+            $this->ajaxReturn($info);
+        }
+         $img=getImg($imgPath);
+        $info["code"]=1;
+        $info["mesage"]="成功";
+        $info["data"]=$img;
+        $this->ajaxReturn($info);
+    }
 
 
 }
