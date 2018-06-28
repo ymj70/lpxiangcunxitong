@@ -19,9 +19,7 @@ class IndexController extends CommonController
     }
 
     /**
-     * index 操作辅助方法 获取档案审核 退休股审核 养老保险审核数据信息
-     * @param $url 接口请求地址
-     * @return mixed|string 接口返回的数据
+     * 首页饼状图获取
      */
     private function getVillageInsInfo()
     {

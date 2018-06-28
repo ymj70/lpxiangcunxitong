@@ -73,7 +73,12 @@ class MedicalInsPayingController extends CommonController
         if ($result["code"] === 0) {
             $info["code"] = 1;
             $info["message"] = "成功";
-            $info["data"] = $result["data"];
+            $list["realName"] = $result["data"]["name"];
+            $list["idcard"] = $result["data"]["idcard"];
+            $list["sex"] = $result["data"]["sex"];
+            $list["address"] = $result["data"]["place"];
+            $list["money"] = $result["data"]["amount"];
+            $info["data"] = $list;
         } else {
             $info["code"] = -1;
             $info["message"] = $result["msg"];
@@ -86,6 +91,26 @@ class MedicalInsPayingController extends CommonController
 
     public function checkYear()
     {
+        $data["insuredtype"]=0;//缴费类型 0医疗 1养老
+        $javaurl = $this->javaUrl;
+        $url = C("REQUEST_URL") . $javaurl["MedicalInsPaying"]["medicalInsPayingIndex"];
+        $requestObj = $this->requestObject;
+        $result = $requestObj->requset($url, $data, "post");
+        $result = json_decode($result, true, 512, JSON_BIGINT_AS_STRING);
+        if ($result["code"] === 0) {
+            $info["code"] = 1;
+            $info["message"] = "成功";
+            $info["data"] = $result["data"];
+        } else {
+            $info["code"] = -1;
+            $info["message"] = $result["msg"];
+            if (empty($info["message"])) {
+                $info["message"] = "接口请求失败";
+            }
+        }
+        return $info;
+    }
+    public function pushPeopleinfo(){
         $data["insuredtype"]=0;//缴费类型 0医疗 1养老
         $javaurl = $this->javaUrl;
         $url = C("REQUEST_URL") . $javaurl["MedicalInsPaying"]["medicalInsPayingIndex"];
