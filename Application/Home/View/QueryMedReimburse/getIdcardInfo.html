@@ -22,7 +22,7 @@
                                             <img src="__PUBLIC__/image/dk.png" alt=""  class="imgCenter">
                                         </div>
                                         <div class="button">
-                                            <button class="layui-btn bgc-greend bttn-green">读取身份证</button>
+                                            <button class="layui-btn bgc-greend bttn-green" onclick="getidCard()">读取身份证</button>
                                         </div>
                                     </div>
                                 </div>
@@ -32,7 +32,7 @@
                                             <img src="__PUBLIC__/image/sbk.png" alt="" class="imgCenter">
                                         </div>
                                         <div class="button">
-                                            <button class="layui-btn bgc-greend bttn-green">读取社保卡</button>
+                                            <button class="layui-btn bgc-greend bttn-green" onclick="getSBCard()">读取社保卡</button>
                                         </div>
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@
                                                         <input type="text" class="layui-input" id="name">
                                                     </div>
                                                     <div>
-                                                      <button class="bgc-blued layui-btn" onclick="getData()">
+                                                      <button class="bgc-blued layui-btn" onclick="getPeopleInfo()">
                                                             <i class="layui-icon layui-icon-search"></i>
                                                         </button>
                                                     </div>
@@ -58,7 +58,7 @@
                                                         <label for="">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label>
                                                     </div>
                                                     <div>
-                                                        <span>杨梦洁</span>
+                                                        <span id="realName"></span>
                                                     </div>
                                                 </div>
                                                 <div>
@@ -66,7 +66,7 @@
                                                         <label for="">身份证号</label>
                                                     </div>
                                                     <div>
-                                                        <span>130204199403173144</span>
+                                                        <span id="idCardhtml"></span>
                                                     </div>
                                                 </div>
                                                 <div>
@@ -74,7 +74,7 @@
                                                         <label for="">出生日期</label>
                                                     </div>
                                                     <div>
-                                                        <span>1994-03-17</span>
+                                                        <span id="birthday"></span>
                                                     </div>
                                                 </div>
                                                   <div>
@@ -82,7 +82,7 @@
                                                         <label for="">性别</label>
                                                     </div>
                                                     <div>
-                                                        <span>男</span>
+                                                        <span id="sex"></span>
                                                     </div>
                                                 </div>
                                                   <div>
@@ -90,15 +90,15 @@
                                                         <label for="">民族</label>
                                                     </div>
                                                     <div>
-                                                        <span>汉</span>
+                                                        <span id="nation"></span>
                                                     </div>
                                                 </div>
                                                 <div>
                                                     <div>
-                                                        <label for="">户籍地址</label>
+                                                        <label for="" id="idcardAddress">户籍地址</label>
                                                     </div>
                                                     <div>
-                                                        <span>河北省秦皇岛市天涯海角</span>
+                                                        <span></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -124,5 +124,123 @@
 function search(){
 	  window.location.href="{:U('Home/QueryMedReimburse/showResult')}"
 }
+
+
+  function getPeopleInfo(){
+      if (check() == false){
+          return;
+      }
+      $.ajax({
+          type: "post",
+          url: "{:U('/Home/QueryAttendInsInfo/getPeopleInfo')}",
+          data: {
+              idcard: $("#idcard").val(),//姓名
+          },
+          dataType: "json",
+          beforeSend: function(){
+          },
+          success: function(ret) {
+              if (ret.code == 1) {
+                  var data=ret.data;
+                  $("#realName").html(data.realName);
+                  $("#idCardhtml").html(data.idcard);
+                  $("#sex").html(data.sex);
+                  $("#nation ").html(data.nation);
+                  $("#idcardAddress").html(data.idcardAddress);
+                  $("#birthday").html(data.birthday);
+              }else {
+                  if (ret.message == ''){
+                      layer.msg('请求失败');
+                  }else {
+                      layer.msg(ret.message);
+                  }
+              }
+          },
+      });
+  }
+
+  //校验
+  function check(){;
+      if ($("#idcard").val()=="") {
+          layer.msg("请填写身份证号码");
+          return false;
+      }
+  }
+
+
+  /************************读取社保卡和身份证开始***********************************/
+  var idCardStatus = true;
+  function getidCard() {
+      if (!idCardStatus) {
+          layer.msg("身份证正在读取中请稍后在试");
+          return
+      }
+      idCardStatus = false;
+      $("#realName").attr("value", "")
+      $("#idCard").attr("value", "")
+      try {
+          jsidcard.getIdCardInfo(function (idnumber, name, nation, gender, birthDate, addr, idBeginDate, idEndDate) {
+              if (idnumber && name && nation && gender && birthDate && addr && idBeginDate && idEndDate) {
+                  readIdcardSwitch = false;
+                  birthDate = birthDate.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '');
+                  idBeginDate = idBeginDate.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '');
+                  idEndDate = idEndDate.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '');
+                  var info = {
+                      idcard: $.trim(idnumber),
+                      name: $.trim(name),
+                      nation: $.trim(nation),
+                      gender: $.trim(gender),
+                      birthdate: $.trim(birthDate),
+                      addr: $.trim(addr),
+                      idBeginDate: $.trim(idBeginDate),
+                      idEndDate: $.trim(idEndDate)
+                  };
+                  idCardStatus = true;
+                  infoTuiSong(info)
+              } else {
+                  layer.msg("未读取到身份证信息")
+                  idCardStatus = true;
+              }
+          });
+      } catch (err) {
+          layer.msg("读取身份证信息失败")
+          idCardStatus = true;
+      }
+  }
+
+  function getSBCard() {
+      if (!idCardStatus) {
+          layer.msg("社保卡正在读取中请稍后在试");
+          return
+      }
+      idCardStatus = false;
+      try {
+          jssicard.ReadCard(function (idnumber, name) {
+              if (idnumber && name) {
+                  var info = {
+                      idcard: idnumber,
+                      name: name,
+                  };
+                  idCardStatus = true;
+                  infoTuiSong(info)
+              } else {
+                  layer.msg("未读取到社保卡信息")
+                  idCardStatus = true;
+              }
+          });
+      } catch (err) {
+          layer.msg("读取身份证信息失败")
+          idCardStatus = true;
+      }
+  }
+  function infoTuiSong(){
+      $("#realName").html(data.realName);
+      $("#idCardhtml").html(data.idcard);
+      $("#sex").html(data.sex);
+      $("#nation ").html(data.nation);
+      $("#idcardAddress").html(data.idcardAddress);
+      $("#birthday").html(data.birthday);
+  }
+  /************************读取社保卡和身份证结束***********************************/
 </script>
 </html>

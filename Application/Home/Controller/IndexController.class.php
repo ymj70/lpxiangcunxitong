@@ -19,7 +19,7 @@ class IndexController extends CommonController
     /**
      * 首页饼状图获取
      */
-    private function getVillageInsInfo()
+    public function getVillageInsInfo()
     {
         $userinfo=S(session("username"));
         $data["villageCode"]=$userinfo["villageId"];//缴费类型 0医疗 1养老
