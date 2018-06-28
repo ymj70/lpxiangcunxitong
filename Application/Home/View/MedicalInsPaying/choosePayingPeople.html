@@ -47,8 +47,8 @@
                                     <td><span>操作</span></td>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
+                            <tbody  id="list">
+                             <!--    <tr>
                                     <td><span>1</span></td>
                                     <td><span>李兴亮</span></td>
                                     <td><span>230205166548510</span></td>
@@ -56,7 +56,7 @@
                                     <td><span>大屯乡小城子村1组11号</span></td>
                                     <td><span>180</span></td>
                                     <td><button class='layui-btn bgc-blued'>删除</button></td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -72,6 +72,7 @@
 </body>
 <include file="Public:footer" />
         <script>
+            var jishu=0;
             function nextSteup() {
                 if (check() == false){
                     return;
@@ -123,6 +124,7 @@
 
             }
             function getpeopleinfo(idNumber){
+            
                 if (idNumber==''){
                     layer.msg("身份证号码是空的");
                     return false;
@@ -140,7 +142,8 @@
                     },
                     success: function(ret) {
                         if (ret.code == 1) {
-
+                                jishu=jishu+1;
+                           $("#list").append("<tr><td><span>"+jishu+"</span></td><td><span>55555</span></td><td><span>4444</span></td><td><span>55555</span></td><td><span>kkkkk</span></td><td><span>180</span></td><td><button class='layui-btn bgc-blued'  id='"+jishu+"' onclick='removeList(this)'>删除</button></td></tr>");
 
                         }else {
                             if (ret.message == ''){
@@ -155,7 +158,10 @@
 
 
             }
-
+//删除
+function removeList(el){
+console.log($(el).find("id"));
+}
             /************************读取社保卡和身份证开始***********************************/
             var idCardStatus = true;
             function getidCard() {

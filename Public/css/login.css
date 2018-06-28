@@ -1254,31 +1254,3 @@ body .demo-class .layui-layer-content {
   font-weight: bold;
   height: 1px;
 }
-body .demo-class .layui-layer-btn {
-  margin-top: 0rem;
-}
-body .demo-class .layui-layer-btn a {
-  border: 0px;
-}
-body .demo-class .layui-layer-btn .layui-layer-btn1 {
-  border: 0px;
-}
-body .layui-layer-dialog .layui-layer-content {
-  text-align: center;
-  font-size: 1.25rem;
-  font-weight: 700;
-  padding: 2.5rem 2rem;
-}
-body .layui-layer-btn a {
-  padding: 0 2rem;
-  border-radius: 0.25rem;
-}
-body .layui-layer-btn .layui-layer-btn0 {
-  border-color: #5665FA;
-  background-color: #5665FA;
-}
-body .layui-layer-btn .layui-layer-btn1 {
-  border-color: #F99D3A;
-  background-color: #F99D3A;
-  color: #fff;
-}
