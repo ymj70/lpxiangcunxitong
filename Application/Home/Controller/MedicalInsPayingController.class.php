@@ -110,7 +110,7 @@ class MedicalInsPayingController extends CommonController
         }
         return $info;
     }
-    public function pushPeopleinfo(){
+    public function pushPeopleinfo($data){
         $data["insuredtype"]=0;//缴费类型 0医疗 1养老
         $javaurl = $this->javaUrl;
         $url = C("REQUEST_URL") . $javaurl["MedicalInsPaying"]["medicalInsPayingIndex"];

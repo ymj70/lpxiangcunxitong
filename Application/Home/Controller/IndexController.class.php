@@ -13,8 +13,6 @@ class IndexController extends CommonController
 
     public function index()
     {
-        $villageInsInfo=$this->getVillageInsInfo();
-        $this->assign("villageInsInfo",$villageInsInfo);
         $this->display();
     }
 
