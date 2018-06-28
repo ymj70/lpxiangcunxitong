@@ -85,6 +85,19 @@
 </body>
 <include file="Public:footer" />
 <script type="text/javascript">
+
+    $.ajax({
+        type: "post",
+        url: "{:U('/Home/Index/getVillageInsInfo')}",
+        data: {
+
+        },
+        dataType: "json",
+        beforeSend: function() {},
+        success: function(ret) {
+          console.log(ret);
+        },
+    });
 var data1 = [
     { value: 30, name: '未参保人数', selected: true },
     { value: 220, name: '参保人数' }

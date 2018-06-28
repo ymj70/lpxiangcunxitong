@@ -1,54 +1,54 @@
-        <div class="framePage">
-            <div class="framePage-title">
-                <a href="javascript:;">社保缴费</a>
-                <i>></i>
-                <a href="javascript:;" class="cur-a">城乡居民医疗保险缴费</a>
+<div class="framePage">
+    <div class="framePage-title">
+        <a href="javascript:;">社保缴费</a>
+        <i>></i>
+        <a href="javascript:;" class="cur-a">城乡居民医疗保险缴费</a>
+    </div>
+    <div class="framePage-body layui-form">
+        <div class="ul-list">
+            <ul class="ul-title">
+                <li>
+                    <label for="">缴费年度：</label>
+                    <span id="year">{$year|default=""}</span>
+                </li>
+                <li>
+                    <label for="">缴费人数：</label>
+                    <span>0人</span>
+                </li>
+                <li>
+                    <label for="">缴费金额：</label>
+                    <span>0元</span>
+                </li>
+            </ul>
+        </div>
+        <div class="operationControl">
+            <div class="searchBox">
+                <input type="text" class="layui-input" id="idcard" placeholder="请输入您想要查询的身份证号" style="width: 15.8rem">
+                <button class="bgc-blued layui-btn" onclick="clickQurey()">
+                    <i class="layui-icon layui-icon-search"></i>
+                </button>
             </div>
-            <div class="framePage-body layui-form">
-            	<div class="ul-list">
-            		<ul class="ul-title">
-            			<li>
-            				<label for="">缴费年度：</label>
-            				<span id="year">{$year|default=""}</span>
-            			</li>
-            			<li>
-            				<label for="">缴费人数：</label>
-            				<span>0人</span>
-            			</li>
-            			<li>
-            				<label for="">缴费金额：</label>
-            				<span>0元</span>
-            			</li>
-            		</ul>
-            	</div>
-            	 <div class="operationControl">
-                    <div class="searchBox">
-                        <input type="text" class="layui-input" id="idcard"  placeholder="请输入您想要查询的身份证号" style="width: 15.8rem" >
-                        <button class="bgc-blued layui-btn" onclick="clickQurey()">
-                            <i class="layui-icon layui-icon-search"></i>
-                        </button>
-                    </div>
-                    <div class="searchBtns">
-                        <button class="bgc-orange layui-btn" onclick="getidCard()">读身份证</button>
-                        <button class="bgc-orange layui-btn" onclick="getSBCard()">读社保卡</button>
-                    </div>
-                </div>
-                <div class="framePage-scroll">
-                    <div class="ovy-a">
-                       <table class="grid-table" id="gridTable">
-                            <thead>
-                                <tr>
-                                   <td><span>序号</span></td>
-                                    <td><span>姓名</span></td>
-                                    <td><span>身份证号</span></td>
-                                    <td><span>性别</span></td>
-                                    <td><span>地址</span></td>
-                                    <td><span>金额</span></td>
-                                    <td><span>操作</span></td>
-                                </tr>
-                            </thead>
-                            <tbody  id="list">
-                             <!--    <tr>
+            <div class="searchBtns">
+                <button class="bgc-orange layui-btn" onclick="getidCard()">读身份证</button>
+                <button class="bgc-orange layui-btn" onclick="getSBCard()">读社保卡</button>
+            </div>
+        </div>
+        <div class="framePage-scroll">
+            <div class="ovy-a">
+                <table class="grid-table" id="gridTable">
+                    <thead>
+                        <tr>
+                            <!--     <td><span>序号</span></td> -->
+                            <td><span>姓名</span></td>
+                            <td><span>身份证号</span></td>
+                            <td><span>性别</span></td>
+                            <td><span>地址</span></td>
+                            <td><span>金额</span></td>
+                            <td><span>操作</span></td>
+                        </tr>
+                    </thead>
+                    <tbody id="list">
+                        <!--    <tr>
                                     <td><span>1</span></td>
                                     <td><span>李兴亮</span></td>
                                     <td><span>230205166548510</span></td>
@@ -57,176 +57,189 @@
                                     <td><span>180</span></td>
                                     <td><button class='layui-btn bgc-blued'>删除</button></td>
                                 </tr> -->
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-                 <div class="btn-box">
-                    	<button class="layui-btn bgc-orange bttn-orange">返回首页</button>
-                    	<button class="layui-btn bgc-blued butt" onclick="nextSteup()">确认缴费</button>
-                    </div>
+                    </tbody>
+                </table>
             </div>
         </div>
+        <div class="btn-box">
+            <button class="layui-btn bgc-orange bttn-orange">返回首页</button>
+            <button class="layui-btn bgc-blued butt" onclick="nextSteup()">确认缴费</button>
+        </div>
     </div>
+</div>
+</div>
 </body>
 <include file="Public:footer" />
-        <script>
-            var jishu=0;
-            function nextSteup() {
-                if (check() == false){
-                    return;
+<script>
+var jishu = 0;
+
+function nextSteup() {
+    if (check() == false) {
+        return;
+    }
+    var arry = [];
+        var trList = $("#list").children("tr")
+        for (var i = 0; i < trList.length; i++) {
+            var tdArr = trList.eq(i).find("td");
+            var realName = tdArr.eq(0).text(); 
+            var idcard = tdArr.eq(1).text(); 
+            var sex = tdArr.eq(2).text(); 
+            var address = tdArr.eq(3).text();
+            var money = tdArr.eq(4).text();
+            arry.push({"realName":realName,"idcard":idcard,"sex":sex,"address":address,"money":money});
+        }
+    $.ajax({
+        type: "post",
+        url: "{:U('/Home/MedicalInsPaying/choosePayingPeople')}",
+        data: {
+
+        },
+        dataType: "json",
+        beforeSend: function() {},
+        success: function(ret) {
+            if (ret.code == 1) {
+                if (ret.url == "") {
+                    layer.msg("跳转路径接受失败");
+                } else {
+                    window.location.href = ret.url;
                 }
-                $.ajax({
-                    type: "post",
-                    url: "{:U('/Home/MedicalInsPaying/choosePayingPeople')}",
-                    data: {
+                $("#listHtml").html(ret.data)
+            } else {
+                if (ret.message == '') {
+                    layer.msg('请输入正确的身份证号！');
+                } else {
+                    layer.msg(ret.message);
 
-                    },
-                    dataType: "json",
-                    beforeSend: function(){
-                    },
-                    success: function(ret) {
-                        if (ret.code == 1) {
-                            if(ret.url==""){
-                                layer.msg("跳转路径接受失败");
-                            }else {
-                                window.location.href=ret.url;
-                            }
-                            $("#listHtml").html(ret.data)
-                        }else {
-                            if (ret.message == ''){
-                                layer.msg('请输入正确的身份证号！');
-                            }else {
-                                layer.msg(ret.message);
-
-                            }
-                        }
-                    },
-                });
-
-            }
-            //校验
-            function check(){;
-                if ($("#idcardBackImg").val()=="") {
-                    layer.msg("请上传身份证背面图片");
-                    return false;
                 }
-                if ($("#idcardfrontImg").val()=="") {
-                    layer.msg("请上传身份证正面图片");
-                    return false;
-                }
-
             }
-            function clickQurey(){
-                 var idcard=$("#idcard").val();
-                 getpeopleinfo(idcard);
+        },
+    });
 
-            }
-            function getpeopleinfo(idNumber){
-            
-                if (idNumber==''){
-                    layer.msg("身份证号码是空的");
-                    return false;
-                }
-                var year=$("#year").html()
-                $.ajax({
-                    type: "post",
-                    url: "{:U('/Home/MedicalInsPaying/getPeoplePayInfo')}",
-                    data: {
-                        idcard:idNumber,//身份证号
-                        year:year, //年度
-                    },
-                    dataType: "json",
-                    beforeSend: function(){
-                    },
-                    success: function(ret) {
-                        if (ret.code == 1) {
-                                jishu=jishu+1;
-                           $("#list").append("<tr><td><span>"+jishu+"</span></td><td><span>55555</span></td><td><span>4444</span></td><td><span>55555</span></td><td><span>kkkkk</span></td><td><span>180</span></td><td><button class='layui-btn bgc-blued'  id='"+jishu+"' onclick='removeList(this)'>删除</button></td></tr>");
-
-                        }else {
-                            if (ret.message == ''){
-                                layer.msg('请求失败！');
-                            }else {
-                                layer.msg(ret.message);
-
-                            }
-                        }
-                    },
-                });
-
-
-            }
-//删除
-function removeList(el){
-console.log($(el).find("id"));
 }
-            /************************读取社保卡和身份证开始***********************************/
-            var idCardStatus = true;
-            function getidCard() {
-                if (!idCardStatus) {
-                    layer.msg("身份证正在读取中请稍后在试");
-                    return
-                }
-                idCardStatus = false;
-                $("#realName").attr("value", "")
-                $("#idCard").attr("value", "")
-                try {
-                    jsidcard.getIdCardInfo(function (idnumber, name, nation, gender, birthDate, addr, idBeginDate, idEndDate) {
-                        if (idnumber && name && nation && gender && birthDate && addr && idBeginDate && idEndDate) {
-                            readIdcardSwitch = false;
-                            birthDate = birthDate.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '');
-                            idBeginDate = idBeginDate.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '');
-                            idEndDate = idEndDate.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '');
-                            var info = {
-                                idcard: $.trim(idnumber),
-                                name: $.trim(name),
-                                nation: $.trim(nation),
-                                gender: $.trim(gender),
-                                birthdate: $.trim(birthDate),
-                                addr: $.trim(addr),
-                                idBeginDate: $.trim(idBeginDate),
-                                idEndDate: $.trim(idEndDate)
-                            };
-                            idCardStatus = true;
-                            getpeopleinfo(info.idcard)
-                        } else {
-                            layer.msg("未读取到身份证信息")
-                            idCardStatus = true;
-                        }
-                    });
-                } catch (err) {
-                    layer.msg("读取身份证信息失败")
-                    idCardStatus = true;
-                }
-            }
+//校验
+function check() {;
+    if ($("#idcardBackImg").val() == "") {
+        layer.msg("请上传身份证背面图片");
+        return false;
+    }
+    if ($("#idcardfrontImg").val() == "") {
+        layer.msg("请上传身份证正面图片");
+        return false;
+    }
 
-            function getSBCard() {
-                if (!idCardStatus) {
-                    layer.msg("社保卡正在读取中请稍后在试");
-                    return
-                }
-                idCardStatus = false;
-                try {
-                    jssicard.ReadCard(function (idnumber, name) {
-                        if (idnumber && name) {
-                            var info = {
-                                idcard: idnumber,
-                                name: name,
-                            };
-                            idCardStatus = true;
-                            getpeopleinfo(info.idcard)
-                        } else {
-                            layer.msg("未读取到社保卡信息")
-                            idCardStatus = true;
-                        }
-                    });
-                } catch (err) {
-                    layer.msg("读取身份证信息失败")
-                    idCardStatus = true;
+}
+
+function clickQurey() {
+    var idcard = $("#idcard").val();
+    getpeopleinfo(idcard);
+
+}
+
+function getpeopleinfo(idNumber) {
+
+    if (idNumber == '') {
+        layer.msg("身份证号码是空的");
+        return false;
+    }
+    var year = $("#year").html()
+    $.ajax({
+        type: "post",
+        url: "{:U('/Home/MedicalInsPaying/getPeoplePayInfo')}",
+        data: {
+            idcard: idNumber, //身份证号
+            year: year, //年度
+        },
+        dataType: "json",
+        beforeSend: function() {},
+        success: function(ret) {
+            if (ret.code == 1) {
+                jishu = jishu + 1;
+                $("#list").append("<tr id='tr" + jishu + "'><td><span>55555" + jishu + "</span></td><td><span>4444</span></td><td><span>55555</span></td><td><span>kkkkk</span></td><td><span>180</span></td><td><button class='layui-btn bgc-blued'  id='" + jishu + "' onclick='removeList(this)'>删除</button></td></tr>");
+
+            } else {
+                if (ret.message == '') {
+                    layer.msg('请求失败！');
+                } else {
+                    layer.msg(ret.message);
+
                 }
             }
-            /************************读取社保卡和身份证结束***********************************/
-        </script>
+        },
+    });
+
+
+}
+//删除
+function removeList(el) {
+    $(el).parents("tr").remove()
+}
+/************************读取社保卡和身份证开始***********************************/
+var idCardStatus = true;
+
+function getidCard() {
+    if (!idCardStatus) {
+        layer.msg("身份证正在读取中请稍后在试");
+        return
+    }
+    idCardStatus = false;
+    $("#realName").attr("value", "")
+    $("#idCard").attr("value", "")
+    try {
+        jsidcard.getIdCardInfo(function(idnumber, name, nation, gender, birthDate, addr, idBeginDate, idEndDate) {
+            if (idnumber && name && nation && gender && birthDate && addr && idBeginDate && idEndDate) {
+                readIdcardSwitch = false;
+                birthDate = birthDate.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '');
+                idBeginDate = idBeginDate.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '');
+                idEndDate = idEndDate.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '');
+                var info = {
+                    idcard: $.trim(idnumber),
+                    name: $.trim(name),
+                    nation: $.trim(nation),
+                    gender: $.trim(gender),
+                    birthdate: $.trim(birthDate),
+                    addr: $.trim(addr),
+                    idBeginDate: $.trim(idBeginDate),
+                    idEndDate: $.trim(idEndDate)
+                };
+                idCardStatus = true;
+                getpeopleinfo(info.idcard)
+            } else {
+                layer.msg("未读取到身份证信息")
+                idCardStatus = true;
+            }
+        });
+    } catch (err) {
+        layer.msg("读取身份证信息失败")
+        idCardStatus = true;
+    }
+}
+
+function getSBCard() {
+    if (!idCardStatus) {
+        layer.msg("社保卡正在读取中请稍后在试");
+        return
+    }
+    idCardStatus = false;
+    try {
+        jssicard.ReadCard(function(idnumber, name) {
+            if (idnumber && name) {
+                var info = {
+                    idcard: idnumber,
+                    name: name,
+                };
+                idCardStatus = true;
+                getpeopleinfo(info.idcard)
+            } else {
+                layer.msg("未读取到社保卡信息")
+                idCardStatus = true;
+            }
+        });
+    } catch (err) {
+        layer.msg("读取身份证信息失败")
+        idCardStatus = true;
+    }
+}
+/************************读取社保卡和身份证结束***********************************/
+</script>
+
 </html>
