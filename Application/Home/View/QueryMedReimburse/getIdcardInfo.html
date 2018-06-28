@@ -45,7 +45,7 @@
                                                         <label for="">身份证号</label>
                                                     </div>
                                                     <div>
-                                                        <input type="text" class="layui-input" id="name">
+                                                        <input type="text" class="layui-input" id="idcard">
                                                     </div>
                                                     <div>
                                                       <button class="bgc-blued layui-btn" onclick="getPeopleInfo()">
@@ -95,10 +95,10 @@
                                                 </div>
                                                 <div>
                                                     <div>
-                                                        <label for="" id="idcardAddress">户籍地址</label>
+                                                        <label for="" >户籍地址</label>
                                                     </div>
                                                     <div>
-                                                        <span></span>
+                                                        <span id="idcardAddress"></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -118,11 +118,34 @@
 </body>
 <include file="Public:footer" />
 <script>
-  function opLook () {
-  window.location.href='yliaobxcx1.html'
-}
 function search(){
-	  window.location.href="{:U('Home/QueryMedReimburse/showResult')}"
+    var idCardhtml=$("#idCardhtml").html();
+    var realName=$("#realName").html();
+    $.ajax({
+        type: "post",
+        url: "{:U('/Home/QueryMedReimburse/showResult')}",
+        data: {
+            idcard:idCardhtml,//姓名
+        },
+        dataType: "json",
+        beforeSend: function(){
+            if (idCardhtml==''){
+                layer.msg('身份证号不能为空');
+                return false;
+            }
+        },
+        success: function(ret) {
+            if (ret.code == 1) {
+                window.location.href = "{:U('Home/QueryMedReimburse/showResult/realName/"+realName+"/idcard/"+idCardhtml+"')}"
+            }else {
+                if (ret.message == ''){
+                    layer.msg('请求失败');
+                }else {
+                    layer.msg(ret.message);
+                }
+            }
+        },
+    });
 }
 
 
@@ -141,6 +164,12 @@ function search(){
           },
           success: function(ret) {
               if (ret.code == 1) {
+                  $("#realName").html("");
+                  $("#idCardhtml").html("");
+                  $("#sex").html("");
+                  $("#nation ").html("");
+                  $("#idcardAddress").html("");
+                  $("#birthday").html("");
                   var data=ret.data;
                   $("#realName").html(data.realName);
                   $("#idCardhtml").html(data.idcard);
@@ -233,13 +262,19 @@ function search(){
           idCardStatus = true;
       }
   }
-  function infoTuiSong(){
-      $("#realName").html(data.realName);
+  function infoTuiSong(data){
+      $("#realName").html("");
+      $("#idCardhtml").html("");
+      $("#sex").html("");
+      $("#nation ").html("");
+      $("#idcardAddress").html("");
+      $("#birthday").html("");
+      $("#realName").html(data.name);
       $("#idCardhtml").html(data.idcard);
-      $("#sex").html(data.sex);
+      $("#sex").html(data.gender);
       $("#nation ").html(data.nation);
-      $("#idcardAddress").html(data.idcardAddress);
-      $("#birthday").html(data.birthday);
+      $("#idcardAddress").html(data.addr);
+      $("#birthday").html(data.birthdate);
   }
   /************************读取社保卡和身份证结束***********************************/
 </script>

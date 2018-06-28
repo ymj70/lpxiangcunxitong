@@ -49,6 +49,10 @@ return array(
             "getPeoplePayInfo"=>"/umi/payCheck",//根据身份证号和年份获取人员信息
             "medicalInsPayingIndex"=>"/umi/umiCheckTime",//根据身份证号和年份获取人员信息
         ),
+        //医疗报销查询
+        "QueryMedReimburse" => array(
+            "showResult"=>"/umi/clearingInfo",//查询报销记录
+        ),
     ),
     "imgUploadUrl" => "/image/uploadFile",//图片上传
     "imgDownUrl" => "/image-service/misauth/getimage",//图片上传
