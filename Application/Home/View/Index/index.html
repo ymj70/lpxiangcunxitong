@@ -61,19 +61,19 @@
                         <div class="box-word">
                             <div id="demo" class="demo"></div>
                         </div>
-                        <div class="word">2017年小城子村全村人口<span>XXX</span>人，参保人数<span>XXX</span>人，未参保人数<span>XXX</span>人。</div>
+                        <div class="word">2017年小城子村全村人口<span class="total"></span>人，参保人数<span id="villageInsertNum"></span>人，未参保人数<span id="villageNotInsertNum"></span>人。</div>
                     </div>
                     <div class="description-box">
                         <div class="box-word">
                             <div id="demo2" class="demo"></div>
                         </div>
-                        <div class="word">2017年小城子村全村人口<span>XXX</span>人，参保人数<span>XXX</span>人，未参保人数<span>XXX</span>人。</div>
+                        <div class="word">2017年小城子村全村人口<span class="total"></span>人，参保人数<span id="villageMelNum"></span>人，未参保人数<span id="villageNotMelNum"></span>人。</div>
                     </div>
                     <div class="description-box">
                         <div class="box-word">
                             <div id="demo3" class="demo"></div>
                         </div>
-                        <div class="word">2017年小城子村全村人口<span>XXX</span>人，参保人数<span>XXX</span>人，未参保人数<span>XXX</span>人。</div>
+                        <div class="word">2017年小城子村全村人口<span class="total"></span>人，参保人数<span id="villagePenNum"></span>人，未参保人数<span id="villageNotPenNum"></span>人。</div>
                     </div>
                 </div>
             </div>
@@ -85,30 +85,55 @@
 </body>
 <include file="Public:footer" />
 <script type="text/javascript">
+var data11 = "";
+var data12 = "";
+var data21 = "";
+var data22 = "";
+var data31 = "";
+var data32 = "";
+$.ajax({
+    type: "post",
+    url: "{:U('Home/Index/getVillageInsInfo')}",
+    data: {
 
-    $.ajax({
-        type: "post",
-        url: "{:U('Home/Index/getVillageInsInfo')}",
-        data: {
+    },
+    dataType: "json",
+    beforeSend: function() {},
+    success: function(ret) {
+        data11 = ret.data.villageInsertNum;
+        data12 = ret.data.villageNotInsertNum;
+        data21 = ret.data.villageMelNum;
+        data22 = ret.data.villageNotMelNum;
+        data31 = ret.data.villagePenNum;
+        data32 = ret.data.villageNotPenNum;
+        huatu(data11,data12,data21,data22,data31,data32);
+        //全部
+        $(".total").text(ret.data.villageTotalNum);
+        //整体
+        $("#villageInsertNum").text(ret.data.villageInsertNum);
+        $("#villageNotInsertNum").text(ret.data.villageNotInsertNum);
+        //医疗
+        $("#villageMelNum").text(ret.data.villageMelNum);
+        $("#villageNotMelNum").text(ret.data.villageNotMelNum);
+        //养老
+        $("#villagePenNum").text(ret.data.villagePenNum);
+        $("#villageNotPenNum").text(ret.data.villageNotPenNum);
+    },
+});
+function huatu(data11,data12,data21,data22,data31,data32){
 
-        },
-        dataType: "json",
-        beforeSend: function() {},
-        success: function(ret) {
-          console.log(ret);
-        },
-    });
+
 var data1 = [
-    { value: 30, name: '未参保人数', selected: true },
-    { value: 220, name: '参保人数' }
+    { value: data11, name: '未参保人数', selected: true },
+    { value: data12, name: '参保人数' }
 ];
 var data2 = [
-    { value: 60, name: '未参保人数', selected: true },
-    { value: 220, name: '参保人数' }
+    { value: data21, name: '未参保人数', selected: true },
+    { value: data22, name: '参保人数' }
 ];
 var data3 = [
-    { value: 125, name: '未参保人数', selected: true },
-    { value: 220, name: '参保人数' }
+    { value: data31, name: '未参保人数', selected: true },
+    { value: data32, name: '参保人数' }
 ];
 // demo
 var myChart1 = echarts.init(document.getElementById('demo'));
@@ -350,6 +375,7 @@ var option3 = {
     }]
 };
 myChart3.setOption(option3)
+}
 </script>
 
 </html>
