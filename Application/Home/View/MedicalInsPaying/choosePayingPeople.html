@@ -78,21 +78,21 @@ function nextSteup() {
         return;
     }
     var arry = [];
-        var trList = $("#list").children("tr")
-        for (var i = 0; i < trList.length; i++) {
-            var tdArr = trList.eq(i).find("td");
-            var realName = tdArr.eq(0).text(); 
-            var idcard = tdArr.eq(1).text(); 
-            var sex = tdArr.eq(2).text(); 
-            var address = tdArr.eq(3).text();
-            var money = tdArr.eq(4).text();
-            arry.push({"realName":realName,"idcard":idcard,"sex":sex,"address":address,"money":money});
-        }
+    var trList = $("#list").children("tr")
+    for (var i = 0; i < trList.length; i++) {
+        var tdArr = trList.eq(i).find("td");
+        var realName = tdArr.eq(0).text();
+        var idcard = tdArr.eq(1).text();
+        var sex = tdArr.eq(2).text();
+        var address = tdArr.eq(3).text();
+        var money = tdArr.eq(4).text();
+        arry.push({ "realName": realName, "idcard": idcard, "sex": sex, "address": address, "money": money });
+    }
     $.ajax({
         type: "post",
         url: "{:U('/Home/MedicalInsPaying/choosePayingPeople')}",
         data: {
-            "peopleArr":arry
+            "peopleArr": arry
         },
         dataType: "json",
         beforeSend: function() {},
@@ -135,6 +135,7 @@ function clickQurey() {
 
 }
 
+
 function getpeopleinfo(idNumber) {
 
     if (idNumber == '') {
@@ -152,9 +153,22 @@ function getpeopleinfo(idNumber) {
         dataType: "json",
         beforeSend: function() {},
         success: function(ret) {
+            var fu = "";
             if (ret.code == 1) {
-                jishu = jishu + 1;
-                $("#list").append("<tr id='tr" + jishu + "'><td><span>" + ret.data.realName + "</span></td><td><span>" + ret.data.idcard + "</span></td><td><span>" + ret.data.sex + "</span></td><td><span>" + ret.data.address + "</span></td><td><span>" + ret.data.money + "</span></td><td><button class='layui-btn bgc-blued'  id='" + jishu + "' onclick='removeList(this)'>删除</button></td></tr>");
+                var car = ret.data.idcard;
+                var trList = $("#list").children("tr");
+                for (var i = 0; i < trList.length + 1; i++) {
+                    var tdArr = trList.eq(i).find("td");
+                    var idcard = tdArr.eq(1).text();
+                    if (car == idcard) {
+                        layer.msg("此人已在缴费列表中");
+                        fu = "已在";
+                    }
+                }
+                if (fu != "已在") {
+                    jishu = jishu + 1;
+                    $("#list").append("<tr id='tr" + jishu + "'><td><span>" + ret.data.realName + "</span></td><td><span>" + ret.data.idcard + "</span></td><td><span>" + ret.data.sex + "</span></td><td><span>" + ret.data.address + "</span></td><td><span>" + ret.data.money + "</span></td><td><button class='layui-btn bgc-blued'  id='" + jishu + "' onclick='removeList(this)'>删除</button></td></tr>");
+                }
 
             } else {
                 if (ret.message == '') {
