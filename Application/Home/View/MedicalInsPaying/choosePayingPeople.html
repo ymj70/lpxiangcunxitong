@@ -154,7 +154,7 @@ function getpeopleinfo(idNumber) {
         success: function(ret) {
             if (ret.code == 1) {
                 jishu = jishu + 1;
-                $("#list").append("<tr id='tr" + jishu + "'><td><span>55555" + jishu + "</span></td><td><span>4444</span></td><td><span>55555</span></td><td><span>kkkkk</span></td><td><span>180</span></td><td><button class='layui-btn bgc-blued'  id='" + jishu + "' onclick='removeList(this)'>删除</button></td></tr>");
+                $("#list").append("<tr id='tr" + jishu + "'><td><span>" + ret.data.realName + "</span></td><td><span>" + ret.data.idcard + "</span></td><td><span>" + ret.data.sex + "</span></td><td><span>" + ret.data.address + "</span></td><td><span>" + ret.data.money + "</span></td><td><button class='layui-btn bgc-blued'  id='" + jishu + "' onclick='removeList(this)'>删除</button></td></tr>");
 
             } else {
                 if (ret.message == '') {
