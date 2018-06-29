@@ -54,6 +54,15 @@ return array(
         "QueryMedReimburse" => array(
             "showResult"=>"/umi/clearingInfo",//查询报销记录
         ),
+        //个人求职登记
+        "PersonalJobReg" => array(
+            "getlist"=>"/misauth/htgl/sysmaintain/getAllJobRegistration",//个人求职登记列表
+            "getinfoByIdcard"=>"/misauth/htgl/sysmaintain/getJobRegistrationByIdCard",//个人求职登记列表
+            "addBaseInfo"=>"/misauth/htgl/sysmaintain/getAllJobRegistration",//添加基本信息
+            "addEducationInfo"=>"/misauth/htgl/sysmaintain/getAllJobRegistration",//添加教育信息
+            "addWorkInfo"=>"/misauth/htgl/sysmaintain/getAllJobRegistration",//添加工作信息
+            "addIntentionInfo"=>"/misauth/htgl/sysmaintain/getAllJobRegistration",//添加工作信息
+        ),
     ),
     "imgUploadUrl" => "/image/uploadFile",//图片上传
     "imgDownUrl" => "/image-service/misauth/getimage",//图片上传
