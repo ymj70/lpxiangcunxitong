@@ -1,106 +1,98 @@
-        <div class="framePage">
-            <div class="framePage-title">
-                <a href="javascript:;">人员登记</a>
-                <i>></i>
-                <a href="javascript:;" class="cur-a">城乡居民养老保险参保登记</a>
-            </div>
-            <div class="framePage-body layui-form">
-                <div class="framePage-scroll">
-                    <div class="ovy-a">
-                        <div class="bg-box">
-                            <div class="care">
-                                <div class="h3-title">
-                                    <h3>请给要参保人员拍照</h3>
-                                </div>
-                                <div class="pbox p-flex">
-                                    <div>
-                                        <p>1.请将用户户口本照片按下图样式上传，上传过程中请耐心等待。</p>
-                                        <p>2.白色背景（以白布或者白墙为背景），正面免冠，着深色上衣。</p>
-                                    </div>
-                                    <div>
-                                        <p>3.头部占照片的2/3。</p>
-                                        <p>4.人像清晰，层次丰富，神态自然，无明显畸变。</p>
-                                    </div>
-                                </div>
+<div class="framePage">
+    <div class="framePage-title">
+        <a href="javascript:;">人员登记</a>
+        <i>></i>
+        <a href="javascript:;" class="cur-a">城乡居民养老保险参保登记</a>
+    </div>
+    <div class="framePage-body layui-form">
+        <div class="framePage-scroll">
+            <div class="ovy-a">
+                <div class="bg-box">
+                    <div class="care">
+                        <div class="h3-title">
+                            <h3>请给要参保人员拍照</h3>
+                        </div>
+                        <div class="pbox p-flex">
+                            <div>
+                                <p>1.请将用户户口本照片按下图样式上传，上传过程中请耐心等待。</p>
+                                <p>2.白色背景（以白布或者白墙为背景），正面免冠，着深色上衣。</p>
                             </div>
-                            <!--   <div class="demo-page  hk-book">
-                                    <div class="demo-pagepd outline">
-                                         
-                                        <div class="book-box">
-                                            <i class="jh"></i>
-                                            <img src="__PUBLIC__/image/pic.png" alt="">
-                                        </div>
-                                       
-                                    </div> 
-                                    <p>请点击照相机拍照按钮拍照</p>
-                                </div> -->
-                            <div class="pic">
-                                <div class="pic-box">
-                                    <div class="img  outline">
-                                        <label for="upload"><i class="picture"></i></label>
-                                        <input id="upload" type="file" style="display: none">
-                                        <div class="pic_box">
-                                            <img src="__PUBLIC__/image/pic.png" alt="" id="preview">
-                                        </div>
-                                    </div>
-                                    <p>请点击照相机拍照按钮拍照</p>
-                                </div>
+                            <div>
+                                <p>3.头部占照片的2/3。</p>
+                                <p>4.人像清晰，层次丰富，神态自然，无明显畸变。</p>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="btn layui-form">
-                    <div>
-                        <button class="layui-btn bgc-blued butt" onclick="nextSteup()">下一步</button>
-                        <input type="hidden" value="32323232323232322323.png" id="peoplePhoto">
+                    <div class="pic">
+                        <div class="pic-box">
+                            <label for="upload" class="img  outline">
+                                <input type="hidden" value="{$Think.config.REQUEST_URL}{$Think.config.imgUploadUrl}" id="url" name="url">
+                                <i class="picture"></i>
+                                <form action="" enctype="multipart/form-data" id="form1">
+                                    <input id="upload" type="file" style="display: none" name="file">
+                                </form>
+                                <div class="pic_box">
+                                    <img src="__PUBLIC__/image/pic.png" alt="" id="preview">
+                                </div>
+                            </label>
+                            <p>请点击照相机拍照按钮拍照</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="btn layui-form">
+            <div>
+                <button class="layui-btn bgc-blued butt" onclick="nextSteup()">下一步</button>
+                <input type="hidden" value="" id="peoplePhoto">
+            </div>
+        </div>
     </div>
+</div>
+</div>
 </body>
 <include file="Public:footer" />
+
 </html>
-        <script>
-               //上传图片
-    uploadimg("upload","preview");
-            function nextSteup() {
-                if (check() == false){
-                    return;
+<script>
+uploadimg("upload", "preview", "url", "peoplePhoto", "form1");
+
+function nextSteup() {
+    if (check() == false) {
+        return;
+    }
+    $.ajax({
+        type: "post",
+        url: "{:U('/Home/EndowmentInsAttend/getPeoplePhoto')}",
+        data: {
+            peoplePhoto: $("#peoplePhoto").val(), //姓名
+        },
+        dataType: "json",
+        beforeSend: function() {},
+        success: function(ret) {
+            if (ret.code == 1) {
+                if (ret.url == "") {
+                    layer.msg("跳转路径接受失败");
+                } else {
+                    window.location.href = ret.url;
                 }
-                $.ajax({
-                    type: "post",
-                    url: "{:U('/Home/EndowmentInsAttend/getPeoplePhoto')}",
-                    data: {
-                        peoplePhoto: $("#peoplePhoto").val(),//姓名
-                    },
-                    dataType: "json",
-                    beforeSend: function(){
-                    },
-                    success: function(ret) {
-                        if (ret.code == 1) {
-                            if(ret.url==""){
-                                layer.msg("跳转路径接受失败");
-                            }else {
-                                window.location.href=ret.url;
-                            }
-                        }else {
-                            if (ret.message == ''){
-                                layer.msg('请输入正确的身份证号！');
-                            }else {
-                                layer.msg(ret.message);
+            } else {
+                if (ret.message == '') {
+                    layer.msg('请输入正确的身份证号！');
+                } else {
+                    layer.msg(ret.message);
 
-                            }
-                        }
-                    },
-                });
-
-            }
-            //校验
-            function check(){;
-                if ($("#peoplePhoto").val()=="") {
-                    layer.msg("图片路径不能为空");
-                    return false;
                 }
             }
-        </script>
+        },
+    });
+
+}
+//校验
+function check() {;
+    if ($("#peoplePhoto").val() == "") {
+        layer.msg("图片路径不能为空");
+        return false;
+    }
+}
+</script>

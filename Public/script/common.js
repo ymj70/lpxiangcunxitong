@@ -168,12 +168,11 @@ $(".menu .nav li .seat").hover(function(e) {
 });
 //上传照片
 
-function uploadimg(uploatid, imgid, urlid, hideImg) {
+function uploadimg(uploatid, imgid, urlid, hideImg,formId) {
     $('#' + uploatid + '').change(function() {
-
         var url = $("#" + urlid + "").val();
         url = "http://" + url;
-        $("#form1").ajaxSubmit({
+        $("#"+formId+"").ajaxSubmit({
             success: function(data) {
                 if (data.code == 0) {
                     if (data.msg != "") {
@@ -194,10 +193,7 @@ function uploadimg(uploatid, imgid, urlid, hideImg) {
                 console.log(error)
             },
             url: url,
-            /*设置post提交到的页面*/
             type: "post",
-            /*设置表单以post方法提交*/
-            // dataType: "json" /*设置返回值类型为文本*/
         });
 
     })
