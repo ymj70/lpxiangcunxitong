@@ -6,6 +6,7 @@ class PersonalJobRegController extends CommonController
     public function _initialize()
     {
         parent::_initialize();
+        $this->javaUrl= C("javaUrl3");
         //为菜单选中状态设置session
         session("menu", "个人求职登记");
         session("model", "帮村民找工作");
@@ -16,10 +17,10 @@ class PersonalJobRegController extends CommonController
      */
     public function index()
     {
-        if (!IS_POST) {
+        /*if (!IS_POST) {
             $this->display("index");
             return;
-        }
+        }*/
         $data["pageNum"] = I("pageNum");
         $data["pageSize"] = I("pageSize");
         $javaurl = $this->javaUrl;
@@ -28,7 +29,7 @@ class PersonalJobRegController extends CommonController
         $requestObj = $this->requestObject;
         $result = $requestObj->requset($url, $data, "post");
         $result = json_decode($result, true, 512, JSON_BIGINT_AS_STRING);
-        if ($result["code"] === 0) {
+        if ($result["code"] !== 0) {
             $this->assign("list",$result["data"]);
             $htmlData=$this->fetch("list");
             $info["code"] = 1;
@@ -54,10 +55,11 @@ class PersonalJobRegController extends CommonController
         $result = $requestObj->requset($url, $data, "post");
         $result = json_decode($result, true, 512, JSON_BIGINT_AS_STRING);
         if ($result["code"] === 0) {
+            $this->assign("list",$result["data"]);
+            $htmlData=$this->fetch("list");
             $info["code"] = 1;
             $info["message"] = "成功";
-            $info["url"] = U("Home/NotAttendIns/getPeopleInfo");
-            $info["data"] = $result["data"];
+            $info["data"] =$htmlData;
         } else {
             $info["code"] = -1;
             $info["message"] = $result["msg"];
