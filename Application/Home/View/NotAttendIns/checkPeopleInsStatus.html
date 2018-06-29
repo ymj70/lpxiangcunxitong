@@ -71,132 +71,170 @@
 </body>
 <include file="Public:footer"/>
 <script>
- var idCardStatus = true;
-
-    function getidCard() {
-        if (!idCardStatus) {
-            layer.msg("身份证正在读取中请稍后在试");
-            return
-        }
-        idCardStatus = false;
-        $("#realName").attr("value", "")
-        $("#idCard").attr("value", "")
-        try {
-            jsidcard.getIdCard(function (IdNumber, Name) {
-                if (IdNumber && Name) {
-                    $("#realName").attr("value", Name)
-                    $("#idCard").attr("value", IdNumber)
-                    getinfoByIdcard();
-                    idCardStatus = true;
+function nextSteup() {
+    if (check() == false) {
+        return;
+    }
+    $.ajax({
+        type: "post",
+        url: "{:U('/Home/NotAttendIns/checkPeopleInsStatus')}",
+        data: {
+            idCard: $("#idCard").val(),//身份证号
+            realName: $("#realName").val(), //姓名
+            sex: $("#sex").val(), //性别
+            national: $("#national").val(), //民族
+            birthday: $("#birthday").val(), //出生日期
+            idCardAddress: $("#idCardAddress").val(), //户籍所在地
+        },
+        dataType: "json",
+        beforeSend: function () {
+        },
+        success: function (ret) {
+            if (ret.code == 1) {
+                if (ret.url == "") {
+                    layer.msg("跳转路径接受失败");
                 } else {
-                    layer.msg("未读取到身份证信息")
+                    window.location.href = ret.url;
                 }
-            });
-        } catch (err) {
-            layer.msg("读取身份证信息失败")
-        }
-    }
-
-    /* function getidCard() {
-         alert("chushihua");
-         try{
-             jssicard.ReadCard(function (idnumber, name) {
-                 if(idnumber && name){
-                     alert("chenggong")
-                     alert(idnumber);
-                     alert(name);
-                 }else {}
-                     alert("else")
-             });
-         } catch(err) {
-             alert(err);
-             popuoOne('读卡器初始化失败');
-         }
-
-     }*/
-
-    function nextSteup() {
-        if (check() == false) {
-            return;
-        }
-        $.ajax({
-            type: "post",
-            url: "{:U('/Home/NotAttendIns/checkPeopleInsStatus')}",
-            data: {
-                idCard: $("#idCard").val(),//身份证号
-                realName: $("#realName").val(), //姓名
-                sex: $("#sex").val(), //性别
-                national: $("#national").val(), //民族
-                birthday: $("#birthday").val(), //出生日期
-                idCardAddress: $("#idCardAddress").val(), //户籍所在地
-            },
-            dataType: "json",
-            beforeSend: function () {
-            },
-            success: function (ret) {
-                if (ret.code == 1) {
-                    if (ret.url == "") {
-                        layer.msg("跳转路径接受失败");
-                    } else {
-                        window.location.href = ret.url;
-                    }
-                    $("#listHtml").html(ret.data)
-                } else {
-                    if (ret.message == '') {
-                        layer.msg('请求失败');
-                    } else {
-                        layer.msg(ret.message);
-
-                    }
-                }
-            },
-        });
-
-    }
-
-    //校验
-    function check() {
-        ;
-        if ($("#realName").val() == "") {
-            layer.msg("输入姓名");
-            return false;
-        }
-        if ($("#idCard").val() == "") {
-            layer.msg("输入身份证号");
-            return false;
-        }
-
-        if ($("#national").val() == "") {
-            layer.msg("输入民族");
-            return false;
-        }
-        if ($("#idCardAddress").val() == "") {
-            layer.msg("输入户籍所在地");
-            return false;
-        }
-    }
-
-    $("#idCard").change(function () {
-        getinfoByIdcard();
-    })
-
-    function getinfoByIdcard() {
-        var card = /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[A-Z])$/;
-        var idcard = $('#idCard').val();
-        if (card.test(idcard) == false) {
-            layer.msg('请输入正确的身份证号！');
-            return false;
-        } else {
-            var birth = idcard.substring(6, 10) + "-" + idcard.substring(10, 12) + "-" + idcard.substring(12, 14);
-            var sex = idcard.substring(16, 17);
-            if (sex % 2 == 1) {
-                $("#sex").val("男");
+                $("#listHtml").html(ret.data)
             } else {
-                $("#sex").val("女")
+                if (ret.message == '') {
+                    layer.msg('请求失败');
+                } else {
+                    layer.msg(ret.message);
+
+                }
             }
-            $("#birthday").val(birth);
-        }
+        },
+    });
+
+}
+
+//校验
+function check() {
+    ;
+    if ($("#realName").val() == "") {
+        layer.msg("输入姓名");
+        return false;
     }
+    if ($("#idCard").val() == "") {
+        layer.msg("输入身份证号");
+        return false;
+    }
+
+    if ($("#national").val() == "") {
+        layer.msg("输入民族");
+        return false;
+    }
+    if ($("#idCardAddress").val() == "") {
+        layer.msg("输入户籍所在地");
+        return false;
+    }
+}
+
+$("#idCard").change(function () {
+    getinfoByIdcard();
+})
+
+function getinfoByIdcard() {
+    var card = /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[A-Z])$/;
+    var idcard = $('#idCard').val();
+    if (card.test(idcard) == false) {
+        layer.msg('请输入正确的身份证号！');
+        return false;
+    } else {
+        var birth = idcard.substring(6, 10) + "-" + idcard.substring(10, 12) + "-" + idcard.substring(12, 14);
+        var sex = idcard.substring(16, 17);
+        if (sex % 2 == 1) {
+            $("#sex").val("男");
+        } else {
+            $("#sex").val("女")
+        }
+        $("#birthday").val(birth);
+    }
+}
+/************************读取社保卡和身份证开始***********************************/
+var idCardStatus = true;
+function getidCard() {
+    if (!idCardStatus) {
+        layer.msg("身份证正在读取中请稍后在试");
+        return
+    }
+    idCardStatus = false;
+    $("#realName").attr("value", "")
+    $("#idCard").attr("value", "")
+    try {
+        jsidcard.getIdCardInfo(function (idnumber, name, nation, gender, birthDate, addr, idBeginDate, idEndDate) {
+            if (idnumber && name && nation && gender && birthDate && addr && idBeginDate && idEndDate) {
+                readIdcardSwitch = false;
+                birthDate = birthDate.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '');
+                idBeginDate = idBeginDate.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '');
+                idEndDate = idEndDate.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '');
+                var info = {
+                    idcard: $.trim(idnumber),
+                    name: $.trim(name),
+                    nation: $.trim(nation),
+                    gender: $.trim(gender),
+                    birthdate: $.trim(birthDate),
+                    addr: $.trim(addr),
+                    idBeginDate: $.trim(idBeginDate),
+                    idEndDate: $.trim(idEndDate)
+                };
+                idCardStatus = true;
+                infoTuiSong(info)
+            } else {
+                layer.msg("未读取到身份证信息")
+                idCardStatus = true;
+            }
+        });
+    } catch (err) {
+        alert(err)
+        layer.msg("读取身份证信息失败")
+        idCardStatus = true;
+    }
+}
+
+function getSBCard() {
+    if (!idCardStatus) {
+        layer.msg("社保卡正在读取中请稍后在试");
+        return
+    }
+    idCardStatus = false;
+    try {
+        jssicard.ReadCard(function (idnumber, name) {
+            if (idnumber && name) {
+                var info = {
+                    idcard: idnumber,
+                    name: name,
+                };
+                idCardStatus = true;
+                infoTuiSong(info)
+            } else {
+                layer.msg("未读取到社保卡信息")
+                idCardStatus = true;
+            }
+        });
+    } catch (err) {
+        layer.msg("读取社保卡信息失败")
+        idCardStatus = true;
+    }
+}
+
+function infoTuiSong(info) {
+    $("#realName").val('')
+    $("#idCard").val()
+    $("#national").val('')
+    $("#sex").val('')
+    $("#birthday").val('')
+    $("#idcardAddress").val('')
+    $("#realName").val(info.name)
+    $("#idCard").val(info.idcard)
+    $("#national").val(info.nation)
+    $("#sex").val(info.gender)
+    $("#birthday").val(info.birthdate)
+    $("#idCardAddress").val(info.addr)
+}
+/************************读取社保卡和身份证结束***********************************/
 </script>
 
 </html>

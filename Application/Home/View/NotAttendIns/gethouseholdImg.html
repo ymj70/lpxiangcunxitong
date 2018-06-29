@@ -25,23 +25,28 @@
                     </div>
                     <div class="demo">
                         <div class="demo-page  hk-book">
-                            <div class="demo-pagepd outline">
-                                <label for="upload"><i class="jh"></i></label>
-                                <input id="upload" type="file" style="display: none">
+                            <label for="upload" class="demo-pagepd outline">
+                                <input type="hidden" value="{$Think.config.REQUEST_URL}{$Think.config.imgUploadUrl}" id="url" name="url">
+                                <i class="jh"></i>
+                                <form action="" enctype="multipart/form-data" id="form1">
+                                    <input id="upload" type="file" style="display: none" name="file">
+                                </form>
                                 <div class="book-box">
                                     <img src="__PUBLIC__/image/hk.png" alt="" id="preview">
                                 </div>
-                            </div>
+                            </label>
                             <p>请点击加号上传</p>
                         </div>
                         <div class="demo-page  hk-book">
-                            <div class="demo-pagepd outline">
-                                <label for="upload1"><i class="jh"></i></label>
-                                <input id="upload1" type="file" style="display: none">
+                            <label for="upload1" class="demo-pagepd outline">
+                                <i class="jh"></i>
+                                <form action="" enctype="multipart/form-data" id="form2">
+                                    <input id="upload1" type="file" style="display: none" name="file">
+                                </form>
                                 <div class="book-box">
                                     <img src="__PUBLIC__/image/hk2.png" alt="" src="" id="preview1">
                                 </div>
-                            </div>
+                            </label>
                             <p>请点击加号上传</p>
                         </div>
                     </div>
@@ -50,8 +55,8 @@
         </div>
         <div class="btn layui-form">
             <div>
-                <input type="hidden" id="gethouseholdFirstImg" value="group1+M00/00/02/wKgDDVst_pCAFq-uAABY5XwgzCQ610+png">
-                <input type="hidden" id="gethouseholdPeopleImg" value="group1+M00/00/02/wKgDDVst_pCAFq-uAABY5XwgzCQ610+png">
+                <input type="hidden" id="gethouseholdFirstImg" value="">
+                <input type="hidden" id="gethouseholdPeopleImg" value="">
                 <button class="layui-btn bgc-green bttn-green" onclick="flx()">提交</button>
                 <button class="layui-btn bgc-blued butt">打印材料</button>
             </div>
@@ -74,18 +79,8 @@
 </body>
 <include file="Public:footer" />
 <script>
-$('#upload').change(function() {
-    // 获取FileList的第一个元素
-    var f = document.getElementById('upload').files[0];
-    src = window.URL.createObjectURL(f);
-    document.getElementById('preview').src = src
-})
-$('#upload1').change(function() {
-    // 获取FileList的第一个元素
-    var f = document.getElementById('upload1').files[0];
-    src = window.URL.createObjectURL(f);
-    document.getElementById('preview1').src = src
-})
+uploadimg("upload", "preview", "url", "gethouseholdFirstImg", "form1");
+uploadimg("upload1", "preview1", "url", "gethouseholdPeopleImg", "form2");
 
 function flx() {
     if (check() == false) {
@@ -107,6 +102,9 @@ function flx() {
                     content: $('.alert'), //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
                     area: ["478px", "304px"],
                     title: false,
+                    success: function() {
+                        $('.alert').css("display", "none");
+                    },
                     cancel: function(index, layero) {
                         //只有当点击confirm框的确定时，该层才会关闭
                         layer.close(index);
