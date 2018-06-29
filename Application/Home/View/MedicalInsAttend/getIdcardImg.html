@@ -26,24 +26,28 @@
                     </div>
                     <div class="demo">
                         <div class="demo-page  hk-book">
-                            <div class="demo-pagepd outline">
-                                <label for="upload"><i class="jh"></i></label>
-                                <input id="upload" type="file" style="display: none">
+                            <label for="upload" class="demo-pagepd outline">
+                                  <input type="hidden" value="{$Think.config.REQUEST_URL}{$Think.config.imgUploadUrl}" id="url" name="url">
+                                <i class="jh"></i>
+                                <form action="" enctype="multipart/form-data" id="form1">
+                                    <input id="upload" type="file" style="display: none" name="file">
+                                </form>
                                 <div class="book-box">
                                     <img src="__PUBLIC__/image/card1.png" alt="" id="preview">
                                 </div>
-                            </div>
+                            </label>
                             <p>请点击加号上传</p>
                         </div>
                         <div class="demo-page  hk-book">
-
-                            <div class="demo-pagepd outline">
-                                <label for="upload1"><i class="jh"></i></label>
-                                <input id="upload1" type="file" style="display: none">
+                            <label for="upload1" class="demo-pagepd outline">
+                                <i class="jh"></i>
+                                <form action="" enctype="multipart/form-data" id="form2">
+                                    <input id="upload1" type="file" style="display: none" name="file">
+                                </form>
                                 <div class="book-box">
-                                    <img src="__PUBLIC__/image/card2.png" alt=""  id="preview1">
+                                    <img src="__PUBLIC__/image/card2.png" alt="" id="preview1">
                                 </div>
-                            </div>
+                            </label>
                             <p>请点击加号上传</p>
                         </div>
                     </div>
@@ -52,8 +56,8 @@
         </div>
         <div class="btn layui-form">
             <div>
-                <input type="hidden" id="idcardBackImg" value="group1+M00/00/02/wKgDDVst_pCAFq-uAABY5XwgzCQ610+png">
-                <input type="hidden" id="idcardfrontImg" value="group1+M00/00/02/wKgDDVst_pCAFq-uAABY5XwgzCQ610+png">
+                <input type="hidden" id="idcardBackImg" value="">
+                <input type="hidden" id="idcardfrontImg" value="">
                 <button class="layui-btn bgc-blued butt" onclick="nextSteup()">下一步</button>
             </div>
         </div>
@@ -61,90 +65,89 @@
 </div>
 </div>
 </body>
-<include file="Public:footer"/>
+<include file="Public:footer" />
 <script>
-    $(function() {
-        $("#idcardBackImgfile").change(function () {
-            imgUpload("idcardBackImgfile");
-        })
+
+//上传图片
+uploadimg("upload", "preview", "url", "idcardfrontImg", "form1");
+uploadimg("upload1", "preview1", "url", "idcardBackImg", "form2");
+
+function imgUpload() {
+    var url = $("#url").val();
+    url = "http://" + url;
+    alert(url)
+    $("#form1").ajaxSubmit({
+        success: function(data) {
+            alert("dddd")
+            if (data.code == 0) {
+                var imgpath = "{" + data.msg + "|getImg}"
+                alert(imgpath)
+                $("#idcardBackImgfilessss").attr("src", imgpath)
+            }
+
+        },
+        error: function(error) {
+            console.log(error)
+        },
+        url: url,
+        /*设置post提交到的页面*/
+        type: "post",
+        /*设置表单以post方法提交*/
+        // dataType: "json" /*设置返回值类型为文本*/
     });
-    //上传图片
-    uploadimg("upload","preview");
-    uploadimg("upload1","preview1");
-    function imgUpload(){
-        var url=$("#url").val();
-        url="http://"+url;
-        alert(url)
-        $("#form1").ajaxSubmit({
-            success: function (data) {
-                alert("dddd")
-                if (data.code ==0){
-                    var imgpath="{"+data.msg+"|getImg}"
-                    alert(imgpath)
-                    $("#idcardBackImgfilessss").attr("src",imgpath)
+}
+
+function nextSteup() {
+    if (check() == false) {
+        return;
+    }
+    $.ajax({
+        type: "post",
+        url: "{:U('/Home/MedicalInsAttend/getIdcardImg')}",
+        data: {
+            idcardBackImg: $("#idcardBackImg").val(), //姓名
+            idcardfrontImg: $("#idcardfrontImg").val(), //身份证号
+        },
+        dataType: "json",
+        beforeSend: function() {},
+        success: function(ret) {
+            if (ret.code == 1) {
+                if (ret.url == "") {
+                    layer.msg("跳转路径接受失败");
+                } else {
+                    window.location.href = ret.url;
                 }
+                $("#listHtml").html(ret.data)
+            } else {
+                if (ret.message == '') {
+                    layer.msg('请输入正确的身份证号！');
+                } else {
+                    layer.msg(ret.message);
 
-            },
-            error: function (error) {
-                console.log(error)
-            },
-            url:url, /*设置post提交到的页面*/
-            type: "post", /*设置表单以post方法提交*/
-            // dataType: "json" /*设置返回值类型为文本*/
-        });
-    }
-    function nextSteup() {
-        if (check() == false){
-            return;
-        }
-        $.ajax({
-            type: "post",
-            url: "{:U('/Home/MedicalInsAttend/getIdcardImg')}",
-            data: {
-                idcardBackImg: $("#idcardBackImg").val(),//姓名
-                idcardfrontImg: $("#idcardfrontImg").val(), //身份证号
-            },
-            dataType: "json",
-            beforeSend: function(){
-            },
-            success: function(ret) {
-                if (ret.code == 1) {
-                    if(ret.url==""){
-                        layer.msg("跳转路径接受失败");
-                    }else {
-                        window.location.href=ret.url;
-                    }
-                    $("#listHtml").html(ret.data)
-                }else {
-                    if (ret.message == ''){
-                        layer.msg('请输入正确的身份证号！');
-                    }else {
-                        layer.msg(ret.message);
-
-                    }
                 }
-            },
-        });
+            }
+        },
+    });
 
+}
+//校验
+function check() {;
+    if ($("#idcardBackImg").val() == "") {
+        layer.msg("请上传身份证背面图片");
+        return false;
     }
-    //校验
-    function check(){;
-        if ($("#idcardBackImg").val()=="") {
-            layer.msg("请上传身份证背面图片");
-            return false;
-        }
-        if ($("#idcardfrontImg").val()=="") {
-            layer.msg("请上传身份证正面图片");
-            return false;
-        }
-
+    if ($("#idcardfrontImg").val() == "") {
+        layer.msg("请上传身份证正面图片");
+        return false;
     }
-    $('#upload').change(function () {
-        // 获取FileList的第一个元素
-        var f = document.getElementById('upload').files[0];
-        src = window.URL.createObjectURL(f);
-        document.getElementById('preview').src = src
-    })
 
+}
+$('#upload').change(function() {
+    // 获取FileList的第一个元素
+    var f = document.getElementById('upload').files[0];
+    src = window.URL.createObjectURL(f);
+    document.getElementById('preview').src = src
+})
 </script>
+
 </html>

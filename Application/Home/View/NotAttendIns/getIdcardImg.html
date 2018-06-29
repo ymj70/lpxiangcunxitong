@@ -41,7 +41,9 @@
                         <div class="demo-page  hk-book">
                             <label for="upload1" class="demo-pagepd outline">
                                 <i class="jh"></i>
-                                <input id="upload1" type="file" style="display: none">
+                                <form action="" enctype="multipart/form-data" id="form2">
+                                    <input id="upload1" type="file" style="display: none"  name="file">
+                                </form>
                                 <div class="book-box">
                                     <img src="__PUBLIC__/image/card2.png" alt="" id="preview1">
                                 </div>
@@ -66,8 +68,8 @@
 <include file="Public:footer" />
 <script>
 //上传图片
-uploadimg("upload", "preview", "url","idcardBackImg");
-uploadimg("upload1", "preview1", "url","idcardfrontImg");
+uploadimg("upload", "preview", "url", "idcardfrontImg", "form1");
+uploadimg("upload1", "preview1", "url", "idcardBackImg", "form2");
 
 function choose() {
     $("#idcardBackImgfile").trigger("click");

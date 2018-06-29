@@ -37,7 +37,7 @@
                                 <td><span><b>登记时间</b></span></td>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tbody">
                             <tr>
                                 <td class="tdCheckbox"><input type="checkbox" name="list">&nbsp&nbsp<span><b>1</b></span></td>
                                 <td><span>李存亮</span></td>
@@ -74,6 +74,43 @@ function opChange(){
 }
 function opRemove(){
  window.location.href = "{:U('Home/PersonalJobReg/delete')}"
+}
+
+$(function() {
+    getData();
+});
+
+function getData(i) {
+    i = i || 1;
+    var pagesize = listSize();
+    $.ajax({
+        type: "post",
+        url: "{:U('Home/PersonalJobReg/index')}",
+        data: {
+            pagenumber: i,
+            pagesize: pagesize,
+        },
+        dataType: "json",
+        success: function(ret) {
+            if (ret.code == 1) {
+                if (ret.data != '') {
+                    alert(1212)
+                } else {
+                    
+                }
+            } else {
+                if (ret.message == "" || ret.message == null) {
+                    layer.alert("访问失败");
+                } else {
+                    layer.alert(ret.message);
+                }
+            }
+        },
+        error:function(i){
+            console.log(i)
+        }
+    });
+
 }
 </script>
 </html>
