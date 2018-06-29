@@ -17,10 +17,10 @@ class PersonalJobRegController extends CommonController
      */
     public function index()
     {
-        /*if (!IS_POST) {
+        if (!IS_POST) {
             $this->display("index");
             return;
-        }*/
+        }
         $data["pageNum"] = I("pageNum");
         $data["pageSize"] = I("pageSize");
         $javaurl = $this->javaUrl;
