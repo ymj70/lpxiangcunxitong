@@ -56,7 +56,7 @@ return array(
         ),
         //个人求职登记
         "PersonalJobReg" => array(
-            "getlist"=>"/misauth/htgl/sysmaintain/getAllJobRegistration",//个人求职登记列表
+            "getlist"=>"/sysmaintaindata-service/misauth/htgl/sysmaintain/getAllJobRegistration",//个人求职登记列表
             "getinfoByIdcard"=>"/misauth/htgl/sysmaintain/getJobRegistrationByIdCard",//个人求职登记列表
             "addBaseInfo"=>"/misauth/htgl/sysmaintain/getAllJobRegistration",//添加基本信息
             "addEducationInfo"=>"/misauth/htgl/sysmaintain/getAllJobRegistration",//添加教育信息
