@@ -73,7 +73,7 @@ function layuiform() {
 function listSize() {
     var psize = 10,
         tel = $('.framePage-scroll .ovy-a table');
-    framePageHeight = $('.framePage-scroll')[0].clientHeight,
+        framePageHeight = $('.framePage-scroll')[0].clientHeight,
         FontSize = parseInt($('html').css('font-size'));
     if (tel.length > 0) {
         FontSize = tel.hasClass('grid-table') ? FontSize : 0;

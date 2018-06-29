@@ -1,3 +1,4 @@
+
         <div class="framePage">
             <div class="framePage-title">
                 <a href="javascript:;">帮村民找工作</a>
@@ -37,18 +38,7 @@
                                 <td><span><b>登记时间</b></span></td>
                             </tr>
                         </thead>
-                        <tbody id="tbody">
-                            <tr>
-                                <td class="tdCheckbox"><input type="checkbox" name="list">&nbsp&nbsp<span><b>1</b></span></td>
-                                <td><span>李存亮</span></td>
-                                <td><span>13030219960526114X</span></td>
-                                <td><span>初中</span></td>
-                                <td><span>厨师</span></td>
-                                <td><span>2000-5000</span></td>
-                                <td><span>13363669541</span></td>
-                                <td><span>李存亮</span></td>
-                                <td><span>2018-01-04 12:37</span></td>
-                            </tr>
+                        <tbody id="listHtml">
                         </tbody>
                     </table>
                   </div>
@@ -93,10 +83,14 @@ function getData(i) {
         dataType: "json",
         success: function(ret) {
             if (ret.code == 1) {
-                if (ret.data != '') {
-                    alert(1212)
+                if (ret.data == '') {
+                    $('#gridTable tbody').html('').empty();
+                    $('.framePage-scroll').append(getEmptyDom());
                 } else {
-                    
+                    if (i == 1) showLaypage(ret.total, pagesize);
+                    $('.empty-seat').remove();
+                    $("#listHtml").html(ret.data);
+                    flexThead('#gridTable');
                 }
             } else {
                 if (ret.message == "" || ret.message == null) {
@@ -111,6 +105,38 @@ function getData(i) {
         }
     });
 
+}
+function opSearch(){
+        $.ajax({
+        type: "post",
+        url: "{:U('Home/PersonalJobReg/getinfoByIdcard')}",
+        data: {
+            idcard:$("#sname").val()
+        },
+        dataType: "json",
+        success: function(ret) {
+            if (ret.code == 1) {
+                if (ret.data == '') {
+                    $('#gridTable tbody').html('').empty();
+                    $('.framePage-scroll').append(getEmptyDom());
+                } else {
+                    if (i == 1) showLaypage(ret.total, pagesize);
+                    $('.empty-seat').remove();
+                    $("#listHtml").html(ret.data);
+                    flexThead('#gridTable');
+                }
+            } else {
+                if (ret.message == "" || ret.message == null) {
+                    layer.alert("访问失败");
+                } else {
+                    layer.alert(ret.message);
+                }
+            }
+        },
+        error:function(i){
+            console.log(i)
+        }
+    });
 }
 </script>
 </html>

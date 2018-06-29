@@ -70,12 +70,17 @@
                           <div class="content_box">
                               <div class="box_left">
                                   <div class="img_top">
-                                      <img src="__PUBLIC__/image/img_tx.png" alt="">
+                                     <input type="hidden" value="{$Think.config.REQUEST_URL}{$Think.config.imgUploadUrl}" id="url" name="url">
+                                      <img src="__PUBLIC__/image/img_tx.png" alt="" id="preview">
                                       <span>上传的头像照片小于2M，超大图片将自动进行压缩处理。</span>
                                   </div>
-                                  <button type="button" class="layui-btn bgc-blued butt" id="test1">
-                                    上传图片
-                                  </button>
+                                  <input type="hidden" id="gethouseholdFirstImg" value="">
+                                        <button type="button" class="layui-btn bgc-blued butt" id="test1">
+                                         <label for="upload" > 上传图片 </label>
+                                         </button>
+                                      <form action="" enctype="multipart/form-data" id="form1">
+                                         <input id="upload" type="file" style="display: none" name="file">
+                                     </form>
                               </div>
                               <div class="box_right">
                                   <div class="cell_box">
@@ -428,6 +433,8 @@
 </div>
 <include file="Public:footer" />
 <script>
+  //上传图片
+uploadimg("upload", "preview", "url", "gethouseholdFirstImg", "form1");
   var laydate = layui.laydate;
   var layer = layui.layer
   var upload = layui.upload
@@ -484,17 +491,7 @@
     min: $('#month22').val()
 })
 
-// 上传图片
-var uploadInst = upload.render({
-    elem: '#test1' //绑定元素
-    ,url: '/upload/' //上传接口
-    ,done: function(res){
-      //上传完毕回调
-    }
-    ,error: function(){
-      //请求异常回调
-    }
-  });
+
 // 民族
 var nations = ["汉族", "蒙古族", "回族", "藏族", "维吾尔族", "苗族", "彝族", "壮族", "布依族", "朝鲜族", "满族", "侗族", "瑶族", "白族", "土家族",
         "哈尼族", "哈萨克族", "傣族", "黎族", "傈僳族", "佤族", "畲族", "高山族", "拉祜族", "水族", "东乡族", "纳西族", "景颇族", "柯尔克孜族",
